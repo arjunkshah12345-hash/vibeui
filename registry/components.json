@@ -1,0 +1,459 @@
+{
+  "name": "vibeui",
+  "version": "0.1.0",
+  "license": "MIT",
+  "count": 81,
+  "tokens": "templates/vibeui.css",
+  "utils": "src/lib/utils.ts",
+  "components": [
+    {
+      "name": "accordion",
+      "file": "src/components/ui/accordion.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "alert",
+      "file": "src/components/ui/alert.tsx",
+      "dependencies": [
+        "class-variance-authority"
+      ]
+    },
+    {
+      "name": "arrow-fill-button",
+      "file": "src/components/ui/arrow-fill-button.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "file": "src/components/ui/aspect-ratio.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "avatar",
+      "file": "src/components/ui/avatar.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "banner",
+      "file": "src/components/ui/banner.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "blur-reveal",
+      "file": "src/components/ui/blur-reveal.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "book-flip",
+      "file": "src/components/ui/book-flip.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "breadcrumb",
+      "file": "src/components/ui/breadcrumb.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "button",
+      "file": "src/components/ui/button.tsx",
+      "dependencies": [
+        "class-variance-authority"
+      ]
+    },
+    {
+      "name": "calendar",
+      "file": "src/components/ui/calendar.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "callout",
+      "file": "src/components/ui/callout.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "card",
+      "file": "src/components/ui/card.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "checkbox",
+      "file": "src/components/ui/checkbox.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "chip",
+      "file": "src/components/ui/chip.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "circle-menu",
+      "file": "src/components/ui/circle-menu.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "code-block",
+      "file": "src/components/ui/code-block.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "color-swatch",
+      "file": "src/components/ui/color-swatch.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "command",
+      "file": "src/components/ui/command.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "comparison",
+      "file": "src/components/ui/comparison.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "count-up",
+      "file": "src/components/ui/count-up.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "dialog",
+      "file": "src/components/ui/dialog.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "dock",
+      "file": "src/components/ui/dock.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "dotted-grid",
+      "file": "src/components/ui/dotted-grid.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "dropdown-menu",
+      "file": "src/components/ui/dropdown-menu.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "empty",
+      "file": "src/components/ui/empty.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "file-drop",
+      "file": "src/components/ui/file-drop.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "flip-card",
+      "file": "src/components/ui/flip-card.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "flip-text",
+      "file": "src/components/ui/flip-text.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "folder-preview",
+      "file": "src/components/ui/folder-preview.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "hover-card",
+      "file": "src/components/ui/hover-card.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "hover-image",
+      "file": "src/components/ui/hover-image.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "input",
+      "file": "src/components/ui/input.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "jelly-loader",
+      "file": "src/components/ui/jelly-loader.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "kbd",
+      "file": "src/components/ui/kbd.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "list",
+      "file": "src/components/ui/list.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "magnet-tabs",
+      "file": "src/components/ui/magnet-tabs.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "magnetic-button",
+      "file": "src/components/ui/magnetic-button.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "marquee",
+      "file": "src/components/ui/marquee.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "masonry",
+      "file": "src/components/ui/masonry.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "meter",
+      "file": "src/components/ui/meter.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "notification",
+      "file": "src/components/ui/notification.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "number-field",
+      "file": "src/components/ui/number-field.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "orbit-ring",
+      "file": "src/components/ui/orbit-ring.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "otp-field",
+      "file": "src/components/ui/otp-field.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "pagination",
+      "file": "src/components/ui/pagination.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "password-field",
+      "file": "src/components/ui/password-field.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "pill",
+      "file": "src/components/ui/pill.tsx",
+      "dependencies": [
+        "class-variance-authority"
+      ]
+    },
+    {
+      "name": "popover",
+      "file": "src/components/ui/popover.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "progress",
+      "file": "src/components/ui/progress.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "quote",
+      "file": "src/components/ui/quote.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "radio",
+      "file": "src/components/ui/radio.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "rating",
+      "file": "src/components/ui/rating.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "rotating-carousel",
+      "file": "src/components/ui/rotating-carousel.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "scroll-area",
+      "file": "src/components/ui/scroll-area.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "scroll-stack",
+      "file": "src/components/ui/scroll-stack.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "search-field",
+      "file": "src/components/ui/search-field.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "segmented",
+      "file": "src/components/ui/segmented.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "select",
+      "file": "src/components/ui/select.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "separator",
+      "file": "src/components/ui/separator.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "sheet",
+      "file": "src/components/ui/sheet.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "file": "src/components/ui/skeleton.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "slider",
+      "file": "src/components/ui/slider.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "spinner",
+      "file": "src/components/ui/spinner.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "split-showcase",
+      "file": "src/components/ui/split-showcase.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "spotlight",
+      "file": "src/components/ui/spotlight.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "stacked-cards",
+      "file": "src/components/ui/stacked-cards.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "stat",
+      "file": "src/components/ui/stat.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "stepper",
+      "file": "src/components/ui/stepper.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "switch",
+      "file": "src/components/ui/switch.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "table",
+      "file": "src/components/ui/table.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "tabs",
+      "file": "src/components/ui/tabs.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "tag-input",
+      "file": "src/components/ui/tag-input.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
+      "name": "text-link",
+      "file": "src/components/ui/text-link.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "text-reveal",
+      "file": "src/components/ui/text-reveal.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "timeline",
+      "file": "src/components/ui/timeline.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "toast",
+      "file": "src/components/ui/toast.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "toggle",
+      "file": "src/components/ui/toggle.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "tooltip",
+      "file": "src/components/ui/tooltip.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "trading-card",
+      "file": "src/components/ui/trading-card.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "typewriter",
+      "file": "src/components/ui/typewriter.tsx",
+      "dependencies": []
+    }
+  ]
+}

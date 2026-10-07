@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #fbfbfa;
+  --surface: #ffffff;
+  --surface-muted: #f4f4f2;
+  --ink: #1c1c1a;
+  --ink-soft: #3d3d3a;
+  --muted: #7a7a74;
+  --faint: #a8a8a2;
+  --line: #e8e8e4;
+  --line-strong: #d4d4ce;
+  --focus: #1c1c1a;
+  --overlay: rgba(28, 28, 26, 0.4);
+
+  --pastel-rose: #fdebec;
+  --pastel-rose-ink: #9f2f2d;
+  --pastel-sky: #e8f3fb;
+  --pastel-sky-ink: #1f6c9f;
+  --pastel-sage: #edf3ec;
+  --pastel-sage-ink: #346538;
+  --pastel-sand: #fbf3db;
+  --pastel-sand-ink: #8a5a00;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-quiet: 0 1px 2px rgba(28, 28, 26, 0.04);
+  --shadow-lift: 0 8px 24px rgba(28, 28, 26, 0.06);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --font-display: var(--font-instrument), "Times New Roman", serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+.dark {
+  --canvas: #121110;
+  --surface: #1c1b19;
+  --surface-muted: #242320;
+  --ink: #f5f4f2;
+  --ink-soft: #d8d6d1;
+  --muted: #9a9790;
+  --faint: #6f6c65;
+  --line: rgba(245, 244, 242, 0.1);
+  --line-strong: rgba(245, 244, 242, 0.18);
+  --focus: #f5f4f2;
+  --overlay: rgba(0, 0, 0, 0.55);
+
+  --pastel-rose: #3a2424;
+  --pastel-rose-ink: #f0b4b2;
+  --pastel-sky: #1e2f3a;
+  --pastel-sky-ink: #9ec9e8;
+  --pastel-sage: #243128;
+  --pastel-sage-ink: #a8c9ab;
+  --pastel-sand: #342e1f;
+  --pastel-sand-ink: #e6c77a;
+
+  --shadow-quiet: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-lift: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-overlay: var(--overlay);
+  --color-pastel-rose: var(--pastel-rose);
+  --color-pastel-rose-ink: var(--pastel-rose-ink);
+  --color-pastel-sky: var(--pastel-sky);
+  --color-pastel-sky-ink: var(--pastel-sky-ink);
+  --color-pastel-sage: var(--pastel-sage);
+  --color-pastel-sage-ink: var(--pastel-sage-ink);
+  --color-pastel-sand: var(--pastel-sand);
+  --color-pastel-sand-ink: var(--pastel-sand-ink);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+  --shadow-quiet: var(--shadow-quiet);
+  --shadow-lift: var(--shadow-lift);
+  --ease-out: var(--ease-out);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.25s var(--ease-out), color 0.25s var(--ease-out);
+}
+
+::selection {
+  background: color-mix(in oklab, var(--ink) 14%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@keyframes vibe-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes vibe-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes vibe-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes vibe-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes vibe-jelly {
+  0%,
+  100% {
+    transform: scaleY(0.55);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scaleY(1.15);
+    opacity: 1;
+  }
+}
+
+.animate-marquee {
+  animation: vibe-marquee 40s linear infinite;
+}
+
+.animate-fade-up {
+  animation: vibe-fade-up 0.7s var(--ease-out) both;
+}
+
+.animate-pulse-quiet {
+  animation: vibe-pulse 1.6s ease-in-out infinite;
+}
+
+.animate-spin-quiet {
+  animation: vibe-spin 0.9s linear infinite;
+}
+
+.vibe-orbit {
+  animation: vibe-spin 24s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-fade-up,
+  .animate-pulse-quiet,
+  .animate-spin-quiet,
+  .vibe-carousel-track,
+  .vibe-orbit {
+    animation: none !important;
+  }
+
+  body {
+    transition: none;
+  }
+}

@@ -1,0 +1,80 @@
+/* VibeUI design tokens — paste into your global CSS (Tailwind v4). */
+/* Light + dark. Pair with Geist / Instrument Serif or your own fonts. */
+
+:root {
+  --canvas: #fbfbfa;
+  --surface: #ffffff;
+  --surface-muted: #f4f4f2;
+  --ink: #1c1c1a;
+  --ink-soft: #3d3d3a;
+  --muted: #7a7a74;
+  --faint: #a8a8a2;
+  --line: #e8e8e4;
+  --line-strong: #d4d4ce;
+  --focus: #1c1c1a;
+  --overlay: rgba(28, 28, 26, 0.4);
+
+  --pastel-rose: #fdebec;
+  --pastel-rose-ink: #9f2f2d;
+  --pastel-sky: #e8f3fb;
+  --pastel-sky-ink: #1f6c9f;
+  --pastel-sage: #edf3ec;
+  --pastel-sage-ink: #346538;
+  --pastel-sand: #fbf3db;
+  --pastel-sand-ink: #8a5a00;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-quiet: 0 1px 2px rgba(28, 28, 26, 0.04);
+  --shadow-lift: 0 8px 24px rgba(28, 28, 26, 0.06);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark {
+  --canvas: #121110;
+  --surface: #1c1b19;
+  --surface-muted: #242320;
+  --ink: #f5f4f2;
+  --ink-soft: #d8d6d1;
+  --muted: #9a9790;
+  --faint: #6f6c65;
+  --line: rgba(245, 244, 242, 0.1);
+  --line-strong: rgba(245, 244, 242, 0.18);
+  --focus: #f5f4f2;
+  --overlay: rgba(0, 0, 0, 0.55);
+
+  --pastel-rose: #3a2424;
+  --pastel-rose-ink: #f0b4b2;
+  --pastel-sky: #1e2f3a;
+  --pastel-sky-ink: #9ec9e8;
+  --pastel-sage: #243128;
+  --pastel-sage-ink: #a8c9ab;
+  --pastel-sand: #342e1f;
+  --pastel-sand-ink: #e6c77a;
+
+  --shadow-quiet: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-lift: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-overlay: var(--overlay);
+  --color-pastel-rose: var(--pastel-rose);
+  --color-pastel-rose-ink: var(--pastel-rose-ink);
+  --color-pastel-sky: var(--pastel-sky);
+  --color-pastel-sky-ink: var(--pastel-sky-ink);
+  --color-pastel-sage: var(--pastel-sage);
+  --color-pastel-sage-ink: var(--pastel-sage-ink);
+  --color-pastel-sand: var(--pastel-sand);
+  --color-pastel-sand-ink: var(--pastel-sand-ink);
+}
