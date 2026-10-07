@@ -1,0 +1,55 @@
+"use client";
+
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "./button";
+import { Input } from "./input";
+
+export function FooterNewsletter({
+  title = "Stay in the loop",
+  description = "Ship notes, new components, no spam.",
+  className,
+  onSubmit,
+}: {
+  title?: string;
+  description?: string;
+  className?: string;
+  onSubmit?: (email: string) => void;
+}) {
+  const [email, setEmail] = React.useState("");
+  const [done, setDone] = React.useState(false);
+
+  return (
+    <div
+      className={cn(
+        "rounded-[var(--radius-lg)] border border-line bg-surface p-6",
+        className,
+      )}
+    >
+      <p className="text-[15px] font-medium tracking-[-0.01em] text-ink">{title}</p>
+      <p className="mt-1 text-sm text-muted">{description}</p>
+      {done ? (
+        <p className="mt-4 text-sm text-pastel-sage-ink">You’re on the list.</p>
+      ) : (
+        <form
+          className="mt-4 flex flex-col gap-2 sm:flex-row"
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSubmit?.(email);
+            setDone(true);
+          }}
+        >
+          <Input
+            type="email"
+            required
+            placeholder="you@studio.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="sm:flex-1"
+          />
+          <Button type="submit">Subscribe</Button>
+        </form>
+      )}
+    </div>
+  );
+}

@@ -2,7 +2,7 @@
   "name": "vibeui",
   "version": "0.1.0",
   "license": "MIT",
-  "count": 81,
+  "count": 104,
   "tokens": "templates/vibeui.css",
   "utils": "src/lib/utils.ts",
   "components": [
@@ -134,6 +134,11 @@
       "dependencies": []
     },
     {
+      "name": "decode-text",
+      "file": "src/components/ui/decode-text.tsx",
+      "dependencies": []
+    },
+    {
       "name": "dialog",
       "file": "src/components/ui/dialog.tsx",
       "dependencies": [
@@ -183,13 +188,83 @@
       "dependencies": []
     },
     {
+      "name": "footer-cta",
+      "file": "src/components/ui/footer-cta.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "footer-legal",
+      "file": "src/components/ui/footer-legal.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "footer-mega",
+      "file": "src/components/ui/footer-mega.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "footer-newsletter",
+      "file": "src/components/ui/footer-newsletter.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "footer-simple",
+      "file": "src/components/ui/footer-simple.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "gradient-text",
+      "file": "src/components/ui/gradient-text.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "highlight-text",
+      "file": "src/components/ui/highlight-text.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "hover-border",
+      "file": "src/components/ui/hover-border.tsx",
+      "dependencies": []
+    },
+    {
       "name": "hover-card",
       "file": "src/components/ui/hover-card.tsx",
       "dependencies": []
     },
     {
+      "name": "hover-expand",
+      "file": "src/components/ui/hover-expand.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "hover-icon",
+      "file": "src/components/ui/hover-icon.tsx",
+      "dependencies": []
+    },
+    {
       "name": "hover-image",
       "file": "src/components/ui/hover-image.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "hover-lift",
+      "file": "src/components/ui/hover-lift.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "hover-shine",
+      "file": "src/components/ui/hover-shine.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "hover-slide",
+      "file": "src/components/ui/hover-slide.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "hover-tilt",
+      "file": "src/components/ui/hover-tilt.tsx",
       "dependencies": []
     },
     {
@@ -208,6 +283,11 @@
       "dependencies": []
     },
     {
+      "name": "letter-hover",
+      "file": "src/components/ui/letter-hover.tsx",
+      "dependencies": []
+    },
+    {
       "name": "list",
       "file": "src/components/ui/list.tsx",
       "dependencies": []
@@ -221,6 +301,13 @@
       "name": "magnetic-button",
       "file": "src/components/ui/magnetic-button.tsx",
       "dependencies": []
+    },
+    {
+      "name": "magnetic-link",
+      "file": "src/components/ui/magnetic-link.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
     },
     {
       "name": "marquee",
@@ -308,8 +395,18 @@
       ]
     },
     {
+      "name": "rolling-text",
+      "file": "src/components/ui/rolling-text.tsx",
+      "dependencies": []
+    },
+    {
       "name": "rotating-carousel",
       "file": "src/components/ui/rotating-carousel.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "scramble-text",
+      "file": "src/components/ui/scramble-text.tsx",
       "dependencies": []
     },
     {
@@ -364,6 +461,13 @@
       "dependencies": []
     },
     {
+      "name": "social-links",
+      "file": "src/components/ui/social-links.tsx",
+      "dependencies": [
+        "@phosphor-icons/react"
+      ]
+    },
+    {
       "name": "spinner",
       "file": "src/components/ui/spinner.tsx",
       "dependencies": []
@@ -381,6 +485,11 @@
     {
       "name": "stacked-cards",
       "file": "src/components/ui/stacked-cards.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "stagger-words",
+      "file": "src/components/ui/stagger-words.tsx",
       "dependencies": []
     },
     {
@@ -426,6 +535,11 @@
       "dependencies": []
     },
     {
+      "name": "text-shimmer",
+      "file": "src/components/ui/text-shimmer.tsx",
+      "dependencies": []
+    },
+    {
       "name": "timeline",
       "file": "src/components/ui/timeline.tsx",
       "dependencies": []
@@ -453,6 +567,11 @@
     {
       "name": "typewriter",
       "file": "src/components/ui/typewriter.tsx",
+      "dependencies": []
+    },
+    {
+      "name": "underline-reveal",
+      "file": "src/components/ui/underline-reveal.tsx",
       "dependencies": []
     }
   ]

@@ -167,6 +167,38 @@ body {
   }
 }
 
+@keyframes vibe-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes vibe-roll {
+  0%,
+  18% {
+    transform: translateY(0);
+  }
+  22%,
+  40% {
+    transform: translateY(-1.2em);
+  }
+  44%,
+  62% {
+    transform: translateY(-2.4em);
+  }
+  66%,
+  84% {
+    transform: translateY(-3.6em);
+  }
+  88%,
+  100% {
+    transform: translateY(-4.8em);
+  }
+}
+
 .animate-marquee {
   animation: vibe-marquee 40s linear infinite;
 }
@@ -193,7 +225,9 @@ body {
   .animate-pulse-quiet,
   .animate-spin-quiet,
   .vibe-carousel-track,
-  .vibe-orbit {
+  .vibe-orbit,
+  .animate-\[vibe-shimmer_2\.8s_linear_infinite\],
+  .animate-\[vibe-roll_8s_ease-in-out_infinite\] {
     animation: none !important;
   }
 

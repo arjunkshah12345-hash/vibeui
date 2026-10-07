@@ -107,7 +107,7 @@ export default function Home() {
             <Pill tone="sage" dot>
               Dark mode
             </Pill>
-            <Pill tone="sky">80+ components</Pill>
+            <Pill tone="sky">100+ components</Pill>
             <Pill tone="outline">shadcn · Obsidian · Magic UI</Pill>
           </div>
         </section>

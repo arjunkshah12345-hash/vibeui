@@ -91,6 +91,8 @@ import {
   TR,
 } from "@/components/ui";
 import { CraftSection } from "@/components/showcase/craft-section";
+import { EffectsSection } from "@/components/showcase/effects-section";
+import { FootersSection } from "@/components/showcase/footers-section";
 import { DemoFrame, ShowcaseSection } from "@/components/showcase/section";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -107,6 +109,9 @@ const nav = [
   { href: "#craft", label: "Craft" },
   { href: "#signature", label: "Signature" },
   { href: "#motion", label: "Motion" },
+  { href: "#text-effects", label: "Text" },
+  { href: "#hover-effects", label: "Hover" },
+  { href: "#footers", label: "Footers" },
 ];
 
 const catalog = [
@@ -123,6 +128,11 @@ const catalog = [
   "TradingCard", "HoverImage", "Masonry", "Dock", "CircleMenu", "MagnetTabs",
   "BookFlip", "FolderPreview", "ScrollStack", "DottedGrid", "CountUp",
   "BlurReveal", "SplitShowcase", "OrbitRing", "JellyLoader",
+  "GradientText", "ScrambleText", "LetterHover", "UnderlineReveal", "TextShimmer",
+  "StaggerWords", "HighlightText", "RollingText", "DecodeText",
+  "HoverLift", "HoverBorder", "HoverShine", "HoverSlide", "HoverTilt", "HoverExpand",
+  "MagneticLink", "HoverIcon",
+  "FooterSimple", "FooterMega", "FooterCta", "FooterNewsletter", "FooterLegal", "SocialLinks",
 ];
 
 const carouselItems = [
@@ -671,6 +681,9 @@ export default function GalleryPage() {
             ))}
           </Marquee>
         </ShowcaseSection>
+
+        <EffectsSection />
+        <FootersSection />
       </main>
     </div>
   );

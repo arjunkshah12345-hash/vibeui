@@ -131,7 +131,7 @@ export function CraftSection() {
             <div>
               <JellyLoader />
               <p className="mt-3 text-2xl">
-                <CountUp value={81} suffix="+" />
+                <CountUp value={105} suffix="+" />
               </p>
               <p className="text-xs text-muted">components</p>
             </div>
