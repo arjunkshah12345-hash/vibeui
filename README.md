@@ -27,7 +27,8 @@ Inspired by [shadcn/ui](https://ui.shadcn.com), [ObsidianUI](https://www.obsidia
 - **80+ components** — primitives, forms, overlays, navigation, craft
 - **Light + dark** — CSS variables, FOUC-safe theme script
 - **Copy-owned** — paste into your repo; no opaque UI runtime
-- **Easy integrate** — tokens template + `npm run add`
+- **Easy integrate** — tokens template + CLI `vibeui add`
+- **Agent-ready** — MCP server + CLI + `llms.txt` / registry JSON
 - **Brand kit** — mark + wordmark in `public/brand/`
 
 ## Quick start (this repo)
@@ -69,10 +70,10 @@ export function cn(...inputs: ClassValue[]) {
 
 ### 4. Copy a component
 
-From a clone of VibeUI:
-
 ```bash
-npm run add -- button ../my-app/src/components/ui
+npx vibeui add button --dir ../my-app/src/components/ui
+# or from a clone:
+node bin/vibeui.mjs add button trading-card --dir ../my-app/src/components/ui
 ```
 
 Or copy any file from `src/components/ui/` by hand.
@@ -84,6 +85,26 @@ import { Button } from "@/components/ui/button"
 ```
 
 Machine-readable catalog: [`registry/components.json`](registry/components.json) (`npm run registry`).
+
+## Agents (CLI + MCP)
+
+Coding agents can discover and install components without scraping the gallery.
+
+| Surface | Command |
+|---------|---------|
+| CLI | `npx vibeui` · `node bin/vibeui.mjs list\|search\|get\|add\|init` |
+| MCP (stdio) | `npm run mcp` · `node mcp/server.mjs` |
+| Brief | [`llms.txt`](llms.txt) · [`docs/agents.md`](docs/agents.md) |
+
+```bash
+npx vibeui search carousel
+npx vibeui get rotating-carousel --source
+npx vibeui add footer-mega --dir ./src/components/ui --tokens
+```
+
+**Cursor MCP** — merge [`.cursor/mcp.vibeui.example.json`](.cursor/mcp.vibeui.example.json) into your MCP config (use an absolute path to `mcp/server.mjs`).
+
+Tools: `list_components`, `search_components`, `get_component`, `add_component`, `get_tokens`, `get_utils`, `get_install_guide`, …
 
 ## Brand
 
@@ -102,7 +123,9 @@ Colors: canvas `#fbfbfa` · ink `#1c1c1a` · dark canvas `#121110`
 | `npm run dev` | Showcase site |
 | `npm run build` | Production build (+ registry) |
 | `npm run registry` | Refresh component catalog |
-| `npm run add -- <name> <dest>` | Copy a component into another project |
+| `npm run vibeui` | Agent CLI |
+| `npm run mcp` | Start MCP server (stdio) |
+| `npm run add -- <name> <dest>` | Legacy copy shim |
 
 ## License
 

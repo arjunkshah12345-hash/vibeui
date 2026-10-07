@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "vibeui": {
+      "command": "node",
+      "args": ["${workspaceFolder}/mcp/server.mjs"]
+    }
+  }
+}

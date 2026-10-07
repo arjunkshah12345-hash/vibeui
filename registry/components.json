@@ -2,577 +2,1888 @@
   "name": "vibeui",
   "version": "0.1.0",
   "license": "MIT",
+  "repository": "https://github.com/arjunkshah12345-hash/vibeui",
   "count": 104,
   "tokens": "templates/vibeui.css",
   "utils": "src/lib/utils.ts",
+  "peerDependencies": [
+    "react",
+    "react-dom",
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "@phosphor-icons/react"
+  ],
+  "agent": {
+    "cli": "npx vibeui",
+    "mcp": "node mcp/server.mjs",
+    "docs": [
+      "llms.txt",
+      "AGENTS.md",
+      "docs/agents.md"
+    ]
+  },
+  "categories": {
+    "navigation": [
+      "accordion",
+      "breadcrumb",
+      "pagination",
+      "segmented",
+      "stepper",
+      "tabs",
+      "timeline"
+    ],
+    "feedback": [
+      "alert",
+      "banner",
+      "callout",
+      "empty",
+      "meter",
+      "notification",
+      "progress",
+      "skeleton",
+      "spinner"
+    ],
+    "craft": [
+      "arrow-fill-button",
+      "blur-reveal",
+      "book-flip",
+      "circle-menu",
+      "count-up",
+      "dock",
+      "dotted-grid",
+      "flip-card",
+      "folder-preview",
+      "jelly-loader",
+      "magnet-tabs",
+      "marquee",
+      "masonry",
+      "orbit-ring",
+      "rotating-carousel",
+      "scroll-stack",
+      "split-showcase",
+      "spotlight",
+      "stacked-cards",
+      "trading-card"
+    ],
+    "data": [
+      "aspect-ratio",
+      "avatar",
+      "card",
+      "code-block",
+      "color-swatch",
+      "comparison",
+      "list",
+      "scroll-area",
+      "stat",
+      "table"
+    ],
+    "actions": [
+      "button",
+      "chip",
+      "kbd",
+      "pill",
+      "separator",
+      "toggle"
+    ],
+    "forms": [
+      "calendar",
+      "checkbox",
+      "file-drop",
+      "input",
+      "number-field",
+      "otp-field",
+      "password-field",
+      "radio",
+      "rating",
+      "search-field",
+      "select",
+      "slider",
+      "switch",
+      "tag-input"
+    ],
+    "overlays": [
+      "command",
+      "dialog",
+      "dropdown-menu",
+      "popover",
+      "sheet",
+      "toast",
+      "tooltip"
+    ],
+    "text": [
+      "decode-text",
+      "flip-text",
+      "gradient-text",
+      "highlight-text",
+      "letter-hover",
+      "quote",
+      "rolling-text",
+      "scramble-text",
+      "stagger-words",
+      "text-link",
+      "text-reveal",
+      "text-shimmer",
+      "typewriter",
+      "underline-reveal"
+    ],
+    "footers": [
+      "footer-cta",
+      "footer-legal",
+      "footer-mega",
+      "footer-newsletter",
+      "footer-simple",
+      "social-links"
+    ],
+    "hover": [
+      "hover-border",
+      "hover-card",
+      "hover-expand",
+      "hover-icon",
+      "hover-image",
+      "hover-lift",
+      "hover-shine",
+      "hover-slide",
+      "hover-tilt",
+      "magnetic-button",
+      "magnetic-link"
+    ]
+  },
   "components": [
     {
       "name": "accordion",
+      "title": "Accordion",
+      "category": "navigation",
+      "description": "Accordion — VibeUI navigation component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/accordion.tsx",
-      "dependencies": []
+      "exports": [
+        "Accordion"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "navigation",
+        "client"
+      ]
     },
     {
       "name": "alert",
+      "title": "Alert",
+      "category": "feedback",
+      "description": "Alert — VibeUI feedback component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/alert.tsx",
+      "exports": [
+        "Alert"
+      ],
+      "client": false,
       "dependencies": [
         "class-variance-authority"
+      ],
+      "tags": [
+        "feedback",
+        "rsc-safe"
       ]
     },
     {
       "name": "arrow-fill-button",
+      "title": "ArrowFillButton",
+      "category": "craft",
+      "description": "ArrowFillButton — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/arrow-fill-button.tsx",
+      "exports": [
+        "ArrowFillButton"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "craft",
+        "client"
       ]
     },
     {
       "name": "aspect-ratio",
+      "title": "AspectRatio",
+      "category": "data",
+      "description": "AspectRatio — VibeUI data component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/aspect-ratio.tsx",
-      "dependencies": []
+      "exports": [
+        "AspectRatio"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "data",
+        "rsc-safe"
+      ]
     },
     {
       "name": "avatar",
+      "title": "Avatar",
+      "category": "data",
+      "description": "Avatar — VibeUI data component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/avatar.tsx",
-      "dependencies": []
+      "exports": [
+        "Avatar",
+        "AvatarGroup"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "data",
+        "rsc-safe"
+      ]
     },
     {
       "name": "banner",
+      "title": "Banner",
+      "category": "feedback",
+      "description": "Banner — VibeUI feedback component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/banner.tsx",
+      "exports": [
+        "Banner"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "feedback",
+        "client"
       ]
     },
     {
       "name": "blur-reveal",
+      "title": "BlurReveal",
+      "category": "craft",
+      "description": "BlurReveal — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/blur-reveal.tsx",
-      "dependencies": []
+      "exports": [
+        "BlurReveal"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "book-flip",
+      "title": "BookFlip",
+      "category": "craft",
+      "description": "BookFlip — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/book-flip.tsx",
-      "dependencies": []
+      "exports": [
+        "BookFlip"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "breadcrumb",
+      "title": "Breadcrumb",
+      "category": "navigation",
+      "description": "Breadcrumb — VibeUI navigation component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/breadcrumb.tsx",
+      "exports": [
+        "Breadcrumb"
+      ],
+      "client": false,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "navigation",
+        "rsc-safe"
       ]
     },
     {
       "name": "button",
+      "title": "Button",
+      "category": "actions",
+      "description": "Primary action button with variants (primary, secondary, ghost, soft).",
       "file": "src/components/ui/button.tsx",
+      "exports": [
+        "Button"
+      ],
+      "client": false,
       "dependencies": [
         "class-variance-authority"
+      ],
+      "tags": [
+        "actions",
+        "rsc-safe"
       ]
     },
     {
       "name": "calendar",
+      "title": "Calendar",
+      "category": "forms",
+      "description": "Calendar — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/calendar.tsx",
+      "exports": [
+        "Calendar"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "forms",
+        "client"
       ]
     },
     {
       "name": "callout",
+      "title": "Callout",
+      "category": "feedback",
+      "description": "Callout — VibeUI feedback component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/callout.tsx",
-      "dependencies": []
+      "exports": [
+        "Callout"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "feedback",
+        "rsc-safe"
+      ]
     },
     {
       "name": "card",
+      "title": "Card",
+      "category": "data",
+      "description": "Card — VibeUI data component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/card.tsx",
-      "dependencies": []
+      "exports": [
+        "Card",
+        "CardHeader",
+        "CardTitle",
+        "CardDescription",
+        "CardContent",
+        "CardFooter"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "data",
+        "rsc-safe"
+      ]
     },
     {
       "name": "checkbox",
+      "title": "Checkbox",
+      "category": "forms",
+      "description": "Checkbox — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/checkbox.tsx",
+      "exports": [
+        "Checkbox"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "forms",
+        "client"
       ]
     },
     {
       "name": "chip",
+      "title": "Chip",
+      "category": "actions",
+      "description": "Chip — VibeUI actions component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/chip.tsx",
+      "exports": [
+        "Chip"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "actions",
+        "client"
       ]
     },
     {
       "name": "circle-menu",
+      "title": "CircleMenu",
+      "category": "craft",
+      "description": "CircleMenu — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/circle-menu.tsx",
+      "exports": [
+        "CircleMenu"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "craft",
+        "client"
       ]
     },
     {
       "name": "code-block",
+      "title": "CodeBlock",
+      "category": "data",
+      "description": "CodeBlock — VibeUI data component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/code-block.tsx",
+      "exports": [
+        "CodeBlock"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "data",
+        "client"
       ]
     },
     {
       "name": "color-swatch",
+      "title": "ColorSwatch",
+      "category": "data",
+      "description": "ColorSwatch — VibeUI data component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/color-swatch.tsx",
-      "dependencies": []
+      "exports": [
+        "ColorSwatch"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "data",
+        "rsc-safe"
+      ]
     },
     {
       "name": "command",
+      "title": "Command",
+      "category": "overlays",
+      "description": "Command palette with search and grouped actions.",
       "file": "src/components/ui/command.tsx",
+      "exports": [
+        "Command"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "overlays",
+        "client"
       ]
     },
     {
       "name": "comparison",
+      "title": "Comparison",
+      "category": "data",
+      "description": "ComparisonBar — VibeUI data component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/comparison.tsx",
-      "dependencies": []
+      "exports": [
+        "ComparisonBar"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "data",
+        "rsc-safe"
+      ]
     },
     {
       "name": "count-up",
+      "title": "CountUp",
+      "category": "craft",
+      "description": "CountUp — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/count-up.tsx",
-      "dependencies": []
+      "exports": [
+        "CountUp"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "decode-text",
+      "title": "DecodeText",
+      "category": "text",
+      "description": "DecodeText — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/decode-text.tsx",
-      "dependencies": []
+      "exports": [
+        "DecodeText"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "client"
+      ]
     },
     {
       "name": "dialog",
+      "title": "Dialog",
+      "category": "overlays",
+      "description": "Dialog — VibeUI overlays component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/dialog.tsx",
+      "exports": [
+        "Dialog",
+        "DialogTrigger",
+        "DialogContent"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "overlays",
+        "client"
       ]
     },
     {
       "name": "dock",
+      "title": "Dock",
+      "category": "craft",
+      "description": "macOS-style icon dock with hover magnification.",
       "file": "src/components/ui/dock.tsx",
-      "dependencies": []
+      "exports": [
+        "Dock"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "dotted-grid",
+      "title": "DottedGrid",
+      "category": "craft",
+      "description": "DottedGrid — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/dotted-grid.tsx",
-      "dependencies": []
+      "exports": [
+        "DottedGrid"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "rsc-safe"
+      ]
     },
     {
       "name": "dropdown-menu",
+      "title": "DropdownMenu",
+      "category": "overlays",
+      "description": "DropdownMenu — VibeUI overlays component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/dropdown-menu.tsx",
-      "dependencies": []
+      "exports": [
+        "DropdownMenu"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "overlays",
+        "client"
+      ]
     },
     {
       "name": "empty",
+      "title": "Empty",
+      "category": "feedback",
+      "description": "Empty — VibeUI feedback component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/empty.tsx",
-      "dependencies": []
+      "exports": [
+        "Empty"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "feedback",
+        "rsc-safe"
+      ]
     },
     {
       "name": "file-drop",
+      "title": "FileDrop",
+      "category": "forms",
+      "description": "FileDrop — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/file-drop.tsx",
+      "exports": [
+        "FileDrop"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "forms",
+        "client"
       ]
     },
     {
       "name": "flip-card",
+      "title": "FlipCard",
+      "category": "craft",
+      "description": "FlipCard — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/flip-card.tsx",
-      "dependencies": []
+      "exports": [
+        "FlipCard"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "flip-text",
+      "title": "FlipText",
+      "category": "text",
+      "description": "FlipText — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/flip-text.tsx",
-      "dependencies": []
+      "exports": [
+        "FlipText",
+        "FlipTextTrigger"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "client"
+      ]
     },
     {
       "name": "folder-preview",
+      "title": "FolderPreview",
+      "category": "craft",
+      "description": "FolderPreview — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/folder-preview.tsx",
-      "dependencies": []
+      "exports": [
+        "FolderPreview"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "footer-cta",
+      "title": "FooterCta",
+      "category": "footers",
+      "description": "FooterCta — VibeUI footers component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/footer-cta.tsx",
-      "dependencies": []
+      "exports": [
+        "FooterCta"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "footers",
+        "rsc-safe"
+      ]
     },
     {
       "name": "footer-legal",
+      "title": "FooterLegal",
+      "category": "footers",
+      "description": "FooterLegal — VibeUI footers component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/footer-legal.tsx",
-      "dependencies": []
+      "exports": [
+        "FooterLegal"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "footers",
+        "rsc-safe"
+      ]
     },
     {
       "name": "footer-mega",
+      "title": "FooterMega",
+      "category": "footers",
+      "description": "Multi-column marketing footer with brand blurb.",
       "file": "src/components/ui/footer-mega.tsx",
-      "dependencies": []
+      "exports": [
+        "FooterMega"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "footers",
+        "rsc-safe"
+      ]
     },
     {
       "name": "footer-newsletter",
+      "title": "FooterNewsletter",
+      "category": "footers",
+      "description": "FooterNewsletter — VibeUI footers component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/footer-newsletter.tsx",
-      "dependencies": []
+      "exports": [
+        "FooterNewsletter"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "footers",
+        "client"
+      ]
     },
     {
       "name": "footer-simple",
+      "title": "FooterSimple",
+      "category": "footers",
+      "description": "FooterSimple — VibeUI footers component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/footer-simple.tsx",
-      "dependencies": []
+      "exports": [
+        "FooterSimple"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "footers",
+        "rsc-safe"
+      ]
     },
     {
       "name": "gradient-text",
+      "title": "GradientText",
+      "category": "text",
+      "description": "GradientText — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/gradient-text.tsx",
-      "dependencies": []
+      "exports": [
+        "GradientText"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "rsc-safe"
+      ]
     },
     {
       "name": "highlight-text",
+      "title": "HighlightText",
+      "category": "text",
+      "description": "HighlightText — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/highlight-text.tsx",
-      "dependencies": []
+      "exports": [
+        "HighlightText"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "rsc-safe"
+      ]
     },
     {
       "name": "hover-border",
+      "title": "HoverBorder",
+      "category": "hover",
+      "description": "HoverBorder — VibeUI hover component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/hover-border.tsx",
-      "dependencies": []
+      "exports": [
+        "HoverBorder"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "hover",
+        "rsc-safe"
+      ]
     },
     {
       "name": "hover-card",
+      "title": "HoverCard",
+      "category": "hover",
+      "description": "HoverCard — VibeUI hover component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/hover-card.tsx",
-      "dependencies": []
+      "exports": [
+        "HoverCard"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "hover",
+        "client"
+      ]
     },
     {
       "name": "hover-expand",
+      "title": "HoverExpand",
+      "category": "hover",
+      "description": "HoverExpand — VibeUI hover component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/hover-expand.tsx",
-      "dependencies": []
+      "exports": [
+        "HoverExpand"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "hover",
+        "rsc-safe"
+      ]
     },
     {
       "name": "hover-icon",
+      "title": "HoverIcon",
+      "category": "hover",
+      "description": "HoverIcon — VibeUI hover component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/hover-icon.tsx",
-      "dependencies": []
+      "exports": [
+        "HoverIcon"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "hover",
+        "rsc-safe"
+      ]
     },
     {
       "name": "hover-image",
+      "title": "HoverImage",
+      "category": "hover",
+      "description": "HoverImage — VibeUI hover component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/hover-image.tsx",
-      "dependencies": []
+      "exports": [
+        "HoverImage"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "hover",
+        "client"
+      ]
     },
     {
       "name": "hover-lift",
+      "title": "HoverLift",
+      "category": "hover",
+      "description": "HoverLift — VibeUI hover component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/hover-lift.tsx",
-      "dependencies": []
+      "exports": [
+        "HoverLift"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "hover",
+        "rsc-safe"
+      ]
     },
     {
       "name": "hover-shine",
+      "title": "HoverShine",
+      "category": "hover",
+      "description": "HoverShine — VibeUI hover component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/hover-shine.tsx",
-      "dependencies": []
+      "exports": [
+        "HoverShine"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "hover",
+        "client"
+      ]
     },
     {
       "name": "hover-slide",
+      "title": "HoverSlide",
+      "category": "hover",
+      "description": "HoverSlide — VibeUI hover component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/hover-slide.tsx",
-      "dependencies": []
+      "exports": [
+        "HoverSlide"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "hover",
+        "rsc-safe"
+      ]
     },
     {
       "name": "hover-tilt",
+      "title": "HoverTilt",
+      "category": "hover",
+      "description": "HoverTilt — VibeUI hover component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/hover-tilt.tsx",
-      "dependencies": []
+      "exports": [
+        "HoverTilt"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "hover",
+        "client"
+      ]
     },
     {
       "name": "input",
+      "title": "Input",
+      "category": "forms",
+      "description": "Label — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/input.tsx",
-      "dependencies": []
+      "exports": [
+        "Label",
+        "Field"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "forms",
+        "rsc-safe"
+      ]
     },
     {
       "name": "jelly-loader",
+      "title": "JellyLoader",
+      "category": "craft",
+      "description": "JellyLoader — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/jelly-loader.tsx",
-      "dependencies": []
+      "exports": [
+        "JellyLoader"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "rsc-safe"
+      ]
     },
     {
       "name": "kbd",
+      "title": "Kbd",
+      "category": "actions",
+      "description": "Kbd — VibeUI actions component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/kbd.tsx",
-      "dependencies": []
+      "exports": [
+        "Kbd"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "actions",
+        "rsc-safe"
+      ]
     },
     {
       "name": "letter-hover",
+      "title": "LetterHover",
+      "category": "text",
+      "description": "LetterHover — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/letter-hover.tsx",
-      "dependencies": []
+      "exports": [
+        "LetterHover"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "rsc-safe"
+      ]
     },
     {
       "name": "list",
+      "title": "List",
+      "category": "data",
+      "description": "List — VibeUI data component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/list.tsx",
-      "dependencies": []
+      "exports": [
+        "List",
+        "ListItem"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "data",
+        "rsc-safe"
+      ]
     },
     {
       "name": "magnet-tabs",
+      "title": "MagnetTabs",
+      "category": "craft",
+      "description": "MagnetTabs — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/magnet-tabs.tsx",
-      "dependencies": []
+      "exports": [
+        "MagnetTabs"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "magnetic-button",
+      "title": "MagneticButton",
+      "category": "hover",
+      "description": "Button that magnetically follows the cursor.",
       "file": "src/components/ui/magnetic-button.tsx",
-      "dependencies": []
+      "exports": [
+        "MagneticButton"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "hover",
+        "client"
+      ]
     },
     {
       "name": "magnetic-link",
+      "title": "MagneticLink",
+      "category": "hover",
+      "description": "MagneticLink — VibeUI hover component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/magnetic-link.tsx",
+      "exports": [
+        "MagneticLink"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "hover",
+        "client"
       ]
     },
     {
       "name": "marquee",
+      "title": "Marquee",
+      "category": "craft",
+      "description": "Marquee — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/marquee.tsx",
-      "dependencies": []
+      "exports": [
+        "Marquee"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "rsc-safe"
+      ]
     },
     {
       "name": "masonry",
+      "title": "Masonry",
+      "category": "craft",
+      "description": "Masonry — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/masonry.tsx",
-      "dependencies": []
+      "exports": [
+        "Masonry"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "rsc-safe"
+      ]
     },
     {
       "name": "meter",
+      "title": "Meter",
+      "category": "feedback",
+      "description": "Meter — VibeUI feedback component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/meter.tsx",
-      "dependencies": []
+      "exports": [
+        "Meter"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "feedback",
+        "rsc-safe"
+      ]
     },
     {
       "name": "notification",
+      "title": "Notification",
+      "category": "feedback",
+      "description": "NotificationItem — VibeUI feedback component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/notification.tsx",
-      "dependencies": []
+      "exports": [
+        "NotificationItem"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "feedback",
+        "rsc-safe"
+      ]
     },
     {
       "name": "number-field",
+      "title": "NumberField",
+      "category": "forms",
+      "description": "NumberField — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/number-field.tsx",
+      "exports": [
+        "NumberField"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "forms",
+        "client"
       ]
     },
     {
       "name": "orbit-ring",
+      "title": "OrbitRing",
+      "category": "craft",
+      "description": "OrbitRing — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/orbit-ring.tsx",
-      "dependencies": []
+      "exports": [
+        "OrbitRing"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "otp-field",
+      "title": "OtpField",
+      "category": "forms",
+      "description": "OtpField — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/otp-field.tsx",
-      "dependencies": []
+      "exports": [
+        "OtpField"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "forms",
+        "client"
+      ]
     },
     {
       "name": "pagination",
+      "title": "Pagination",
+      "category": "navigation",
+      "description": "Pagination — VibeUI navigation component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/pagination.tsx",
+      "exports": [
+        "Pagination"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "navigation",
+        "client"
       ]
     },
     {
       "name": "password-field",
+      "title": "PasswordField",
+      "category": "forms",
+      "description": "PasswordField — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/password-field.tsx",
+      "exports": [
+        "PasswordField"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "forms",
+        "client"
       ]
     },
     {
       "name": "pill",
+      "title": "Pill",
+      "category": "actions",
+      "description": "Pill — VibeUI actions component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/pill.tsx",
+      "exports": [
+        "Pill"
+      ],
+      "client": false,
       "dependencies": [
         "class-variance-authority"
+      ],
+      "tags": [
+        "actions",
+        "rsc-safe"
       ]
     },
     {
       "name": "popover",
+      "title": "Popover",
+      "category": "overlays",
+      "description": "Popover — VibeUI overlays component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/popover.tsx",
-      "dependencies": []
+      "exports": [
+        "Popover"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "overlays",
+        "client"
+      ]
     },
     {
       "name": "progress",
+      "title": "Progress",
+      "category": "feedback",
+      "description": "Progress — VibeUI feedback component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/progress.tsx",
-      "dependencies": []
+      "exports": [
+        "Progress"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "feedback",
+        "rsc-safe"
+      ]
     },
     {
       "name": "quote",
+      "title": "Quote",
+      "category": "text",
+      "description": "Quote — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/quote.tsx",
-      "dependencies": []
+      "exports": [
+        "Quote"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "rsc-safe"
+      ]
     },
     {
       "name": "radio",
+      "title": "Radio",
+      "category": "forms",
+      "description": "RadioGroup — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/radio.tsx",
-      "dependencies": []
+      "exports": [
+        "RadioGroup",
+        "RadioItem"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "forms",
+        "client"
+      ]
     },
     {
       "name": "rating",
+      "title": "Rating",
+      "category": "forms",
+      "description": "Rating — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/rating.tsx",
+      "exports": [
+        "Rating"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "forms",
+        "client"
       ]
     },
     {
       "name": "rolling-text",
+      "title": "RollingText",
+      "category": "text",
+      "description": "RollingText — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/rolling-text.tsx",
-      "dependencies": []
+      "exports": [
+        "RollingText"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "client"
+      ]
     },
     {
       "name": "rotating-carousel",
+      "title": "RotatingCarousel",
+      "category": "craft",
+      "description": "3D ring card carousel with pause-on-hover and dots.",
       "file": "src/components/ui/rotating-carousel.tsx",
-      "dependencies": []
+      "exports": [
+        "RotatingCarousel"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "scramble-text",
+      "title": "ScrambleText",
+      "category": "text",
+      "description": "Text that scrambles/decodes on hover.",
       "file": "src/components/ui/scramble-text.tsx",
-      "dependencies": []
+      "exports": [
+        "ScrambleText"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "client"
+      ]
     },
     {
       "name": "scroll-area",
+      "title": "ScrollArea",
+      "category": "data",
+      "description": "ScrollArea — VibeUI data component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/scroll-area.tsx",
-      "dependencies": []
+      "exports": [
+        "ScrollArea"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "data",
+        "rsc-safe"
+      ]
     },
     {
       "name": "scroll-stack",
+      "title": "ScrollStack",
+      "category": "craft",
+      "description": "ScrollStack — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/scroll-stack.tsx",
-      "dependencies": []
+      "exports": [
+        "ScrollStack"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "search-field",
+      "title": "SearchField",
+      "category": "forms",
+      "description": "SearchField — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/search-field.tsx",
+      "exports": [
+        "SearchField"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "forms",
+        "client"
       ]
     },
     {
       "name": "segmented",
+      "title": "Segmented",
+      "category": "navigation",
+      "description": "Segmented — VibeUI navigation component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/segmented.tsx",
-      "dependencies": []
+      "exports": [
+        "Segmented"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "navigation",
+        "client"
+      ]
     },
     {
       "name": "select",
+      "title": "Select",
+      "category": "forms",
+      "description": "Select — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/select.tsx",
+      "exports": [
+        "Select"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "forms",
+        "client"
       ]
     },
     {
       "name": "separator",
+      "title": "Separator",
+      "category": "actions",
+      "description": "Separator — VibeUI actions component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/separator.tsx",
-      "dependencies": []
+      "exports": [
+        "Separator"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "actions",
+        "rsc-safe"
+      ]
     },
     {
       "name": "sheet",
+      "title": "Sheet",
+      "category": "overlays",
+      "description": "Sheet — VibeUI overlays component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/sheet.tsx",
+      "exports": [
+        "Sheet"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "overlays",
+        "client"
       ]
     },
     {
       "name": "skeleton",
+      "title": "Skeleton",
+      "category": "feedback",
+      "description": "Skeleton — VibeUI feedback component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/skeleton.tsx",
-      "dependencies": []
+      "exports": [
+        "Skeleton"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "feedback",
+        "rsc-safe"
+      ]
     },
     {
       "name": "slider",
+      "title": "Slider",
+      "category": "forms",
+      "description": "Slider — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/slider.tsx",
-      "dependencies": []
+      "exports": [
+        "Slider"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "forms",
+        "client"
+      ]
     },
     {
       "name": "social-links",
+      "title": "SocialLinks",
+      "category": "footers",
+      "description": "SocialLinks — VibeUI footers component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/social-links.tsx",
+      "exports": [
+        "SocialLinks"
+      ],
+      "client": false,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "footers",
+        "rsc-safe"
       ]
     },
     {
       "name": "spinner",
+      "title": "Spinner",
+      "category": "feedback",
+      "description": "Spinner — VibeUI feedback component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/spinner.tsx",
-      "dependencies": []
+      "exports": [
+        "Spinner"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "feedback",
+        "rsc-safe"
+      ]
     },
     {
       "name": "split-showcase",
+      "title": "SplitShowcase",
+      "category": "craft",
+      "description": "SplitShowcase — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/split-showcase.tsx",
-      "dependencies": []
+      "exports": [
+        "SplitShowcase"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "spotlight",
+      "title": "Spotlight",
+      "category": "craft",
+      "description": "Spotlight — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/spotlight.tsx",
-      "dependencies": []
+      "exports": [
+        "Spotlight"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "stacked-cards",
+      "title": "StackedCards",
+      "category": "craft",
+      "description": "StackedCards — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/stacked-cards.tsx",
-      "dependencies": []
+      "exports": [
+        "StackedCards"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "rsc-safe"
+      ]
     },
     {
       "name": "stagger-words",
+      "title": "StaggerWords",
+      "category": "text",
+      "description": "StaggerWords — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/stagger-words.tsx",
-      "dependencies": []
+      "exports": [
+        "StaggerWords"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "client"
+      ]
     },
     {
       "name": "stat",
+      "title": "Stat",
+      "category": "data",
+      "description": "Stat — VibeUI data component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/stat.tsx",
-      "dependencies": []
+      "exports": [
+        "Stat"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "data",
+        "rsc-safe"
+      ]
     },
     {
       "name": "stepper",
+      "title": "Stepper",
+      "category": "navigation",
+      "description": "Stepper — VibeUI navigation component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/stepper.tsx",
-      "dependencies": []
+      "exports": [
+        "Stepper"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "navigation",
+        "rsc-safe"
+      ]
     },
     {
       "name": "switch",
+      "title": "Switch",
+      "category": "forms",
+      "description": "Switch — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/switch.tsx",
-      "dependencies": []
+      "exports": [
+        "Switch"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "forms",
+        "client"
+      ]
     },
     {
       "name": "table",
+      "title": "Table",
+      "category": "data",
+      "description": "Table — VibeUI data component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/table.tsx",
-      "dependencies": []
+      "exports": [
+        "Table",
+        "THead",
+        "TBody",
+        "TR",
+        "TH",
+        "TD"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "data",
+        "rsc-safe"
+      ]
     },
     {
       "name": "tabs",
+      "title": "Tabs",
+      "category": "navigation",
+      "description": "Tabs — VibeUI navigation component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/tabs.tsx",
-      "dependencies": []
+      "exports": [
+        "Tabs",
+        "TabsList",
+        "TabsTrigger",
+        "TabsContent"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "navigation",
+        "client"
+      ]
     },
     {
       "name": "tag-input",
+      "title": "TagInput",
+      "category": "forms",
+      "description": "TagInput — VibeUI forms component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/tag-input.tsx",
+      "exports": [
+        "TagInput"
+      ],
+      "client": true,
       "dependencies": [
         "@phosphor-icons/react"
+      ],
+      "tags": [
+        "forms",
+        "client"
       ]
     },
     {
       "name": "text-link",
+      "title": "TextLink",
+      "category": "text",
+      "description": "TextLink — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/text-link.tsx",
-      "dependencies": []
+      "exports": [
+        "TextLink"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "rsc-safe"
+      ]
     },
     {
       "name": "text-reveal",
+      "title": "TextReveal",
+      "category": "text",
+      "description": "TextReveal — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/text-reveal.tsx",
-      "dependencies": []
+      "exports": [
+        "TextReveal"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "client"
+      ]
     },
     {
       "name": "text-shimmer",
+      "title": "TextShimmer",
+      "category": "text",
+      "description": "TextShimmer — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/text-shimmer.tsx",
-      "dependencies": []
+      "exports": [
+        "TextShimmer"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "rsc-safe"
+      ]
     },
     {
       "name": "timeline",
+      "title": "Timeline",
+      "category": "navigation",
+      "description": "Timeline — VibeUI navigation component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/timeline.tsx",
-      "dependencies": []
+      "exports": [
+        "Timeline"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "navigation",
+        "rsc-safe"
+      ]
     },
     {
       "name": "toast",
+      "title": "Toast",
+      "category": "overlays",
+      "description": "ToastProvider — VibeUI overlays component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/toast.tsx",
-      "dependencies": []
+      "exports": [
+        "ToastProvider",
+        "useToast",
+        "ToastDemoButton"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "overlays",
+        "client"
+      ]
     },
     {
       "name": "toggle",
+      "title": "Toggle",
+      "category": "actions",
+      "description": "Toggle — VibeUI actions component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/toggle.tsx",
-      "dependencies": []
+      "exports": [
+        "Toggle",
+        "ToggleGroup"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "actions",
+        "client"
+      ]
     },
     {
       "name": "tooltip",
+      "title": "Tooltip",
+      "category": "overlays",
+      "description": "Tooltip — VibeUI overlays component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/tooltip.tsx",
-      "dependencies": []
+      "exports": [
+        "Tooltip"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "overlays",
+        "client"
+      ]
     },
     {
       "name": "trading-card",
+      "title": "TradingCard",
+      "category": "craft",
+      "description": "TradingCard — VibeUI craft component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/trading-card.tsx",
-      "dependencies": []
+      "exports": [
+        "TradingCard"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ]
     },
     {
       "name": "typewriter",
+      "title": "Typewriter",
+      "category": "text",
+      "description": "Typewriter — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/typewriter.tsx",
-      "dependencies": []
+      "exports": [
+        "Typewriter"
+      ],
+      "client": true,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "client"
+      ]
     },
     {
       "name": "underline-reveal",
+      "title": "UnderlineReveal",
+      "category": "text",
+      "description": "UnderlineReveal — VibeUI text component. Copy-owned React + Tailwind.",
       "file": "src/components/ui/underline-reveal.tsx",
-      "dependencies": []
+      "exports": [
+        "UnderlineReveal"
+      ],
+      "client": false,
+      "dependencies": [],
+      "tags": [
+        "text",
+        "rsc-safe"
+      ]
     }
   ]
 }

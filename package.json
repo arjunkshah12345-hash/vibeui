@@ -1,9 +1,9 @@
 {
   "name": "vibeui",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "license": "MIT",
-  "description": "Quiet React + Tailwind components. Copy-owned, warm dark mode, signature craft.",
+  "description": "Quiet React + Tailwind components. Copy-owned, warm dark mode, signature craft. Agent CLI + MCP.",
   "homepage": "https://github.com/arjunkshah12345-hash/vibeui",
   "repository": {
     "type": "git",
@@ -12,6 +12,23 @@
   "bugs": {
     "url": "https://github.com/arjunkshah12345-hash/vibeui/issues"
   },
+  "bin": {
+    "vibeui": "bin/vibeui.mjs"
+  },
+  "files": [
+    "bin",
+    "mcp",
+    "agent",
+    "registry",
+    "templates",
+    "src/components/ui",
+    "src/lib/utils.ts",
+    "llms.txt",
+    "docs/agents.md",
+    "AGENTS.md",
+    "LICENSE",
+    "README.md"
+  ],
   "keywords": [
     "react",
     "tailwind",
@@ -19,7 +36,10 @@
     "ui",
     "design-system",
     "shadcn",
-    "vibeui"
+    "vibeui",
+    "mcp",
+    "cli",
+    "agents"
   ],
   "scripts": {
     "dev": "next dev",
@@ -28,9 +48,12 @@
     "lint": "eslint",
     "registry": "node scripts/registry.mjs",
     "add": "node scripts/add.mjs",
+    "vibeui": "node bin/vibeui.mjs",
+    "mcp": "node mcp/server.mjs",
     "prebuild": "node scripts/registry.mjs"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
     "@phosphor-icons/react": "^2.1.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -38,7 +61,8 @@
     "next": "16.4.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "tailwind-merge": "^3.7.0"
+    "tailwind-merge": "^3.7.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",

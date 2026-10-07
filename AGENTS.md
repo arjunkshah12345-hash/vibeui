@@ -1,3 +1,28 @@
+# VibeUI — agent notes
+
+Copy-owned React + Tailwind UI. Prefer MCP/CLI over guessing component APIs.
+
+## Entrypoints
+
+- MCP: `node mcp/server.mjs`
+- CLI: `node bin/vibeui.mjs` / `npx vibeui`
+- Catalog: `registry/components.json` (`npm run registry`)
+- Brief: `llms.txt` · detail: `docs/agents.md`
+
+## Integrate loop
+
+1. Search → `search_components` / `vibeui search`
+2. Read source → `get_component` / `vibeui get <name> --source`
+3. Peers: `clsx` `tailwind-merge` `class-variance-authority` `@phosphor-icons/react`
+4. Tokens: `templates/vibeui.css` · utils: `src/lib/utils.ts` (`cn`)
+5. Add → `add_component` / `vibeui add <name> --dir ./src/components/ui`
+
+## Conventions
+
+- Files: `src/components/ui/<kebab>.tsx`
+- Dark: `.dark` on `<html>`
+- Warm canvas `#fbfbfa` / `#121110` — restrained, not neon demos
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know
