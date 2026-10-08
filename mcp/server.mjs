@@ -123,6 +123,7 @@ server.registerTool(
       client: comp.client,
       dependencies: comp.dependencies,
       registryDependencies: comp.registryDependencies,
+      api: comp.api,
       source: comp.source,
     });
   },
@@ -158,7 +159,11 @@ server.registerTool(
     if (failed.length && failed.length === results.length) {
       return err(`Failed: ${failed.map((f) => `${f.name}: ${f.error}`).join("; ")}`);
     }
-    return text({ results, peers: [...new Set(results.flatMap((r) => r.dependencies ?? []))] });
+    return text({
+      results,
+      // Every component needs cn(), so clsx + tailwind-merge are always required.
+      peers: [...new Set(["clsx", "tailwind-merge", ...results.flatMap((r) => r.dependencies ?? [])])],
+    });
   },
 );
 

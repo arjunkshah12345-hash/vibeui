@@ -31,7 +31,7 @@ export function Progress({
         className="h-1.5 w-full overflow-hidden rounded-full bg-surface-sunken"
       >
         <div
-          className="h-full rounded-full bg-accent transition-[width] duration-700 ease-out"
+          className="h-full origin-left animate-grow-x rounded-full bg-accent transition-[width] duration-700 ease-out"
           style={{ width: `${clamped}%` }}
         />
       </div>

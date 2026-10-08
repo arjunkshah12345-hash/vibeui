@@ -17,12 +17,12 @@ export function Empty({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center rounded-lg border border-dashed border-line-strong px-6 py-12 text-center",
+        "flex animate-fade-up flex-col items-center justify-center rounded-lg border border-dashed border-line-strong px-6 py-12 text-center",
         className,
       )}
     >
       {icon ? (
-        <div className="mb-4 flex size-11 items-center justify-center rounded-md border border-line bg-surface text-muted shadow-quiet">
+        <div className="mb-4 flex size-11 animate-float items-center justify-center rounded-md border border-line bg-surface text-muted shadow-quiet">
           {icon}
         </div>
       ) : null}

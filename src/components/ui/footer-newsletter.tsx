@@ -31,7 +31,7 @@ export function FooterNewsletter({
       <p className="text-[15px] font-medium tracking-[-0.01em] text-ink">{title}</p>
       <p className="mt-1 text-sm text-muted">{description}</p>
       {done ? (
-        <p className="mt-4 flex items-center gap-2 text-sm font-medium text-pastel-sage-ink">
+        <p className="mt-4 flex animate-pop-in items-center gap-2 text-sm font-medium text-pastel-sage-ink">
           <CheckCircle size={18} weight="fill" /> You’re on the list.
         </p>
       ) : (

@@ -279,6 +279,17 @@ export function buildRegistry() {
 
 export function writeRegistry() {
   const registry = buildRegistry();
+  // The generated API tables come from scripts/props.mjs (needs TypeScript);
+  // carry them over so a plain refresh never drops them.
+  if (fs.existsSync(REGISTRY_PATH)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(REGISTRY_PATH, "utf8"));
+      const api = new Map((prev.components ?? []).map((c) => [c.name, c.api]));
+      for (const c of registry.components) if (api.get(c.name)) c.api = api.get(c.name);
+    } catch {
+      // A corrupt registry is simply regenerated.
+    }
+  }
   fs.mkdirSync(path.dirname(REGISTRY_PATH), { recursive: true });
   fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + "\n");
   return registry;

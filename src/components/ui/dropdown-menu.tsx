@@ -12,7 +12,7 @@ type Item = {
   separator?: boolean;
 };
 
-/** Action menu with arrow-key navigation, icons, shortcuts and danger items. */
+/** Action menu: arrow-key navigation, staggered items, animates in and out. */
 export function DropdownMenu({
   trigger,
   items,
@@ -25,6 +25,9 @@ export function DropdownMenu({
   align?: "start" | "end";
 }) {
   const [open, setOpen] = React.useState(false);
+  // Stay mounted until the exit animation has played.
+  const [present, setPresent] = React.useState(false);
+  if (open && !present) setPresent(true);
   const ref = React.useRef<HTMLDivElement>(null);
   const menuRef = React.useRef<HTMLDivElement>(null);
 
@@ -67,12 +70,17 @@ export function DropdownMenu({
       >
         {trigger}
       </span>
-      {open ? (
+      {present ? (
         <div
           ref={menuRef}
           role="menu"
+          data-state={open ? "open" : "closed"}
+          onAnimationEnd={(e) => {
+            if (e.target === e.currentTarget && !open) setPresent(false);
+          }}
           className={cn(
-            "absolute top-[calc(100%+6px)] z-30 min-w-52 animate-pop-in rounded-md border border-line bg-surface p-1 shadow-lift",
+            "absolute top-[calc(100%+6px)] z-30 min-w-52 origin-top rounded-md border border-line bg-surface p-1 shadow-lift data-[state=closed]:animate-pop-out data-[state=open]:animate-pop-in",
+            !open && "pointer-events-none",
             align === "end" ? "right-0" : "left-0",
           )}
         >
@@ -84,8 +92,9 @@ export function DropdownMenu({
                 key={`${item.label}-${i}`}
                 type="button"
                 role="menuitem"
+                style={{ animationDelay: `${30 + i * 28}ms` }}
                 className={cn(
-                  "flex w-full items-center gap-2.5 rounded-[7px] px-2.5 py-2 text-left text-[13px] outline-none transition-colors",
+                  "group/item flex w-full animate-fade-up items-center gap-2.5 rounded-[7px] px-2.5 py-2 text-left text-[13px] outline-none transition-[background-color,color,padding] duration-150 active:scale-[0.98]",
                   item.danger
                     ? "text-pastel-rose-ink hover:bg-pastel-rose focus:bg-pastel-rose"
                     : "text-ink-soft hover:bg-surface-muted hover:text-ink focus:bg-surface-muted focus:text-ink",
@@ -96,7 +105,7 @@ export function DropdownMenu({
                 }}
               >
                 {item.icon ? (
-                  <span className="flex size-4 shrink-0 items-center justify-center opacity-70">
+                  <span className="flex size-4 shrink-0 items-center justify-center opacity-70 transition-transform duration-200 group-hover/item:scale-110 group-focus/item:scale-110">
                     {item.icon}
                   </span>
                 ) : null}

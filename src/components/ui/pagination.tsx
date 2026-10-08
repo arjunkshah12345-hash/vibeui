@@ -35,7 +35,7 @@ export function Pagination({
   className?: string;
 }) {
   const cell =
-    "flex size-8 items-center justify-center rounded-sm text-[13px] font-medium tabular-nums transition-colors duration-150";
+    "flex size-8 items-center justify-center rounded-sm text-[13px] font-medium tabular-nums transition-[background-color,color,transform] duration-150 active:scale-90";
 
   return (
     <nav aria-label="Pagination" className={cn("flex items-center gap-1", className)}>

@@ -3,7 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-/** Anchored panel that opens on click and closes on outside click or Escape. */
+/** Anchored panel: click to open, animates in and out, Escape or outside click closes. */
 export function Popover({
   trigger,
   children,
@@ -18,6 +18,9 @@ export function Popover({
   side?: "top" | "bottom";
 }) {
   const [open, setOpen] = React.useState(false);
+  // Stay mounted until the exit animation has played.
+  const [present, setPresent] = React.useState(false);
+  if (open && !present) setPresent(true);
   const ref = React.useRef<HTMLDivElement>(null);
   const id = React.useId();
 
@@ -42,16 +45,21 @@ export function Popover({
       <span
         className="inline-flex"
         aria-expanded={open}
-        aria-controls={open ? id : undefined}
+        aria-controls={present ? id : undefined}
         onClick={() => setOpen((v) => !v)}
       >
         {trigger}
       </span>
-      {open ? (
+      {present ? (
         <div
           id={id}
+          data-state={open ? "open" : "closed"}
+          onAnimationEnd={(e) => {
+            if (e.target === e.currentTarget && !open) setPresent(false);
+          }}
           className={cn(
-            "absolute z-30 min-w-56 animate-pop-in rounded-md border border-line bg-surface p-3.5 shadow-lift",
+            "absolute z-30 min-w-56 rounded-md border border-line bg-surface p-3.5 shadow-lift data-[state=closed]:animate-pop-out data-[state=open]:animate-pop-in",
+            !open && "pointer-events-none",
             side === "bottom" ? "top-[calc(100%+8px)]" : "bottom-[calc(100%+8px)]",
             align === "start" && "left-0",
             align === "center" && "left-1/2 -translate-x-1/2",

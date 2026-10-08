@@ -17,8 +17,8 @@ const kindClass: Record<NonNullable<Token["kind"]>, string> = {
   string: "text-pastel-sage-ink",
   keyword: "text-pastel-sky-ink",
   number: "text-pastel-sand-ink",
-  fn: "text-accent",
-  tag: "text-accent",
+  fn: "text-pastel-rose-ink",
+  tag: "text-pastel-rose-ink",
 };
 
 // Tiny single-pass tokenizer: good enough for tsx, ts, css, json and shell.

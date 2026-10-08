@@ -18,7 +18,7 @@ export function Stat({
   return (
     <div
       className={cn(
-        "rounded-lg border border-line bg-surface p-5 shadow-quiet",
+        "animate-fade-up rounded-lg border border-line bg-surface p-5 shadow-quiet transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-line-strong hover:shadow-lift",
         className,
       )}
     >

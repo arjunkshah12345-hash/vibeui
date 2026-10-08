@@ -64,10 +64,11 @@ export function FileDrop({
       </button>
       {names.length ? (
         <ul className="mt-3 space-y-1.5">
-          {names.map((name) => (
+          {names.map((name, i) => (
             <li
               key={name}
-              className="flex items-center gap-2 rounded-sm bg-surface-muted px-3 py-2 text-[13px] text-ink-soft"
+              style={{ animationDelay: `${i * 60}ms` }}
+              className="flex animate-fade-up items-center gap-2 rounded-sm bg-surface-muted px-3 py-2 text-[13px] text-ink-soft"
             >
               <FileIcon size={14} weight="bold" className="shrink-0 text-faint" />
               <span className="truncate">{name}</span>

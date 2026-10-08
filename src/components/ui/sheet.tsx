@@ -8,12 +8,24 @@ import { cn } from "@/lib/utils";
 const noop = () => () => {};
 
 const sides = {
-  right: "inset-y-0 right-0 w-full max-w-sm border-l",
-  left: "inset-y-0 left-0 w-full max-w-sm border-r",
-  bottom: "inset-x-0 bottom-0 max-h-[85vh] rounded-t-xl border-t",
+  right: {
+    box: "inset-y-0 right-0 w-full max-w-sm border-l",
+    motion:
+      "data-[state=open]:animate-slide-in-right data-[state=closed]:animate-slide-out-right",
+  },
+  left: {
+    box: "inset-y-0 left-0 w-full max-w-sm border-r",
+    motion:
+      "data-[state=open]:animate-slide-in-left data-[state=closed]:animate-slide-out-left",
+  },
+  bottom: {
+    box: "inset-x-0 bottom-0 max-h-[85vh] rounded-t-xl border-t",
+    motion:
+      "data-[state=open]:animate-slide-in-bottom data-[state=closed]:animate-slide-out-bottom",
+  },
 } as const;
 
-/** Edge-anchored panel for settings, filters and detail views. */
+/** Edge-anchored panel that slides in and out. Settings, filters, detail views. */
 export function Sheet({
   open,
   onOpenChange,
@@ -41,6 +53,10 @@ export function Sheet({
     () => false,
   );
 
+  // Stay mounted until the exit animation has played.
+  const [present, setPresent] = React.useState(isOpen);
+  if (isOpen && !present) setPresent(true);
+
   const setOpen = React.useCallback(
     (v: boolean) => {
       setUncontrolled(v);
@@ -64,17 +80,22 @@ export function Sheet({
     };
   }, [isOpen, setOpen]);
 
+  const state = isOpen ? "open" : "closed";
+
   return (
     <>
       <span className="inline-flex" onClick={() => setOpen(true)}>
         {trigger}
       </span>
-      {isOpen && mounted
+      {present && mounted
         ? createPortal(
-            <div className="fixed inset-0 z-50">
+            <div
+              className={cn("fixed inset-0 z-50", !isOpen && "pointer-events-none")}
+            >
               <div
                 aria-hidden
-                className="absolute inset-0 animate-fade-in bg-overlay backdrop-blur-[2px]"
+                data-state={state}
+                className="absolute inset-0 bg-overlay backdrop-blur-[2px] data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in"
                 onClick={() => setOpen(false)}
               />
               <div
@@ -83,9 +104,14 @@ export function Sheet({
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby={titleId}
+                data-state={state}
+                onAnimationEnd={(e) => {
+                  if (e.target === e.currentTarget && !isOpen) setPresent(false);
+                }}
                 className={cn(
-                  "absolute flex animate-fade-up flex-col border-line bg-surface shadow-pop outline-none",
-                  sides[side],
+                  "absolute flex flex-col border-line bg-surface shadow-pop outline-none",
+                  sides[side].box,
+                  sides[side].motion,
                 )}
               >
                 <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
@@ -97,16 +123,14 @@ export function Sheet({
                       {title}
                     </h2>
                     {description ? (
-                      <p className="mt-0.5 text-[13px] text-muted">
-                        {description}
-                      </p>
+                      <p className="mt-0.5 text-[13px] text-muted">{description}</p>
                     ) : null}
                   </div>
                   <button
                     type="button"
                     aria-label="Close"
                     onClick={() => setOpen(false)}
-                    className="-mr-1.5 flex size-8 items-center justify-center rounded-sm text-faint transition-colors hover:bg-surface-muted hover:text-ink"
+                    className="-mr-1.5 flex size-8 items-center justify-center rounded-sm text-faint transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-surface-muted hover:text-ink active:scale-90"
                   >
                     <X size={16} weight="bold" />
                   </button>

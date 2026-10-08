@@ -11,7 +11,7 @@ const key = (d: Date) => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
 const noop = () => () => {};
 const todayKey = () => key(new Date());
 
-/** Month grid date picker. Highlights today after hydration, never during. */
+/** Month grid date picker. Months slide in the direction you navigate; days respond to press. */
 export function Calendar({
   value,
   defaultMonth,
@@ -26,6 +26,7 @@ export function Calendar({
   const [cursor, setCursor] = React.useState(
     () => value ?? defaultMonth ?? new Date(2026, 0, 1),
   );
+  const [dir, setDir] = React.useState<"next" | "prev" | null>(null);
   const [prevValue, setPrevValue] = React.useState(value);
   if (value !== prevValue) {
     setPrevValue(value);
@@ -44,8 +45,13 @@ export function Calendar({
     ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
   ];
 
+  const go = (delta: number) => {
+    setDir(delta > 0 ? "next" : "prev");
+    setCursor(new Date(year, month + delta, 1));
+  };
+
   const nav =
-    "flex size-8 items-center justify-center rounded-sm text-muted transition-colors hover:bg-surface-muted hover:text-ink";
+    "flex size-8 items-center justify-center rounded-sm text-muted transition-[background-color,color,transform] duration-150 hover:bg-surface-muted hover:text-ink active:scale-90";
 
   return (
     <div
@@ -55,23 +61,19 @@ export function Calendar({
       )}
     >
       <div className="mb-2 flex items-center justify-between">
-        <button
-          type="button"
-          aria-label="Previous month"
-          className={nav}
-          onClick={() => setCursor(new Date(year, month - 1, 1))}
-        >
+        <button type="button" aria-label="Previous month" className={nav} onClick={() => go(-1)}>
           <CaretLeft size={14} weight="bold" />
         </button>
-        <p className="text-sm font-medium tracking-[-0.01em] text-ink">
+        <p
+          key={`${year}-${month}`}
+          className={cn(
+            "text-sm font-medium tracking-[-0.01em] text-ink",
+            dir && "animate-tick",
+          )}
+        >
           {cursor.toLocaleString("en-US", { month: "long", year: "numeric" })}
         </p>
-        <button
-          type="button"
-          aria-label="Next month"
-          className={nav}
-          onClick={() => setCursor(new Date(year, month + 1, 1))}
-        >
+        <button type="button" aria-label="Next month" className={nav} onClick={() => go(1)}>
           <CaretRight size={14} weight="bold" />
         </button>
       </div>
@@ -85,7 +87,14 @@ export function Calendar({
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-7 gap-y-0.5">
+      <div
+        key={`${year}-${month}`}
+        className={cn(
+          "grid grid-cols-7 gap-y-0.5",
+          dir === "next" && "animate-month-next",
+          dir === "prev" && "animate-month-prev",
+        )}
+      >
         {cells.map((day, i) => {
           if (day === null) return <div key={`e-${i}`} />;
           const date = new Date(year, month, day);
@@ -99,9 +108,9 @@ export function Calendar({
               aria-current={isToday ? "date" : undefined}
               onClick={() => onChange?.(date)}
               className={cn(
-                "mx-auto flex size-9 items-center justify-center rounded-full text-[13px] tabular-nums transition-colors duration-150",
+                "mx-auto flex size-9 items-center justify-center rounded-full text-[13px] tabular-nums transition-[background-color,color,transform] duration-150 active:scale-90",
                 selected
-                  ? "bg-accent font-medium text-accent-ink"
+                  ? "scale-105 bg-accent font-medium text-accent-ink"
                   : "text-ink-soft hover:bg-surface-muted",
                 isToday && !selected && "font-semibold text-accent",
               )}

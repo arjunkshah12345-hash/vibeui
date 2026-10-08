@@ -26,9 +26,9 @@ export function PasswordField({
         className="absolute right-1.5 top-1/2 flex size-7 -translate-y-1/2 items-center justify-center rounded-[6px] text-faint transition-colors hover:bg-surface-muted hover:text-ink"
       >
         {visible ? (
-          <EyeSlash size={16} weight="bold" />
+          <EyeSlash key="hide" size={16} weight="bold" className="animate-pop-in" />
         ) : (
-          <Eye size={16} weight="bold" />
+          <Eye key="show" size={16} weight="bold" className="animate-pop-in" />
         )}
       </button>
     </div>

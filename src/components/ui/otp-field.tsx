@@ -63,7 +63,7 @@ export function OtpField({
             commit(pasted);
             focusAt(pasted.length);
           }}
-          className="size-11 rounded-sm border border-line-strong bg-surface text-center font-mono text-base font-medium text-ink shadow-quiet outline-none transition-[border-color,box-shadow] duration-150 hover:border-faint focus:border-accent focus:ring-[3px] focus:ring-ring"
+          className="size-11 rounded-sm border border-line-strong bg-surface text-center font-mono text-base font-medium text-ink shadow-quiet outline-none transition-[border-color,box-shadow,transform] duration-150 hover:border-faint focus:-translate-y-0.5 focus:scale-105 focus:border-accent focus:ring-[3px] focus:ring-ring"
         />
       ))}
     </div>

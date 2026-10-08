@@ -49,10 +49,10 @@ export function Meter({
           <span
             key={i}
             className={cn(
-              "h-full flex-1 rounded-[2px] transition-colors duration-300",
+              "h-full flex-1 animate-pop-in rounded-[2px] transition-colors duration-300",
               i < filled ? tones[tone] : "bg-surface-sunken",
             )}
-            style={{ transitionDelay: `${i * 12}ms` }}
+            style={{ transitionDelay: `${i * 12}ms`, animationDelay: `${i * 22}ms` }}
           />
         ))}
       </div>

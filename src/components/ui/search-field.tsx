@@ -39,7 +39,7 @@ export function SearchField({
           type="button"
           aria-label="Clear search"
           onClick={() => onChange?.("")}
-          className="flex size-5 shrink-0 items-center justify-center rounded-full bg-surface-muted text-muted transition-colors hover:text-ink"
+          className="flex size-5 shrink-0 animate-pop-in items-center justify-center rounded-full bg-surface-muted text-muted transition-[color,transform] duration-150 hover:text-ink active:scale-90"
         >
           <X size={10} weight="bold" />
         </button>

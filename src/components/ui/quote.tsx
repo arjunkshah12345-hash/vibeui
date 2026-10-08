@@ -13,8 +13,8 @@ export function Quote({
   return (
     <blockquote
       className={cn(
-        "relative pl-6 font-display text-[26px] leading-[1.25] tracking-[-0.01em] text-ink",
-        "before:absolute before:inset-y-1 before:left-0 before:w-[3px] before:rounded-full before:bg-accent",
+        "relative animate-fade-up pl-6 font-display text-[26px] leading-[1.25] tracking-[-0.01em] text-ink",
+        "before:absolute before:inset-y-1 before:left-0 before:w-[3px] before:origin-top before:animate-grow-y before:rounded-full before:bg-accent before:[animation-delay:250ms]",
         className,
       )}
     >

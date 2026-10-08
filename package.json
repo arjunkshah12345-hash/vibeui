@@ -16,18 +16,21 @@
     "vibeui": "bin/vibeui.mjs"
   },
   "files": [
-    "bin",
-    "mcp",
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md",
     "agent",
+    "bin",
+    "docs/agents.md",
+    "llms-full.txt",
+    "llms.txt",
+    "mcp",
     "registry",
-    "templates",
     "src/components/ui",
     "src/lib/utils.ts",
-    "llms.txt",
-    "docs/agents.md",
-    "AGENTS.md",
-    "LICENSE",
-    "README.md"
+    "templates"
   ],
   "keywords": [
     "react",
@@ -50,7 +53,10 @@
     "add": "node scripts/add.mjs",
     "vibeui": "node bin/vibeui.mjs",
     "mcp": "node mcp/server.mjs",
-    "prebuild": "node scripts/registry.mjs"
+    "prebuild": "node scripts/registry.mjs",
+    "typecheck": "tsc --noEmit",
+    "check": "tsc --noEmit && eslint && next build",
+    "notices": "node scripts/notices.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.1",

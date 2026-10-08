@@ -43,5 +43,5 @@ rotating-carousel, trading-card, dock, magnetic-button, scramble-text, footer-me
 ## Docs
 
 - Human: README.md, /docs, /components (live previews + source per component)
-- Agents: llms.txt, docs/agents.md, AGENTS.md
+- Agents: llms.txt, llms-full.txt (every component with props), docs/agents.md, AGENTS.md
 - Cursor MCP sample: .cursor/mcp.vibeui.example.json

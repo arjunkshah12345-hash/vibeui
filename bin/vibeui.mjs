@@ -184,8 +184,13 @@ async function main() {
     }
     const failed = results.filter((r) => !r.ok);
     if (failed.length) process.exit(1);
+    // Every component needs cn(), so clsx + tailwind-merge are always required.
     const deps = [
-      ...new Set(results.flatMap((r) => r.dependencies ?? [])),
+      ...new Set([
+        "clsx",
+        "tailwind-merge",
+        ...results.flatMap((r) => r.dependencies ?? []),
+      ]),
     ];
     if (deps.length) console.log(`\nPeers to install: npm i ${deps.join(" ")}`);
     return;

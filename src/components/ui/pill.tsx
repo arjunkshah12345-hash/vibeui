@@ -27,13 +27,20 @@ export interface PillProps
   extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof pillVariants> {
   dot?: boolean;
+  /** Adds a soft expanding ring to the dot, for live status. */
+  pulse?: boolean;
 }
 
-export function Pill({ className, tone, dot, children, ...props }: PillProps) {
+export function Pill({ className, tone, dot, pulse, children, ...props }: PillProps) {
   return (
     <span className={cn(pillVariants({ tone }), className)} {...props}>
       {dot ? (
-        <span aria-hidden className="size-1.5 rounded-full bg-current" />
+        <span aria-hidden className="relative flex size-1.5">
+          {pulse ? (
+            <span className="absolute inset-0 animate-ping-soft rounded-full bg-current opacity-50" />
+          ) : null}
+          <span className="relative size-1.5 rounded-full bg-current" />
+        </span>
       ) : null}
       {children}
     </span>

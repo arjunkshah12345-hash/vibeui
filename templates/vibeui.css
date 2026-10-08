@@ -62,10 +62,11 @@
   --line-strong: rgb(244 242 238 / 0.18);
   --overlay: rgb(0 0 0 / 0.6);
 
-  --accent: #ff7a3d;
-  --accent-ink: #1f0e05;
-  --accent-soft: rgb(255 122 61 / 0.14);
-  --ring: rgb(255 122 61 / 0.32);
+  /* Dark mode is monochrome: the accent is the ink itself. */
+  --accent: #f4f2ee;
+  --accent-ink: #14130f;
+  --accent-soft: rgb(244 242 238 / 0.1);
+  --ring: rgb(244 242 238 / 0.26);
 
   --pastel-rose: #3a2323;
   --pastel-rose-ink: #f2b5b3;
@@ -145,6 +146,24 @@
   --animate-shimmer: vibe-shimmer 3s linear infinite;
   --animate-jelly: vibe-jelly 0.9s ease-in-out infinite;
   --animate-blink: vibe-blink 1s steps(2, start) infinite;
+  --animate-fade-out: vibe-fade-out 0.18s ease-in both;
+  --animate-pop-out: vibe-pop-out 0.16s ease-in both;
+  --animate-slide-in-right: vibe-slide-in-right 0.45s var(--ease-out) both;
+  --animate-slide-out-right: vibe-slide-out-right 0.28s ease-in both;
+  --animate-slide-in-left: vibe-slide-in-left 0.45s var(--ease-out) both;
+  --animate-slide-out-left: vibe-slide-out-left 0.28s ease-in both;
+  --animate-slide-in-bottom: vibe-slide-in-bottom 0.45s var(--ease-out) both;
+  --animate-slide-out-bottom: vibe-slide-out-bottom 0.28s ease-in both;
+  --animate-grow-x: vibe-grow-x 1s var(--ease-out) both;
+  --animate-grow-y: vibe-grow-y 1s var(--ease-out) both;
+  --animate-shrink-x: vibe-shrink-x 4s linear forwards;
+  --animate-ping-soft: vibe-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-float: vibe-float 4.5s ease-in-out infinite;
+  --animate-tick: vibe-tick 0.35s var(--ease-out) both;
+  --animate-month-next: vibe-month-next 0.38s var(--ease-out) both;
+  --animate-month-prev: vibe-month-prev 0.38s var(--ease-out) both;
+  --animate-toast-in: vibe-toast-in 0.45s var(--ease-spring) both;
+  --animate-toast-out: vibe-toast-out 0.28s ease-in both;
 
   @keyframes vibe-fade-up {
     from {
@@ -218,6 +237,108 @@
   @keyframes vibe-blink {
     to {
       visibility: hidden;
+    }
+  }
+  @keyframes vibe-fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes vibe-pop-out {
+    to {
+      opacity: 0;
+      transform: translateY(4px) scale(0.97);
+    }
+  }
+  @keyframes vibe-slide-in-right {
+    from {
+      transform: translateX(100%);
+    }
+  }
+  @keyframes vibe-slide-out-right {
+    to {
+      transform: translateX(100%);
+    }
+  }
+  @keyframes vibe-slide-in-left {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes vibe-slide-out-left {
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes vibe-slide-in-bottom {
+    from {
+      transform: translateY(100%);
+    }
+  }
+  @keyframes vibe-slide-out-bottom {
+    to {
+      transform: translateY(100%);
+    }
+  }
+  @keyframes vibe-grow-x {
+    from {
+      transform: scaleX(0);
+    }
+  }
+  @keyframes vibe-grow-y {
+    from {
+      transform: scaleY(0);
+    }
+  }
+  @keyframes vibe-shrink-x {
+    to {
+      transform: scaleX(0);
+    }
+  }
+  @keyframes vibe-ping {
+    75%,
+    100% {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+  @keyframes vibe-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+  @keyframes vibe-tick {
+    from {
+      opacity: 0;
+      transform: translateY(40%);
+    }
+  }
+  @keyframes vibe-month-next {
+    from {
+      opacity: 0;
+      transform: translateX(14px);
+    }
+  }
+  @keyframes vibe-month-prev {
+    from {
+      opacity: 0;
+      transform: translateX(-14px);
+    }
+  }
+  @keyframes vibe-toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.96);
+    }
+  }
+  @keyframes vibe-toast-out {
+    to {
+      opacity: 0;
+      transform: translateX(24px) scale(0.96);
     }
   }
 }

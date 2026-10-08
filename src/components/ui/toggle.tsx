@@ -76,7 +76,7 @@ export function ToggleGroup({
               )
             }
             className={cn(
-              "h-8 rounded-[6px] px-3 text-[13px] font-medium transition-colors duration-150",
+              "h-8 rounded-[6px] px-3 text-[13px] font-medium transition-[background-color,color,transform] duration-150 active:scale-95",
               on
                 ? "bg-ink text-surface"
                 : "text-muted hover:bg-surface-muted hover:text-ink",

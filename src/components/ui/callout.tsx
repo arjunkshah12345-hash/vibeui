@@ -13,8 +13,8 @@ export function Callout({
   return (
     <aside
       className={cn(
-        "relative rounded-md bg-surface-muted py-3.5 pl-5 pr-4",
-        "before:absolute before:inset-y-2.5 before:left-2 before:w-[3px] before:rounded-full before:bg-accent",
+        "relative animate-fade-up rounded-md bg-surface-muted py-3.5 pl-5 pr-4",
+        "before:absolute before:inset-y-2.5 before:left-2 before:w-[3px] before:origin-top before:animate-grow-y before:rounded-full before:bg-accent before:[animation-delay:200ms]",
         className,
       )}
     >

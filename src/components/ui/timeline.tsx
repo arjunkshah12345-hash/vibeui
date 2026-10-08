@@ -13,17 +13,18 @@ export function Timeline({
       {items.map((item, i) => (
         <li
           key={`${item.title}-${i}`}
-          className="relative pb-7 pl-7 last:pb-0"
+          style={{ animationDelay: `${i * 110}ms` }}
+          className="relative animate-fade-up pb-7 pl-7 last:pb-0"
         >
           {i < items.length - 1 ? (
             <span
               aria-hidden
-              className="absolute bottom-0 left-[4.5px] top-[18px] w-px bg-line-strong"
+              className="absolute bottom-0 left-[4.5px] top-[18px] w-px origin-top animate-grow-y bg-line-strong"
             />
           ) : null}
           <span
             aria-hidden
-            className="absolute left-0 top-[7px] size-[10px] rounded-full border-2 border-accent bg-surface"
+            className="absolute left-0 top-[7px] size-[10px] animate-pop-in rounded-full border-2 border-accent bg-surface"
           />
           <div className="flex flex-wrap items-baseline gap-x-2.5">
             <p className="text-sm font-medium tracking-[-0.01em] text-ink">

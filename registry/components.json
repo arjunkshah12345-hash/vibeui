@@ -167,6 +167,42 @@
       "tags": [
         "navigation",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Accordion",
+          "props": [
+            {
+              "name": "items",
+              "type": "{ id: string; title: string; content: ReactNode; }[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "type",
+              "type": "\"single\" | \"multiple\"",
+              "required": false,
+              "default": "\"single\"",
+              "description": "Whether one item or several can be open at once."
+            },
+            {
+              "name": "defaultOpen",
+              "type": "string[]",
+              "required": false,
+              "default": null,
+              "description": "Initial open state when uncontrolled."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -187,6 +223,30 @@
       "tags": [
         "feedback",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Alert",
+          "props": [
+            {
+              "name": "tone",
+              "type": "\"neutral\" | \"sky\" | \"sage\" | \"sand\" | \"rose\"",
+              "required": false,
+              "default": "\"neutral\"",
+              "description": "Semantic color: neutral, sky, sage, sand, rose."
+            },
+            {
+              "name": "title",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "Heading text."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
       ]
     },
     {
@@ -206,6 +266,15 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "ArrowFillButton",
+          "props": [],
+          "extends": [
+            "ButtonHTMLAttributes<HTMLButtonElement>"
+          ]
+        }
       ]
     },
     {
@@ -223,6 +292,35 @@
       "tags": [
         "data",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "AspectRatio",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "ratio",
+              "type": "number",
+              "required": false,
+              "default": "16 / 9",
+              "description": "Width divided by height, e.g. 16 / 9."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -241,13 +339,83 @@
       "tags": [
         "data",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Avatar",
+          "props": [
+            {
+              "name": "fallback",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Text used for initials when there is no image."
+            },
+            {
+              "name": "src",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Image URL."
+            },
+            {
+              "name": "alt",
+              "type": "string",
+              "required": false,
+              "default": "\"\"",
+              "description": "Alternative text for the image."
+            },
+            {
+              "name": "size",
+              "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+              "required": false,
+              "default": "\"md\"",
+              "description": "Size preset."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        },
+        {
+          "name": "AvatarGroup",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "max",
+              "type": "number",
+              "required": false,
+              "default": null,
+              "description": "Upper bound."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
       "name": "banner",
       "title": "Banner",
       "category": "feedback",
-      "description": "Full-width announcement bar with optional action and dismiss.",
+      "description": "Announcement bar with optional action. Slides in, and fades out when dismissed.",
       "file": "src/components/ui/banner.tsx",
       "exports": [
         "Banner"
@@ -260,6 +428,42 @@
       "tags": [
         "feedback",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Banner",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "action",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "Optional action (usually a Button) shown alongside the message."
+            },
+            {
+              "name": "dismissible",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Shows a close button that animates the banner away."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -277,6 +481,35 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "BlurReveal",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "delay",
+              "type": "number",
+              "required": false,
+              "default": "0",
+              "description": "Milliseconds before the reveal starts."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -294,6 +527,28 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "BookFlip",
+          "props": [
+            {
+              "name": "pages",
+              "type": "{ title: string; body: string; }[]",
+              "required": true,
+              "default": null,
+              "description": "Array of { title, body } pages."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -313,13 +568,35 @@
       "tags": [
         "navigation",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Breadcrumb",
+          "props": [
+            {
+              "name": "items",
+              "type": "{ label: string; href?: string | undefined; }[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
       "name": "button",
       "title": "Button",
       "category": "actions",
-      "description": "Primary action button with variants (primary, accent, secondary, ghost, soft, danger).",
+      "description": "Primary action button with variants (primary, accent, secondary, ghost, soft, danger) and a loading state.",
       "file": "src/components/ui/button.tsx",
       "exports": [
         "Button"
@@ -328,17 +605,50 @@
       "dependencies": [
         "class-variance-authority"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "spinner"
+      ],
       "tags": [
         "actions",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Button",
+          "props": [
+            {
+              "name": "loading",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Shows a spinner and disables the button while work is in flight."
+            },
+            {
+              "name": "variant",
+              "type": "\"primary\" | \"accent\" | \"secondary\" | \"ghost\" | \"soft\" | \"danger\"",
+              "required": false,
+              "default": null,
+              "description": "Visual style."
+            },
+            {
+              "name": "size",
+              "type": "\"sm\" | \"md\" | \"lg\" | \"icon\" | \"icon-sm\"",
+              "required": false,
+              "default": null,
+              "description": "Size preset."
+            }
+          ],
+          "extends": [
+            "ButtonHTMLAttributes<HTMLButtonElement>"
+          ]
+        }
       ]
     },
     {
       "name": "calendar",
       "title": "Calendar",
       "category": "forms",
-      "description": "Month grid date picker. Highlights today after hydration, never during.",
+      "description": "Month grid date picker. Months slide in the direction you navigate; days respond to press.",
       "file": "src/components/ui/calendar.tsx",
       "exports": [
         "Calendar"
@@ -351,6 +661,42 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Calendar",
+          "props": [
+            {
+              "name": "value",
+              "type": "Date",
+              "required": false,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "defaultMonth",
+              "type": "Date",
+              "required": false,
+              "default": null,
+              "description": "Month to show before a date is chosen."
+            },
+            {
+              "name": "onChange",
+              "type": "((date: Date) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called when the value changes."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -368,6 +714,35 @@
       "tags": [
         "feedback",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Callout",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Heading text."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -390,6 +765,58 @@
       "tags": [
         "data",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Card",
+          "props": [
+            {
+              "name": "interactive",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Lifts and deepens the shadow on hover."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        },
+        {
+          "name": "CardHeader",
+          "props": [],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        },
+        {
+          "name": "CardTitle",
+          "props": [],
+          "extends": [
+            "HTMLAttributes<HTMLHeadingElement>"
+          ]
+        },
+        {
+          "name": "CardDescription",
+          "props": [],
+          "extends": [
+            "HTMLAttributes<HTMLParagraphElement>"
+          ]
+        },
+        {
+          "name": "CardContent",
+          "props": [],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        },
+        {
+          "name": "CardFooter",
+          "props": [],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
       ]
     },
     {
@@ -407,6 +834,77 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Checkbox",
+          "props": [
+            {
+              "name": "checked",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Controlled checked state."
+            },
+            {
+              "name": "defaultChecked",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Initial checked state when uncontrolled."
+            },
+            {
+              "name": "onCheckedChange",
+              "type": "((checked: boolean) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the new checked state."
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Prevents interaction and dims the control."
+            },
+            {
+              "name": "id",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "DOM id."
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Form field name."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Visible label."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Supporting text under the title."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -426,6 +924,49 @@
       "tags": [
         "actions",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Chip",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "onRemove",
+              "type": "(() => void)",
+              "required": false,
+              "default": null,
+              "description": "When provided, shows a remove button and calls this when pressed."
+            },
+            {
+              "name": "selected",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Renders the selected state."
+            },
+            {
+              "name": "onClick",
+              "type": "(() => void)",
+              "required": false,
+              "default": null,
+              "description": "Called on click."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -445,6 +986,35 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "CircleMenu",
+          "props": [
+            {
+              "name": "items",
+              "type": "{ id: string; label: string; icon: ReactNode; onSelect?: (() => void) | undefined; }[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "radius",
+              "type": "number",
+              "required": false,
+              "default": "76",
+              "description": "Ring radius in pixels."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -464,23 +1034,104 @@
       "tags": [
         "data",
         "client"
+      ],
+      "api": [
+        {
+          "name": "CodeBlock",
+          "props": [
+            {
+              "name": "code",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "The source text to display and copy."
+            },
+            {
+              "name": "language",
+              "type": "string",
+              "required": false,
+              "default": "\"tsx\"",
+              "description": "Language used for highlighting (tsx, ts, css, json, bash)."
+            },
+            {
+              "name": "filename",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Label shown in the header instead of the language."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "maxHeight",
+              "type": "number",
+              "required": false,
+              "default": null,
+              "description": "Maximum height in pixels before content scrolls."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
       "name": "color-swatch",
       "title": "ColorSwatch",
       "category": "data",
-      "description": "Color chip with a name and token value.",
+      "description": "Color chip with a name and token value. Click to copy the value.",
       "file": "src/components/ui/color-swatch.tsx",
       "exports": [
         "ColorSwatch"
       ],
-      "client": false,
-      "dependencies": [],
+      "client": true,
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
       "registryDependencies": [],
       "tags": [
         "data",
-        "rsc-safe"
+        "client"
+      ],
+      "api": [
+        {
+          "name": "ColorSwatch",
+          "props": [
+            {
+              "name": "color",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Any CSS color or var(--token)."
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Visible label."
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -500,6 +1151,49 @@
       "tags": [
         "overlays",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Command",
+          "props": [
+            {
+              "name": "items",
+              "type": "CommandItem[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "placeholder",
+              "type": "string",
+              "required": false,
+              "default": "\"Search commands…\"",
+              "description": "Hint text shown while empty."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "onSelect",
+              "type": "((id: string) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the id of the chosen item."
+            },
+            {
+              "name": "autoFocus",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Focuses the input on mount."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -517,6 +1211,49 @@
       "tags": [
         "data",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "ComparisonBar",
+          "props": [
+            {
+              "name": "left",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Content (or label) for the left side."
+            },
+            {
+              "name": "right",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Content (or label) for the right side."
+            },
+            {
+              "name": "leftValue",
+              "type": "number",
+              "required": true,
+              "default": null,
+              "description": "Magnitude of the left side."
+            },
+            {
+              "name": "rightValue",
+              "type": "number",
+              "required": true,
+              "default": null,
+              "description": "Magnitude of the right side."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -534,6 +1271,56 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "CountUp",
+          "props": [
+            {
+              "name": "value",
+              "type": "number",
+              "required": true,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "required": false,
+              "default": "1400",
+              "description": "Animation length in milliseconds (or seconds where noted)."
+            },
+            {
+              "name": "decimals",
+              "type": "number",
+              "required": false,
+              "default": "0",
+              "description": "Fraction digits to display."
+            },
+            {
+              "name": "suffix",
+              "type": "string",
+              "required": false,
+              "default": "\"\"",
+              "description": "Text appended to the number."
+            },
+            {
+              "name": "prefix",
+              "type": "string",
+              "required": false,
+              "default": "\"\"",
+              "description": "Text prepended to the number."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -551,13 +1338,42 @@
       "tags": [
         "text",
         "client"
+      ],
+      "api": [
+        {
+          "name": "DecodeText",
+          "props": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "The text to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "required": false,
+              "default": "1100",
+              "description": "Animation length in milliseconds (or seconds where noted)."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
       "name": "dialog",
       "title": "Dialog",
       "category": "overlays",
-      "description": "Modal dialog: portaled, focus-restoring, Escape to close, scroll locked.",
+      "description": "Modal dialog: portaled, focus-trapping, animated in and out, Escape to close.",
       "file": "src/components/ui/dialog.tsx",
       "exports": [
         "Dialog",
@@ -573,6 +1389,90 @@
       "tags": [
         "overlays",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Dialog",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "open",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Controlled open state."
+            },
+            {
+              "name": "defaultOpen",
+              "type": "boolean",
+              "required": false,
+              "default": "false",
+              "description": "Initial open state when uncontrolled."
+            },
+            {
+              "name": "onOpenChange",
+              "type": "((open: boolean) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called when the open state should change."
+            }
+          ],
+          "extends": []
+        },
+        {
+          "name": "DialogTrigger",
+          "props": [],
+          "extends": [
+            "ButtonHTMLAttributes<HTMLButtonElement>"
+          ]
+        },
+        {
+          "name": "DialogContent",
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Heading text."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Supporting text under the title."
+            },
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        },
+        {
+          "name": "DialogFooter",
+          "props": [],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
       ]
     },
     {
@@ -590,6 +1490,28 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Dock",
+          "props": [
+            {
+              "name": "items",
+              "type": "{ id: string; label: string; icon: ReactNode; onSelect?: (() => void) | undefined; }[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -607,13 +1529,35 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "DottedGrid",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
       "name": "dropdown-menu",
       "title": "DropdownMenu",
       "category": "overlays",
-      "description": "Action menu with arrow-key navigation, icons, shortcuts and danger items.",
+      "description": "Action menu: arrow-key navigation, staggered items, animates in and out.",
       "file": "src/components/ui/dropdown-menu.tsx",
       "exports": [
         "DropdownMenu"
@@ -624,6 +1568,42 @@
       "tags": [
         "overlays",
         "client"
+      ],
+      "api": [
+        {
+          "name": "DropdownMenu",
+          "props": [
+            {
+              "name": "trigger",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "The element that opens it."
+            },
+            {
+              "name": "items",
+              "type": "Item[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "align",
+              "type": "\"start\" | \"end\"",
+              "required": false,
+              "default": "\"start\"",
+              "description": "Alignment relative to the trigger."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -641,6 +1621,49 @@
       "tags": [
         "feedback",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Empty",
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Heading text."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Supporting text under the title."
+            },
+            {
+              "name": "action",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "Optional action (usually a Button) shown alongside the message."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "icon",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "Icon shown in the leading position."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -660,6 +1683,42 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "FileDrop",
+          "props": [
+            {
+              "name": "label",
+              "type": "string",
+              "required": false,
+              "default": "\"Drop files here\"",
+              "description": "Visible label."
+            },
+            {
+              "name": "hint",
+              "type": "string",
+              "required": false,
+              "default": "\"or click to browse\"",
+              "description": "Secondary text shown beneath."
+            },
+            {
+              "name": "onFiles",
+              "type": "((files: FileList) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the dropped or picked FileList."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -679,6 +1738,35 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "FlipCard",
+          "props": [
+            {
+              "name": "front",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content of the front face."
+            },
+            {
+              "name": "back",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content of the back face."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -697,6 +1785,48 @@
       "tags": [
         "text",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "FlipText",
+          "props": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "The text to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        },
+        {
+          "name": "FlipTextTrigger",
+          "props": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "The text to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -714,6 +1844,35 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "FolderPreview",
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Heading text."
+            },
+            {
+              "name": "files",
+              "type": "string[]",
+              "required": true,
+              "default": null,
+              "description": "File names to show."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -733,6 +1892,49 @@
       "tags": [
         "footers",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "FooterCta",
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Heading text."
+            },
+            {
+              "name": "primary",
+              "type": "{ label: string; href: string; }",
+              "required": true,
+              "default": null,
+              "description": "Primary call to action: { label, href }."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Supporting text under the title."
+            },
+            {
+              "name": "secondary",
+              "type": "{ label: string; href: string; }",
+              "required": false,
+              "default": null,
+              "description": "Optional secondary action: { label, href }."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -750,6 +1952,35 @@
       "tags": [
         "footers",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "FooterLegal",
+          "props": [
+            {
+              "name": "copyright",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Copyright text."
+            },
+            {
+              "name": "links",
+              "type": "{ label: string; href: string; }[]",
+              "required": true,
+              "default": null,
+              "description": "Array of { label, href } links."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -767,6 +1998,49 @@
       "tags": [
         "footers",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "FooterMega",
+          "props": [
+            {
+              "name": "brand",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Logo or wordmark node."
+            },
+            {
+              "name": "columns",
+              "type": "{ title: string; links: { label: string; href: string; }[]; }[]",
+              "required": true,
+              "default": null,
+              "description": "Link groups: { title, links[] }."
+            },
+            {
+              "name": "blurb",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Short description under the brand."
+            },
+            {
+              "name": "bottom",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "Content for the bottom bar."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -789,6 +2063,42 @@
       "tags": [
         "footers",
         "client"
+      ],
+      "api": [
+        {
+          "name": "FooterNewsletter",
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": false,
+              "default": "\"Stay in the loop\"",
+              "description": "Heading text."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "default": "\"Release notes and new components. No spam.\"",
+              "description": "Supporting text under the title."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "onSubmit",
+              "type": "((email: string) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the email address on submit."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -806,6 +2116,42 @@
       "tags": [
         "footers",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "FooterSimple",
+          "props": [
+            {
+              "name": "brand",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Logo or wordmark node."
+            },
+            {
+              "name": "links",
+              "type": "{ label: string; href: string; }[]",
+              "required": true,
+              "default": null,
+              "description": "Array of { label, href } links."
+            },
+            {
+              "name": "note",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Small text on the right."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -823,6 +2169,28 @@
       "tags": [
         "text",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "GradientText",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -840,6 +2208,28 @@
       "tags": [
         "text",
         "client"
+      ],
+      "api": [
+        {
+          "name": "HighlightText",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -857,13 +2247,35 @@
       "tags": [
         "hover",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "HoverBorder",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
       "name": "hover-card",
       "title": "HoverCard",
       "category": "hover",
-      "description": "Rich preview card that opens on hover or keyboard focus.",
+      "description": "Rich preview card that opens on hover or focus and animates in and out.",
       "file": "src/components/ui/hover-card.tsx",
       "exports": [
         "HoverCard"
@@ -874,6 +2286,35 @@
       "tags": [
         "hover",
         "client"
+      ],
+      "api": [
+        {
+          "name": "HoverCard",
+          "props": [
+            {
+              "name": "trigger",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "The element that opens it."
+            },
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -891,6 +2332,28 @@
       "tags": [
         "hover",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "HoverExpand",
+          "props": [
+            {
+              "name": "items",
+              "type": "{ id: string; label: string; body: string; }[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -908,6 +2371,35 @@
       "tags": [
         "hover",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "HoverIcon",
+          "props": [
+            {
+              "name": "icon",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Icon shown in the leading position."
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Visible label."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -925,6 +2417,35 @@
       "tags": [
         "hover",
         "client"
+      ],
+      "api": [
+        {
+          "name": "HoverImage",
+          "props": [
+            {
+              "name": "label",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Visible label."
+            },
+            {
+              "name": "src",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Image URL."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -942,6 +2463,28 @@
       "tags": [
         "hover",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "HoverLift",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -959,6 +2502,28 @@
       "tags": [
         "hover",
         "client"
+      ],
+      "api": [
+        {
+          "name": "HoverShine",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -978,6 +2543,35 @@
       "tags": [
         "hover",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "HoverSlide",
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Heading text."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Supporting text under the title."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -995,6 +2589,28 @@
       "tags": [
         "hover",
         "client"
+      ],
+      "api": [
+        {
+          "name": "HoverTilt",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1013,6 +2629,51 @@
       "tags": [
         "forms",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Label",
+          "props": [],
+          "extends": [
+            "LabelHTMLAttributes<HTMLLabelElement>"
+          ]
+        },
+        {
+          "name": "Field",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Visible label."
+            },
+            {
+              "name": "hint",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Secondary text shown beneath."
+            },
+            {
+              "name": "error",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Error message; also styles the field as invalid."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
       ]
     },
     {
@@ -1030,6 +2691,21 @@
       "tags": [
         "craft",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "JellyLoader",
+          "props": [
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1047,6 +2723,28 @@
       "tags": [
         "actions",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Kbd",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1064,6 +2762,28 @@
       "tags": [
         "text",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "LetterHover",
+          "props": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "The text to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1082,6 +2802,76 @@
       "tags": [
         "data",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "List",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        },
+        {
+          "name": "ListItem",
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Heading text."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Supporting text under the title."
+            },
+            {
+              "name": "leading",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "Node shown before the text, such as an icon."
+            },
+            {
+              "name": "trailing",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "Node shown after the text, such as a badge."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "onClick",
+              "type": "(() => void)",
+              "required": false,
+              "default": null,
+              "description": "Called on click."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1099,6 +2889,42 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "MagnetTabs",
+          "props": [
+            {
+              "name": "tabs",
+              "type": "{ value: string; label: string; }[]",
+              "required": true,
+              "default": null,
+              "description": "Array of { value, label }."
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "onChange",
+              "type": "(value: string) => void",
+              "required": true,
+              "default": null,
+              "description": "Called when the value changes."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1116,6 +2942,23 @@
       "tags": [
         "hover",
         "client"
+      ],
+      "api": [
+        {
+          "name": "MagneticButton",
+          "props": [
+            {
+              "name": "strength",
+              "type": "number",
+              "required": false,
+              "default": "0.35",
+              "description": "Fraction of the cursor offset the button follows (0–1)."
+            }
+          ],
+          "extends": [
+            "ButtonHTMLAttributes<HTMLButtonElement>"
+          ]
+        }
       ]
     },
     {
@@ -1135,6 +2978,35 @@
       "tags": [
         "hover",
         "client"
+      ],
+      "api": [
+        {
+          "name": "MagneticLink",
+          "props": [
+            {
+              "name": "href",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Link destination."
+            },
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1152,6 +3024,49 @@
       "tags": [
         "craft",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Marquee",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "pauseOnHover",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Pauses the animation while hovered."
+            },
+            {
+              "name": "reverse",
+              "type": "boolean",
+              "required": false,
+              "default": "false",
+              "description": "Runs the animation in the opposite direction."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "required": false,
+              "default": "40",
+              "description": "Seconds for one full loop."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1169,6 +3084,28 @@
       "tags": [
         "craft",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Masonry",
+          "props": [
+            {
+              "name": "items",
+              "type": "{ id: string; title: string; height: \"sm\" | \"md\" | \"lg\"; tone?: string | undefined; }[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1186,6 +3123,56 @@
       "tags": [
         "feedback",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Meter",
+          "props": [
+            {
+              "name": "value",
+              "type": "number",
+              "required": true,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "max",
+              "type": "number",
+              "required": false,
+              "default": "100",
+              "description": "Upper bound."
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Visible label."
+            },
+            {
+              "name": "tone",
+              "type": "\"sage\" | \"sand\" | \"rose\" | \"accent\" | \"ink\"",
+              "required": false,
+              "default": "\"ink\"",
+              "description": "Semantic color: neutral, sky, sage, sand, rose."
+            },
+            {
+              "name": "segments",
+              "type": "number",
+              "required": false,
+              "default": "20",
+              "description": "Number of segments in the gauge."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1203,6 +3190,49 @@
       "tags": [
         "feedback",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "NotificationItem",
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Heading text."
+            },
+            {
+              "name": "body",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Message text."
+            },
+            {
+              "name": "time",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Timestamp label, e.g. “2m”."
+            },
+            {
+              "name": "unread",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Shows an animated unread dot."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1222,6 +3252,63 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "NumberField",
+          "props": [
+            {
+              "name": "value",
+              "type": "number",
+              "required": false,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "defaultValue",
+              "type": "number",
+              "required": false,
+              "default": "0",
+              "description": "Initial value when uncontrolled."
+            },
+            {
+              "name": "min",
+              "type": "number",
+              "required": false,
+              "default": "0",
+              "description": "Lower bound."
+            },
+            {
+              "name": "max",
+              "type": "number",
+              "required": false,
+              "default": "99",
+              "description": "Upper bound."
+            },
+            {
+              "name": "step",
+              "type": "number",
+              "required": false,
+              "default": "1",
+              "description": "Increment between values."
+            },
+            {
+              "name": "onChange",
+              "type": "((value: number) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called when the value changes."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1239,6 +3326,42 @@
       "tags": [
         "craft",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "OrbitRing",
+          "props": [
+            {
+              "name": "items",
+              "type": "{ id: string; label: string; }[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "center",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "Content for the center of the ring."
+            },
+            {
+              "name": "radius",
+              "type": "number",
+              "required": false,
+              "default": "104",
+              "description": "Ring radius in pixels."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1256,6 +3379,42 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "OtpField",
+          "props": [
+            {
+              "name": "length",
+              "type": "number",
+              "required": false,
+              "default": "6",
+              "description": "Number of digits."
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "onChange",
+              "type": "((value: string) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called when the value changes."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1275,6 +3434,42 @@
       "tags": [
         "navigation",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Pagination",
+          "props": [
+            {
+              "name": "page",
+              "type": "number",
+              "required": true,
+              "default": null,
+              "description": "Current page, 1-based."
+            },
+            {
+              "name": "totalPages",
+              "type": "number",
+              "required": true,
+              "default": null,
+              "description": "Total number of pages."
+            },
+            {
+              "name": "onPageChange",
+              "type": "(page: number) => void",
+              "required": true,
+              "default": null,
+              "description": "Called with the new page number."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1294,6 +3489,15 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "PasswordField",
+          "props": [],
+          "extends": [
+            "InputHTMLAttributes<HTMLInputElement>"
+          ]
+        }
       ]
     },
     {
@@ -1313,13 +3517,44 @@
       "tags": [
         "actions",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Pill",
+          "props": [
+            {
+              "name": "dot",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Shows a status dot before the label."
+            },
+            {
+              "name": "pulse",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Adds a soft expanding ring to the dot, for live status."
+            },
+            {
+              "name": "tone",
+              "type": "\"neutral\" | \"sky\" | \"sage\" | \"sand\" | \"rose\" | \"accent\" | \"outline\"",
+              "required": false,
+              "default": null,
+              "description": "Semantic color: neutral, sky, sage, sand, rose."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLSpanElement>"
+          ]
+        }
       ]
     },
     {
       "name": "popover",
       "title": "Popover",
       "category": "overlays",
-      "description": "Anchored panel that opens on click and closes on outside click or Escape.",
+      "description": "Anchored panel: click to open, animates in and out, Escape or outside click closes.",
       "file": "src/components/ui/popover.tsx",
       "exports": [
         "Popover"
@@ -1330,6 +3565,49 @@
       "tags": [
         "overlays",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Popover",
+          "props": [
+            {
+              "name": "trigger",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "The element that opens it."
+            },
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "align",
+              "type": "\"start\" | \"end\" | \"center\"",
+              "required": false,
+              "default": "\"start\"",
+              "description": "Alignment relative to the trigger."
+            },
+            {
+              "name": "side",
+              "type": "\"top\" | \"bottom\"",
+              "required": false,
+              "default": "\"bottom\"",
+              "description": "Which edge or side to anchor to."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1347,6 +3625,35 @@
       "tags": [
         "feedback",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Progress",
+          "props": [
+            {
+              "name": "value",
+              "type": "number",
+              "required": true,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Visible label."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1364,6 +3671,35 @@
       "tags": [
         "text",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Quote",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "cite",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Attribution line."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1382,6 +3718,97 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "RadioGroup",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "defaultValue",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Initial value when uncontrolled."
+            },
+            {
+              "name": "onValueChange",
+              "type": "((v: string) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the new value."
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Form field name."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        },
+        {
+          "name": "RadioItem",
+          "props": [
+            {
+              "name": "value",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Visible label."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Supporting text under the title."
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Prevents interaction and dims the control."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1401,6 +3828,63 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Rating",
+          "props": [
+            {
+              "name": "value",
+              "type": "number",
+              "required": false,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "defaultValue",
+              "type": "number",
+              "required": false,
+              "default": "0",
+              "description": "Initial value when uncontrolled."
+            },
+            {
+              "name": "onChange",
+              "type": "((value: number) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called when the value changes."
+            },
+            {
+              "name": "max",
+              "type": "number",
+              "required": false,
+              "default": "5",
+              "description": "Upper bound."
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "required": false,
+              "default": "20",
+              "description": "Size preset."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "readOnly",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Displays the rating without allowing changes."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1418,6 +3902,35 @@
       "tags": [
         "text",
         "client"
+      ],
+      "api": [
+        {
+          "name": "RollingText",
+          "props": [
+            {
+              "name": "words",
+              "type": "string[]",
+              "required": true,
+              "default": null,
+              "description": "Words to cycle through."
+            },
+            {
+              "name": "intervalMs",
+              "type": "number",
+              "required": false,
+              "default": "2200",
+              "description": "Milliseconds between automatic changes."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1437,6 +3950,49 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "RotatingCarousel",
+          "props": [
+            {
+              "name": "items",
+              "type": "CarouselItem[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "autoPlay",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Advances automatically until hovered."
+            },
+            {
+              "name": "intervalMs",
+              "type": "number",
+              "required": false,
+              "default": "3600",
+              "description": "Milliseconds between automatic changes."
+            },
+            {
+              "name": "radius",
+              "type": "number",
+              "required": false,
+              "default": "300",
+              "description": "Ring radius in pixels."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1454,6 +4010,35 @@
       "tags": [
         "text",
         "client"
+      ],
+      "api": [
+        {
+          "name": "ScrambleText",
+          "props": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "The text to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "required": false,
+              "default": "700",
+              "description": "Animation length in milliseconds (or seconds where noted)."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1471,6 +4056,35 @@
       "tags": [
         "data",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "ScrollArea",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "maxHeight",
+              "type": "number",
+              "required": false,
+              "default": "240",
+              "description": "Maximum height in pixels before content scrolls."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1488,6 +4102,35 @@
       "tags": [
         "craft",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "ScrollStack",
+          "props": [
+            {
+              "name": "items",
+              "type": "{ title: string; body: string; }[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "required": false,
+              "default": null,
+              "description": "Height in pixels; makes the component its own scroll container."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1507,6 +4150,49 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "SearchField",
+          "props": [
+            {
+              "name": "value",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "onChange",
+              "type": "((value: string) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called when the value changes."
+            },
+            {
+              "name": "placeholder",
+              "type": "string",
+              "required": false,
+              "default": "\"Search…\"",
+              "description": "Hint text shown while empty."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "autoFocus",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Focuses the input on mount."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1524,6 +4210,42 @@
       "tags": [
         "navigation",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Segmented",
+          "props": [
+            {
+              "name": "options",
+              "type": "{ value: T; label: ReactNode; }[]",
+              "required": true,
+              "default": null,
+              "description": "The selectable options."
+            },
+            {
+              "name": "value",
+              "type": "T",
+              "required": true,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "onChange",
+              "type": "(value: T) => void",
+              "required": true,
+              "default": null,
+              "description": "Called when the value changes."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1543,6 +4265,70 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Select",
+          "props": [
+            {
+              "name": "options",
+              "type": "{ value: string; label: string; }[]",
+              "required": true,
+              "default": null,
+              "description": "The selectable options."
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "defaultValue",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Initial value when uncontrolled."
+            },
+            {
+              "name": "onValueChange",
+              "type": "((value: string) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the new value."
+            },
+            {
+              "name": "placeholder",
+              "type": "string",
+              "required": false,
+              "default": "\"Select…\"",
+              "description": "Hint text shown while empty."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "id",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "DOM id."
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Prevents interaction and dims the control."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1560,13 +4346,42 @@
       "tags": [
         "actions",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Separator",
+          "props": [
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "orientation",
+              "type": "\"horizontal\" | \"vertical\"",
+              "required": false,
+              "default": "\"horizontal\"",
+              "description": "Layout direction."
+            },
+            {
+              "name": "animated",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Draws the line in on mount."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
       "name": "sheet",
       "title": "Sheet",
       "category": "overlays",
-      "description": "Edge-anchored panel for settings, filters and detail views.",
+      "description": "Edge-anchored panel that slides in and out. Settings, filters, detail views.",
       "file": "src/components/ui/sheet.tsx",
       "exports": [
         "Sheet"
@@ -1579,6 +4394,63 @@
       "tags": [
         "overlays",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Sheet",
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Heading text."
+            },
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "trigger",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "The element that opens it."
+            },
+            {
+              "name": "open",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Controlled open state."
+            },
+            {
+              "name": "onOpenChange",
+              "type": "((open: boolean) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called when the open state should change."
+            },
+            {
+              "name": "side",
+              "type": "\"bottom\" | \"right\" | \"left\"",
+              "required": false,
+              "default": "\"right\"",
+              "description": "Which edge or side to anchor to."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Supporting text under the title."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1596,6 +4468,15 @@
       "tags": [
         "feedback",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Skeleton",
+          "props": [],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
       ]
     },
     {
@@ -1613,6 +4494,77 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Slider",
+          "props": [
+            {
+              "name": "value",
+              "type": "number",
+              "required": false,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "defaultValue",
+              "type": "number",
+              "required": false,
+              "default": "40",
+              "description": "Initial value when uncontrolled."
+            },
+            {
+              "name": "min",
+              "type": "number",
+              "required": false,
+              "default": "0",
+              "description": "Lower bound."
+            },
+            {
+              "name": "max",
+              "type": "number",
+              "required": false,
+              "default": "100",
+              "description": "Upper bound."
+            },
+            {
+              "name": "step",
+              "type": "number",
+              "required": false,
+              "default": "1",
+              "description": "Increment between values."
+            },
+            {
+              "name": "onValueChange",
+              "type": "((value: number) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the new value."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Visible label."
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Prevents interaction and dims the control."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1632,6 +4584,28 @@
       "tags": [
         "footers",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "SocialLinks",
+          "props": [
+            {
+              "name": "items",
+              "type": "{ id: \"github\" | \"x\" | \"linkedin\" | \"youtube\" | \"instagram\"; href: string; label: string; }[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1649,6 +4623,28 @@
       "tags": [
         "feedback",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Spinner",
+          "props": [
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "required": false,
+              "default": "18",
+              "description": "Size preset."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1666,6 +4662,35 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "SplitShowcase",
+          "props": [
+            {
+              "name": "left",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content (or label) for the left side."
+            },
+            {
+              "name": "right",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content (or label) for the right side."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1683,6 +4708,28 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Spotlight",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1700,6 +4747,28 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "StackedCards",
+          "props": [
+            {
+              "name": "items",
+              "type": "{ title: string; body: string; }[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1717,6 +4786,28 @@
       "tags": [
         "text",
         "client"
+      ],
+      "api": [
+        {
+          "name": "StaggerWords",
+          "props": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "The text to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1736,13 +4827,56 @@
       "tags": [
         "data",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Stat",
+          "props": [
+            {
+              "name": "label",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Visible label."
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "delta",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Change text shown under the value."
+            },
+            {
+              "name": "trend",
+              "type": "\"neutral\" | \"up\" | \"down\"",
+              "required": false,
+              "default": "\"neutral\"",
+              "description": "Direction of the change: up, down or neutral."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
       "name": "stepper",
       "title": "Stepper",
       "category": "navigation",
-      "description": "Progress through numbered steps, vertical or horizontal.",
+      "description": "Progress through numbered steps. Circles pop and the connector fills as `current` advances.",
       "file": "src/components/ui/stepper.tsx",
       "exports": [
         "Stepper"
@@ -1755,6 +4889,42 @@
       "tags": [
         "navigation",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Stepper",
+          "props": [
+            {
+              "name": "steps",
+              "type": "{ label: string; description?: string | undefined; }[]",
+              "required": true,
+              "default": null,
+              "description": "Array of { label, description? }."
+            },
+            {
+              "name": "current",
+              "type": "number",
+              "required": true,
+              "default": null,
+              "description": "Zero-based index of the active step."
+            },
+            {
+              "name": "orientation",
+              "type": "\"horizontal\" | \"vertical\"",
+              "required": false,
+              "default": "\"vertical\"",
+              "description": "Layout direction."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1772,6 +4942,63 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Switch",
+          "props": [
+            {
+              "name": "checked",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Controlled checked state."
+            },
+            {
+              "name": "defaultChecked",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Initial checked state when uncontrolled."
+            },
+            {
+              "name": "onCheckedChange",
+              "type": "((checked: boolean) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the new checked state."
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Prevents interaction and dims the control."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "id",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "DOM id."
+            },
+            {
+              "name": "aria-label",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Accessible name, required when there is no visible label."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1794,6 +5021,50 @@
       "tags": [
         "data",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Table",
+          "props": [],
+          "extends": [
+            "TableHTMLAttributes<HTMLTableElement>"
+          ]
+        },
+        {
+          "name": "THead",
+          "props": [],
+          "extends": [
+            "HTMLAttributes<HTMLTableSectionElement>"
+          ]
+        },
+        {
+          "name": "TBody",
+          "props": [],
+          "extends": [
+            "HTMLAttributes<HTMLTableSectionElement>"
+          ]
+        },
+        {
+          "name": "TR",
+          "props": [],
+          "extends": [
+            "HTMLAttributes<HTMLTableRowElement>"
+          ]
+        },
+        {
+          "name": "TH",
+          "props": [],
+          "extends": [
+            "ThHTMLAttributes<HTMLTableCellElement>"
+          ]
+        },
+        {
+          "name": "TD",
+          "props": [],
+          "extends": [
+            "TdHTMLAttributes<HTMLTableCellElement>"
+          ]
+        }
       ]
     },
     {
@@ -1814,6 +5085,93 @@
       "tags": [
         "navigation",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Tabs",
+          "props": [
+            {
+              "name": "defaultValue",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Initial value when uncontrolled."
+            },
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "onValueChange",
+              "type": "((v: string) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the new value."
+            },
+            {
+              "name": "variant",
+              "type": "\"pill\" | \"line\"",
+              "required": false,
+              "default": "\"pill\"",
+              "description": "Visual style."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        },
+        {
+          "name": "TabsList",
+          "props": [],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        },
+        {
+          "name": "TabsTrigger",
+          "props": [
+            {
+              "name": "value",
+              "type": "string | (readonly string[] & string)",
+              "required": true,
+              "default": null,
+              "description": "Controlled value."
+            }
+          ],
+          "extends": [
+            "ButtonHTMLAttributes<HTMLButtonElement>"
+          ]
+        },
+        {
+          "name": "TabsContent",
+          "props": [
+            {
+              "name": "value",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Controlled value."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
       ]
     },
     {
@@ -1833,6 +5191,42 @@
       "tags": [
         "forms",
         "client"
+      ],
+      "api": [
+        {
+          "name": "TagInput",
+          "props": [
+            {
+              "name": "tags",
+              "type": "string[]",
+              "required": true,
+              "default": null,
+              "description": "Current tags."
+            },
+            {
+              "name": "onChange",
+              "type": "(tags: string[]) => void",
+              "required": true,
+              "default": null,
+              "description": "Called when the value changes."
+            },
+            {
+              "name": "placeholder",
+              "type": "string",
+              "required": false,
+              "default": "\"Add tag…\"",
+              "description": "Hint text shown while empty."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1850,6 +5244,42 @@
       "tags": [
         "text",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "TextLink",
+          "props": [
+            {
+              "name": "href",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Link destination."
+            },
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "external",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Opens in a new tab with rel=noreferrer."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1867,6 +5297,28 @@
       "tags": [
         "text",
         "client"
+      ],
+      "api": [
+        {
+          "name": "TextReveal",
+          "props": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "The text to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1884,6 +5336,28 @@
       "tags": [
         "text",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "TextShimmer",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1901,6 +5375,28 @@
       "tags": [
         "navigation",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "Timeline",
+          "props": [
+            {
+              "name": "items",
+              "type": "{ title: string; time: string; body?: string | undefined; }[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1924,6 +5420,39 @@
       "tags": [
         "overlays",
         "client"
+      ],
+      "api": [
+        {
+          "name": "ToastProvider",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            }
+          ],
+          "extends": []
+        },
+        {
+          "name": "useToast",
+          "props": [],
+          "extends": []
+        },
+        {
+          "name": "ToastDemoButton",
+          "props": [
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1942,13 +5471,80 @@
       "tags": [
         "actions",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Toggle",
+          "props": [
+            {
+              "name": "pressed",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Controlled pressed state."
+            },
+            {
+              "name": "defaultPressed",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Initial pressed state when uncontrolled."
+            },
+            {
+              "name": "onPressedChange",
+              "type": "((pressed: boolean) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the new pressed state."
+            }
+          ],
+          "extends": [
+            "ButtonHTMLAttributes<HTMLButtonElement>"
+          ]
+        },
+        {
+          "name": "ToggleGroup",
+          "props": [
+            {
+              "name": "options",
+              "type": "{ value: string; label: ReactNode; }[]",
+              "required": true,
+              "default": null,
+              "description": "The selectable options."
+            },
+            {
+              "name": "value",
+              "type": "string[]",
+              "required": true,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "onChange",
+              "type": "(value: string[]) => void",
+              "required": true,
+              "default": null,
+              "description": "Called when the value changes."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": [
+            "ButtonHTMLAttributes<HTMLButtonElement>"
+          ]
+        }
       ]
     },
     {
       "name": "tooltip",
       "title": "Tooltip",
       "category": "overlays",
-      "description": "Hover and focus tooltip, pure CSS with a short open delay.",
+      "description": "Hover and focus tooltip: pure CSS, short open delay, scales and slides in.",
       "file": "src/components/ui/tooltip.tsx",
       "exports": [
         "Tooltip"
@@ -1959,6 +5555,42 @@
       "tags": [
         "overlays",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Tooltip",
+          "props": [
+            {
+              "name": "content",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Tooltip content."
+            },
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "side",
+              "type": "\"top\" | \"bottom\" | \"right\" | \"left\"",
+              "required": false,
+              "default": "\"top\"",
+              "description": "Which edge or side to anchor to."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1976,6 +5608,49 @@
       "tags": [
         "craft",
         "client"
+      ],
+      "api": [
+        {
+          "name": "TradingCard",
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Heading text."
+            },
+            {
+              "name": "subtitle",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Supporting text under the title."
+            },
+            {
+              "name": "meta",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Small label in the top corner."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "Content rendered inside the component."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -1993,6 +5668,42 @@
       "tags": [
         "text",
         "client"
+      ],
+      "api": [
+        {
+          "name": "Typewriter",
+          "props": [
+            {
+              "name": "phrases",
+              "type": "string[]",
+              "required": true,
+              "default": null,
+              "description": "Phrases to type in sequence."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "typingMs",
+              "type": "number",
+              "required": false,
+              "default": "60",
+              "description": "Milliseconds per typed character."
+            },
+            {
+              "name": "pauseMs",
+              "type": "number",
+              "required": false,
+              "default": "1600",
+              "description": "Milliseconds to hold a finished phrase."
+            }
+          ],
+          "extends": []
+        }
       ]
     },
     {
@@ -2010,6 +5721,35 @@
       "tags": [
         "text",
         "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "UnderlineReveal",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "href",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Link destination."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
       ]
     }
   ]

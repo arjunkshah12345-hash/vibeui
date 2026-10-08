@@ -20,7 +20,7 @@ export function Chip({
   return (
     <span
       className={cn(
-        "inline-flex h-7 items-center rounded-full border text-[12px] font-medium transition-colors duration-150",
+        "inline-flex h-7 items-center rounded-full border text-[12px] font-medium transition-[background-color,color,border-color,transform] duration-150 active:scale-[0.95]",
         selected
           ? "border-ink bg-ink text-surface"
           : "border-line bg-surface text-ink-soft hover:border-line-strong hover:text-ink",

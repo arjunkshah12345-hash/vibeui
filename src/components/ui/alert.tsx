@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 /** Inline status message with tone, icon and optional title. */
 const alertVariants = cva(
-  "relative flex w-full gap-3 rounded-md border px-4 py-3.5 text-sm leading-relaxed",
+  "relative flex w-full animate-pop-in gap-3 rounded-md border px-4 py-3.5 text-sm leading-relaxed",
   {
     variants: {
       tone: {
@@ -48,7 +48,7 @@ export function Alert({
       className={cn(alertVariants({ tone }), className)}
       {...props}
     >
-      <Icon size={18} weight="fill" className="mt-0.5 shrink-0" />
+      <Icon size={18} weight="fill" className="mt-0.5 shrink-0 animate-pop-in [animation-delay:120ms]" />
       <div className="min-w-0">
         {title ? (
           <p className="font-medium tracking-[-0.01em]">{title}</p>

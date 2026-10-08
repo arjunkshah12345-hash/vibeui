@@ -4,7 +4,7 @@ import * as React from "react";
 import { X } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
-/** Full-width announcement bar with optional action and dismiss. */
+/** Announcement bar with optional action. Slides in, and fades out when dismissed. */
 export function Banner({
   children,
   action,
@@ -16,21 +16,26 @@ export function Banner({
   dismissible?: boolean;
   className?: string;
 }) {
-  const [visible, setVisible] = React.useState(true);
-  if (!visible) return null;
+  const [closing, setClosing] = React.useState(false);
+  const [gone, setGone] = React.useState(false);
+  if (gone) return null;
 
   return (
     <div
+      onAnimationEnd={(e) => {
+        if (e.target === e.currentTarget && closing) setGone(true);
+      }}
       className={cn(
         "flex items-center justify-between gap-4 rounded-md border border-line bg-surface px-4 py-2.5 text-sm text-ink-soft shadow-quiet",
+        closing ? "animate-pop-out" : "animate-fade-up",
         className,
       )}
     >
       <div className="flex min-w-0 flex-1 items-center gap-2.5">
-        <span
-          aria-hidden
-          className="size-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_0_3px_var(--accent-soft)]"
-        />
+        <span aria-hidden className="relative flex size-1.5 shrink-0">
+          <span className="absolute inset-0 animate-ping-soft rounded-full bg-accent opacity-50" />
+          <span className="relative size-1.5 rounded-full bg-accent" />
+        </span>
         <div className="min-w-0">{children}</div>
       </div>
       <div className="flex shrink-0 items-center gap-2">
@@ -39,8 +44,8 @@ export function Banner({
           <button
             type="button"
             aria-label="Dismiss"
-            onClick={() => setVisible(false)}
-            className="flex size-7 items-center justify-center rounded-sm text-faint transition-colors hover:bg-surface-muted hover:text-ink"
+            onClick={() => setClosing(true)}
+            className="flex size-7 items-center justify-center rounded-sm text-faint transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-surface-muted hover:text-ink active:scale-90"
           >
             <X size={14} weight="bold" />
           </button>

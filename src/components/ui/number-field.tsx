@@ -33,7 +33,7 @@ export function NumberField({
   };
 
   const stepper =
-    "flex size-full w-10 items-center justify-center text-muted transition-colors hover:bg-surface-muted hover:text-ink disabled:pointer-events-none disabled:opacity-35";
+    "flex size-full w-10 items-center justify-center text-muted transition-[background-color,color,transform] duration-150 hover:bg-surface-muted hover:text-ink active:scale-90 disabled:pointer-events-none disabled:opacity-35";
 
   return (
     <div

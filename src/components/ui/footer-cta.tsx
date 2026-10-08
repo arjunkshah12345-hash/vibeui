@@ -19,9 +19,9 @@ export function FooterCta({
     <section className={cn("relative overflow-hidden border-t border-line", className)}>
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_80%_at_50%_100%,var(--accent-soft),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 animate-float bg-[radial-gradient(50%_80%_at_50%_100%,var(--accent-soft),transparent_70%)]"
       />
-      <div className="relative mx-auto max-w-3xl px-5 py-20 text-center">
+      <div className="relative mx-auto max-w-3xl animate-fade-up px-5 py-20 text-center">
         <h2 className="font-display text-[44px] leading-[1.02] tracking-[-0.01em] text-ink md:text-[56px]">
           {title}
         </h2>

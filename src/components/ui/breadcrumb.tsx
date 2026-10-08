@@ -29,7 +29,7 @@ export function Breadcrumb({
               ) : (
                 <a
                   href={item.href}
-                  className="text-muted transition-colors hover:text-ink"
+                  className="text-muted transition-[color,transform] duration-150 hover:-translate-y-px hover:text-ink"
                 >
                   {item.label}
                 </a>

@@ -1,0 +1,1220 @@
+# VibeUI (full reference)
+
+> Copy-owned React + Tailwind components. MIT. https://github.com/arjunkshah12345-hash/vibeui
+> Version 0.2.0 · 104 components · generated from registry/components.json
+
+## Setup
+
+- Peers: clsx, tailwind-merge, class-variance-authority, @phosphor-icons/react
+- Tailwind v4. Import the token file AFTER `@import "tailwindcss";` (templates/vibeui.css or vibeui.tokens.css).
+- Path alias `@/*` -> `src/*`. Components import `cn` from `@/lib/utils`.
+- Dark mode: `dark` class on <html>. `light` / `dark` on any element pins that subtree.
+- Install: `npx github:arjunkshah12345-hash/vibeui add <name...> --dir ./src/components/ui` (siblings are copied automatically).
+- Toasts need <ToastProvider> once near the root.
+
+## Conventions
+
+- One file per component in src/components/ui/<kebab>.tsx; named exports only.
+- className is merged last with cn(); remaining props spread onto the root element.
+- Use token classes (bg-surface, text-muted, border-line, ring-ring, shadow-lift, rounded-md); never raw hex.
+- Variants use class-variance-authority. Export `xVariants` to style other elements (e.g. a Link as a button).
+- Stateful components support controlled and uncontrolled use (value/defaultValue).
+- Files without "use client" are server-safe; import icons from @phosphor-icons/react/dist/ssr there.
+
+## Components
+
+### navigation
+
+#### accordion
+Expandable sections with smooth height animation. Single or multiple open.
+- file: src/components/ui/accordion.tsx
+- exports: Accordion
+- client component
+- peers: @phosphor-icons/react
+- <Accordion>
+  - items: { id: string; title: string; content: ReactNode; }[] — The items to render.
+  - type?: "single" | "multiple" = "single" — Whether one item or several can be open at once.
+  - defaultOpen?: string[] — Initial open state when uncontrolled.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### breadcrumb
+Path trail showing the current location in a hierarchy.
+- file: src/components/ui/breadcrumb.tsx
+- exports: Breadcrumb
+- server-safe
+- peers: @phosphor-icons/react
+- <Breadcrumb>
+  - items: { label: string; href?: string | undefined; }[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### pagination
+Page navigator with collapsing ellipses.
+- file: src/components/ui/pagination.tsx
+- exports: Pagination
+- client component
+- peers: @phosphor-icons/react
+- <Pagination>
+  - page: number — Current page, 1-based.
+  - totalPages: number — Total number of pages.
+  - onPageChange: (page: number) => void — Called with the new page number.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### segmented
+Segmented control with a sliding selection thumb.
+- file: src/components/ui/segmented.tsx
+- exports: Segmented
+- client component
+- <Segmented>
+  - options: { value: T; label: ReactNode; }[] — The selectable options.
+  - value: T — Controlled value.
+  - onChange: (value: T) => void — Called when the value changes.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### stepper
+Progress through numbered steps. Circles pop and the connector fills as `current` advances.
+- file: src/components/ui/stepper.tsx
+- exports: Stepper
+- server-safe
+- peers: @phosphor-icons/react
+- <Stepper>
+  - steps: { label: string; description?: string | undefined; }[] — Array of { label, description? }.
+  - current: number — Zero-based index of the active step.
+  - orientation?: "horizontal" | "vertical" = "vertical" — Layout direction.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### tabs
+Tabs with arrow-key navigation, in pill or underline style.
+- file: src/components/ui/tabs.tsx
+- exports: Tabs, TabsList, TabsTrigger, TabsContent
+- client component
+- <Tabs>
+  - defaultValue: string — Initial value when uncontrolled.
+  - children: ReactNode — Content rendered inside the component.
+  - value?: string — Controlled value.
+  - onValueChange?: ((v: string) => void) — Called with the new value.
+  - variant?: "pill" | "line" = "pill" — Visual style.
+  - className?: string — Extra classes, merged with the component's own.
+- <TabsList> (also accepts HTMLAttributes<HTMLDivElement>)
+- <TabsTrigger> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - value: string | (readonly string[] & string) — Controlled value.
+- <TabsContent> (also accepts HTMLAttributes<HTMLDivElement>)
+  - value: string — Controlled value.
+
+#### timeline
+Vertical event timeline with a continuous rail.
+- file: src/components/ui/timeline.tsx
+- exports: Timeline
+- server-safe
+- <Timeline>
+  - items: { title: string; time: string; body?: string | undefined; }[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+### feedback
+
+#### alert
+Inline status message with tone, icon and optional title.
+- file: src/components/ui/alert.tsx
+- exports: Alert
+- server-safe
+- peers: @phosphor-icons/react, class-variance-authority
+- <Alert> (also accepts HTMLAttributes<HTMLDivElement>)
+  - tone?: "neutral" | "sky" | "sage" | "sand" | "rose" = "neutral" — Semantic color: neutral, sky, sage, sand, rose.
+  - title?: ReactNode — Heading text.
+
+#### banner
+Announcement bar with optional action. Slides in, and fades out when dismissed.
+- file: src/components/ui/banner.tsx
+- exports: Banner
+- client component
+- peers: @phosphor-icons/react
+- <Banner>
+  - children: ReactNode — Content rendered inside the component.
+  - action?: ReactNode — Optional action (usually a Button) shown alongside the message.
+  - dismissible?: boolean — Shows a close button that animates the banner away.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### callout
+Quiet note with an accent rule, lighter than a filled alert.
+- file: src/components/ui/callout.tsx
+- exports: Callout
+- server-safe
+- <Callout>
+  - children: ReactNode — Content rendered inside the component.
+  - title?: string — Heading text.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### empty
+Empty state with icon, copy and an optional call to action.
+- file: src/components/ui/empty.tsx
+- exports: Empty
+- server-safe
+- <Empty>
+  - title: string — Heading text.
+  - description?: string — Supporting text under the title.
+  - action?: ReactNode — Optional action (usually a Button) shown alongside the message.
+  - className?: string — Extra classes, merged with the component's own.
+  - icon?: ReactNode — Icon shown in the leading position.
+
+#### meter
+Segmented gauge for a value within a known range.
+- file: src/components/ui/meter.tsx
+- exports: Meter
+- server-safe
+- <Meter>
+  - value: number — Controlled value.
+  - max?: number = 100 — Upper bound.
+  - label?: string — Visible label.
+  - tone?: "sage" | "sand" | "rose" | "accent" | "ink" = "ink" — Semantic color: neutral, sky, sage, sand, rose.
+  - segments?: number = 20 — Number of segments in the gauge.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### notification
+Notification row with an unread dot, title, body and timestamp.
+- file: src/components/ui/notification.tsx
+- exports: NotificationItem
+- server-safe
+- <NotificationItem>
+  - title: string — Heading text.
+  - body: string — Message text.
+  - time: string — Timestamp label, e.g. “2m”.
+  - unread?: boolean — Shows an animated unread dot.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### progress
+Determinate progress bar with an optional label and percentage.
+- file: src/components/ui/progress.tsx
+- exports: Progress
+- server-safe
+- <Progress>
+  - value: number — Controlled value.
+  - className?: string — Extra classes, merged with the component's own.
+  - label?: string — Visible label.
+
+#### skeleton
+Loading placeholder with a soft shimmer sweep.
+- file: src/components/ui/skeleton.tsx
+- exports: Skeleton
+- server-safe
+- <Skeleton> (also accepts HTMLAttributes<HTMLDivElement>)
+
+#### spinner
+Indeterminate loading ring. Inherits `currentColor`.
+- file: src/components/ui/spinner.tsx
+- exports: Spinner
+- server-safe
+- <Spinner>
+  - className?: string — Extra classes, merged with the component's own.
+  - size?: number = 18 — Size preset.
+
+### craft
+
+#### arrow-fill-button
+Outlined button that floods with ink on hover while the arrow slides.
+- file: src/components/ui/arrow-fill-button.tsx
+- exports: ArrowFillButton
+- client component
+- peers: @phosphor-icons/react
+- <ArrowFillButton> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+
+#### blur-reveal
+Content that resolves from blur and a slight drop as it enters the viewport.
+- file: src/components/ui/blur-reveal.tsx
+- exports: BlurReveal
+- client component
+- <BlurReveal>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+  - delay?: number = 0 — Milliseconds before the reveal starts.
+
+#### book-flip
+A page that physically turns over its spine to reveal the next.
+- file: src/components/ui/book-flip.tsx
+- exports: BookFlip
+- client component
+- <BookFlip>
+  - pages: { title: string; body: string; }[] — Array of { title, body } pages.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### circle-menu
+Radial menu: a button that fans its actions out in a circle.
+- file: src/components/ui/circle-menu.tsx
+- exports: CircleMenu
+- client component
+- peers: @phosphor-icons/react
+- <CircleMenu>
+  - items: { id: string; label: string; icon: ReactNode; onSelect?: (() => void) | undefined; }[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+  - radius?: number = 76 — Ring radius in pixels.
+
+#### count-up
+Number that eases up from zero the first time it scrolls into view.
+- file: src/components/ui/count-up.tsx
+- exports: CountUp
+- client component
+- <CountUp>
+  - value: number — Controlled value.
+  - duration?: number = 1400 — Animation length in milliseconds (or seconds where noted).
+  - decimals?: number = 0 — Fraction digits to display.
+  - suffix?: string = "" — Text appended to the number.
+  - prefix?: string = "" — Text prepended to the number.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### dock
+macOS-style dock: icons magnify smoothly with distance from the cursor.
+- file: src/components/ui/dock.tsx
+- exports: Dock
+- client component
+- <Dock>
+  - items: { id: string; label: string; icon: ReactNode; onSelect?: (() => void) | undefined; }[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### dotted-grid
+Dot-matrix surface that lights up under the cursor.
+- file: src/components/ui/dotted-grid.tsx
+- exports: DottedGrid
+- client component
+- <DottedGrid>
+  - children?: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### flip-card
+Two-sided card that turns over on click or Enter.
+- file: src/components/ui/flip-card.tsx
+- exports: FlipCard
+- client component
+- peers: @phosphor-icons/react
+- <FlipCard>
+  - front: ReactNode — Content of the front face.
+  - back: ReactNode — Content of the back face.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### folder-preview
+Folder that opens to let its files rise out for a peek.
+- file: src/components/ui/folder-preview.tsx
+- exports: FolderPreview
+- client component
+- <FolderPreview>
+  - title: string — Heading text.
+  - files: string[] — File names to show.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### jelly-loader
+Four bars that squash and stretch in sequence.
+- file: src/components/ui/jelly-loader.tsx
+- exports: JellyLoader
+- server-safe
+- <JellyLoader>
+  - className?: string — Extra classes, merged with the component's own.
+
+#### magnet-tabs
+Tabs with a hover highlight that glides between items and a marker on the active tab.
+- file: src/components/ui/magnet-tabs.tsx
+- exports: MagnetTabs
+- client component
+- <MagnetTabs>
+  - tabs: { value: string; label: string; }[] — Array of { value, label }.
+  - value: string — Controlled value.
+  - onChange: (value: string) => void — Called when the value changes.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### marquee
+Infinite horizontal ticker with edge fade. Pauses on hover.
+- file: src/components/ui/marquee.tsx
+- exports: Marquee
+- server-safe
+- <Marquee>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+  - pauseOnHover?: boolean = true — Pauses the animation while hovered.
+  - reverse?: boolean = false — Runs the animation in the opposite direction.
+  - duration?: number = 40 — Seconds for one full loop.
+
+#### masonry
+Column masonry of tiles with mixed heights and optional tint.
+- file: src/components/ui/masonry.tsx
+- exports: Masonry
+- server-safe
+- <Masonry>
+  - items: { id: string; title: string; height: "sm" | "md" | "lg"; tone?: string | undefined; }[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### orbit-ring
+Labels circling a center point. Chips stay upright while the ring turns.
+- file: src/components/ui/orbit-ring.tsx
+- exports: OrbitRing
+- server-safe
+- <OrbitRing>
+  - items: { id: string; label: string; }[] — The items to render.
+  - center?: ReactNode — Content for the center of the ring.
+  - radius?: number = 104 — Ring radius in pixels.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### rotating-carousel
+3D ring carousel: drag, swipe, arrow keys, autoplay that pauses on hover.
+- file: src/components/ui/rotating-carousel.tsx
+- exports: RotatingCarousel
+- client component
+- peers: @phosphor-icons/react
+- <RotatingCarousel>
+  - items: CarouselItem[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+  - autoPlay?: boolean = true — Advances automatically until hovered.
+  - intervalMs?: number = 3600 — Milliseconds between automatic changes.
+  - radius?: number = 300 — Ring radius in pixels.
+
+#### scroll-stack
+Cards that pile up as you scroll. Pure CSS (position: sticky).
+- file: src/components/ui/scroll-stack.tsx
+- exports: ScrollStack
+- server-safe
+- <ScrollStack>
+  - items: { title: string; body: string; }[] — The items to render.
+  - height?: number — Height in pixels; makes the component its own scroll container.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### split-showcase
+Before/after comparison with a draggable, keyboard-accessible divider.
+- file: src/components/ui/split-showcase.tsx
+- exports: SplitShowcase
+- client component
+- <SplitShowcase>
+  - left: ReactNode — Content (or label) for the left side.
+  - right: ReactNode — Content (or label) for the right side.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### spotlight
+Surface with a soft accent light that follows the cursor.
+- file: src/components/ui/spotlight.tsx
+- exports: Spotlight
+- client component
+- <Spotlight>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### stacked-cards
+Deck of cards. Click the top card to send it to the back.
+- file: src/components/ui/stacked-cards.tsx
+- exports: StackedCards
+- client component
+- <StackedCards>
+  - items: { title: string; body: string; }[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### trading-card
+Collectible card that tilts in 3D and catches a glare under the cursor.
+- file: src/components/ui/trading-card.tsx
+- exports: TradingCard
+- client component
+- <TradingCard>
+  - title: string — Heading text.
+  - subtitle?: string — Supporting text under the title.
+  - meta?: string — Small label in the top corner.
+  - className?: string — Extra classes, merged with the component's own.
+  - children?: ReactNode — Content rendered inside the component.
+
+### data
+
+#### aspect-ratio
+Locks children to a width-to-height ratio.
+- file: src/components/ui/aspect-ratio.tsx
+- exports: AspectRatio
+- server-safe
+- <AspectRatio>
+  - children: ReactNode — Content rendered inside the component.
+  - ratio?: number = 16 / 9 — Width divided by height, e.g. 16 / 9.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### avatar
+Round avatar with image, graceful initials fallback and a stackable group.
+- file: src/components/ui/avatar.tsx
+- exports: Avatar, AvatarGroup
+- server-safe
+- <Avatar>
+  - fallback: string — Text used for initials when there is no image.
+  - src?: string — Image URL.
+  - alt?: string = "" — Alternative text for the image.
+  - size?: "xs" | "sm" | "md" | "lg" | "xl" = "md" — Size preset.
+  - className?: string — Extra classes, merged with the component's own.
+- <AvatarGroup>
+  - children: ReactNode — Content rendered inside the component.
+  - max?: number — Upper bound.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### card
+Surface container with header, content and footer slots.
+- file: src/components/ui/card.tsx
+- exports: Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter
+- server-safe
+- <Card> (also accepts HTMLAttributes<HTMLDivElement>)
+  - interactive?: boolean — Lifts and deepens the shadow on hover.
+- <CardHeader> (also accepts HTMLAttributes<HTMLDivElement>)
+- <CardTitle> (also accepts HTMLAttributes<HTMLHeadingElement>)
+- <CardDescription> (also accepts HTMLAttributes<HTMLParagraphElement>)
+- <CardContent> (also accepts HTMLAttributes<HTMLDivElement>)
+- <CardFooter> (also accepts HTMLAttributes<HTMLDivElement>)
+
+#### code-block
+Code panel with lightweight syntax highlighting and one-click copy.
+- file: src/components/ui/code-block.tsx
+- exports: CodeBlock
+- client component
+- peers: @phosphor-icons/react
+- <CodeBlock>
+  - code: string — The source text to display and copy.
+  - language?: string = "tsx" — Language used for highlighting (tsx, ts, css, json, bash).
+  - filename?: string — Label shown in the header instead of the language.
+  - className?: string — Extra classes, merged with the component's own.
+  - maxHeight?: number — Maximum height in pixels before content scrolls.
+
+#### color-swatch
+Color chip with a name and token value. Click to copy the value.
+- file: src/components/ui/color-swatch.tsx
+- exports: ColorSwatch
+- client component
+- peers: @phosphor-icons/react
+- <ColorSwatch>
+  - color: string — Any CSS color or var(--token).
+  - label: string — Visible label.
+  - value?: string — Controlled value.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### comparison
+Two-sided proportion bar for comparing a pair of values.
+- file: src/components/ui/comparison.tsx
+- exports: ComparisonBar
+- server-safe
+- <ComparisonBar>
+  - left: string — Content (or label) for the left side.
+  - right: string — Content (or label) for the right side.
+  - leftValue: number — Magnitude of the left side.
+  - rightValue: number — Magnitude of the right side.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### list
+Bordered list of rows with title, description, leading and trailing slots.
+- file: src/components/ui/list.tsx
+- exports: List, ListItem
+- server-safe
+- <List>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+- <ListItem>
+  - title: string — Heading text.
+  - description?: string — Supporting text under the title.
+  - leading?: ReactNode — Node shown before the text, such as an icon.
+  - trailing?: ReactNode — Node shown after the text, such as a badge.
+  - className?: string — Extra classes, merged with the component's own.
+  - onClick?: (() => void) — Called on click.
+
+#### scroll-area
+Height-limited scroll container with a slim scrollbar.
+- file: src/components/ui/scroll-area.tsx
+- exports: ScrollArea
+- server-safe
+- <ScrollArea>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+  - maxHeight?: number = 240 — Maximum height in pixels before content scrolls.
+
+#### stat
+Metric tile with a value and an optional trend delta.
+- file: src/components/ui/stat.tsx
+- exports: Stat
+- server-safe
+- peers: @phosphor-icons/react
+- <Stat>
+  - label: string — Visible label.
+  - value: string — Controlled value.
+  - delta?: string — Change text shown under the value.
+  - trend?: "neutral" | "up" | "down" = "neutral" — Direction of the change: up, down or neutral.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### table
+Data table with a quiet header and row hover.
+- file: src/components/ui/table.tsx
+- exports: Table, THead, TBody, TR, TH, TD
+- server-safe
+- <Table> (also accepts TableHTMLAttributes<HTMLTableElement>)
+- <THead> (also accepts HTMLAttributes<HTMLTableSectionElement>)
+- <TBody> (also accepts HTMLAttributes<HTMLTableSectionElement>)
+- <TR> (also accepts HTMLAttributes<HTMLTableRowElement>)
+- <TH> (also accepts ThHTMLAttributes<HTMLTableCellElement>)
+- <TD> (also accepts TdHTMLAttributes<HTMLTableCellElement>)
+
+### actions
+
+#### button
+Primary action button with variants (primary, accent, secondary, ghost, soft, danger) and a loading state.
+- file: src/components/ui/button.tsx
+- exports: Button
+- server-safe
+- peers: class-variance-authority
+- also imports: spinner
+- <Button> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - loading?: boolean — Shows a spinner and disables the button while work is in flight.
+  - variant?: "primary" | "accent" | "secondary" | "ghost" | "soft" | "danger" — Visual style.
+  - size?: "sm" | "md" | "lg" | "icon" | "icon-sm" — Size preset.
+
+#### chip
+Selectable, removable filter chip.
+- file: src/components/ui/chip.tsx
+- exports: Chip
+- client component
+- peers: @phosphor-icons/react
+- <Chip>
+  - children: ReactNode — Content rendered inside the component.
+  - onRemove?: (() => void) — When provided, shows a remove button and calls this when pressed.
+  - selected?: boolean — Renders the selected state.
+  - onClick?: (() => void) — Called on click.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### kbd
+Keyboard key cap for shortcuts.
+- file: src/components/ui/kbd.tsx
+- exports: Kbd
+- server-safe
+- <Kbd>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### pill
+Small status label with semantic pastel tones and an optional live dot.
+- file: src/components/ui/pill.tsx
+- exports: Pill
+- server-safe
+- peers: class-variance-authority
+- <Pill> (also accepts HTMLAttributes<HTMLSpanElement>)
+  - dot?: boolean — Shows a status dot before the label.
+  - pulse?: boolean — Adds a soft expanding ring to the dot, for live status.
+  - tone?: "neutral" | "sky" | "sage" | "sand" | "rose" | "accent" | "outline" — Semantic color: neutral, sky, sage, sand, rose.
+
+#### separator
+Hairline divider, horizontal or vertical.
+- file: src/components/ui/separator.tsx
+- exports: Separator
+- server-safe
+- <Separator>
+  - className?: string — Extra classes, merged with the component's own.
+  - orientation?: "horizontal" | "vertical" = "horizontal" — Layout direction.
+  - animated?: boolean — Draws the line in on mount.
+
+#### toggle
+Two-state pressed button, plus a connected multi-select ToggleGroup.
+- file: src/components/ui/toggle.tsx
+- exports: Toggle, ToggleGroup
+- client component
+- <Toggle> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - pressed?: boolean — Controlled pressed state.
+  - defaultPressed?: boolean — Initial pressed state when uncontrolled.
+  - onPressedChange?: ((pressed: boolean) => void) — Called with the new pressed state.
+- <ToggleGroup> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - options: { value: string; label: ReactNode; }[] — The selectable options.
+  - value: string[] — Controlled value.
+  - onChange: (value: string[]) => void — Called when the value changes.
+  - className?: string — Extra classes, merged with the component's own.
+
+### forms
+
+#### calendar
+Month grid date picker. Months slide in the direction you navigate; days respond to press.
+- file: src/components/ui/calendar.tsx
+- exports: Calendar
+- client component
+- peers: @phosphor-icons/react
+- <Calendar>
+  - value?: Date — Controlled value.
+  - defaultMonth?: Date — Month to show before a date is chosen.
+  - onChange?: ((date: Date) => void) — Called when the value changes.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### checkbox
+Native checkbox with an animated check and an optional label.
+- file: src/components/ui/checkbox.tsx
+- exports: Checkbox
+- client component
+- <Checkbox>
+  - checked?: boolean — Controlled checked state.
+  - defaultChecked?: boolean — Initial checked state when uncontrolled.
+  - onCheckedChange?: ((checked: boolean) => void) — Called with the new checked state.
+  - disabled?: boolean — Prevents interaction and dims the control.
+  - id?: string — DOM id.
+  - name?: string — Form field name.
+  - className?: string — Extra classes, merged with the component's own.
+  - label?: string — Visible label.
+  - description?: string — Supporting text under the title.
+
+#### file-drop
+Drag-and-drop file target that also opens the file picker on click.
+- file: src/components/ui/file-drop.tsx
+- exports: FileDrop
+- client component
+- peers: @phosphor-icons/react
+- <FileDrop>
+  - label?: string = "Drop files here" — Visible label.
+  - hint?: string = "or click to browse" — Secondary text shown beneath.
+  - onFiles?: ((files: FileList) => void) — Called with the dropped or picked FileList.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### input
+Text input, textarea, label and Field wrapper sharing one focus language.
+- file: src/components/ui/input.tsx
+- exports: Label, Field
+- server-safe
+- <Label> (also accepts LabelHTMLAttributes<HTMLLabelElement>)
+- <Field> (also accepts HTMLAttributes<HTMLDivElement>)
+  - children: ReactNode — Content rendered inside the component.
+  - label?: string — Visible label.
+  - hint?: string — Secondary text shown beneath.
+  - error?: string — Error message; also styles the field as invalid.
+
+#### number-field
+Numeric stepper with min/max clamping.
+- file: src/components/ui/number-field.tsx
+- exports: NumberField
+- client component
+- peers: @phosphor-icons/react
+- <NumberField>
+  - value?: number — Controlled value.
+  - defaultValue?: number = 0 — Initial value when uncontrolled.
+  - min?: number = 0 — Lower bound.
+  - max?: number = 99 — Upper bound.
+  - step?: number = 1 — Increment between values.
+  - onChange?: ((value: number) => void) — Called when the value changes.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### otp-field
+One-time-code input with auto-advance, backspace and paste support.
+- file: src/components/ui/otp-field.tsx
+- exports: OtpField
+- client component
+- <OtpField>
+  - length?: number = 6 — Number of digits.
+  - value?: string — Controlled value.
+  - onChange?: ((value: string) => void) — Called when the value changes.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### password-field
+Password input with a show/hide toggle.
+- file: src/components/ui/password-field.tsx
+- exports: PasswordField
+- client component
+- peers: @phosphor-icons/react
+- <PasswordField> (also accepts InputHTMLAttributes<HTMLInputElement>)
+
+#### radio
+Single-choice group built on native radio inputs.
+- file: src/components/ui/radio.tsx
+- exports: RadioGroup, RadioItem
+- client component
+- <RadioGroup>
+  - children: ReactNode — Content rendered inside the component.
+  - value?: string — Controlled value.
+  - defaultValue?: string — Initial value when uncontrolled.
+  - onValueChange?: ((v: string) => void) — Called with the new value.
+  - name?: string — Form field name.
+  - className?: string — Extra classes, merged with the component's own.
+- <RadioItem>
+  - value: string — Controlled value.
+  - label: string — Visible label.
+  - description?: string — Supporting text under the title.
+  - disabled?: boolean — Prevents interaction and dims the control.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### rating
+Star rating with hover preview. Use readOnly to display a score.
+- file: src/components/ui/rating.tsx
+- exports: Rating
+- client component
+- peers: @phosphor-icons/react
+- <Rating>
+  - value?: number — Controlled value.
+  - defaultValue?: number = 0 — Initial value when uncontrolled.
+  - onChange?: ((value: number) => void) — Called when the value changes.
+  - max?: number = 5 — Upper bound.
+  - size?: number = 20 — Size preset.
+  - className?: string — Extra classes, merged with the component's own.
+  - readOnly?: boolean — Displays the rating without allowing changes.
+
+#### search-field
+Search input with a leading icon and a clear button.
+- file: src/components/ui/search-field.tsx
+- exports: SearchField
+- client component
+- peers: @phosphor-icons/react
+- <SearchField>
+  - value?: string — Controlled value.
+  - onChange?: ((value: string) => void) — Called when the value changes.
+  - placeholder?: string = "Search…" — Hint text shown while empty.
+  - className?: string — Extra classes, merged with the component's own.
+  - autoFocus?: boolean — Focuses the input on mount.
+
+#### select
+Native select with the shared field styling and a custom caret.
+- file: src/components/ui/select.tsx
+- exports: Select
+- client component
+- peers: @phosphor-icons/react
+- <Select>
+  - options: { value: string; label: string; }[] — The selectable options.
+  - value?: string — Controlled value.
+  - defaultValue?: string — Initial value when uncontrolled.
+  - onValueChange?: ((value: string) => void) — Called with the new value.
+  - placeholder?: string = "Select…" — Hint text shown while empty.
+  - className?: string — Extra classes, merged with the component's own.
+  - id?: string — DOM id.
+  - disabled?: boolean — Prevents interaction and dims the control.
+
+#### slider
+Range slider with an accent fill, built on a native range input.
+- file: src/components/ui/slider.tsx
+- exports: Slider
+- client component
+- <Slider>
+  - value?: number — Controlled value.
+  - defaultValue?: number = 40 — Initial value when uncontrolled.
+  - min?: number = 0 — Lower bound.
+  - max?: number = 100 — Upper bound.
+  - step?: number = 1 — Increment between values.
+  - onValueChange?: ((value: number) => void) — Called with the new value.
+  - className?: string — Extra classes, merged with the component's own.
+  - label?: string — Visible label.
+  - disabled?: boolean — Prevents interaction and dims the control.
+
+#### switch
+On/off switch with an accent track and sprung thumb.
+- file: src/components/ui/switch.tsx
+- exports: Switch
+- client component
+- <Switch>
+  - checked?: boolean — Controlled checked state.
+  - defaultChecked?: boolean — Initial checked state when uncontrolled.
+  - onCheckedChange?: ((checked: boolean) => void) — Called with the new checked state.
+  - disabled?: boolean — Prevents interaction and dims the control.
+  - className?: string — Extra classes, merged with the component's own.
+  - id?: string — DOM id.
+  - aria-label?: string — Accessible name, required when there is no visible label.
+
+#### tag-input
+Free-form tag entry. Enter or comma adds, Backspace removes the last.
+- file: src/components/ui/tag-input.tsx
+- exports: TagInput
+- client component
+- peers: @phosphor-icons/react
+- <TagInput>
+  - tags: string[] — Current tags.
+  - onChange: (tags: string[]) => void — Called when the value changes.
+  - placeholder?: string = "Add tag…" — Hint text shown while empty.
+  - className?: string — Extra classes, merged with the component's own.
+
+### overlays
+
+#### command
+Command palette: type to filter, arrows to move, Enter to run.
+- file: src/components/ui/command.tsx
+- exports: Command
+- client component
+- peers: @phosphor-icons/react
+- <Command>
+  - items: CommandItem[] — The items to render.
+  - placeholder?: string = "Search commands…" — Hint text shown while empty.
+  - className?: string — Extra classes, merged with the component's own.
+  - onSelect?: ((id: string) => void) — Called with the id of the chosen item.
+  - autoFocus?: boolean — Focuses the input on mount.
+
+#### dialog
+Modal dialog: portaled, focus-trapping, animated in and out, Escape to close.
+- file: src/components/ui/dialog.tsx
+- exports: Dialog, DialogTrigger, DialogContent, DialogFooter
+- client component
+- peers: @phosphor-icons/react
+- <Dialog>
+  - children: ReactNode — Content rendered inside the component.
+  - open?: boolean — Controlled open state.
+  - defaultOpen?: boolean = false — Initial open state when uncontrolled.
+  - onOpenChange?: ((open: boolean) => void) — Called when the open state should change.
+- <DialogTrigger> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+- <DialogContent>
+  - title: string — Heading text.
+  - description?: string — Supporting text under the title.
+  - children?: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+- <DialogFooter> (also accepts HTMLAttributes<HTMLDivElement>)
+
+#### dropdown-menu
+Action menu: arrow-key navigation, staggered items, animates in and out.
+- file: src/components/ui/dropdown-menu.tsx
+- exports: DropdownMenu
+- client component
+- <DropdownMenu>
+  - trigger: ReactNode — The element that opens it.
+  - items: Item[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+  - align?: "start" | "end" = "start" — Alignment relative to the trigger.
+
+#### popover
+Anchored panel: click to open, animates in and out, Escape or outside click closes.
+- file: src/components/ui/popover.tsx
+- exports: Popover
+- client component
+- <Popover>
+  - trigger: ReactNode — The element that opens it.
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+  - align?: "start" | "end" | "center" = "start" — Alignment relative to the trigger.
+  - side?: "top" | "bottom" = "bottom" — Which edge or side to anchor to.
+
+#### sheet
+Edge-anchored panel that slides in and out. Settings, filters, detail views.
+- file: src/components/ui/sheet.tsx
+- exports: Sheet
+- client component
+- peers: @phosphor-icons/react
+- <Sheet>
+  - title: string — Heading text.
+  - children: ReactNode — Content rendered inside the component.
+  - trigger: ReactNode — The element that opens it.
+  - open?: boolean — Controlled open state.
+  - onOpenChange?: ((open: boolean) => void) — Called when the open state should change.
+  - side?: "bottom" | "right" | "left" = "right" — Which edge or side to anchor to.
+  - description?: string — Supporting text under the title.
+
+#### toast
+Toast stack. Wrap your app in ToastProvider, call useToast().toast(...).
+- file: src/components/ui/toast.tsx
+- exports: ToastProvider, useToast, ToastDemoButton
+- client component
+- peers: @phosphor-icons/react
+- also imports: button
+- <ToastProvider>
+  - children: ReactNode — Content rendered inside the component.
+- <ToastDemoButton>
+  - className?: string — Extra classes, merged with the component's own.
+
+#### tooltip
+Hover and focus tooltip: pure CSS, short open delay, scales and slides in.
+- file: src/components/ui/tooltip.tsx
+- exports: Tooltip
+- client component
+- <Tooltip>
+  - content: ReactNode — Tooltip content.
+  - children: ReactNode — Content rendered inside the component.
+  - side?: "top" | "bottom" | "right" | "left" = "top" — Which edge or side to anchor to.
+  - className?: string — Extra classes, merged with the component's own.
+
+### text
+
+#### decode-text
+Monospace text that decodes from noise the first time it scrolls into view.
+- file: src/components/ui/decode-text.tsx
+- exports: DecodeText
+- client component
+- <DecodeText>
+  - text: string — The text to render.
+  - className?: string — Extra classes, merged with the component's own.
+  - duration?: number = 1100 — Animation length in milliseconds (or seconds where noted).
+
+#### flip-text
+Letters roll up and swap on hover. Hover the text itself, or any `group/flip` parent.
+- file: src/components/ui/flip-text.tsx
+- exports: FlipText, FlipTextTrigger
+- server-safe
+- <FlipText>
+  - text: string — The text to render.
+  - className?: string — Extra classes, merged with the component's own.
+- <FlipTextTrigger>
+  - text: string — The text to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### gradient-text
+Text filled with an ink-to-accent gradient.
+- file: src/components/ui/gradient-text.tsx
+- exports: GradientText
+- server-safe
+- <GradientText>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### highlight-text
+Marker highlight that sweeps across the text when it enters the viewport.
+- file: src/components/ui/highlight-text.tsx
+- exports: HighlightText
+- client component
+- <HighlightText>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### letter-hover
+Each letter lifts and tints as the cursor passes over it.
+- file: src/components/ui/letter-hover.tsx
+- exports: LetterHover
+- server-safe
+- <LetterHover>
+  - text: string — The text to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### quote
+Pull quote set in the display serif with an attribution line.
+- file: src/components/ui/quote.tsx
+- exports: Quote
+- server-safe
+- <Quote>
+  - children: ReactNode — Content rendered inside the component.
+  - cite?: string — Attribution line.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### rolling-text
+Cycles through any number of words with a vertical roll. Width fits the longest word.
+- file: src/components/ui/rolling-text.tsx
+- exports: RollingText
+- client component
+- <RollingText>
+  - words: string[] — Words to cycle through.
+  - intervalMs?: number = 2200 — Milliseconds between automatic changes.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### scramble-text
+Text that scrambles through random glyphs and resolves, on hover or focus.
+- file: src/components/ui/scramble-text.tsx
+- exports: ScrambleText
+- client component
+- <ScrambleText>
+  - text: string — The text to render.
+  - className?: string — Extra classes, merged with the component's own.
+  - duration?: number = 700 — Animation length in milliseconds (or seconds where noted).
+
+#### stagger-words
+Words fade, deblur and rise one after another when scrolled into view.
+- file: src/components/ui/stagger-words.tsx
+- exports: StaggerWords
+- client component
+- <StaggerWords>
+  - text: string — The text to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### text-link
+Inline link with a sliding underline.
+- file: src/components/ui/text-link.tsx
+- exports: TextLink
+- server-safe
+- <TextLink>
+  - href: string — Link destination.
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+  - external?: boolean — Opens in a new tab with rel=noreferrer.
+
+#### text-reveal
+Headline whose words rise out of a mask as it scrolls into view.
+- file: src/components/ui/text-reveal.tsx
+- exports: TextReveal
+- client component
+- <TextReveal>
+  - text: string — The text to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### text-shimmer
+Muted text with a light sweep, good for “thinking…” and loading copy.
+- file: src/components/ui/text-shimmer.tsx
+- exports: TextShimmer
+- server-safe
+- <TextShimmer>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### typewriter
+Types, pauses, deletes and cycles through phrases with a blinking caret.
+- file: src/components/ui/typewriter.tsx
+- exports: Typewriter
+- client component
+- <Typewriter>
+  - phrases: string[] — Phrases to type in sequence.
+  - className?: string — Extra classes, merged with the component's own.
+  - typingMs?: number = 60 — Milliseconds per typed character.
+  - pauseMs?: number = 1600 — Milliseconds to hold a finished phrase.
+
+#### underline-reveal
+Link or span whose underline draws in from the left on hover.
+- file: src/components/ui/underline-reveal.tsx
+- exports: UnderlineReveal
+- server-safe
+- <UnderlineReveal>
+  - children: ReactNode — Content rendered inside the component.
+  - href?: string — Link destination.
+  - className?: string — Extra classes, merged with the component's own.
+
+### footers
+
+#### footer-cta
+Closing call-to-action band that sits above a footer.
+- file: src/components/ui/footer-cta.tsx
+- exports: FooterCta
+- server-safe
+- also imports: button
+- <FooterCta>
+  - title: string — Heading text.
+  - primary: { label: string; href: string; } — Primary call to action: { label, href }.
+  - description?: string — Supporting text under the title.
+  - secondary?: { label: string; href: string; } — Optional secondary action: { label, href }.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### footer-legal
+Copyright line with legal links.
+- file: src/components/ui/footer-legal.tsx
+- exports: FooterLegal
+- server-safe
+- <FooterLegal>
+  - copyright: string — Copyright text.
+  - links: { label: string; href: string; }[] — Array of { label, href } links.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### footer-mega
+Multi-column footer with brand blurb, link groups and a bottom bar.
+- file: src/components/ui/footer-mega.tsx
+- exports: FooterMega
+- server-safe
+- <FooterMega>
+  - brand: ReactNode — Logo or wordmark node.
+  - columns: { title: string; links: { label: string; href: string; }[]; }[] — Link groups: { title, links[] }.
+  - blurb?: string — Short description under the brand.
+  - bottom?: ReactNode — Content for the bottom bar.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### footer-newsletter
+Email signup card with an inline success state.
+- file: src/components/ui/footer-newsletter.tsx
+- exports: FooterNewsletter
+- client component
+- peers: @phosphor-icons/react
+- also imports: button, input
+- <FooterNewsletter>
+  - title?: string = "Stay in the loop" — Heading text.
+  - description?: string = "Release notes and new components. No spam." — Supporting text under the title.
+  - className?: string — Extra classes, merged with the component's own.
+  - onSubmit?: ((email: string) => void) — Called with the email address on submit.
+
+#### footer-simple
+One-row footer: brand, links and a small note.
+- file: src/components/ui/footer-simple.tsx
+- exports: FooterSimple
+- server-safe
+- <FooterSimple>
+  - brand: ReactNode — Logo or wordmark node.
+  - links: { label: string; href: string; }[] — Array of { label, href } links.
+  - note?: string — Small text on the right.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### social-links
+Row of social icon links.
+- file: src/components/ui/social-links.tsx
+- exports: SocialLinks
+- server-safe
+- peers: @phosphor-icons/react
+- <SocialLinks>
+  - items: { id: "github" | "x" | "linkedin" | "youtube" | "instagram"; href: string; label: string; }[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+### hover
+
+#### hover-border
+Card whose border lights up in accent and gains a top rule on hover.
+- file: src/components/ui/hover-border.tsx
+- exports: HoverBorder
+- server-safe
+- <HoverBorder>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### hover-card
+Rich preview card that opens on hover or focus and animates in and out.
+- file: src/components/ui/hover-card.tsx
+- exports: HoverCard
+- client component
+- <HoverCard>
+  - trigger: ReactNode — The element that opens it.
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### hover-expand
+Row of panels; the hovered or focused one grows and reveals its body.
+- file: src/components/ui/hover-expand.tsx
+- exports: HoverExpand
+- server-safe
+- <HoverExpand>
+  - items: { id: string; label: string; body: string; }[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### hover-icon
+Square icon button that scales its glyph and reveals a label on hover.
+- file: src/components/ui/hover-icon.tsx
+- exports: HoverIcon
+- server-safe
+- <HoverIcon>
+  - icon: ReactNode — Icon shown in the leading position.
+  - label: string — Visible label.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### hover-image
+Inline link that reveals a floating image preview following the cursor.
+- file: src/components/ui/hover-image.tsx
+- exports: HoverImage
+- client component
+- <HoverImage>
+  - label: string — Visible label.
+  - src: string — Image URL.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### hover-lift
+Card that rises and gains depth on hover.
+- file: src/components/ui/hover-lift.tsx
+- exports: HoverLift
+- server-safe
+- <HoverLift>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### hover-shine
+Card with a soft highlight that tracks the cursor across its surface.
+- file: src/components/ui/hover-shine.tsx
+- exports: HoverShine
+- client component
+- <HoverShine>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### hover-slide
+Tile whose description slides up from beneath the title on hover.
+- file: src/components/ui/hover-slide.tsx
+- exports: HoverSlide
+- server-safe
+- peers: @phosphor-icons/react
+- <HoverSlide>
+  - title: string — Heading text.
+  - description: string — Supporting text under the title.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### hover-tilt
+Card that leans toward the cursor in perspective.
+- file: src/components/ui/hover-tilt.tsx
+- exports: HoverTilt
+- client component
+- <HoverTilt>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### magnetic-button
+Button that leans toward the cursor and springs back on leave.
+- file: src/components/ui/magnetic-button.tsx
+- exports: MagneticButton
+- client component
+- <MagneticButton> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - strength?: number = 0.35 — Fraction of the cursor offset the button follows (0–1).
+
+#### magnetic-link
+Link that drifts toward the cursor, with an arrow that nudges out.
+- file: src/components/ui/magnetic-link.tsx
+- exports: MagneticLink
+- client component
+- peers: @phosphor-icons/react
+- <MagneticLink>
+  - href: string — Link destination.
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.

@@ -16,7 +16,7 @@ const DialogContext = React.createContext<DialogContextValue | null>(null);
 
 const noop = () => () => {};
 
-/** Modal dialog: portaled, focus-restoring, Escape to close, scroll locked. */
+/** Modal dialog: portaled, focus-trapping, animated in and out, Escape to close. */
 export function Dialog({
   open: controlled,
   defaultOpen = false,
@@ -97,6 +97,10 @@ export function DialogContent({
   const setOpen = ctx?.setOpen;
   const triggerRef = ctx?.triggerRef;
 
+  // Stay mounted until the exit animation has played.
+  const [present, setPresent] = React.useState(open);
+  if (open && !present) setPresent(true);
+
   React.useEffect(() => {
     if (!open || !setOpen) return;
     const trigger = triggerRef?.current;
@@ -129,13 +133,21 @@ export function DialogContent({
     };
   }, [open, setOpen, triggerRef]);
 
-  if (!ctx || !ctx.open || !mounted) return null;
+  if (!ctx || !present || !mounted) return null;
+  const state = open ? "open" : "closed";
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div
+      data-state={state}
+      className={cn(
+        "fixed inset-0 z-50 flex items-center justify-center p-4",
+        !open && "pointer-events-none",
+      )}
+    >
       <div
         aria-hidden
-        className="absolute inset-0 animate-fade-in bg-overlay backdrop-blur-[2px]"
+        className="absolute inset-0 bg-overlay backdrop-blur-[2px] data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in"
+        data-state={state}
         onClick={() => ctx.setOpen(false)}
       />
       <div
@@ -144,8 +156,12 @@ export function DialogContent({
         role="dialog"
         aria-modal="true"
         aria-labelledby={ctx.titleId}
+        data-state={state}
+        onAnimationEnd={(e) => {
+          if (e.target === e.currentTarget && !open) setPresent(false);
+        }}
         className={cn(
-          "relative z-10 w-full max-w-md animate-pop-in rounded-xl border border-line bg-surface p-6 shadow-pop outline-none",
+          "relative z-10 w-full max-w-md rounded-xl border border-line bg-surface p-6 shadow-pop outline-none data-[state=closed]:animate-pop-out data-[state=open]:animate-pop-in",
           className,
         )}
       >
@@ -153,7 +169,7 @@ export function DialogContent({
           type="button"
           aria-label="Close"
           onClick={() => ctx.setOpen(false)}
-          className="absolute right-3.5 top-3.5 flex size-8 items-center justify-center rounded-sm text-faint transition-colors hover:bg-surface-muted hover:text-ink"
+          className="absolute right-3.5 top-3.5 flex size-8 items-center justify-center rounded-sm text-faint transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-surface-muted hover:text-ink active:scale-90"
         >
           <X size={16} weight="bold" />
         </button>
