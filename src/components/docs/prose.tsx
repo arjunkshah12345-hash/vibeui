@@ -13,7 +13,7 @@ export function DocHeader({
 }) {
   return (
     <header className="mb-12 border-b border-line pb-10">
-      <p className="mb-3 text-[13px] font-medium text-accent">{eyebrow}</p>
+      <p className="mb-3 text-[13px] font-medium text-ink">{eyebrow}</p>
       <h1 className="font-display text-[clamp(2.75rem,6vw,4rem)] leading-[0.98] tracking-[-0.02em] text-ink">
         {title}
       </h1>

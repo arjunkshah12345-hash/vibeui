@@ -14,7 +14,7 @@ export default function ComponentsPage() {
   return (
     <main className="flex-1 px-5">
       <header className="mx-auto max-w-6xl pb-10 pt-16 md:pt-20">
-        <p className="mb-3 text-[13px] font-medium text-accent">The library</p>
+        <p className="mb-3 text-[13px] font-medium text-ink">The library</p>
         <h1 className="font-display text-[clamp(3rem,7vw,5rem)] leading-[0.98] tracking-[-0.02em] text-ink">
           {components.length} components,
           <br />

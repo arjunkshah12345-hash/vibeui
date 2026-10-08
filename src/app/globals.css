@@ -27,14 +27,8 @@
 /* Site-only helpers (not part of the copy-owned library). */
 
 @theme {
-  --animate-rise: vibe-rise 1.1s var(--ease-out) both;
   --animate-scan: vibe-scan 6s ease-in-out infinite;
 
-  @keyframes vibe-rise {
-    from {
-      transform: translateY(112%);
-    }
-  }
   @keyframes vibe-scan {
     0%,
     100% {

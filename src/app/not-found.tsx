@@ -4,7 +4,7 @@ import { buttonVariants } from "@/components/ui/button";
 export default function NotFound() {
   return (
     <main className="flex flex-1 flex-col items-center justify-center px-5 py-32 text-center">
-      <p className="font-mono text-[13px] text-accent">404</p>
+      <p className="font-mono text-[13px] text-ink">404</p>
       <h1 className="mt-4 font-display text-[clamp(3rem,8vw,5.5rem)] leading-[0.98] tracking-[-0.02em] text-ink">
         Nothing here.
       </h1>

@@ -82,10 +82,10 @@ export default async function Theming() {
 
       <H2 id="accent">Retint the accent</H2>
       <P>
-        Light mode ships with a vermilion accent; dark mode&apos;s accent is the ink itself, so dark
-        stays monochrome. Override both after the token import. Keep <Code>--accent-ink</Code>{" "}
-        readable on top of <Code>--accent</Code>: it is the text color for accent buttons, checked
-        boxes and selected days.
+        Both themes are monochrome by default: light mode&apos;s accent is the ink itself, dark
+        mode&apos;s accent is the light ink. Override both after the token import. Keep{" "}
+        <Code>--accent-ink</Code> readable on top of <Code>--accent</Code>: it is the text color for
+        accent buttons, checked boxes and selected days.
       </P>
       <CodeBlock
         language="css"
@@ -106,7 +106,7 @@ export default async function Theming() {
       />
       <Note title="Contrast">
         As a rule, aim for at least 4.5:1 between <Code>--accent</Code> and <Code>--accent-ink</Code>
-        . The default light pair is #d9480f on white (4.6:1).
+        . The default light pair is #1b1a17 on white.
       </Note>
 
       <H2 id="radius">Radii</H2>

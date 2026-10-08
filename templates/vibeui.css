@@ -25,10 +25,11 @@
   --line-strong: rgb(27 26 23 / 0.17);
   --overlay: rgb(27 26 23 / 0.42);
 
-  --accent: #d9480f;
+  /* Light mode is monochrome: accent matches ink (dark mode uses white). */
+  --accent: #1b1a17;
   --accent-ink: #ffffff;
-  --accent-soft: rgb(217 72 15 / 0.1);
-  --ring: rgb(217 72 15 / 0.28);
+  --accent-soft: rgb(27 26 23 / 0.08);
+  --ring: rgb(27 26 23 / 0.22);
 
   --pastel-rose: #fdecec;
   --pastel-rose-ink: #a02e2c;
@@ -36,8 +37,8 @@
   --pastel-sky-ink: #1c5f93;
   --pastel-sage: #e9f3ea;
   --pastel-sage-ink: #2c6a33;
-  --pastel-sand: #fbf1d8;
-  --pastel-sand-ink: #865500;
+  --pastel-sand: #f0eeea;
+  --pastel-sand-ink: #1b1a17;
 
   --shadow-quiet: 0 1px 1px rgb(27 26 23 / 0.04), 0 1px 3px rgb(27 26 23 / 0.05);
   --shadow-lift:

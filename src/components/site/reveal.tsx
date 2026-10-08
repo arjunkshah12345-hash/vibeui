@@ -3,7 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-/** Rises and fades its children in the first time they scroll into view. */
+/** Soft fade-in when the block first enters the viewport. */
 export function Reveal({
   children,
   className,
@@ -29,7 +29,7 @@ export function Reveal({
           io.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+      { threshold: 0.08, rootMargin: "0px 0px -4% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -39,11 +39,9 @@ export function Reveal({
     <Tag
       ref={ref as React.Ref<never>}
       style={{ transitionDelay: on ? `${delay}ms` : "0ms" }}
-      // The resting state has no transform at all, so fixed-position
-      // descendants (popovers, previews) keep resolving against the viewport.
       className={cn(
-        "transition-[opacity,translate] duration-[900ms] ease-out",
-        on ? "" : "translate-y-7 opacity-0",
+        "transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+        on ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0",
         className,
       )}
     >

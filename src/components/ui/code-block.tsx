@@ -16,7 +16,7 @@ const kindClass: Record<NonNullable<Token["kind"]>, string> = {
   comment: "text-faint italic",
   string: "text-pastel-sage-ink",
   keyword: "text-pastel-sky-ink",
-  number: "text-pastel-sand-ink",
+  number: "text-ink",
   fn: "text-pastel-rose-ink",
   tag: "text-pastel-rose-ink",
 };

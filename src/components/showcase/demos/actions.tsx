@@ -22,38 +22,26 @@ import { TILE_W, type Demo } from "../demo";
 function ButtonDemo() {
   const [saving, setSaving] = React.useState(false);
   return (
-    <div className="flex flex-col items-center gap-5">
-      <div className="flex flex-wrap items-center justify-center gap-2.5">
-        <Button>Primary</Button>
-        <Button variant="accent">Accent</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="soft">Soft</Button>
-        <Button variant="ghost">Ghost</Button>
-        <Button variant="danger">Delete</Button>
-      </div>
-      <div className="flex flex-wrap items-center justify-center gap-2.5">
-        <Button size="sm">Small</Button>
-        <Button size="lg">
-          Get started <ArrowRight size={16} weight="bold" />
-        </Button>
-        <Button variant="secondary">
-          <Download size={16} weight="bold" /> Export
-        </Button>
-        <Button size="icon" variant="secondary" aria-label="Add">
-          <Plus size={16} weight="bold" />
-        </Button>
-        <Button
-          variant="secondary"
-          loading={saving}
-          onClick={() => {
-            setSaving(true);
-            window.setTimeout(() => setSaving(false), 1800);
-          }}
-        >
-          {saving ? "Saving" : "Click to save"}
-        </Button>
-        <Button disabled>Disabled</Button>
-      </div>
+    <div className="flex flex-wrap items-center justify-center gap-3">
+      <Button>
+        Get started <ArrowRight size={16} weight="bold" />
+      </Button>
+      <Button variant="secondary">
+        <Download size={16} weight="bold" /> Export
+      </Button>
+      <Button
+        variant="soft"
+        loading={saving}
+        onClick={() => {
+          setSaving(true);
+          window.setTimeout(() => setSaving(false), 1800);
+        }}
+      >
+        {saving ? "Saving" : "Save"}
+      </Button>
+      <Button size="icon" variant="ghost" aria-label="Add">
+        <Plus size={16} weight="bold" />
+      </Button>
     </div>
   );
 }
@@ -178,13 +166,14 @@ function SeparatorDemo() {
 
 function ButtonTile() {
   return (
-    <div className={cn(TILE_W, "grid grid-cols-2 gap-2.5")}>
+    <div className={cn(TILE_W, "flex flex-col gap-2.5")}>
       <Button className="w-full">Primary</Button>
-      <Button variant="accent" className="w-full">Accent</Button>
-      <Button variant="secondary" className="w-full">Secondary</Button>
-      <Button variant="soft" className="w-full">Soft</Button>
-      <Button variant="ghost" className="w-full">Ghost</Button>
-      <Button variant="danger" className="w-full">Delete</Button>
+      <Button variant="accent" className="w-full">
+        Accent
+      </Button>
+      <Button variant="secondary" className="w-full">
+        Secondary
+      </Button>
     </div>
   );
 }
