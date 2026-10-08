@@ -1,0 +1,76 @@
+<template id="s6-template">
+  <div id="s6" class="scene" data-composition-id="s6" data-start="0" data-duration="5" data-width="1920" data-height="1080">
+
+        <div class="bg"></div>
+        <h2 class="s6-h serif">
+          <span class="mask"><span class="in" id="s6l1">Built for</span></span>
+          <span class="mask"><span class="in" id="s6l2"><em>agents</em> too.</span></span>
+        </h2>
+        <div class="tools" id="tools"></div>
+        <div class="mcp" id="mcp">
+          <div class="bar"><i></i><i></i><i></i><span>MCP · vibeui</span></div>
+          <div class="body">
+            <div class="ln" id="m1"></div>
+            <div class="ln res" id="m1r" style="opacity:0">  <span class="okk">calendar</span> · forms</div>
+            <div class="ln"></div>
+            <div class="ln" id="m2"></div>
+            <div class="ln res" id="m2r" style="opacity:0">  source + api · <span class="okk">4 props</span> · 1 peer</div>
+            <div class="ln"></div>
+            <div class="ln" id="m3"></div>
+            <div class="ln res" id="m3r" style="opacity:0">  <span class="okk">✓</span> calendar.tsx   <span class="okk">✓</span> utils.ts</div>
+          </div>
+        </div>
+      
+    <style>
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif.woff2") format("woff2"); font-style: normal; font-weight: 400; }
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif-italic.woff2") format("woff2"); font-style: italic; font-weight: 400; }
+@font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Geist Mono"; src: url("assets/fonts/geist-mono.woff2") format("woff2"); font-weight: 100 900; }
+
+      #s6 .bg { background: #0f0e0d; }
+      .s6-h { position: absolute; left: 120px; top: 230px; font-size: 168px; line-height: .94; color: #f4f2ee; }
+      .tools { position: absolute; left: 124px; top: 660px; width: 700px; display: flex; flex-wrap: wrap; gap: 12px; }
+      .tools span { font: 500 20px "Geist Mono", monospace; color: #d6d3cc; padding: 9px 16px; border: 1px solid rgba(244,242,238,.16); border-radius: 999px; background: rgba(244,242,238,.04); }
+      .mcp { position: absolute; left: 920px; top: 200px; width: 880px; height: 680px; background: #181715; border: 1px solid var(--dline); border-radius: 26px; box-shadow: 0 30px 80px -20px rgba(0,0,0,.6); overflow: hidden; }
+      .mcp .bar { height: 64px; display: flex; align-items: center; gap: 12px; padding: 0 26px; border-bottom: 1px solid rgba(244,242,238,.08); }
+      .mcp .bar i { width: 15px; height: 15px; border-radius: 50%; background: rgba(244,242,238,.16); display: block; }
+      .mcp .bar span { margin-left: 18px; font: 20px "Geist Mono", monospace; color: #8a867e; }
+      .mcp .body { padding: 30px 34px; font: 23px/1.75 "Geist Mono", monospace; color: #d6d3cc; white-space: normal; }
+      .mcp .ln { height: 1.75em; white-space: pre; }
+      .mcp .res { color: #9a968d; }
+      .mcp .okk { color: #a9ceae; }
+      .mcp .fn { color: #9ec9e8; }
+    </style>
+    <script>
+      const OFF = 37.5;
+      const base = gsap.timeline({ paused: true });
+      // Scene-local clock: positions authored in film time are rebased to this scene's start.
+      const tl = new Proxy(base, { get(t, p) {
+        if (p === "to" || p === "fromTo" || p === "set") return (...a) => { a[a.length - 1] -= OFF; return t[p](...a); };
+        const v = t[p]; return typeof v === "function" ? v.bind(t) : v;
+      } });
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const hide = (sel) => gsap.set(sel, { opacity: 0 });
+      const CELLS = [{"s":"Bu","n":"Button","c":0},{"s":"Ch","n":"Chip","c":0},{"s":"Kb","n":"Kbd","c":0},{"s":"Pi","n":"Pill","c":0},{"s":"Se","n":"Separator","c":0},{"s":"To","n":"Toggle","c":0},{"s":"Ca","n":"Calendar","c":1},{"s":"Ch","n":"Checkbox","c":1},{"s":"FD","n":"FileDrop","c":1},{"s":"In","n":"Input","c":1},{"s":"NF","n":"NumberField","c":1},{"s":"OF","n":"OtpField","c":1},{"s":"PF","n":"PasswordField","c":1},{"s":"Ra","n":"Radio","c":1},{"s":"Ra","n":"Rating","c":1},{"s":"SF","n":"SearchField","c":1},{"s":"Se","n":"Select","c":1},{"s":"Sl","n":"Slider","c":1},{"s":"Sw","n":"Switch","c":1},{"s":"TI","n":"TagInput","c":1},{"s":"Al","n":"Alert","c":2},{"s":"Ba","n":"Banner","c":2},{"s":"Ca","n":"Callout","c":2},{"s":"Em","n":"Empty","c":2},{"s":"Me","n":"Meter","c":2},{"s":"No","n":"Notification","c":2},{"s":"Pr","n":"Progress","c":2},{"s":"Sk","n":"Skeleton","c":2},{"s":"Sp","n":"Spinner","c":2},{"s":"AR","n":"AspectRatio","c":3},{"s":"Av","n":"Avatar","c":3},{"s":"Ca","n":"Card","c":3},{"s":"CB","n":"CodeBlock","c":3},{"s":"CS","n":"ColorSwatch","c":3},{"s":"Co","n":"Comparison","c":3},{"s":"Li","n":"List","c":3},{"s":"SA","n":"ScrollArea","c":3},{"s":"St","n":"Stat","c":3},{"s":"Ta","n":"Table","c":3},{"s":"Co","n":"Command","c":4},{"s":"Di","n":"Dialog","c":4},{"s":"DM","n":"DropdownMenu","c":4},{"s":"Po","n":"Popover","c":4},{"s":"Sh","n":"Sheet","c":4},{"s":"To","n":"Toast","c":4},{"s":"To","n":"Tooltip","c":4},{"s":"Ac","n":"Accordion","c":5},{"s":"Br","n":"Breadcrumb","c":5},{"s":"Pa","n":"Pagination","c":5},{"s":"Se","n":"Segmented","c":5},{"s":"St","n":"Stepper","c":5},{"s":"Ta","n":"Tabs","c":5},{"s":"Ti","n":"Timeline","c":5},{"s":"AF","n":"ArrowFillButton","c":6},{"s":"BR","n":"BlurReveal","c":6},{"s":"BF","n":"BookFlip","c":6},{"s":"CM","n":"CircleMenu","c":6},{"s":"CU","n":"CountUp","c":6},{"s":"Do","n":"Dock","c":6},{"s":"DG","n":"DottedGrid","c":6},{"s":"FC","n":"FlipCard","c":6},{"s":"FP","n":"FolderPreview","c":6},{"s":"JL","n":"JellyLoader","c":6},{"s":"MT","n":"MagnetTabs","c":6},{"s":"Ma","n":"Marquee","c":6},{"s":"Ma","n":"Masonry","c":6},{"s":"OR","n":"OrbitRing","c":6},{"s":"RC","n":"RotatingCarousel","c":6},{"s":"SS","n":"ScrollStack","c":6},{"s":"SS","n":"SplitShowcase","c":6},{"s":"Sp","n":"Spotlight","c":6},{"s":"SC","n":"StackedCards","c":6},{"s":"TC","n":"TradingCard","c":6},{"s":"DT","n":"DecodeText","c":7},{"s":"FT","n":"FlipText","c":7},{"s":"GT","n":"GradientText","c":7},{"s":"HT","n":"HighlightText","c":7},{"s":"LH","n":"LetterHover","c":7},{"s":"Qu","n":"Quote","c":7},{"s":"RT","n":"RollingText","c":7},{"s":"ST","n":"ScrambleText","c":7},{"s":"SW","n":"StaggerWords","c":7},{"s":"TL","n":"TextLink","c":7},{"s":"TR","n":"TextReveal","c":7},{"s":"TS","n":"TextShimmer","c":7},{"s":"Ty","n":"Typewriter","c":7},{"s":"UR","n":"UnderlineReveal","c":7},{"s":"HB","n":"HoverBorder","c":8},{"s":"HC","n":"HoverCard","c":8},{"s":"HE","n":"HoverExpand","c":8},{"s":"HI","n":"HoverIcon","c":8},{"s":"HI","n":"HoverImage","c":8},{"s":"HL","n":"HoverLift","c":8},{"s":"HS","n":"HoverShine","c":8},{"s":"HS","n":"HoverSlide","c":8},{"s":"HT","n":"HoverTilt","c":8},{"s":"MB","n":"MagneticButton","c":8},{"s":"ML","n":"MagneticLink","c":8},{"s":"FC","n":"FooterCta","c":9},{"s":"FL","n":"FooterLegal","c":9},{"s":"FM","n":"FooterMega","c":9},{"s":"FN","n":"FooterNewsletter","c":9},{"s":"FS","n":"FooterSimple","c":9},{"s":"SL","n":"SocialLinks","c":9}];
+const TOOLS = ["list_components", "search_components", "get_component", "add_component", "get_tokens", "get_utils", "get_install_guide", "list_categories"];
+
+      gsap.set("#s6l1,#s6l2", { yPercent: 112 }); gsap.set("#mcp", { opacity: 0, x: 60 });
+      TOOLS.forEach((n) => { const s = document.createElement("span"); s.textContent = n; $("#tools").appendChild(s); gsap.set(s, { opacity: 0, y: 14, scale: 0.9 }); });
+      tl.to("#s6l1", { yPercent: 0, duration: 0.8, ease: "expo.out" }, 37.6);
+      tl.to("#s6l2", { yPercent: 0, duration: 0.85, ease: "expo.out" }, 37.8);
+      tl.to("#mcp", { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 37.75);
+      const typeCmd = (sel, fn, args, t0, dur) => { const full = fn + "(" + args + ")"; const o = { n: 0 }; const el = $(sel); el.textContent = ""; tl.to(o, { n: full.length, duration: dur, ease: "none", onUpdate: () => { const s = full.slice(0, Math.round(o.n)); const cut = Math.min(s.length, fn.length); el.innerHTML = '<span class="dim" style="color:#67645d">› </span><span class="fn">' + s.slice(0, cut) + "</span>" + s.slice(cut) ; } }, t0); };
+      typeCmd("#m1", "search_components", '"date picker"', 38.2, 0.65);
+      tl.fromTo("#m1r", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.3 }, 38.95);
+      typeCmd("#m2", "get_component", '"calendar"', 39.3, 0.55);
+      tl.fromTo("#m2r", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.3 }, 39.95);
+      typeCmd("#m3", "add_component", '["calendar"]', 40.3, 0.6);
+      tl.fromTo("#m3r", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.3 }, 40.95);
+      $$("#tools span").forEach((s, i) => tl.to(s, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 38.3 + i * 0.16));
+      tl.to("#s6l1,#s6l2", { yPercent: -112, duration: 0.4, ease: "power3.in" }, 42.0);
+      tl.to("#mcp,#tools", { opacity: 0, duration: 0.35 }, 42.0);
+      window.__timelines["s6"] = base;
+    </script>
+  </div>
+</template>

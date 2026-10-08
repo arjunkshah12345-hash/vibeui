@@ -1,0 +1,302 @@
+[
+ {
+  "t": 0.2,
+  "file": "impact-bass-1",
+  "vol": 0.85
+ },
+ {
+  "t": 0.22,
+  "file": "whoosh-short",
+  "vol": 0.5
+ },
+ {
+  "t": 0.52,
+  "file": "whoosh-short",
+  "vol": 0.42
+ },
+ {
+  "t": 1.55,
+  "file": "click-soft",
+  "vol": 0.35
+ },
+ {
+  "t": 2.4,
+  "file": "pop",
+  "vol": 0.3
+ },
+ {
+  "t": 4.85,
+  "file": "whoosh",
+  "vol": 0.6
+ },
+ {
+  "t": 5.4,
+  "file": "pop",
+  "vol": 0.45
+ },
+ {
+  "t": 5.65,
+  "file": "pop",
+  "vol": 0.4
+ },
+ {
+  "t": 5.9,
+  "file": "pop",
+  "vol": 0.35
+ },
+ {
+  "t": 6.85,
+  "file": "ping",
+  "vol": 0.5
+ },
+ {
+  "t": 7.55,
+  "file": "whoosh-short",
+  "vol": 0.35
+ },
+ {
+  "t": 9.0,
+  "file": "click-soft",
+  "vol": 0.4
+ },
+ {
+  "t": 9.85,
+  "file": "click-soft",
+  "vol": 0.4
+ },
+ {
+  "t": 10.7,
+  "file": "click-soft",
+  "vol": 0.4
+ },
+ {
+  "t": 11.75,
+  "file": "whoosh",
+  "vol": 0.45
+ },
+ {
+  "t": 13.0,
+  "file": "typing",
+  "vol": 0.55
+ },
+ {
+  "t": 14.65,
+  "file": "key-press",
+  "vol": 0.6
+ },
+ {
+  "t": 14.9,
+  "file": "pop",
+  "vol": 0.35
+ },
+ {
+  "t": 15.2,
+  "file": "pop",
+  "vol": 0.35
+ },
+ {
+  "t": 15.5,
+  "file": "pop",
+  "vol": 0.35
+ },
+ {
+  "t": 16.3,
+  "file": "notification",
+  "vol": 0.4
+ },
+ {
+  "t": 17.55,
+  "file": "sparkle",
+  "vol": 0.5
+ },
+ {
+  "t": 19.4,
+  "file": "whoosh-short",
+  "vol": 0.5
+ },
+ {
+  "t": 20.45,
+  "file": "pop",
+  "vol": 0.3
+ },
+ {
+  "t": 21.3,
+  "file": "click",
+  "vol": 0.5
+ },
+ {
+  "t": 22.7,
+  "file": "click",
+  "vol": 0.5
+ },
+ {
+  "t": 24.1,
+  "file": "click",
+  "vol": 0.5
+ },
+ {
+  "t": 25.0,
+  "file": "whoosh-short",
+  "vol": 0.35
+ },
+ {
+  "t": 26.4,
+  "file": "whoosh-short",
+  "vol": 0.35
+ },
+ {
+  "t": 27.65,
+  "file": "whoosh",
+  "vol": 0.6
+ },
+ {
+  "t": 27.9,
+  "file": "chime",
+  "vol": 0.45
+ },
+ {
+  "t": 29.55,
+  "file": "whoosh-short",
+  "vol": 0.4
+ },
+ {
+  "t": 30.25,
+  "file": "pop",
+  "vol": 0.3
+ },
+ {
+  "t": 30.45,
+  "file": "pop",
+  "vol": 0.3
+ },
+ {
+  "t": 30.65,
+  "file": "pop",
+  "vol": 0.3
+ },
+ {
+  "t": 30.85,
+  "file": "pop",
+  "vol": 0.3
+ },
+ {
+  "t": 31.4,
+  "file": "click",
+  "vol": 0.5
+ },
+ {
+  "t": 31.95,
+  "file": "notification",
+  "vol": 0.45
+ },
+ {
+  "t": 32.2,
+  "file": "whoosh-short",
+  "vol": 0.4
+ },
+ {
+  "t": 32.47,
+  "file": "riser",
+  "vol": 0.5
+ },
+ {
+  "t": 32.6,
+  "file": "click",
+  "vol": 0.5
+ },
+ {
+  "t": 33.2,
+  "file": "pop",
+  "vol": 0.4
+ },
+ {
+  "t": 33.4,
+  "file": "click-soft",
+  "vol": 0.5
+ },
+ {
+  "t": 34.5,
+  "file": "click-soft",
+  "vol": 0.4
+ },
+ {
+  "t": 34.95,
+  "file": "whoosh-short",
+  "vol": 0.3
+ },
+ {
+  "t": 35.05,
+  "file": "whoosh-short",
+  "vol": 0.3
+ },
+ {
+  "t": 37.0,
+  "file": "whoosh-short",
+  "vol": 0.3
+ },
+ {
+  "t": 37.6,
+  "file": "whoosh-short",
+  "vol": 0.4
+ },
+ {
+  "t": 38.2,
+  "file": "typing",
+  "vol": 0.28
+ },
+ {
+  "t": 38.95,
+  "file": "ping",
+  "vol": 0.45
+ },
+ {
+  "t": 39.3,
+  "file": "key-press",
+  "vol": 0.4
+ },
+ {
+  "t": 39.95,
+  "file": "ping",
+  "vol": 0.45
+ },
+ {
+  "t": 40.3,
+  "file": "key-press",
+  "vol": 0.4
+ },
+ {
+  "t": 40.95,
+  "file": "notification",
+  "vol": 0.4
+ },
+ {
+  "t": 42.5,
+  "file": "impact-bass-1",
+  "vol": 0.95
+ },
+ {
+  "t": 42.5,
+  "file": "impact-bass-2",
+  "vol": 0.35
+ },
+ {
+  "t": 43.0,
+  "file": "sparkle",
+  "vol": 0.4
+ },
+ {
+  "t": 43.25,
+  "file": "whoosh-short",
+  "vol": 0.4
+ },
+ {
+  "t": 44.4,
+  "file": "pop",
+  "vol": 0.4
+ },
+ {
+  "t": 46.1,
+  "file": "chime",
+  "vol": 0.55
+ }
+]

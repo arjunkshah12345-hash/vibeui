@@ -1,0 +1,93 @@
+<template id="s3-template">
+  <div id="s3" class="scene" data-composition-id="s3" data-start="0" data-duration="7.5" data-width="1920" data-height="1080">
+
+        <div class="bg"></div><div class="gridlines"></div>
+        <h2 class="s3-h serif">
+          <span class="mask"><span class="in" id="s3l1">Copy it.</span></span>
+          <span class="mask"><span class="in" id="s3l2"><em>Own it.</em></span></span>
+        </h2>
+        <p class="s3-sub mono" id="s3sub">no runtime package · no black box</p>
+        <div class="term" id="term">
+          <div class="bar"><i></i><i></i><i></i><span>~/my-app</span></div>
+          <div class="body">
+            <div class="ln" id="t1"></div>
+            <div class="ln"></div>
+            <div class="ln ok" id="t2" style="opacity:0">✓ dialog  <span class="dim">→ src/components/ui/dialog.tsx</span></div>
+            <div class="ln ok" id="t3" style="opacity:0">✓ dock    <span class="dim">→ src/components/ui/dock.tsx</span></div>
+            <div class="ln ok" id="t4" style="opacity:0">✓ utils   <span class="dim">→ src/lib/utils.ts</span></div>
+            <div class="ln"></div>
+            <div class="ln dim" id="t5" style="opacity:0">Peers to install:</div>
+            <div class="ln key" id="t6" style="opacity:0">npm i clsx tailwind-merge @phosphor-icons/react</div>
+          </div>
+        </div>
+        <div class="codecard" id="codecard">
+          <div class="hd">src/components/ui/dialog.tsx</div>
+<pre><span class="k2">"use client"</span>;
+
+<span class="k1">import</span> * <span class="k1">as</span> React <span class="k1">from</span> <span class="k2">"react"</span>;
+<span class="k1">import</span> { createPortal } <span class="k1">from</span> <span class="k2">"react-dom"</span>;
+<span class="k1">import</span> { cn } <span class="k1">from</span> <span class="k2">"@/lib/utils"</span>;
+
+<span class="k4">/** Modal dialog: portaled, focus-trapping, animated. */</span>
+<span class="k1">export function</span> <span class="k3">Dialog</span>({ open, onOpenChange, children }) {
+  <span class="k4">// …it's your file now.</span>
+}</pre>
+        </div>
+      
+    <style>
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif.woff2") format("woff2"); font-style: normal; font-weight: 400; }
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif-italic.woff2") format("woff2"); font-style: italic; font-weight: 400; }
+@font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Geist Mono"; src: url("assets/fonts/geist-mono.woff2") format("woff2"); font-weight: 100 900; }
+
+      #s3 .bg { background: var(--canvas); }
+      #s3 .gridlines { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(27,26,23,.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(27,26,23,.045) 1px, transparent 1px); background-size: 64px 64px; }
+      .s3-h { position: absolute; left: 140px; top: 270px; font-size: 220px; line-height: .92; color: var(--ink); }
+      .s3-h em { color: var(--accent); }
+      .s3-sub { position: absolute; left: 148px; top: 790px; font-size: 28px; color: #66635c; }
+      .term { position: absolute; left: 900px; top: 170px; width: 900px; height: 740px; background: #14130f; border-radius: 26px; box-shadow: 0 2px 4px rgba(27,26,23,.08), 0 30px 80px -20px rgba(27,26,23,.45); overflow: hidden; }
+      .term .bar { height: 64px; display: flex; align-items: center; gap: 12px; padding: 0 26px; border-bottom: 1px solid rgba(244,242,238,.08); }
+      .term .bar i { width: 15px; height: 15px; border-radius: 50%; background: rgba(244,242,238,.18); display: block; }
+      .term .bar span { margin-left: 18px; font-size: 20px; color: #9a968d; font-family: "Geist Mono", monospace; }
+      .term .body { padding: 30px 34px; font-family: "Geist Mono", monospace; font-size: 22px; line-height: 1.7; color: #d6d3cc; white-space: normal; }
+      .term .ln { height: 1.7em; white-space: pre; }
+      .term .ok { color: #a9ceae; }
+      .term .dim { color: #9a968d; }
+      .term .key { color: #9ec9e8; }
+      .caret { display: inline-block; width: 12px; height: 26px; background: #f4f2ee; vertical-align: -5px; margin-left: 2px; }
+      .codecard { position: absolute; left: 860px; top: 610px; width: 760px; background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 2px 4px rgba(27,26,23,.06), 0 40px 90px -24px rgba(27,26,23,.5); overflow: hidden; z-index: 5; }
+      .codecard .hd { height: 52px; display: flex; align-items: center; padding: 0 22px; font: 500 18px "Geist Mono", monospace; color: var(--muted); border-bottom: 1px solid var(--line); background: #fff; }
+      .codecard pre { margin: 0; padding: 20px 26px; font: 21px/1.65 "Geist Mono", monospace; color: #44423d; background: #eceae4; white-space: pre; }
+      .k1 { color: #1c5f93; } .k2 { color: #2c6a33; } .k3 { color: #a02e2c; } .k4 { color: #a6a39b; font-style: italic; }
+    </style>
+    <script>
+      const OFF = 12.5;
+      const base = gsap.timeline({ paused: true });
+      // Scene-local clock: positions authored in film time are rebased to this scene's start.
+      const tl = new Proxy(base, { get(t, p) {
+        if (p === "to" || p === "fromTo" || p === "set") return (...a) => { a[a.length - 1] -= OFF; return t[p](...a); };
+        const v = t[p]; return typeof v === "function" ? v.bind(t) : v;
+      } });
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const hide = (sel) => gsap.set(sel, { opacity: 0 });
+      
+
+      gsap.set("#s3l1,#s3l2", { yPercent: 112 });
+      hide("#s3sub"); gsap.set("#term", { opacity: 0, y: 60 }); gsap.set("#codecard", { opacity: 0, y: 60, rotation: -2 });
+      tl.to("#s3l1", { yPercent: 0, duration: 0.9, ease: "expo.out" }, 12.6);
+      tl.to("#s3l2", { yPercent: 0, duration: 0.95, ease: "expo.out" }, 12.85);
+      tl.to("#s3sub", { opacity: 1, duration: 0.6 }, 13.5);
+      tl.to("#term", { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 12.75);
+      const typeInto = (sel, text, t0, dur) => { const o = { n: 0 }; const el = $(sel); el.textContent = ""; tl.to(o, { n: text.length, duration: dur, ease: "none", onUpdate: () => { el.innerHTML = '<span class="dim">$ </span>' + text.slice(0, Math.round(o.n)).replace(/&/g, "&amp;") + '<span class="caret"></span>'; } }, t0); };
+      typeInto("#t1", "npx github:arjunkshah12345-hash/vibeui add dialog dock", 13.0, 1.5);
+      tl.set("#t1 .caret", { opacity: 0 }, 14.7);
+      [["#t2", 14.9], ["#t3", 15.2], ["#t4", 15.5], ["#t5", 16.1], ["#t6", 16.35]].forEach(([s, t]) => tl.fromTo(s, { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, t));
+      tl.to("#codecard", { opacity: 1, y: 0, duration: 0.7, ease: "back.out(1.4)" }, 17.55);
+      tl.to("#term", { scale: 0.93, y: -34, duration: 0.6, ease: "power3.out" }, 17.55);
+      tl.to("#s3l1,#s3l2", { yPercent: -112, duration: 0.45, ease: "power3.in" }, 19.4);
+      tl.to("#term,#codecard,#s3sub", { opacity: 0, y: -40, duration: 0.45, ease: "power3.in" }, 19.4);
+      window.__timelines["s3"] = base;
+    </script>
+  </div>
+</template>

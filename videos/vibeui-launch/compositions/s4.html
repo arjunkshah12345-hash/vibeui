@@ -1,0 +1,145 @@
+<template id="s4-template">
+  <div id="s4" class="scene" data-composition-id="s4" data-start="0" data-duration="10" data-width="1920" data-height="1080">
+
+        <div class="bg"></div>
+        <h2 class="s4-h serif" id="s4h">Change a variable. <em>Everything follows.</em></h2>
+        <div class="panel" id="panel">
+          <h4>Accent</h4>
+          <div class="swatches" id="swatches">
+            <div class="ring" id="ring"></div>
+            <div class="sw" style="background:#d9480f"></div>
+            <div class="sw" style="background:#4f46e5"></div>
+            <div class="sw" style="background:#0f8a5f"></div>
+            <div class="sw" style="background:#c42f63"></div>
+          </div>
+          <div class="sl-row"><span>Corner radius</span><b id="rval">12</b></div>
+          <div class="track"><div class="fill" id="rfill"></div><div class="thumb" id="rthumb"></div></div>
+          <h4>Theme</h4>
+          <div class="seg"><div class="pill" id="segpill"></div><span>Light</span><span>Dark</span></div>
+          <div class="codebox">
+            <div>:root {</div>
+            <div>&nbsp;&nbsp;--accent: <span class="acc"><span id="a0">#d9480f;</span><span id="a1">#4f46e5;</span><span id="a2">#0f8a5f;</span><span id="a3">#c42f63;</span><span id="a4">#f4f2ee;</span></span></div>
+            <div>&nbsp;&nbsp;--radius-md: <span class="v" id="rcode">12px;</span></div>
+            <div>}</div>
+          </div>
+        </div>
+        <div class="board" id="board">
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center"><h5>Weekly digest</h5><span class="livepill"><i></i>Live</span></div>
+            <p class="sub">Sent every Monday at 9:00.</p>
+            <div class="field">you@studio.com</div>
+            <div class="btns"><span class="btn p">Subscribe</span><span class="btn a">Upgrade</span><span class="btn s">Later</span></div>
+          </div>
+          <div class="card">
+            <div class="tabs"><span class="on">Overview</span><span>Billing</span></div>
+            <div class="prog"><div class="row"><span>Storage used</span><b>64%</b></div><div class="bar"><i></i></div></div>
+            <div class="prog" style="margin-top:34px"><div class="row"><span>Adjust</span><b>64</b></div><div class="track" style="margin-bottom:0"><div class="fill" style="width:64%"></div><div class="thumb" style="left:64%"></div></div></div>
+          </div>
+          <div class="card wide">
+            <div><div class="check"><span class="box on"></span>Email me about new releases</div><div class="check"><span class="box"></span>Include a changelog summary</div></div>
+            <div class="sw2">Notifications<span class="tr"></span></div>
+          </div>
+        </div>
+      
+    <style>
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif.woff2") format("woff2"); font-style: normal; font-weight: 400; }
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif-italic.woff2") format("woff2"); font-style: italic; font-weight: 400; }
+@font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Geist Mono"; src: url("assets/fonts/geist-mono.woff2") format("woff2"); font-weight: 100 900; }
+
+      #s4 { --bg: #f8f7f4; --fg: #1b1a17; --muted: #66635c; --surface: #ffffff; --sunken: #eceae4; --line: rgba(27,26,23,.09); --linestrong: rgba(27,26,23,.17); --accent: #d9480f; --accent-ink: #ffffff; --r: 12px; --soft: color-mix(in oklab, var(--accent) 12%, transparent); }
+      #s4 .bg { background: var(--bg); }
+      .s4-h { position: absolute; left: 120px; top: 64px; font-size: 92px; line-height: 1; color: var(--fg); }
+      .s4-h em { color: var(--accent); }
+      .panel { position: absolute; left: 120px; top: 230px; width: 440px; height: 770px; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 34px 34px; box-shadow: 0 1px 1px rgba(0,0,0,.04), 0 1px 3px rgba(0,0,0,.05); }
+      .panel h4 { font: 500 22px "Geist", sans-serif; color: var(--fg); margin-bottom: 18px; }
+      .swatches { position: relative; display: flex; gap: 16px; margin-bottom: 40px; }
+      .swatches .sw { width: 54px; height: 54px; border-radius: 50%; }
+      .ring { position: absolute; left: -6px; top: -6px; width: 66px; height: 66px; border-radius: 50%; border: 3px solid var(--fg); }
+      .sl-row { display: flex; justify-content: space-between; font: 500 20px "Geist", sans-serif; color: var(--muted); margin-bottom: 16px; }
+      .sl-row b { font-family: "Geist Mono", monospace; font-weight: 400; color: var(--fg); }
+      .track { position: relative; height: 10px; border-radius: 6px; background: var(--sunken); margin-bottom: 40px; }
+      .track .fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; background: var(--accent); }
+      .track .thumb { position: absolute; top: -9px; width: 28px; height: 28px; margin-left: -14px; border-radius: 50%; background: var(--surface); border: 3px solid var(--accent); box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+      .seg { position: relative; display: grid; grid-template-columns: 1fr 1fr; background: var(--sunken); border-radius: 14px; padding: 5px; margin-bottom: 38px; }
+      .seg span { position: relative; z-index: 2; text-align: center; font: 500 20px "Geist", sans-serif; padding: 12px 0; color: var(--muted); }
+      .seg .pill { position: absolute; left: 5px; top: 5px; width: calc(50% - 5px); height: calc(100% - 10px); background: var(--surface); border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,.12); z-index: 1; }
+      .codebox { background: var(--sunken); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; font: 20px/1.7 "Geist Mono", monospace; color: var(--muted); }
+      .codebox .v { color: var(--fg); }
+      .codebox .acc { position: relative; display: inline-block; width: 120px; height: 1.4em; vertical-align: bottom; }
+      .codebox .acc span { position: absolute; left: 0; top: 0; color: var(--fg); opacity: 0; }
+      .board { position: absolute; left: 620px; top: 230px; width: 1180px; height: 770px; background: var(--bg); border: 1px solid var(--line); border-radius: calc(var(--r) * 1.8); padding: 34px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 26px; align-content: start; box-shadow: 0 1px 1px rgba(0,0,0,.04), 0 1px 3px rgba(0,0,0,.05); }
+      .card { background: var(--surface); border: 1px solid var(--line); border-radius: calc(var(--r) * 1.33); padding: 30px; box-shadow: 0 1px 1px rgba(0,0,0,.04), 0 1px 3px rgba(0,0,0,.05); }
+      .card.wide { grid-column: 1 / span 2; display: flex; align-items: center; justify-content: space-between; }
+      .card h5 { font: 500 26px "Geist", sans-serif; color: var(--fg); letter-spacing: -.01em; }
+      .card .sub { font: 20px "Geist", sans-serif; color: var(--muted); margin-top: 6px; }
+      .livepill { font: 500 17px "Geist", sans-serif; background: var(--soft); color: color-mix(in oklab, var(--accent) 80%, var(--fg)); padding: 5px 14px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px; }
+      .livepill i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; display: block; }
+      .field { margin-top: 22px; height: 56px; border: 1px solid var(--linestrong); border-radius: var(--r); background: var(--surface); display: flex; align-items: center; padding: 0 18px; font: 21px "Geist", sans-serif; color: var(--muted); }
+      .btns { display: flex; gap: 12px; margin-top: 22px; }
+      .btn { height: 52px; padding: 0 24px; display: inline-flex; align-items: center; border-radius: var(--r); font: 500 20px "Geist", sans-serif; }
+      .btn.p { background: var(--fg); color: var(--bg); }
+      .btn.a { background: var(--accent); color: var(--accent-ink); }
+      .btn.s { background: var(--surface); border: 1px solid var(--linestrong); color: var(--fg); }
+      .tabs { display: inline-flex; background: var(--sunken); border-radius: calc(var(--r) * 1); padding: 5px; gap: 4px; }
+      .tabs span { font: 500 19px "Geist", sans-serif; padding: 9px 20px; border-radius: calc(var(--r) * .7); color: var(--muted); }
+      .tabs span.on { background: var(--surface); color: var(--fg); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+      .prog { margin-top: 26px; }
+      .prog .row { display: flex; justify-content: space-between; font: 500 19px "Geist", sans-serif; color: var(--muted); margin-bottom: 12px; }
+      .prog .row b { font: 400 17px "Geist Mono", monospace; }
+      .bar { height: 10px; border-radius: 6px; background: var(--sunken); overflow: hidden; }
+      .bar i { display: block; height: 100%; width: 64%; background: var(--accent); border-radius: 6px; }
+      .check { display: flex; align-items: center; gap: 16px; font: 22px "Geist", sans-serif; color: var(--fg); }
+      .check + .check { margin-top: 18px; }
+      .box { width: 26px; height: 26px; border-radius: 7px; border: 1px solid var(--linestrong); background: var(--surface); position: relative; }
+      .box.on { background: var(--accent); border-color: var(--accent); }
+      .box.on::after { content: ""; position: absolute; left: 8px; top: 3px; width: 7px; height: 13px; border: solid var(--accent-ink); border-width: 0 3px 3px 0; transform: rotate(45deg); }
+      .sw2 { display: flex; align-items: center; gap: 18px; font: 22px "Geist", sans-serif; color: var(--muted); }
+      .sw2 .tr { width: 64px; height: 36px; border-radius: 18px; background: var(--accent); position: relative; }
+      .sw2 .tr::after { content: ""; position: absolute; right: 4px; top: 4px; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-ink); }
+    </style>
+    <script>
+      const OFF = 20;
+      const base = gsap.timeline({ paused: true });
+      // Scene-local clock: positions authored in film time are rebased to this scene's start.
+      const tl = new Proxy(base, { get(t, p) {
+        if (p === "to" || p === "fromTo" || p === "set") return (...a) => { a[a.length - 1] -= OFF; return t[p](...a); };
+        const v = t[p]; return typeof v === "function" ? v.bind(t) : v;
+      } });
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const hide = (sel) => gsap.set(sel, { opacity: 0 });
+      
+
+      gsap.set("#s4h", { opacity: 0, y: 30 }); gsap.set("#panel", { opacity: 0, x: -50 }); gsap.set("#board", { opacity: 0, y: 50, scale: 0.97 });
+      gsap.set("#a0", { opacity: 1 });
+      tl.to("#s4h", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 20.1);
+      tl.to("#panel", { opacity: 1, x: 0, duration: 0.7, ease: "power3.out" }, 20.3);
+      tl.to("#board", { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power3.out" }, 20.45);
+      const swX = [0, 70, 140, 210];
+      const setAcc = (t, i, col, ink) => {
+        tl.to("#ring", { x: swX[i], duration: 0.45, ease: "back.out(1.6)" }, t);
+        tl.to("#s4", { "--accent": col, "--accent-ink": ink, duration: 0.6, ease: "power2.out" }, t);
+        [0, 1, 2, 3, 4].forEach((k) => tl.set("#a" + k, { opacity: k === i ? 1 : 0 }, t + 0.1));
+      };
+      setAcc(21.3, 1, "#4f46e5", "#ffffff");
+      setAcc(22.7, 2, "#0f8a5f", "#ffffff");
+      setAcc(24.1, 3, "#c42f63", "#ffffff");
+      // radius slider: 12 → 28 → 2
+      const rd = { r: 12 };
+      const applyR = () => {
+        $("#s4").style.setProperty("--r", rd.r.toFixed(1) + "px");
+        const pct = (rd.r / 28) * 100; $("#rfill").style.width = pct + "%"; $("#rthumb").style.left = pct + "%";
+        $("#rval").textContent = Math.round(rd.r); $("#rcode").textContent = Math.round(rd.r) + "px;";
+      };
+      tl.to(rd, { r: 28, duration: 1.2, ease: "power2.inOut", onUpdate: applyR }, 25.0);
+      tl.to(rd, { r: 2, duration: 0.9, ease: "power2.inOut", onUpdate: applyR }, 26.4);
+      // theme flip → dark (accent becomes the ink)
+      tl.to("#segpill", { x: 186, duration: 0.4, ease: "power3.out" }, 27.65);
+      tl.to("#s4", { "--bg": "#0f0e0d", "--fg": "#f4f2ee", "--muted": "#9a968d", "--surface": "#181715", "--sunken": "#121110", "--line": "rgba(244,242,238,0.09)", "--linestrong": "rgba(244,242,238,0.18)", "--accent": "#f4f2ee", "--accent-ink": "#14130f", duration: 0.6, ease: "power2.inOut" }, 27.7);
+      [0, 1, 2, 3, 4].forEach((k) => tl.set("#a" + k, { opacity: k === 4 ? 1 : 0 }, 27.9));
+      tl.to("#s4h,#panel,#board", { opacity: 0, duration: 0.4, ease: "power2.in" }, 29.55);
+      window.__timelines["s4"] = base;
+    </script>
+  </div>
+</template>

@@ -1,0 +1,66 @@
+<template id="s7-template">
+  <div id="s7" class="scene" data-composition-id="s7" data-start="0" data-duration="7.5" data-width="1920" data-height="1080">
+
+        <div class="bg" id="s7bg"></div><div class="dotbg" id="s7dots" style="opacity:0"></div>
+        <svg class="s7-mark" id="s7mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="16" fill="#1b1a17"/>
+          <path d="M19 22.5 32 45l13-22.5" fill="none" stroke="#f8f7f4" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="45" cy="22.5" r="6" fill="#d9480f"/>
+        </svg>
+        <h2 class="s7-h serif">
+          <span class="mask"><span class="in" id="s7l1">Take it.</span></span>
+          <span class="mask"><span class="in" id="s7l2"><em>It’s yours.</em></span></span>
+        </h2>
+        <div class="s7-cmd" id="s7cmd"><i>$</i><span>npx github:arjunkshah12345-hash/vibeui add button</span></div>
+        <div class="s7-urls" id="s7urls"><b>vibeui-cyan.vercel.app</b> &nbsp;·&nbsp; github.com/arjunkshah12345-hash/vibeui</div>
+        <div id="fade"></div>
+      
+    <style>
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif.woff2") format("woff2"); font-style: normal; font-weight: 400; }
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif-italic.woff2") format("woff2"); font-style: italic; font-weight: 400; }
+@font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Geist Mono"; src: url("assets/fonts/geist-mono.woff2") format("woff2"); font-weight: 100 900; }
+
+      #s7 .bg { background: var(--canvas); clip-path: circle(0% at 50% 50%); }
+      #s7 .dotbg { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(27,26,23,.14) 1.6px, transparent 1.9px); background-size: 44px 44px; -webkit-mask-image: radial-gradient(60% 70% at 50% 50%, #000, transparent); mask-image: radial-gradient(60% 70% at 50% 50%, #000, transparent); }
+      .s7-mark { position: absolute; left: 50%; top: 96px; margin-left: -48px; width: 96px; height: 96px; }
+      .s7-h { position: absolute; left: 0; right: 0; top: 250px; text-align: center; font-size: 224px; line-height: .92; color: var(--ink); }
+      .s7-h em { color: var(--accent); }
+      .s7-cmd { position: absolute; left: 50%; top: 800px; margin-left: -520px; width: 1040px; height: 92px; border-radius: 22px; background: #fff; border: 1px solid var(--line); box-shadow: 0 2px 4px rgba(27,26,23,.05), 0 24px 60px -20px rgba(27,26,23,.3); display: flex; align-items: center; gap: 22px; padding: 0 34px; font: 30px "Geist Mono", monospace; color: #44423d; }
+      .s7-cmd i { color: #77746d; font-style: normal; }
+      .s7-urls { position: absolute; left: 0; right: 0; top: 934px; text-align: center; font: 26px "Geist Mono", monospace; color: var(--muted); }
+      .s7-urls b { color: var(--ink); font-weight: 500; }
+      #fade { position: absolute; inset: 0; background: #f8f7f4; opacity: 0; z-index: 60; }
+    
+    </style>
+    <script>
+      const OFF = 42.5;
+      const base = gsap.timeline({ paused: true });
+      // Scene-local clock: positions authored in film time are rebased to this scene's start.
+      const tl = new Proxy(base, { get(t, p) {
+        if (p === "to" || p === "fromTo" || p === "set") return (...a) => { a[a.length - 1] -= OFF; return t[p](...a); };
+        const v = t[p]; return typeof v === "function" ? v.bind(t) : v;
+      } });
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const hide = (sel) => gsap.set(sel, { opacity: 0 });
+      
+
+      gsap.set("#s7l1,#s7l2", { yPercent: 112 }); gsap.set("#s7mark", { opacity: 0, scale: 0.6, rotation: -12 }); gsap.set("#s7cmd", { opacity: 0, y: 30 }); gsap.set("#s7urls", { opacity: 0, y: 18 });
+      tl.to("#s7bg", { clipPath: "circle(150% at 50% 50%)", duration: 0.85, ease: "power3.inOut" }, 42.5);
+      tl.to("#s7dots", { opacity: 1, duration: 1.0 }, 42.9);
+      tl.to("#s7mark", { opacity: 1, scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" }, 42.75);
+      tl.to("#s7l1", { yPercent: 0, duration: 0.9, ease: "expo.out" }, 43.0);
+      tl.to("#s7l2", { yPercent: 0, duration: 0.95, ease: "expo.out" }, 43.22);
+      tl.to("#s7cmd", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 44.4);
+      tl.to("#s7urls", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 45.2);
+      tl.to("#s7l2 em", { scale: 1.04, duration: 0.3, yoyo: true, repeat: 1, ease: "sine.inOut", transformOrigin: "50% 60%" }, 46.1);
+      tl.to("#fade", { opacity: 1, duration: 0.7, ease: "power1.in" }, 49.3);
+
+      
+      
+    
+      window.__timelines["s7"] = base;
+    </script>
+  </div>
+</template>

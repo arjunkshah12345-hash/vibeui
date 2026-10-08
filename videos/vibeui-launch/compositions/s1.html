@@ -1,0 +1,55 @@
+<template id="s1-template">
+  <div id="s1" class="scene" data-composition-id="s1" data-start="0" data-duration="5" data-width="1920" data-height="1080">
+
+        <div class="bg"></div><div class="grid"></div>
+        <div class="s1-label mono"><i></i> v0.2 · open source · MIT</div>
+        <h1 class="s1-h serif">
+          <span class="mask"><span class="in" id="s1l1">Everything an</span></span>
+          <span class="mask"><span class="in" id="s1l2">interface <span class="em"><em>is made of.</em><i class="ul"></i></span></span></span>
+        </h1>
+        <p class="s1-sub" id="s1sub"><b>104 components.</b> Copy them. Own them.</p>
+      
+    <style>
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif.woff2") format("woff2"); font-style: normal; font-weight: 400; }
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif-italic.woff2") format("woff2"); font-style: italic; font-weight: 400; }
+@font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Geist Mono"; src: url("assets/fonts/geist-mono.woff2") format("woff2"); font-weight: 100 900; }
+
+      #s1 .bg { background: #0f0e0d; }
+      #s1 .grid { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(244,242,238,.10) 1.5px, transparent 1.8px); background-size: 48px 48px; opacity: 0; -webkit-mask-image: radial-gradient(70% 80% at 30% 55%, #000, transparent); mask-image: radial-gradient(70% 80% at 30% 55%, #000, transparent); }
+      .s1-label { position: absolute; left: 120px; top: 96px; font-size: 26px; color: #9a968d; display: flex; align-items: center; gap: 16px; letter-spacing: .01em; }
+      .s1-label i { width: 12px; height: 12px; border-radius: 50%; background: #f4f2ee; display: block; }
+      .s1-h { position: absolute; left: 112px; top: 270px; font-size: 188px; line-height: .94; color: #f4f2ee; }
+      .s1-h .em { position: relative; display: inline-block; }
+      .s1-h .ul { position: absolute; left: 0; right: 0; bottom: 6px; height: 7px; background: #f4f2ee; transform-origin: left center; border-radius: 4px; }
+      .s1-sub { position: absolute; left: 124px; top: 760px; font-size: 44px; color: #9a968d; letter-spacing: -.01em; }
+      .s1-sub b { color: #f4f2ee; font-weight: 500; }
+    </style>
+    <script>
+      const OFF = 0;
+      const base = gsap.timeline({ paused: true });
+      // Scene-local clock: positions authored in film time are rebased to this scene's start.
+      const tl = new Proxy(base, { get(t, p) {
+        if (p === "to" || p === "fromTo" || p === "set") return (...a) => { a[a.length - 1] -= OFF; return t[p](...a); };
+        const v = t[p]; return typeof v === "function" ? v.bind(t) : v;
+      } });
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const hide = (sel) => gsap.set(sel, { opacity: 0 });
+      
+
+      gsap.set("#s1l1,#s1l2", { yPercent: 112 });
+      hide(".s1-label"); hide("#s1sub");
+      tl.to(".s1-label", { opacity: 1, duration: 0.5 }, 0.12);
+      tl.to(".s1 .grid, #s1 .grid", { opacity: 1, duration: 1.4, ease: "power2.out" }, 0.1);
+      tl.to("#s1l1", { yPercent: 0, duration: 0.95, ease: "expo.out" }, 0.22);
+      tl.to("#s1l2", { yPercent: 0, duration: 1.0, ease: "expo.out" }, 0.52);
+      tl.fromTo("#s1 .ul", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power3.out" }, 1.55);
+      tl.fromTo("#s1sub", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 2.4);
+      tl.to("#s1l1", { yPercent: -112, duration: 0.5, ease: "power3.in" }, 4.3);
+      tl.to("#s1l2", { yPercent: -112, duration: 0.5, ease: "power3.in" }, 4.38);
+      tl.to("#s1sub,.s1-label", { opacity: 0, duration: 0.3 }, 4.4);
+      window.__timelines["s1"] = base;
+    </script>
+  </div>
+</template>

@@ -1,0 +1,133 @@
+<template id="s5-template">
+  <div id="s5" class="scene" data-composition-id="s5" data-start="0" data-duration="7.5" data-width="1920" data-height="1080">
+
+        <div class="bg"></div>
+        <h2 class="s5-h serif" id="s5h">Hover. Press. Enter. <em>Exit.</em></h2>
+        <div class="tile" id="tA"><div class="dots"></div><span class="tag">dock</span><div class="dockbar"></div><div class="dockrow" id="dockrow"></div><div class="dktip" id="dktip">Search</div></div>
+        <div class="tile" id="tB"><div class="dots"></div><span class="tag">switch · checkbox · slider</span>
+          <div class="ctl">
+            <div class="row"><span>Notifications</span><span class="tgl" id="tg1"><i class="th"></i></span></div>
+            <div class="row"><span>Reduced motion</span><span class="tgl" id="tg2"><i class="th"></i></span></div>
+            <div class="row"><span class="check" style="display:flex;gap:16px;align-items:center"><span class="cbx" id="cb1"><i></i></span>Include dark tokens</span><span></span></div>
+            <div class="row"><span>Volume</span><span class="stk" id="stk"><i class="f" id="stkf"></i><i class="t" id="stkt"></i></span></div>
+          </div>
+        </div>
+        <div class="tile" id="tC"><div class="dots"></div><span class="tag">toast</span>
+          <div class="toast" id="toast1"><div class="tb"><span class="ic"></span><div><b>Draft saved</b><span>Your changes are stored locally.</span></div></div><div class="cd" id="cd1"></div></div>
+          <div class="toast" id="toast2" style="bottom:164px;opacity:0"><div class="tb"><span class="ic" style="background:#9ec9e8"></span><div><b>New release</b><span>VibeUI 0.2 is out.</span></div></div></div>
+        </div>
+        <div class="tile" id="tD"><div class="dots"></div><span class="tag">dialog</span><div class="scrim" id="scrim"></div>
+          <div class="dlg" id="dlg"><div class="x" id="dlgx">×</div><h6>Rename project</h6><p>This changes the name everywhere it’s shown.</p><div class="fld">Marketing site</div><div class="bt"><span style="color:#9a968d">Cancel</span><span style="background:#f4f2ee;color:#14130f">Save</span></div></div>
+        </div>
+      
+    <style>
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif.woff2") format("woff2"); font-style: normal; font-weight: 400; }
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif-italic.woff2") format("woff2"); font-style: italic; font-weight: 400; }
+@font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Geist Mono"; src: url("assets/fonts/geist-mono.woff2") format("woff2"); font-weight: 100 900; }
+
+      #s5 .bg { background: #0f0e0d; }
+      .s5-h { position: absolute; left: 120px; top: 56px; font-size: 96px; line-height: 1; color: #f4f2ee; }
+      .tile { position: absolute; width: 820px; height: 380px; background: #181715; border: 1px solid var(--dline); border-radius: 26px; overflow: hidden; box-shadow: 0 1px 1px rgba(0,0,0,.3), 0 1px 3px rgba(0,0,0,.3); }
+      .tile .tag { position: absolute; left: 28px; top: 24px; font: 500 20px "Geist Mono", monospace; color: #8a867e; }
+      .tile .dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(244,242,238,.07) 1.5px, transparent 1.8px); background-size: 34px 34px; }
+      #tA { left: 120px; top: 230px; } #tB { left: 980px; top: 230px; } #tC { left: 120px; top: 636px; } #tD { left: 980px; top: 636px; }
+      .dockrow { position: absolute; left: 0; right: 0; bottom: 70px; display: flex; justify-content: center; align-items: flex-end; gap: 14px; }
+      .dockbar { position: absolute; left: 130px; right: 130px; bottom: 54px; height: 128px; background: rgba(244,242,238,.05); border: 1px solid var(--dline); border-radius: 30px; }
+      .dk { width: 76px; height: 76px; border-radius: 20px; background: #201e1c; border: 1px solid var(--dline); display: flex; align-items: center; justify-content: center; color: #f4f2ee; transform-origin: center bottom; box-shadow: 0 1px 3px rgba(0,0,0,.4); }
+      .dk svg { width: 34px; height: 34px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+      .dktip { position: absolute; top: 132px; left: 0; padding: 7px 14px; border-radius: 9px; background: #f4f2ee; color: #14130f; font: 500 18px "Geist", sans-serif; opacity: 0; white-space: nowrap; }
+      .ctl { position: absolute; left: 60px; right: 60px; top: 84px; }
+      .ctl .row { display: flex; align-items: center; justify-content: space-between; font: 24px "Geist", sans-serif; color: #d6d3cc; height: 62px; }
+      .tgl { width: 64px; height: 36px; border-radius: 18px; background: #121110; border: 1px solid rgba(244,242,238,.18); position: relative; }
+      .tgl .th { position: absolute; left: 3px; top: 3px; width: 28px; height: 28px; border-radius: 50%; background: #9a968d; }
+      .cbx { width: 28px; height: 28px; border-radius: 8px; border: 1px solid rgba(244,242,238,.25); background: #121110; position: relative; }
+      .cbx i { position: absolute; inset: 0; border-radius: 8px; background: #f4f2ee; opacity: 0; }
+      .cbx i::after { content: ""; position: absolute; left: 9px; top: 4px; width: 8px; height: 14px; border: solid #14130f; border-width: 0 3px 3px 0; transform: rotate(45deg); }
+      .stk { width: 300px; height: 10px; border-radius: 6px; background: #121110; position: relative; }
+      .stk .f { position: absolute; left: 0; top: 0; bottom: 0; width: 30%; background: #f4f2ee; border-radius: 6px; }
+      .stk .t { position: absolute; left: 0; top: -9px; width: 28px; height: 28px; margin-left: -14px; border-radius: 50%; background: #181715; border: 3px solid #f4f2ee; }
+      .toast { position: absolute; right: 40px; bottom: 40px; width: 500px; background: #201e1c; border: 1px solid var(--dline); border-radius: 18px; box-shadow: 0 16px 40px -10px rgba(0,0,0,.6); overflow: hidden; }
+      .toast .tb { padding: 22px 26px; display: flex; gap: 16px; align-items: flex-start; }
+      .toast .ic { width: 28px; height: 28px; border-radius: 50%; background: #a9ceae; flex: none; position: relative; margin-top: 2px; }
+      .toast .ic::after { content: ""; position: absolute; left: 9px; top: 5px; width: 6px; height: 12px; border: solid #223127; border-width: 0 3px 3px 0; transform: rotate(45deg); }
+      .toast b { display: block; font: 500 24px "Geist", sans-serif; color: #f4f2ee; }
+      .toast span { display: block; margin-top: 4px; font: 20px "Geist", sans-serif; color: #9a968d; }
+      .toast .cd { height: 4px; background: #a9ceae; opacity: .7; transform-origin: left center; }
+      .scrim { position: absolute; inset: 0; background: rgba(0,0,0,.55); opacity: 0; }
+      .dlg { position: absolute; left: 50%; top: 50%; width: 520px; margin: -130px 0 0 -260px; background: #201e1c; border: 1px solid var(--dline); border-radius: 22px; padding: 30px; box-shadow: 0 30px 70px -10px rgba(0,0,0,.7); opacity: 0; }
+      .dlg h6 { font: 500 28px "Geist", sans-serif; color: #f4f2ee; letter-spacing: -.01em; }
+      .dlg p { font: 20px "Geist", sans-serif; color: #9a968d; margin-top: 8px; }
+      .dlg .fld { margin-top: 20px; height: 50px; border-radius: 12px; border: 1px solid rgba(244,242,238,.2); background: #121110; display: flex; align-items: center; padding: 0 16px; font: 21px "Geist", sans-serif; color: #d6d3cc; }
+      .dlg .bt { margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px; }
+      .dlg .bt span { height: 46px; padding: 0 20px; border-radius: 12px; display: inline-flex; align-items: center; font: 500 19px "Geist", sans-serif; }
+      .dlg .x { position: absolute; right: 18px; top: 18px; width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #9a968d; font: 400 26px "Geist", sans-serif; }
+    </style>
+    <script>
+      const OFF = 30;
+      const base = gsap.timeline({ paused: true });
+      // Scene-local clock: positions authored in film time are rebased to this scene's start.
+      const tl = new Proxy(base, { get(t, p) {
+        if (p === "to" || p === "fromTo" || p === "set") return (...a) => { a[a.length - 1] -= OFF; return t[p](...a); };
+        const v = t[p]; return typeof v === "function" ? v.bind(t) : v;
+      } });
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const hide = (sel) => gsap.set(sel, { opacity: 0 });
+      
+
+      const ICONS = [
+        ["Home", '<path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/>'],
+        ["Components", '<rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/>'],
+        ["Search", '<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/>'],
+        ["Messages", '<path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H10l-5 4v-4a2 2 0 0 1-1-2z"/>'],
+        ["Explore", '<circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>'],
+        ["Settings", '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>'],
+      ];
+      const row = $("#dockrow"); const dks = [];
+      ICONS.forEach(([n, svg]) => { const d = document.createElement("div"); d.className = "dk"; d.innerHTML = '<svg viewBox="0 0 24 24">' + svg + "</svg>"; row.appendChild(d); dks.push(d); });
+      ["#tA", "#tB", "#tC", "#tD"].forEach((s) => gsap.set(s, { opacity: 0, y: 40, scale: 0.96 }));
+      gsap.set("#stkt", { x: 90 }); gsap.set("#s5h", { opacity: 0, y: 24 }); gsap.set("#toast1", { opacity: 0, y: 40 }); gsap.set("#dlg", { opacity: 0, scale: 0.94, y: 8 });
+      tl.to("#s5h", { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 30.1);
+      ["#tA", "#tB", "#tC", "#tD"].forEach((s, i) => tl.to(s, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.3)" }, 30.25 + i * 0.2));
+      // dock magnify driven by a sweeping pointer
+      const dp = { x: -200 };
+      // Geometry is fixed by the layout (6 × 76px icons, 14px gap, centred in a 820px tile): no measuring inside callbacks.
+      const DK_C = (i) => 185 + 90 * i;
+      const dockApply = () => {
+        let hov = -1, best = 1e9;
+        dks.forEach((d, i) => {
+          const dist = Math.abs(dp.x - DK_C(i)); const sc = 1 + 0.7 * Math.exp(-Math.pow(dist / 95, 2));
+          d.style.scale = sc.toFixed(3); d.style.translate = "0 " + ((sc - 1) * -22).toFixed(1) + "px";
+          if (dist < best) { best = dist; hov = i; }
+        });
+        const tip = $("#dktip");
+        if (best < 60) { const w = ICONS[hov][0].length * 10.4 + 30; tip.textContent = ICONS[hov][0]; tip.style.opacity = "1"; tip.style.left = (DK_C(hov) - w / 2) + "px"; tip.style.top = "132px"; } else tip.style.opacity = "0";
+      };
+      tl.to(dp, { x: 780, duration: 1.8, ease: "sine.inOut", onUpdate: dockApply }, 30.9);
+      tl.to(dp, { x: 60, duration: 1.8, ease: "sine.inOut", onUpdate: dockApply }, 32.8);
+      tl.to(dp, { x: 900, duration: 1.2, ease: "sine.inOut", onUpdate: dockApply }, 34.7);
+      // controls
+      const flip = (sel, t) => { tl.to(sel + " .th", { x: 28, backgroundColor: "#14130f", duration: 0.35, ease: "back.out(1.7)" }, t); tl.to(sel, { backgroundColor: "#f4f2ee", borderColor: "#f4f2ee", duration: 0.3 }, t); };
+      flip("#tg1", 31.4); flip("#tg2", 32.6);
+      tl.fromTo("#cb1 i", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 33.4);
+      tl.to("#stkf", { width: "78%", duration: 1.1, ease: "power2.inOut" }, 34.0); tl.to("#stkt", { x: 234, duration: 1.1, ease: "power2.inOut" }, 34.0);
+      // toast with countdown
+      tl.to("#toast1", { opacity: 1, y: 0, duration: 0.55, ease: "back.out(1.6)" }, 31.95);
+      tl.fromTo("#cd1", { scaleX: 1 }, { scaleX: 0, duration: 3.0, ease: "none" }, 31.95);
+      tl.to("#toast2", { opacity: 1, duration: 0.01 }, 33.2); tl.fromTo("#toast2", { y: 40, scale: 0.96 }, { y: 0, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 33.2);
+      tl.to("#toast1", { opacity: 0, x: 60, duration: 0.35, ease: "power2.in" }, 35.05);
+      tl.to("#toast2", { opacity: 0, x: 60, duration: 0.35, ease: "power2.in" }, 35.3);
+      // dialog opens, then animates out
+      tl.to("#scrim", { opacity: 1, duration: 0.3 }, 32.2);
+      tl.to("#dlg", { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(1.5)" }, 32.2);
+      tl.to("#dlgx", { rotation: 90, backgroundColor: "rgba(244,242,238,.12)", color: "#f4f2ee", duration: 0.4 }, 34.5);
+      tl.to("#dlg", { opacity: 0, scale: 0.96, y: 6, duration: 0.25, ease: "power2.in" }, 34.95);
+      tl.to("#scrim", { opacity: 0, duration: 0.3 }, 34.95);
+      // exit
+      ["#tA", "#tB", "#tC", "#tD"].forEach((s, i) => tl.to(s, { opacity: 0, y: -24, scale: 0.97, duration: 0.35, ease: "power2.in" }, 37.0 + i * 0.05));
+      tl.to("#s5h", { opacity: 0, duration: 0.3 }, 37.05);
+      window.__timelines["s5"] = base;
+    </script>
+  </div>
+</template>
