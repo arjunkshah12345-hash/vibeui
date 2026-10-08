@@ -1,6 +1,6 @@
 # VibeUI
 
-> Quiet React + Tailwind component library. Copy-owned source. MIT.
+> Copy-owned React + Tailwind component library. 104 components, warm tokens, real dark mode. MIT.
 > https://github.com/arjunkshah12345-hash/vibeui
 
 ## For agents
@@ -15,20 +15,22 @@ Prefer tools over guessing:
 
 ```bash
 npm i clsx tailwind-merge class-variance-authority @phosphor-icons/react
-npx vibeui init --dir .
-npx vibeui add button --dir ./src/components/ui
+npx github:arjunkshah12345-hash/vibeui init --dir .
+npx github:arjunkshah12345-hash/vibeui add button --dir ./src/components/ui
 ```
 
-Paste `templates/vibeui.css` (or `vibeui.tokens.css` from init) into global CSS. Dark mode: class `dark` on `<html>`.
+(Not on npm yet, so the CLI runs from GitHub. Inside a clone: `node bin/vibeui.mjs ...`.)
+
+Import `vibeui.tokens.css` (or paste `templates/vibeui.css`) into global CSS **after** `@import "tailwindcss";`. It carries colors, radii, shadows, easing, keyframes and the `dark` variant the components rely on. Dark mode: class `dark` on `<html>`; `light`/`dark` on any element forces that palette for its subtree. `add` also copies sibling components a file imports (e.g. dialog needs nothing, footer-cta pulls button).
 
 ## Conventions
 
 - Components live in `src/components/ui/<kebab>.tsx`
 - Use `cn()` from `@/lib/utils`
-- Icons: `@phosphor-icons/react`
+- Icons: `@phosphor-icons/react` (use `/dist/ssr` in files without `"use client"`)
 - Variants: `class-variance-authority` (cva)
 - Client components marked `"use client"` when needed
-- Canvas `#fbfbfa` / dark `#121110` — warm, restrained, not purple-glow demos
+- Warm canvas `#f8f7f4` / dark `#0f0e0d`, ink primary buttons, one vermilion accent (`--accent`) for focus, selection and progress. Use tokens (`bg-surface`, `text-muted`, `border-line`, `ring-ring`), never raw hex
 
 ## Categories
 
@@ -40,6 +42,6 @@ rotating-carousel, trading-card, dock, magnetic-button, scramble-text, footer-me
 
 ## Docs
 
-- Human: README.md, /docs, /gallery
+- Human: README.md, /docs, /components (live previews + source per component)
 - Agents: llms.txt, docs/agents.md, AGENTS.md
 - Cursor MCP sample: .cursor/mcp.vibeui.example.json

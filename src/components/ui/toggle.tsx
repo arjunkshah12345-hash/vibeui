@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+/** Two-state pressed button, plus a connected multi-select ToggleGroup. */
 export function Toggle({
   pressed,
   defaultPressed,
@@ -10,13 +11,11 @@ export function Toggle({
   children,
   className,
   disabled,
-}: {
+  ...props
+}: Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onChange"> & {
   pressed?: boolean;
   defaultPressed?: boolean;
   onPressedChange?: (pressed: boolean) => void;
-  children: React.ReactNode;
-  className?: string;
-  disabled?: boolean;
 }) {
   const [uncontrolled, setUncontrolled] = React.useState(!!defaultPressed);
   const isOn = pressed ?? uncontrolled;
@@ -32,12 +31,13 @@ export function Toggle({
         onPressedChange?.(next);
       }}
       className={cn(
-        "inline-flex h-9 items-center justify-center rounded-[var(--radius-sm)] border px-3 text-[13px] font-medium transition-colors disabled:opacity-40",
+        "inline-flex h-9 items-center justify-center gap-1.5 rounded-sm border px-3 text-[13px] font-medium transition-[background-color,color,border-color,transform] duration-150 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-45",
         isOn
           ? "border-ink bg-ink text-surface"
-          : "border-line bg-surface text-ink-soft hover:border-line-strong hover:text-ink",
+          : "border-line bg-surface text-ink-soft shadow-quiet hover:border-line-strong hover:text-ink",
         className,
       )}
+      {...props}
     >
       {children}
     </button>
@@ -50,29 +50,40 @@ export function ToggleGroup({
   onChange,
   className,
 }: {
-  options: { value: string; label: string }[];
+  options: { value: string; label: React.ReactNode }[];
   value: string[];
   onChange: (value: string[]) => void;
   className?: string;
 }) {
   return (
-    <div className={cn("flex flex-wrap gap-2", className)}>
+    <div
+      role="group"
+      className={cn(
+        "inline-flex rounded-sm border border-line bg-surface p-0.5 shadow-quiet",
+        className,
+      )}
+    >
       {options.map((opt) => {
         const on = value.includes(opt.value);
         return (
-          <Toggle
+          <button
             key={opt.value}
-            pressed={on}
-            onPressedChange={(next) => {
+            type="button"
+            aria-pressed={on}
+            onClick={() =>
               onChange(
-                next
-                  ? [...value, opt.value]
-                  : value.filter((v) => v !== opt.value),
-              );
-            }}
+                on ? value.filter((v) => v !== opt.value) : [...value, opt.value],
+              )
+            }
+            className={cn(
+              "h-8 rounded-[6px] px-3 text-[13px] font-medium transition-colors duration-150",
+              on
+                ? "bg-ink text-surface"
+                : "text-muted hover:bg-surface-muted hover:text-ink",
+            )}
           >
             {opt.label}
-          </Toggle>
+          </button>
         );
       })}
     </div>

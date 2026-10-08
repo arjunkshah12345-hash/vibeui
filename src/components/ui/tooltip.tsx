@@ -3,6 +3,14 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+const placement = {
+  top: "bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2",
+  bottom: "top-[calc(100%+8px)] left-1/2 -translate-x-1/2",
+  left: "right-[calc(100%+8px)] top-1/2 -translate-y-1/2",
+  right: "left-[calc(100%+8px)] top-1/2 -translate-y-1/2",
+} as const;
+
+/** Hover and focus tooltip, pure CSS with a short open delay. */
 export function Tooltip({
   content,
   children,
@@ -11,17 +19,20 @@ export function Tooltip({
 }: {
   content: React.ReactNode;
   children: React.ReactNode;
-  side?: "top" | "bottom";
+  side?: keyof typeof placement;
   className?: string;
 }) {
+  const id = React.useId();
+
   return (
-    <span className={cn("group relative inline-flex", className)}>
+    <span aria-describedby={id} className={cn("group/tip relative inline-flex", className)}>
       {children}
       <span
+        id={id}
         role="tooltip"
         className={cn(
-          "pointer-events-none absolute left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-[var(--radius-sm)] border border-line bg-ink px-2 py-1 text-[11px] font-medium text-surface opacity-0 shadow-[var(--shadow-quiet)] transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100",
-          side === "top" ? "bottom-[calc(100%+8px)]" : "top-[calc(100%+8px)]",
+          "pointer-events-none absolute z-30 w-max max-w-[220px] rounded-[7px] bg-ink px-2.5 py-1.5 text-[12px] font-medium leading-snug text-surface opacity-0 shadow-lift transition-opacity duration-150 group-hover/tip:opacity-100 group-hover/tip:delay-300 group-focus-within/tip:opacity-100",
+          placement[side],
         )}
       >
         {content}

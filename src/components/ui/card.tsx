@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+/** Surface container with header, content and footer slots. */
 export function Card({
   className,
   interactive,
@@ -9,9 +10,9 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-[var(--radius-lg)] border border-line bg-surface p-6",
+        "rounded-lg border border-line bg-surface p-6 shadow-quiet",
         interactive &&
-          "transition-[box-shadow,border-color,transform] duration-200 ease-[var(--ease-out)] hover:border-line-strong hover:shadow-[var(--shadow-lift)]",
+          "transition-[box-shadow,border-color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-line-strong hover:shadow-lift",
         className,
       )}
       {...props}
@@ -32,7 +33,7 @@ export function CardTitle({
 }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={cn("text-[15px] font-medium tracking-[-0.01em] text-ink", className)}
+      className={cn("text-[15px] font-medium tracking-[-0.015em] text-ink", className)}
       {...props}
     />
   );

@@ -41,7 +41,7 @@ function err(message) {
 
 const server = new McpServer({
   name: "vibeui",
-  version: "0.1.0",
+  version: "0.2.0",
 });
 
 server.registerTool(
@@ -66,6 +66,7 @@ server.registerTool(
       category: c.category,
       description: c.description,
       dependencies: c.dependencies,
+      registryDependencies: c.registryDependencies,
       client: c.client,
       tags: c.tags,
     }));
@@ -93,6 +94,7 @@ server.registerTool(
         category: c.category,
         description: c.description,
         dependencies: c.dependencies,
+        registryDependencies: c.registryDependencies,
       })),
     });
   },
@@ -120,6 +122,7 @@ server.registerTool(
       exports: comp.exports,
       client: comp.client,
       dependencies: comp.dependencies,
+      registryDependencies: comp.registryDependencies,
       source: comp.source,
     });
   },
@@ -130,7 +133,7 @@ server.registerTool(
   {
     title: "Add VibeUI component to a project",
     description:
-      "Copy one or more VibeUI components into a destination directory (usually ./src/components/ui). Also copies utils.ts if missing.",
+      "Copy one or more VibeUI components into a destination directory (usually ./src/components/ui). Sibling components they import are copied too, and utils.ts is created if missing.",
     inputSchema: {
       names: z
         .union([z.string(), z.array(z.string())])

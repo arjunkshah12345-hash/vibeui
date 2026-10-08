@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { ThemeScript } from "@/components/theme/theme-script";
-import { ToastProvider } from "@/components/ui/toast";
+import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
+import { ToastProvider } from "@/components/ui/toast";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -25,18 +26,23 @@ const instrument = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: `${site.name}: ${site.tagline}`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
-  icons: {
-    icon: "/favicon.svg",
-  },
+  icons: { icon: "/favicon.svg" },
   openGraph: {
-    title: site.name,
+    title: `${site.name}: ${site.tagline}`,
     description: site.description,
     type: "website",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8f7f4" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0e0d" },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -49,11 +55,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <ThemeScript />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-canvas text-ink">
+      <body className="flex min-h-full flex-col bg-canvas font-sans text-ink">
         <ThemeProvider>
           <ToastProvider>
             <SiteHeader />
-            {children}
+            <div className="flex flex-1 flex-col">{children}</div>
+            <SiteFooter />
           </ToastProvider>
         </ThemeProvider>
       </body>

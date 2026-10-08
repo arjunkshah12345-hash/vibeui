@@ -1,6 +1,10 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+/** Text input, textarea, label and Field wrapper sharing one focus language. */
+const fieldBase =
+  "w-full rounded-sm border border-line-strong bg-surface text-sm text-ink shadow-quiet placeholder:text-faint transition-[border-color,box-shadow] duration-150 hover:border-faint focus-visible:border-accent focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-pastel-rose-ink aria-invalid:ring-pastel-rose-ink/20";
+
 export const Input = React.forwardRef<
   HTMLInputElement,
   React.InputHTMLAttributes<HTMLInputElement>
@@ -8,12 +12,7 @@ export const Input = React.forwardRef<
   <input
     ref={ref}
     type={type}
-    className={cn(
-      "flex h-10 w-full rounded-[var(--radius-sm)] border border-line bg-surface px-3 text-sm text-ink placeholder:text-faint transition-[border-color,box-shadow] duration-150",
-      "hover:border-line-strong focus-visible:border-ink focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgba(28,28,26,0.08)]",
-      "disabled:cursor-not-allowed disabled:opacity-50",
-      className,
-    )}
+    className={cn(fieldBase, "h-10 px-3", className)}
     {...props}
   />
 ));
@@ -25,12 +24,7 @@ export const Textarea = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <textarea
     ref={ref}
-    className={cn(
-      "flex min-h-[96px] w-full resize-y rounded-[var(--radius-sm)] border border-line bg-surface px-3 py-2.5 text-sm text-ink placeholder:text-faint transition-[border-color,box-shadow] duration-150",
-      "hover:border-line-strong focus-visible:border-ink focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgba(28,28,26,0.08)]",
-      "disabled:cursor-not-allowed disabled:opacity-50",
-      className,
-    )}
+    className={cn(fieldBase, "min-h-24 resize-y px-3 py-2.5 leading-relaxed", className)}
     {...props}
   />
 ));
@@ -42,10 +36,7 @@ export function Label({
 }: React.LabelHTMLAttributes<HTMLLabelElement>) {
   return (
     <label
-      className={cn(
-        "mb-1.5 block text-[13px] font-medium text-ink-soft",
-        className,
-      )}
+      className={cn("mb-1.5 block text-[13px] font-medium text-ink-soft", className)}
       {...props}
     />
   );
@@ -55,17 +46,24 @@ export function Field({
   className,
   label,
   hint,
+  error,
   children,
   ...props
-}: React.HTMLAttributes<HTMLDivElement> & {
+}: Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & {
   label?: string;
   hint?: string;
+  error?: string;
+  children: React.ReactNode;
 }) {
   return (
     <div className={cn("flex flex-col", className)} {...props}>
       {label ? <Label>{label}</Label> : null}
       {children}
-      {hint ? <p className="mt-1.5 text-xs text-muted">{hint}</p> : null}
+      {error ? (
+        <p className="mt-1.5 text-xs text-pastel-rose-ink">{error}</p>
+      ) : hint ? (
+        <p className="mt-1.5 text-xs text-muted">{hint}</p>
+      ) : null}
     </div>
   );
 }

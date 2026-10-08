@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+/** Two-sided proportion bar for comparing a pair of values. */
 export function ComparisonBar({
   left,
   right,
@@ -18,26 +19,27 @@ export function ComparisonBar({
 
   return (
     <div className={cn("w-full", className)}>
-      <div className="mb-2 flex justify-between text-xs">
+      <div className="mb-2.5 flex justify-between text-[13px]">
         <span className="font-medium text-ink">
           {left}{" "}
-          <span className="font-mono text-faint">{Math.round(leftPct)}%</span>
+          <span className="ml-1 font-mono text-xs text-muted">
+            {Math.round(leftPct)}%
+          </span>
         </span>
         <span className="font-medium text-ink">
-          <span className="font-mono text-faint">
+          <span className="mr-1 font-mono text-xs text-muted">
             {Math.round(100 - leftPct)}%
           </span>{" "}
           {right}
         </span>
       </div>
-      <div className="flex h-2 overflow-hidden rounded-full bg-surface-muted">
+      <div className="flex h-2.5 gap-1">
         <div
-          className="h-full bg-ink transition-[width] duration-500"
+          className="h-full rounded-full bg-accent transition-[width] duration-700 ease-out"
           style={{ width: `${leftPct}%` }}
         />
         <div
-          className="h-full bg-line-strong"
-          style={{ width: `${100 - leftPct}%` }}
+          className="h-full flex-1 rounded-full bg-surface-sunken ring-1 ring-inset ring-line-strong"
         />
       </div>
     </div>

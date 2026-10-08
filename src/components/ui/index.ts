@@ -26,7 +26,7 @@ export { Slider } from "./slider";
 export { Skeleton } from "./skeleton";
 export { Spinner } from "./spinner";
 export { Tooltip } from "./tooltip";
-export { Dialog, DialogTrigger, DialogContent } from "./dialog";
+export { Dialog, DialogTrigger, DialogContent, DialogFooter } from "./dialog";
 export { Select } from "./select";
 export { Empty } from "./empty";
 export { Stat } from "./stat";

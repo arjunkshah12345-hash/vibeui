@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+/** Locks children to a width-to-height ratio. */
 export function AspectRatio({
   ratio = 16 / 9,
   className,

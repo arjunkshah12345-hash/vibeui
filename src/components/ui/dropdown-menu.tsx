@@ -3,22 +3,30 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+type Item = {
+  label?: string;
+  icon?: React.ReactNode;
+  shortcut?: string;
+  onSelect?: () => void;
+  danger?: boolean;
+  separator?: boolean;
+};
+
+/** Action menu with arrow-key navigation, icons, shortcuts and danger items. */
 export function DropdownMenu({
   trigger,
   items,
   className,
+  align = "start",
 }: {
   trigger: React.ReactNode;
-  items: {
-    label?: string;
-    onSelect?: () => void;
-    danger?: boolean;
-    separator?: boolean;
-  }[];
+  items: Item[];
   className?: string;
+  align?: "start" | "end";
 }) {
   const [open, setOpen] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
+  const menuRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     if (!open) return;
@@ -26,37 +34,78 @@ export function DropdownMenu({
       if (!ref.current?.contains(e.target as Node)) setOpen(false);
     };
     document.addEventListener("mousedown", onDoc);
+    menuRef.current?.querySelector<HTMLElement>('[role="menuitem"]')?.focus();
     return () => document.removeEventListener("mousedown", onDoc);
   }, [open]);
 
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setOpen(false);
+      return;
+    }
+    if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+    e.preventDefault();
+    const nodes = Array.from(
+      menuRef.current?.querySelectorAll<HTMLElement>('[role="menuitem"]') ?? [],
+    );
+    const i = nodes.indexOf(document.activeElement as HTMLElement);
+    const next = e.key === "ArrowDown" ? i + 1 : i - 1;
+    nodes[(next + nodes.length) % nodes.length]?.focus();
+  };
+
   return (
-    <div ref={ref} className={cn("relative inline-flex", className)}>
-      <div onClick={() => setOpen((v) => !v)}>{trigger}</div>
+    <div
+      ref={ref}
+      className={cn("relative inline-flex", className)}
+      onKeyDown={onKeyDown}
+    >
+      <span
+        className="inline-flex"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+      >
+        {trigger}
+      </span>
       {open ? (
         <div
+          ref={menuRef}
           role="menu"
-          className="absolute right-0 top-[calc(100%+8px)] z-30 min-w-[180px] rounded-[var(--radius-md)] border border-line bg-surface p-1 shadow-[var(--shadow-lift)] animate-fade-up"
+          className={cn(
+            "absolute top-[calc(100%+6px)] z-30 min-w-52 animate-pop-in rounded-md border border-line bg-surface p-1 shadow-lift",
+            align === "end" ? "right-0" : "left-0",
+          )}
         >
           {items.map((item, i) =>
             item.separator ? (
-              <div key={`sep-${i}`} className="my-1 h-px bg-line" />
+              <div key={`sep-${i}`} role="separator" className="my-1 h-px bg-line" />
             ) : (
               <button
-                key={item.label ?? i}
+                key={`${item.label}-${i}`}
                 type="button"
                 role="menuitem"
                 className={cn(
-                  "flex w-full rounded-[var(--radius-sm)] px-3 py-2 text-left text-[13px] transition-colors",
+                  "flex w-full items-center gap-2.5 rounded-[7px] px-2.5 py-2 text-left text-[13px] outline-none transition-colors",
                   item.danger
-                    ? "text-pastel-rose-ink hover:bg-pastel-rose"
-                    : "text-ink-soft hover:bg-surface-muted hover:text-ink",
+                    ? "text-pastel-rose-ink hover:bg-pastel-rose focus:bg-pastel-rose"
+                    : "text-ink-soft hover:bg-surface-muted hover:text-ink focus:bg-surface-muted focus:text-ink",
                 )}
                 onClick={() => {
                   item.onSelect?.();
                   setOpen(false);
                 }}
               >
-                {item.label}
+                {item.icon ? (
+                  <span className="flex size-4 shrink-0 items-center justify-center opacity-70">
+                    {item.icon}
+                  </span>
+                ) : null}
+                <span className="flex-1">{item.label}</span>
+                {item.shortcut ? (
+                  <span className="font-mono text-[10.5px] text-faint">
+                    {item.shortcut}
+                  </span>
+                ) : null}
               </button>
             ),
           )}

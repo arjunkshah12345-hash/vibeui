@@ -3,12 +3,13 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&@";
 
+/** Text that scrambles through random glyphs and resolves, on hover or focus. */
 export function ScrambleText({
   text,
   className,
-  duration = 800,
+  duration = 700,
 }: {
   text: string;
   className?: string;
@@ -17,7 +18,9 @@ export function ScrambleText({
   const [display, setDisplay] = React.useState(text);
   const frame = React.useRef(0);
 
-  const run = React.useCallback(() => {
+  React.useEffect(() => () => cancelAnimationFrame(frame.current), []);
+
+  const run = () => {
     const start = performance.now();
     cancelAnimationFrame(frame.current);
     const tick = (now: number) => {
@@ -25,29 +28,25 @@ export function ScrambleText({
       const reveal = Math.floor(t * text.length);
       let out = "";
       for (let i = 0; i < text.length; i++) {
-        if (text[i] === " ") {
-          out += " ";
-          continue;
-        }
         out +=
-          i < reveal
+          text[i] === " " || i < reveal
             ? text[i]
             : CHARS[Math.floor(Math.random() * CHARS.length)];
       }
-      setDisplay(out);
+      setDisplay(t < 1 ? out : text);
       if (t < 1) frame.current = requestAnimationFrame(tick);
-      else setDisplay(text);
     };
     frame.current = requestAnimationFrame(tick);
-  }, [text, duration]);
+  };
 
   return (
     <button
       type="button"
+      aria-label={text}
       onMouseEnter={run}
       onFocus={run}
       className={cn(
-        "font-mono text-sm tracking-wide text-ink tabular-nums",
+        "cursor-default whitespace-pre font-mono text-sm uppercase tracking-[0.08em] text-ink tabular-nums transition-colors hover:text-accent",
         className,
       )}
     >

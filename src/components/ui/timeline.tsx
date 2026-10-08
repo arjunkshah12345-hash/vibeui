@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+/** Vertical event timeline with a continuous rail. */
 export function Timeline({
   items,
   className,
@@ -8,26 +9,33 @@ export function Timeline({
   className?: string;
 }) {
   return (
-    <ul className={cn("relative space-y-0", className)}>
+    <ol className={cn("relative", className)}>
       {items.map((item, i) => (
-        <li key={`${item.title}-${i}`} className="relative flex gap-4 pb-6 last:pb-0">
+        <li
+          key={`${item.title}-${i}`}
+          className="relative pb-7 pl-7 last:pb-0"
+        >
           {i < items.length - 1 ? (
-            <span className="absolute left-[5px] top-3 h-full w-px bg-line" />
+            <span
+              aria-hidden
+              className="absolute bottom-0 left-[4.5px] top-[18px] w-px bg-line-strong"
+            />
           ) : null}
-          <span className="relative mt-1.5 size-2.5 shrink-0 rounded-full border-2 border-ink bg-surface" />
-          <div>
-            <div className="flex flex-wrap items-baseline gap-2">
-              <p className="text-sm font-medium text-ink">{item.title}</p>
-              <time className="font-mono text-[10px] uppercase tracking-[0.06em] text-faint">
-                {item.time}
-              </time>
-            </div>
-            {item.body ? (
-              <p className="mt-1 text-sm leading-relaxed text-muted">{item.body}</p>
-            ) : null}
+          <span
+            aria-hidden
+            className="absolute left-0 top-[7px] size-[10px] rounded-full border-2 border-accent bg-surface"
+          />
+          <div className="flex flex-wrap items-baseline gap-x-2.5">
+            <p className="text-sm font-medium tracking-[-0.01em] text-ink">
+              {item.title}
+            </p>
+            <time className="font-mono text-[11px] text-faint">{item.time}</time>
           </div>
+          {item.body ? (
+            <p className="mt-1 text-sm leading-relaxed text-muted">{item.body}</p>
+          ) : null}
         </li>
       ))}
-    </ul>
+    </ol>
   );
 }

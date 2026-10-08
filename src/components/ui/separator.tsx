@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+/** Hairline divider, horizontal or vertical. */
 export function Separator({
   className,
   orientation = "horizontal",
@@ -13,7 +14,7 @@ export function Separator({
       aria-orientation={orientation}
       className={cn(
         "shrink-0 bg-line",
-        orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
+        orientation === "horizontal" ? "h-px w-full" : "h-full min-h-4 w-px",
         className,
       )}
     />

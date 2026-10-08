@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+/** Each letter lifts and tints as the cursor passes over it. */
 export function LetterHover({
   text,
   className,
@@ -9,18 +10,16 @@ export function LetterHover({
 }) {
   return (
     <span
-      className={cn(
-        "inline-flex font-medium tracking-[-0.02em] text-ink",
-        className,
-      )}
+      className={cn("inline-flex font-medium tracking-[-0.02em] text-ink", className)}
       aria-label={text}
     >
       {text.split("").map((char, i) => (
         <span
-          key={`${char}-${i}`}
-          className="inline-block transition-transform duration-300 ease-[var(--ease-out)] hover:-translate-y-1 hover:text-ink-soft"
+          key={i}
+          aria-hidden
+          className="inline-block transition-[transform,color] duration-300 ease-spring hover:-translate-y-1.5 hover:text-accent"
         >
-          {char === " " ? "\u00A0" : char}
+          {char === " " ? " " : char}
         </span>
       ))}
     </span>

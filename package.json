@@ -1,6 +1,6 @@
 {
   "name": "vibeui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "license": "MIT",
   "description": "Quiet React + Tailwind components. Copy-owned, warm dark mode, signature craft. Agent CLI + MCP.",

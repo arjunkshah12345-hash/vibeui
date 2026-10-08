@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+/** Bordered list of rows with title, description, leading and trailing slots. */
 export function List({
   className,
   children,
@@ -10,7 +11,7 @@ export function List({
   return (
     <ul
       className={cn(
-        "divide-y divide-line overflow-hidden rounded-[var(--radius-lg)] border border-line bg-surface",
+        "divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface shadow-quiet",
         className,
       )}
     >
@@ -22,24 +23,33 @@ export function List({
 export function ListItem({
   title,
   description,
+  leading,
   trailing,
   className,
   onClick,
 }: {
   title: string;
   description?: string;
+  leading?: React.ReactNode;
   trailing?: React.ReactNode;
   className?: string;
   onClick?: () => void;
 }) {
   const inner = (
     <>
-      <div className="min-w-0 flex-1">
-        <p className="text-sm font-medium text-ink">{title}</p>
+      {leading ? (
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-sm bg-surface-muted text-ink-soft">
+          {leading}
+        </span>
+      ) : null}
+      <span className="min-w-0 flex-1">
+        <span className="block truncate text-sm font-medium text-ink">{title}</span>
         {description ? (
-          <p className="mt-0.5 text-xs text-muted">{description}</p>
+          <span className="mt-0.5 block truncate text-[13px] text-muted">
+            {description}
+          </span>
         ) : null}
-      </div>
+      </span>
       {trailing}
     </>
   );

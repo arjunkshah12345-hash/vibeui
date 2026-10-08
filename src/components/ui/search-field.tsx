@@ -3,39 +3,45 @@
 import { MagnifyingGlass, X } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
+/** Search input with a leading icon and a clear button. */
 export function SearchField({
   value,
   onChange,
   placeholder = "Search…",
   className,
+  autoFocus,
 }: {
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
   className?: string;
+  autoFocus?: boolean;
 }) {
   return (
     <div
       className={cn(
-        "flex h-10 items-center gap-2 rounded-[var(--radius-sm)] border border-line bg-surface px-3 transition-[border-color,box-shadow] focus-within:border-ink focus-within:shadow-[0_0_0_3px_color-mix(in_oklab,var(--ink)_10%,transparent)]",
+        "flex h-10 items-center gap-2 rounded-sm border border-line-strong bg-surface px-3 shadow-quiet transition-[border-color,box-shadow] duration-150 hover:border-faint focus-within:border-accent focus-within:ring-[3px] focus-within:ring-ring",
         className,
       )}
     >
       <MagnifyingGlass size={16} className="shrink-0 text-faint" weight="bold" />
       <input
+        type="search"
         value={value}
+        autoFocus={autoFocus}
         onChange={(e) => onChange?.(e.target.value)}
         placeholder={placeholder}
-        className="h-full w-full bg-transparent text-sm text-ink outline-none placeholder:text-faint"
+        aria-label={placeholder}
+        className="h-full w-full bg-transparent text-sm text-ink outline-none placeholder:text-faint [&::-webkit-search-cancel-button]:hidden"
       />
       {value ? (
         <button
           type="button"
-          aria-label="Clear"
+          aria-label="Clear search"
           onClick={() => onChange?.("")}
-          className="text-faint hover:text-ink"
+          className="flex size-5 shrink-0 items-center justify-center rounded-full bg-surface-muted text-muted transition-colors hover:text-ink"
         >
-          <X size={14} weight="bold" />
+          <X size={10} weight="bold" />
         </button>
       ) : null}
     </div>

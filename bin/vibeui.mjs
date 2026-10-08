@@ -65,7 +65,7 @@ function out(data) {
 }
 
 function help() {
-  console.log(`VibeUI — quiet React + Tailwind components (agent CLI)
+  console.log(`VibeUI — copy-owned React + Tailwind components (agent CLI)
 
 Usage:
   vibeui list [--category <cat>] [--json]
@@ -157,8 +157,10 @@ async function main() {
       console.log(comp.source);
       return;
     }
-    const { source, path: _p, ...meta } = comp;
-    out(flags.has("--source") ? { ...meta, source } : meta);
+    const meta = Object.fromEntries(
+      Object.entries(comp).filter(([k]) => k !== "source" && k !== "path"),
+    );
+    out(flags.has("--source") ? { ...meta, source: comp.source } : meta);
     return;
   }
 
@@ -174,7 +176,10 @@ async function main() {
       withUtils: !flags.has("--no-utils"),
     });
     for (const r of results) {
-      if (r.ok) console.log(`✓ ${r.name} → ${r.path}`);
+      if (r.ok)
+        console.log(
+          `✓ ${r.name} → ${r.path}${r.requested === false ? "  (required by another component)" : ""}`,
+        );
       else console.error(`✗ ${r.name}: ${r.error}`);
     }
     const failed = results.filter((r) => !r.ok);

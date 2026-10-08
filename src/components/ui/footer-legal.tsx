@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+/** Copyright line with legal links. */
 export function FooterLegal({
   copyright,
   links,
@@ -17,9 +18,13 @@ export function FooterLegal({
       )}
     >
       <p>{copyright}</p>
-      <nav className="flex flex-wrap gap-4">
+      <nav aria-label="Legal" className="flex flex-wrap gap-5">
         {links.map((l) => (
-          <a key={l.href} href={l.href} className="hover:text-muted">
+          <a
+            key={l.href + l.label}
+            href={l.href}
+            className="transition-colors hover:text-ink"
+          >
             {l.label}
           </a>
         ))}

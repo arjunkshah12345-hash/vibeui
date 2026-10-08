@@ -4,6 +4,7 @@ import * as React from "react";
 import { Minus, Plus } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
+/** Numeric stepper with min/max clamping. */
 export function NumberField({
   value,
   defaultValue = 0,
@@ -25,22 +26,27 @@ export function NumberField({
   const current = value ?? uncontrolled;
 
   const set = (n: number) => {
+    if (Number.isNaN(n)) return;
     const next = Math.min(max, Math.max(min, n));
     setUncontrolled(next);
     onChange?.(next);
   };
 
+  const stepper =
+    "flex size-full w-10 items-center justify-center text-muted transition-colors hover:bg-surface-muted hover:text-ink disabled:pointer-events-none disabled:opacity-35";
+
   return (
     <div
       className={cn(
-        "inline-flex h-10 items-center overflow-hidden rounded-[var(--radius-sm)] border border-line bg-surface",
+        "inline-flex h-10 w-fit items-stretch overflow-hidden rounded-sm border border-line-strong bg-surface shadow-quiet transition-[border-color,box-shadow] duration-150 focus-within:border-accent focus-within:ring-[3px] focus-within:ring-ring",
         className,
       )}
     >
       <button
         type="button"
         aria-label="Decrease"
-        className="flex size-10 items-center justify-center text-muted transition-colors hover:bg-surface-muted hover:text-ink"
+        disabled={current <= min}
+        className={stepper}
         onClick={() => set(current - step)}
       >
         <Minus size={14} weight="bold" />
@@ -50,13 +56,15 @@ export function NumberField({
         value={current}
         min={min}
         max={max}
-        onChange={(e) => set(Number(e.target.value))}
-        className="h-full w-14 border-x border-line bg-transparent text-center text-sm tabular-nums text-ink outline-none"
+        step={step}
+        onChange={(e) => set(e.target.valueAsNumber)}
+        className="w-14 border-x border-line bg-transparent text-center text-sm tabular-nums text-ink outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
       />
       <button
         type="button"
         aria-label="Increase"
-        className="flex size-10 items-center justify-center text-muted transition-colors hover:bg-surface-muted hover:text-ink"
+        disabled={current >= max}
+        className={stepper}
         onClick={() => set(current + step)}
       >
         <Plus size={14} weight="bold" />

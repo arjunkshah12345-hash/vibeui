@@ -1,0 +1,125 @@
+"use client";
+
+import * as React from "react";
+import Link from "next/link";
+import { ArrowUpRight } from "@phosphor-icons/react";
+import { Empty } from "@/components/ui/empty";
+import { SearchField } from "@/components/ui/search-field";
+import { categories, type ComponentSummary } from "@/lib/categories";
+import { cn } from "@/lib/utils";
+import { DemoStage } from "./demo-stage";
+import { LazyMount } from "./lazy-mount";
+
+function Tile({ component }: { component: ComponentSummary }) {
+  return (
+    <article className="group flex flex-col overflow-hidden rounded-lg border border-line bg-surface shadow-quiet transition-[border-color,box-shadow] duration-300 hover:border-line-strong hover:shadow-lift">
+      <div className="relative flex h-60 items-center justify-center overflow-hidden border-b border-line bg-surface-muted/50 bg-dots px-6">
+        <LazyMount
+          placeholder={<div className="h-20 w-36 animate-pulse-quiet rounded-md bg-surface-muted" />}
+        >
+          <DemoStage slug={component.name} mode="tile" />
+        </LazyMount>
+      </div>
+      <Link
+        href={`/components/${component.name}`}
+        className="flex items-center justify-between gap-3 px-4 py-3.5"
+      >
+        <div className="min-w-0">
+          <h3 className="truncate text-sm font-medium tracking-[-0.01em] text-ink">
+            {component.title.replace(/([a-z])([A-Z])/g, "$1 $2")}
+          </h3>
+          <p className="mt-0.5 truncate text-[13px] text-muted">{component.description}</p>
+        </div>
+        <ArrowUpRight
+          size={16}
+          weight="bold"
+          className="shrink-0 text-faint transition-[transform,color] duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+        />
+      </Link>
+    </article>
+  );
+}
+
+/** Searchable, filterable gallery of live component previews. */
+export function ComponentBrowser({ components }: { components: ComponentSummary[] }) {
+  const [query, setQuery] = React.useState("");
+  const [category, setCategory] = React.useState<string>("all");
+
+  const q = query.trim().toLowerCase();
+  const filtered = components.filter(
+    (c) =>
+      (category === "all" || c.category === category) &&
+      (!q || `${c.name} ${c.title} ${c.description} ${c.category}`.toLowerCase().includes(q)),
+  );
+
+  const counts = new Map<string, number>();
+  for (const c of components) counts.set(c.category, (counts.get(c.category) ?? 0) + 1);
+
+  const groups = categories
+    .map((cat) => ({ cat, items: filtered.filter((c) => c.category === cat.id) }))
+    .filter((g) => g.items.length > 0);
+
+  const chip = (active: boolean) =>
+    cn(
+      "inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full border px-3.5 text-[13px] font-medium transition-colors duration-150",
+      active
+        ? "border-ink bg-ink text-surface"
+        : "border-line bg-surface text-muted hover:border-line-strong hover:text-ink",
+    );
+
+  return (
+    <div>
+      <div className="sticky top-14 z-20 -mx-5 border-b border-line bg-canvas/85 px-5 py-3 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 md:flex-row md:items-center">
+          <SearchField
+            value={query}
+            onChange={setQuery}
+            placeholder={`Search ${components.length} components…`}
+            className="md:w-72"
+          />
+          <div className="scrollbar-none -mx-1 flex gap-1.5 overflow-x-auto px-1 py-0.5">
+            <button type="button" className={chip(category === "all")} onClick={() => setCategory("all")}>
+              All <span className="opacity-60">{components.length}</span>
+            </button>
+            {categories.map((c) => (
+              <button
+                key={c.id}
+                type="button"
+                className={chip(category === c.id)}
+                onClick={() => setCategory(c.id)}
+              >
+                {c.label} <span className="opacity-60">{counts.get(c.id) ?? 0}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-6xl pb-24 pt-10">
+        {groups.length === 0 ? (
+          <Empty
+            title={`No components match “${query}”`}
+            description="Try a broader term, or clear the category filter."
+          />
+        ) : (
+          groups.map(({ cat, items }) => (
+            <section key={cat.id} id={cat.id} className="mb-16 scroll-mt-36 last:mb-0">
+              <div className="mb-5 flex items-baseline justify-between gap-4">
+                <div>
+                  <h2 className="font-display text-3xl tracking-[-0.01em] text-ink">{cat.label}</h2>
+                  <p className="mt-1 text-sm text-muted">{cat.blurb}</p>
+                </div>
+                <span className="font-mono text-xs text-faint">{items.length}</span>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {items.map((c) => (
+                  <Tile key={c.name} component={c} />
+                ))}
+              </div>
+            </section>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}

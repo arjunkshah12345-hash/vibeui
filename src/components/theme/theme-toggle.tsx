@@ -1,24 +1,25 @@
 "use client";
 
 import { Moon, Sun } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { useTheme } from "./theme-provider";
 
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, toggleTheme } = useTheme();
-  const isDark = theme === "dark";
 
   return (
-    <Button
+    <button
       type="button"
-      variant="secondary"
-      size="icon"
-      className={className}
       onClick={toggleTheme}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      title={isDark ? "Light mode" : "Dark mode"}
+      aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+      className={cn(
+        "relative flex size-9 items-center justify-center rounded-sm text-muted transition-colors duration-200 hover:bg-surface-muted hover:text-ink",
+        className,
+      )}
     >
-      {isDark ? <Sun size={18} weight="bold" /> : <Moon size={18} weight="bold" />}
-    </Button>
+      {/* Icons swap with CSS so the first paint always matches the real theme. */}
+      <Sun size={18} weight="bold" className="hidden dark:block" />
+      <Moon size={18} weight="bold" className="dark:hidden" />
+    </button>
   );
 }

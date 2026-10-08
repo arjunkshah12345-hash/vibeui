@@ -1,13 +1,13 @@
 # VibeUI for agents
 
-Machine-facing entrypoints so coding agents can discover and install components without browsing the gallery.
+Machine-facing entrypoints so coding agents can discover and install components without browsing the site.
 
 ## Surfaces
 
 | Surface | Entry | When |
 |---------|-------|------|
 | MCP (stdio) | `node mcp/server.mjs` or `vibeui mcp` | Cursor / Claude Desktop / any MCP host |
-| CLI | `npx vibeui` / `node bin/vibeui.mjs` | Scripts, CI, one-shot agent shells |
+| CLI | `npx github:arjunkshah12345-hash/vibeui` / `node bin/vibeui.mjs` | Scripts, CI, one-shot agent shells |
 | Registry JSON | `registry/components.json` | Offline catalog |
 | llms.txt | `/llms.txt` in repo root | Model context bootstrap |
 
@@ -63,12 +63,12 @@ node bin/vibeui.mjs mcp
 
 1. `search_components` or `vibeui search <need>`
 2. `get_component` to read source + deps
-3. Ensure peers + tokens + `cn()` utils
-4. `add_component` / `vibeui add`
+3. Ensure peers + tokens + `cn()` utils (tokens are imported **after** `@import "tailwindcss"`)
+4. `add_component` / `vibeui add` (sibling imports are copied automatically; check `registryDependencies`)
 5. Import and wire into the app; match local conventions
 
 ## Do not
 
 - Invent APIs that are not in the source file
 - Wrap VibeUI in an opaque npm package runtime (copy-owned model)
-- Force purple/neon styling over the warm token set
+- Force purple/neon styling over the warm token set, or hard-code hex values instead of tokens

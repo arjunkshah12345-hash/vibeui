@@ -4,6 +4,7 @@ import * as React from "react";
 import { X } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
+/** Free-form tag entry. Enter or comma adds, Backspace removes the last. */
 export function TagInput({
   tags,
   onChange,
@@ -27,21 +28,21 @@ export function TagInput({
   return (
     <div
       className={cn(
-        "flex min-h-10 flex-wrap items-center gap-1.5 rounded-[var(--radius-sm)] border border-line bg-surface px-2 py-1.5 focus-within:border-ink",
+        "flex min-h-10 flex-wrap items-center gap-1.5 rounded-sm border border-line-strong bg-surface px-1.5 py-1.5 shadow-quiet transition-[border-color,box-shadow] duration-150 hover:border-faint focus-within:border-accent focus-within:ring-[3px] focus-within:ring-ring",
         className,
       )}
     >
       {tags.map((tag) => (
         <span
           key={tag}
-          className="inline-flex items-center gap-1 rounded-full bg-surface-muted px-2 py-0.5 text-[12px] text-ink-soft"
+          className="inline-flex h-6 items-center gap-1 rounded-[6px] bg-surface-muted pl-2 pr-1 text-[12px] font-medium text-ink-soft"
         >
           {tag}
           <button
             type="button"
             aria-label={`Remove ${tag}`}
             onClick={() => onChange(tags.filter((t) => t !== tag))}
-            className="text-faint hover:text-ink"
+            className="flex size-4 items-center justify-center rounded-full text-faint transition-colors hover:bg-surface-sunken hover:text-ink"
           >
             <X size={10} weight="bold" />
           </button>
@@ -50,6 +51,7 @@ export function TagInput({
       <input
         value={draft}
         onChange={(e) => setDraft(e.target.value)}
+        onBlur={add}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === ",") {
             e.preventDefault();
@@ -60,7 +62,8 @@ export function TagInput({
           }
         }}
         placeholder={tags.length ? "" : placeholder}
-        className="min-w-[80px] flex-1 bg-transparent px-1 text-sm text-ink outline-none placeholder:text-faint"
+        aria-label="Add tag"
+        className="min-w-20 flex-1 bg-transparent px-1.5 text-sm text-ink outline-none placeholder:text-faint"
       />
     </div>
   );

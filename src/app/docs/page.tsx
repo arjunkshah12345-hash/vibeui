@@ -1,171 +1,83 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { CodeBlock } from "@/components/ui/code-block";
-import { Pill } from "@/components/ui/pill";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { Code, DocHeader, DocLink, H2, List, P } from "@/components/docs/prose";
 import { site } from "@/lib/site";
 
-export const metadata = {
-  title: "Docs — VibeUI",
-  description: "Install and integrate VibeUI components into your React app.",
+export const metadata: Metadata = {
+  title: "Introduction",
+  description: "What VibeUI is, how the copy-owned model works, and where to start.",
 };
 
-export default function DocsPage() {
+const next = [
+  { href: "/docs/installation", title: "Installation", body: "Peers, tokens and your first component." },
+  { href: "/docs/theming", title: "Theming", body: "Retint the accent, canvas and dark palette." },
+  { href: "/docs/cli", title: "CLI", body: "Search, read and add components from the terminal." },
+  { href: "/docs/agents", title: "Agents and MCP", body: "Let your coding agent do the integrating." },
+];
+
+export default function DocsIntro() {
   return (
-    <main className="mx-auto w-full max-w-3xl flex-1 px-5 pb-24 pt-12">
-      <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.12em] text-faint">
-        Documentation
-      </p>
-      <h1 className="font-[family-name:var(--font-display)] text-[clamp(2rem,5vw,2.75rem)] tracking-[-0.03em] text-ink">
-        Integrate VibeUI
-      </h1>
-      <p className="mt-3 text-[16px] leading-relaxed text-muted">
-        Copy-owned components — same model as shadcn. No black-box npm UI
-        runtime. Paste tokens, copy files, ship.
-      </p>
-      <div className="mt-4 flex flex-wrap gap-2">
-        <Pill tone="sage" dot>
-          MIT
-        </Pill>
-        <Pill tone="sky">React + Tailwind v4</Pill>
-        <Pill tone="outline">Own the source</Pill>
+    <>
+      <DocHeader eyebrow="Getting started" title="Introduction">
+        VibeUI is a library of {site.count} React and Tailwind components that you copy into your
+        project. There is no runtime package: once a file is in your repo, it is yours to read, change
+        and keep.
+      </DocHeader>
+
+      <H2 id="model">The copy-owned model</H2>
+      <P>
+        If you have used shadcn/ui, this will feel familiar. Instead of importing from{" "}
+        <Code>node_modules</Code>, you add a component to <Code>src/components/ui</Code> and import it
+        from there. Because the source is local, you can change a radius, swap an animation or delete a
+        prop without waiting on a release.
+      </P>
+      <List>
+        <li>
+          <strong className="font-medium text-ink">Tokens, not themes.</strong> One CSS file defines
+          colors, radii, shadows, easing, keyframes and the dark variant. Components only read tokens.
+        </li>
+        <li>
+          <strong className="font-medium text-ink">Four peers.</strong> <Code>clsx</Code>,{" "}
+          <Code>tailwind-merge</Code>, <Code>class-variance-authority</Code> and{" "}
+          <Code>@phosphor-icons/react</Code>. No animation library required.
+        </li>
+        <li>
+          <strong className="font-medium text-ink">Accessible by default.</strong> Native inputs where
+          they exist, real roles and keyboard handling on the rest, and reduced-motion honoured.
+        </li>
+      </List>
+
+      <H2 id="requirements">Requirements</H2>
+      <List>
+        <li>React 18 or newer</li>
+        <li>Tailwind CSS v4</li>
+        <li>
+          A <Code>@/*</Code> path alias pointing at <Code>src/*</Code> (the default in most Next.js and
+          Vite templates)
+        </li>
+      </List>
+
+      <H2 id="next">Where to next</H2>
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        {next.map((n) => (
+          <Link
+            key={n.href}
+            href={n.href}
+            className="group rounded-lg border border-line bg-surface p-5 shadow-quiet transition-[border-color,box-shadow] duration-300 hover:border-line-strong hover:shadow-lift"
+          >
+            <span className="flex items-center justify-between text-[15px] font-medium tracking-[-0.01em] text-ink">
+              {n.title}
+              <ArrowRight size={14} weight="bold" className="text-faint transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-accent" />
+            </span>
+            <span className="mt-1 block text-[13px] leading-snug text-muted">{n.body}</span>
+          </Link>
+        ))}
       </div>
-
-      <section className="mt-14 border-t border-line pt-10">
-        <h2 className="text-xl font-medium tracking-[-0.02em] text-ink">
-          1. Dependencies
-        </h2>
-        <p className="mt-2 text-sm text-muted">
-          In your app (Next.js / Vite / whatever React 18+):
-        </p>
-        <div className="mt-4">
-          <CodeBlock
-            language="bash"
-            code={`npm i clsx tailwind-merge class-variance-authority @phosphor-icons/react`}
-          />
-        </div>
-      </section>
-
-      <section className="mt-12 border-t border-line pt-10">
-        <h2 className="text-xl font-medium tracking-[-0.02em] text-ink">
-          2. Design tokens
-        </h2>
-        <p className="mt-2 text-sm text-muted">
-          Copy{" "}
-          <code className="font-mono text-[12px] text-ink-soft">
-            templates/vibeui.css
-          </code>{" "}
-          into your global stylesheet (or merge the{" "}
-          <code className="font-mono text-[12px]">:root</code> /{" "}
-          <code className="font-mono text-[12px]">.dark</code> blocks). Toggle
-          dark with a <code className="font-mono text-[12px]">.dark</code> class
-          on <code className="font-mono text-[12px]">&lt;html&gt;</code>.
-        </p>
-      </section>
-
-      <section className="mt-12 border-t border-line pt-10">
-        <h2 className="text-xl font-medium tracking-[-0.02em] text-ink">
-          3. Utils
-        </h2>
-        <p className="mt-2 text-sm text-muted">
-          Add <code className="font-mono text-[12px]">cn()</code> helper:
-        </p>
-        <div className="mt-4">
-          <CodeBlock
-            language="ts"
-            code={`// src/lib/utils.ts
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}`}
-          />
-        </div>
-      </section>
-
-      <section className="mt-12 border-t border-line pt-10">
-        <h2 className="text-xl font-medium tracking-[-0.02em] text-ink">
-          4. Copy a component
-        </h2>
-        <p className="mt-2 text-sm text-muted">
-          From a clone of this repo, copy into your project:
-        </p>
-        <div className="mt-4">
-          <CodeBlock
-            language="bash"
-            code={`git clone https://github.com/${site.repo}.git
-cd vibeui
-npm run add -- button ../my-app/src/components/ui`}
-          />
-        </div>
-        <p className="mt-4 text-sm text-muted">
-          Or manually copy{" "}
-          <code className="font-mono text-[12px]">
-            src/components/ui/button.tsx
-          </code>{" "}
-          and import:
-        </p>
-        <div className="mt-4">
-          <CodeBlock
-            language="tsx"
-            code={`import { Button } from "@/components/ui/button"
-
-export function Example() {
-  return <Button>Primary</Button>
-}`}
-          />
-        </div>
-      </section>
-
-      <section className="mt-12 border-t border-line pt-10">
-        <h2 className="text-xl font-medium tracking-[-0.02em] text-ink">
-          Path alias
-        </h2>
-        <p className="mt-2 text-sm text-muted">
-          Components import <code className="font-mono text-[12px]">@/lib/utils</code>.
-          Ensure your <code className="font-mono text-[12px]">tsconfig</code> has:
-        </p>
-        <div className="mt-4">
-          <CodeBlock
-            language="json"
-            code={`{
-  "compilerOptions": {
-    "paths": { "@/*": ["./src/*"] }
-  }
-}`}
-          />
-        </div>
-      </section>
-
-      <section className="mt-12 border-t border-line pt-10">
-        <h2 className="text-xl font-medium tracking-[-0.02em] text-ink">
-          Explore
-        </h2>
-        <ul className="mt-3 space-y-2 text-sm text-muted">
-          <li>
-            <Link href="/gallery" className="font-medium text-ink underline decoration-line-strong underline-offset-4">
-              Gallery
-            </Link>{" "}
-            — every component live
-          </li>
-          <li>
-            <a
-              href={site.url}
-              className="font-medium text-ink underline decoration-line-strong underline-offset-4"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>{" "}
-            — source, issues, PRs
-          </li>
-          <li>
-            <code className="font-mono text-[12px] text-ink-soft">
-              registry/components.json
-            </code>{" "}
-            — machine-readable catalog
-          </li>
-        </ul>
-      </section>
-    </main>
+      <P className="mt-10">
+        Prefer to just look around? Browse the <DocLink href="/components">live component gallery</DocLink>{" "}
+        or read the source on <DocLink href={site.url}>GitHub</DocLink>.
+      </P>
+    </>
   );
 }

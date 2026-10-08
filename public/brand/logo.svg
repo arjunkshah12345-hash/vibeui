@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" fill="none">
-  <rect x="0" y="4" width="40" height="40" rx="10" fill="#1c1c1a"/>
-  <path d="M10.5 34V16h3.9l6.3 10.65L27 16h3.75v18h-3.45V23.3L21.45 35.5h-.9L14 23.3V34H10.5z" fill="#fbfbfa"/>
-  <text x="52" y="34" font-family="Georgia, 'Times New Roman', serif" font-size="28" fill="#1c1c1a" letter-spacing="-0.5">Vibe</text>
-  <text x="118" y="34" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#7a7a74" letter-spacing="2.4">UI</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 48" fill="none">
+  <rect x="0" y="4" width="40" height="40" rx="10" fill="#1b1a17"/>
+  <path d="M11.9 18.1 20 32.2l8.1-14.1" stroke="#f8f7f4" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="28.1" cy="18.1" r="3.75" fill="#ff7a3d"/>
+  <text x="52" y="34" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" font-size="32" fill="#1b1a17" letter-spacing="-0.5">VibeUI</text>
 </svg>

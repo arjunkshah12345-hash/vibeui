@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+/** Quiet note with an accent rule, lighter than a filled alert. */
 export function Callout({
   title,
   children,
@@ -12,12 +13,13 @@ export function Callout({
   return (
     <aside
       className={cn(
-        "rounded-[var(--radius-md)] border-l-2 border-ink bg-surface-muted px-4 py-3",
+        "relative rounded-md bg-surface-muted py-3.5 pl-5 pr-4",
+        "before:absolute before:inset-y-2.5 before:left-2 before:w-[3px] before:rounded-full before:bg-accent",
         className,
       )}
     >
       {title ? (
-        <p className="mb-1 text-sm font-medium tracking-[-0.01em] text-ink">
+        <p className="mb-0.5 text-sm font-medium tracking-[-0.01em] text-ink">
           {title}
         </p>
       ) : null}

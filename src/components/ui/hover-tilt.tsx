@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+/** Card that leans toward the cursor in perspective. */
 export function HoverTilt({
   children,
   className,
@@ -10,25 +11,32 @@ export function HoverTilt({
   children: React.ReactNode;
   className?: string;
 }) {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const [t, setT] = React.useState({ x: 0, y: 0 });
+  const wrap = React.useRef<HTMLDivElement>(null);
+  const card = React.useRef<HTMLDivElement>(null);
 
   return (
     <div
-      ref={ref}
+      ref={wrap}
       className={cn("[perspective:800px]", className)}
       onMouseMove={(e) => {
-        const r = ref.current?.getBoundingClientRect();
-        if (!r) return;
+        const r = wrap.current?.getBoundingClientRect();
+        const el = card.current;
+        if (!r || !el) return;
         const px = (e.clientX - r.left) / r.width;
         const py = (e.clientY - r.top) / r.height;
-        setT({ x: (py - 0.5) * -10, y: (px - 0.5) * 10 });
+        el.style.transition = "transform 0.1s linear";
+        el.style.transform = `rotateX(${(py - 0.5) * -12}deg) rotateY(${(px - 0.5) * 12}deg)`;
       }}
-      onMouseLeave={() => setT({ x: 0, y: 0 })}
+      onMouseLeave={() => {
+        const el = card.current;
+        if (!el) return;
+        el.style.transition = "transform 0.6s var(--ease-out)";
+        el.style.transform = "rotateX(0) rotateY(0)";
+      }}
     >
       <div
-        className="rounded-[var(--radius-lg)] border border-line bg-surface p-5 transition-transform duration-200 ease-[var(--ease-out)]"
-        style={{ transform: `rotateX(${t.x}deg) rotateY(${t.y}deg)` }}
+        ref={card}
+        className="rounded-lg border border-line bg-surface p-5 shadow-quiet will-change-transform"
       >
         {children}
       </div>

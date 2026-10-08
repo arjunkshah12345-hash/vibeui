@@ -1,40 +1,62 @@
-import { cn } from "@/lib/utils";
+import * as React from "react";
+import {
+  CheckCircle,
+  Info,
+  Warning,
+  WarningOctagon,
+} from "@phosphor-icons/react/dist/ssr";
 import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
+/** Inline status message with tone, icon and optional title. */
 const alertVariants = cva(
-  "relative w-full rounded-[var(--radius-md)] border px-4 py-3 text-sm leading-relaxed",
+  "relative flex w-full gap-3 rounded-md border px-4 py-3.5 text-sm leading-relaxed",
   {
     variants: {
       tone: {
         neutral: "border-line bg-surface-muted text-ink-soft",
-        sky: "border-transparent bg-pastel-sky text-pastel-sky-ink",
-        sage: "border-transparent bg-pastel-sage text-pastel-sage-ink",
-        sand: "border-transparent bg-pastel-sand text-pastel-sand-ink",
-        rose: "border-transparent bg-pastel-rose text-pastel-rose-ink",
+        sky: "border-pastel-sky-ink/15 bg-pastel-sky text-pastel-sky-ink",
+        sage: "border-pastel-sage-ink/15 bg-pastel-sage text-pastel-sage-ink",
+        sand: "border-pastel-sand-ink/15 bg-pastel-sand text-pastel-sand-ink",
+        rose: "border-pastel-rose-ink/15 bg-pastel-rose text-pastel-rose-ink",
       },
     },
     defaultVariants: { tone: "neutral" },
   },
 );
 
+const icons = {
+  neutral: Info,
+  sky: Info,
+  sage: CheckCircle,
+  sand: Warning,
+  rose: WarningOctagon,
+} as const;
+
 export function Alert({
   className,
-  tone,
+  tone = "neutral",
   title,
   children,
   ...props
-}: React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof alertVariants> & { title?: string }) {
+}: Omit<React.HTMLAttributes<HTMLDivElement>, "title"> &
+  VariantProps<typeof alertVariants> & { title?: React.ReactNode }) {
+  const Icon = icons[tone ?? "neutral"];
   return (
     <div
       role="alert"
       className={cn(alertVariants({ tone }), className)}
       {...props}
     >
-      {title ? (
-        <p className="mb-0.5 font-medium tracking-[-0.01em]">{title}</p>
-      ) : null}
-      <div className="opacity-90">{children}</div>
+      <Icon size={18} weight="fill" className="mt-0.5 shrink-0" />
+      <div className="min-w-0">
+        {title ? (
+          <p className="font-medium tracking-[-0.01em]">{title}</p>
+        ) : null}
+        {children ? (
+          <div className={cn(title && "mt-0.5", "opacity-85")}>{children}</div>
+        ) : null}
+      </div>
     </div>
   );
 }

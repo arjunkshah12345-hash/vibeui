@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+/** Link or span whose underline draws in from the left on hover. */
 export function UnderlineReveal({
   children,
   href,
@@ -13,15 +14,12 @@ export function UnderlineReveal({
   return (
     <Comp
       href={href}
-      className={cn(
-        "group relative inline-block font-medium text-ink",
-        className,
-      )}
+      className={cn("group relative inline-block font-medium text-ink", className)}
     >
       {children}
       <span
         aria-hidden
-        className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-ink transition-transform duration-500 ease-[var(--ease-out)] group-hover:scale-x-100"
+        className="absolute -bottom-0.5 left-0 h-[2px] w-full origin-right scale-x-0 rounded-full bg-accent transition-transform duration-500 ease-out group-hover:origin-left group-hover:scale-x-100"
       />
     </Comp>
   );

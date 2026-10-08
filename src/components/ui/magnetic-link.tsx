@@ -4,6 +4,7 @@ import * as React from "react";
 import { ArrowUpRight } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
+/** Link that drifts toward the cursor, with an arrow that nudges out. */
 export function MagneticLink({
   href,
   children,
@@ -14,32 +15,37 @@ export function MagneticLink({
   className?: string;
 }) {
   const ref = React.useRef<HTMLAnchorElement>(null);
-  const [o, setO] = React.useState({ x: 0, y: 0 });
 
   return (
     <a
       ref={ref}
       href={href}
       className={cn(
-        "inline-flex items-center gap-1.5 text-sm font-medium text-ink",
+        "group inline-flex items-center gap-1.5 text-sm font-medium text-ink will-change-transform",
         className,
       )}
-      style={{
-        transform: `translate(${o.x}px, ${o.y}px)`,
-        transition: "transform 0.15s var(--ease-out)",
-      }}
       onMouseMove={(e) => {
-        const r = ref.current?.getBoundingClientRect();
-        if (!r) return;
-        setO({
-          x: ((e.clientX - (r.left + r.width / 2)) / r.width) * 12,
-          y: ((e.clientY - (r.top + r.height / 2)) / r.height) * 12,
-        });
+        const el = ref.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        el.style.transition = "transform 0.12s linear";
+        el.style.transform = `translate(${((e.clientX - (r.left + r.width / 2)) / r.width) * 14}px, ${((e.clientY - (r.top + r.height / 2)) / r.height) * 10}px)`;
       }}
-      onMouseLeave={() => setO({ x: 0, y: 0 })}
+      onMouseLeave={() => {
+        const el = ref.current;
+        if (!el) return;
+        el.style.transition = "transform 0.5s var(--ease-spring)";
+        el.style.transform = "translate(0,0)";
+      }}
     >
-      {children}
-      <ArrowUpRight size={14} weight="bold" />
+      <span className="border-b border-line-strong pb-px transition-colors duration-200 group-hover:border-accent group-hover:text-accent">
+        {children}
+      </span>
+      <ArrowUpRight
+        size={14}
+        weight="bold"
+        className="transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+      />
     </a>
   );
 }

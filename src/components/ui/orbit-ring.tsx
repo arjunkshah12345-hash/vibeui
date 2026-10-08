@@ -1,23 +1,30 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 
+/** Labels circling a center point. Chips stay upright while the ring turns. */
 export function OrbitRing({
   items,
+  center,
+  radius = 104,
   className,
 }: {
   items: { id: string; label: string }[];
+  center?: React.ReactNode;
+  radius?: number;
   className?: string;
 }) {
+  const size = radius * 2 + 80;
+
   return (
     <div
-      className={cn(
-        "relative mx-auto flex size-56 items-center justify-center",
-        className,
-      )}
+      className={cn("group/orbit relative mx-auto flex items-center justify-center", className)}
+      style={{ width: size, height: size }}
     >
-      <div className="absolute inset-6 rounded-full border border-dashed border-line" />
-      <div className="vibe-orbit absolute inset-0">
+      <div
+        aria-hidden
+        className="absolute rounded-full border border-dashed border-line-strong"
+        style={{ width: radius * 2, height: radius * 2 }}
+      />
+      <div className="absolute inset-0 animate-orbit group-hover/orbit:[animation-play-state:paused]">
         {items.map((item, i) => {
           const angle = (360 / items.length) * i;
           return (
@@ -25,19 +32,20 @@ export function OrbitRing({
               key={item.id}
               className="absolute left-1/2 top-1/2"
               style={{
-                transform: `rotate(${angle}deg) translateY(-104px) rotate(-${angle}deg)`,
+                transform: `rotate(${angle}deg) translateY(-${radius}px) rotate(-${angle}deg)`,
               }}
             >
-              <span className="flex -translate-x-1/2 -translate-y-1/2 items-center rounded-full border border-line bg-surface px-2.5 py-1 text-[11px] font-medium text-ink shadow-[var(--shadow-quiet)]">
-                {item.label}
+              <span className="block -translate-x-1/2 -translate-y-1/2 animate-orbit [animation-direction:reverse] group-hover/orbit:[animation-play-state:paused]">
+                <span className="block rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-ink shadow-quiet">
+                  {item.label}
+                </span>
               </span>
             </span>
           );
         })}
       </div>
-      <div className="relative z-10 rounded-full border border-line bg-surface px-4 py-2 text-center">
-        <p className="text-xs font-medium text-ink">VibeUI</p>
-        <p className="font-mono text-[10px] text-faint">orbit</p>
+      <div className="relative z-10 flex size-16 items-center justify-center rounded-full bg-ink text-center font-display text-lg text-surface shadow-lift">
+        {center ?? "UI"}
       </div>
     </div>
   );

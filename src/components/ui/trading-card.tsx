@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+/** Collectible card that tilts in 3D and catches a glare under the cursor. */
 export function TradingCard({
   title,
   subtitle,
@@ -17,53 +18,71 @@ export function TradingCard({
   children?: React.ReactNode;
 }) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = React.useState({ x: 0, y: 0 });
+
+  const onMove = (e: React.MouseEvent) => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    el.style.transition = "transform 0.1s linear";
+    el.style.transform = `rotateX(${(py - 0.5) * -14}deg) rotateY(${(px - 0.5) * 14}deg) scale(1.02)`;
+    el.style.setProperty("--gx", `${px * 100}%`);
+    el.style.setProperty("--gy", `${py * 100}%`);
+  };
+
+  const onLeave = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transition = "transform 0.6s var(--ease-out)";
+    el.style.transform = "rotateX(0) rotateY(0) scale(1)";
+  };
 
   return (
     <div
-      ref={ref}
-      className={cn(
-        "relative h-64 w-full max-w-[240px] [perspective:900px]",
-        className,
-      )}
-      onMouseMove={(e) => {
-        const el = ref.current;
-        if (!el) return;
-        const r = el.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width;
-        const py = (e.clientY - r.top) / r.height;
-        setTilt({ x: (py - 0.5) * -16, y: (px - 0.5) * 16 });
-      }}
-      onMouseLeave={() => setTilt({ x: 0, y: 0 })}
+      className={cn("w-full max-w-[250px] [perspective:900px]", className)}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
     >
       <div
-        className="relative h-full overflow-hidden rounded-[var(--radius-lg)] border border-line bg-surface p-5 shadow-[var(--shadow-quiet)] transition-transform duration-200 ease-[var(--ease-out)]"
-        style={{
-          transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-          transformStyle: "preserve-3d",
-        }}
+        ref={ref}
+        className="group/card relative flex aspect-[5/7] flex-col overflow-hidden rounded-lg border border-line-strong bg-surface p-5 shadow-lift [--gx:50%] [--gy:30%] [transform-style:preserve-3d]"
       >
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-40"
+          className="pointer-events-none absolute inset-0 opacity-90"
           style={{
-            background: `radial-gradient(circle at ${50 + tilt.y * 2}% ${50 + tilt.x * 2}%, color-mix(in oklab, var(--ink) 12%, transparent), transparent 55%)`,
+            background:
+              "radial-gradient(circle at var(--gx) var(--gy), color-mix(in oklab, var(--accent) 22%, transparent), transparent 55%)",
           }}
         />
-        {meta ? (
-          <p className="relative font-mono text-[10px] uppercase tracking-[0.1em] text-faint">
-            {meta}
-          </p>
-        ) : null}
-        <h3 className="relative mt-6 text-xl font-medium tracking-[-0.03em] text-ink">
-          {title}
-        </h3>
-        {subtitle ? (
-          <p className="relative mt-2 text-sm leading-relaxed text-muted">
-            {subtitle}
-          </p>
-        ) : null}
-        {children ? <div className="relative mt-auto pt-6">{children}</div> : null}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-0 mix-blend-overlay transition-opacity duration-300 group-hover/card:opacity-100"
+          style={{
+            background:
+              "radial-gradient(circle at var(--gx) var(--gy), rgb(255 255 255 / 0.7), transparent 40%)",
+          }}
+        />
+        <div className="relative flex items-center justify-between">
+          {meta ? (
+            <span className="font-mono text-[11px] text-muted">{meta}</span>
+          ) : (
+            <span />
+          )}
+          <span className="size-2 rounded-full bg-accent" />
+        </div>
+        <div className="relative mt-auto [transform:translateZ(30px)]">
+          <h3 className="font-display text-[34px] leading-none tracking-[-0.01em] text-ink">
+            {title}
+          </h3>
+          {subtitle ? (
+            <p className="mt-3 text-[13px] leading-relaxed text-muted">
+              {subtitle}
+            </p>
+          ) : null}
+          {children ? <div className="mt-4">{children}</div> : null}
+        </div>
       </div>
     </div>
   );

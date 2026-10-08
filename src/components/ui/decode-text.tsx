@@ -3,49 +3,63 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+const CHARS = "abcdefghijklmnopqrstuvwxyz0123456789<>/{}[]=+*";
+
+/** Monospace text that decodes from noise the first time it scrolls into view. */
 export function DecodeText({
   text,
   className,
+  duration = 1100,
 }: {
   text: string;
   className?: string;
+  duration?: number;
 }) {
-  const [shown, setShown] = React.useState(false);
   const ref = React.useRef<HTMLSpanElement>(null);
+  const [display, setDisplay] = React.useState(() =>
+    text.replace(/\S/g, "·"),
+  );
 
   React.useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    let raf = 0;
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e?.isIntersecting) setShown(true);
+        if (!e?.isIntersecting) return;
+        io.disconnect();
+        const start = performance.now();
+        const tick = (now: number) => {
+          const t = Math.min(1, (now - start) / duration);
+          const reveal = Math.floor(t * text.length);
+          let out = "";
+          for (let i = 0; i < text.length; i++) {
+            out +=
+              text[i] === " " || i < reveal
+                ? text[i]
+                : CHARS[Math.floor(Math.random() * CHARS.length)];
+          }
+          setDisplay(t < 1 ? out : text);
+          if (t < 1) raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
       },
-      { threshold: 0.5 },
+      { threshold: 0.6 },
     );
     io.observe(el);
-    return () => io.disconnect();
-  }, []);
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf);
+    };
+  }, [text, duration]);
 
   return (
     <span
       ref={ref}
-      className={cn("inline-flex flex-wrap font-mono text-sm text-ink", className)}
       aria-label={text}
+      className={cn("inline-block whitespace-pre font-mono text-sm text-ink", className)}
     >
-      {text.split("").map((char, i) => (
-        <span
-          key={i}
-          className="inline-block transition-all duration-500 ease-[var(--ease-out)]"
-          style={{
-            opacity: shown ? 1 : 0,
-            transform: shown ? "none" : "translateY(6px)",
-            transitionDelay: `${i * 28}ms`,
-            filter: shown ? "blur(0)" : "blur(3px)",
-          }}
-        >
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))}
+      <span aria-hidden>{display}</span>
     </span>
   );
 }

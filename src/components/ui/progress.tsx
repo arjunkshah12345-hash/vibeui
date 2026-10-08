@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+/** Determinate progress bar with an optional label and percentage. */
 export function Progress({
   value,
   className,
@@ -14,9 +15,11 @@ export function Progress({
   return (
     <div className={cn("w-full", className)}>
       {label ? (
-        <div className="mb-2 flex items-center justify-between text-xs text-muted">
-          <span>{label}</span>
-          <span className="font-mono tabular-nums text-ink-soft">{clamped}%</span>
+        <div className="mb-2 flex items-center justify-between text-[13px]">
+          <span className="font-medium text-ink-soft">{label}</span>
+          <span className="font-mono text-xs tabular-nums text-muted">
+            {Math.round(clamped)}%
+          </span>
         </div>
       ) : null}
       <div
@@ -24,10 +27,11 @@ export function Progress({
         aria-valuenow={clamped}
         aria-valuemin={0}
         aria-valuemax={100}
-        className="h-1.5 w-full overflow-hidden rounded-full bg-surface-muted"
+        aria-label={label}
+        className="h-1.5 w-full overflow-hidden rounded-full bg-surface-sunken"
       >
         <div
-          className="h-full rounded-full bg-ink transition-[width] duration-500 ease-[var(--ease-out)]"
+          className="h-full rounded-full bg-accent transition-[width] duration-700 ease-out"
           style={{ width: `${clamped}%` }}
         />
       </div>

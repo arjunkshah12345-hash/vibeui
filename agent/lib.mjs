@@ -12,6 +12,8 @@ export const REGISTRY_PATH = path.join(ROOT, "registry/components.json");
 export const TOKENS_PATH = path.join(ROOT, "templates/vibeui.css");
 export const UTILS_PATH = path.join(ROOT, "src/lib/utils.ts");
 
+const PKG = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf8"));
+
 const CATEGORY_RULES = [
   { cat: "footers", test: (n) => n.startsWith("footer-") || n === "social-links" },
   {
@@ -219,6 +221,13 @@ export function buildRegistry() {
     if (src.includes('from "motion') || src.includes("from 'motion"))
       deps.push("motion");
 
+    // Sibling components this one imports (`from "./button"`), installed transitively.
+    const registryDependencies = [
+      ...new Set(
+        [...src.matchAll(/from ["']\.\/([\w-]+)["']/g)].map((m) => m[1]),
+      ),
+    ].sort();
+
     const exports = [...src.matchAll(/export function (\w+)/g)].map((m) => m[1]);
     const client = src.includes('"use client"') || src.includes("'use client'");
 
@@ -231,6 +240,7 @@ export function buildRegistry() {
       exports: exports.length ? exports : [toPascal(name)],
       client,
       dependencies: [...new Set(deps)],
+      registryDependencies,
       tags: [categorize(name), client ? "client" : "rsc-safe"],
     };
   });
@@ -243,7 +253,7 @@ export function buildRegistry() {
 
   return {
     name: "vibeui",
-    version: "0.1.0",
+    version: PKG.version,
     license: "MIT",
     repository: "https://github.com/arjunkshah12345-hash/vibeui",
     count: components.length,
@@ -293,6 +303,7 @@ export function getComponent(rawName) {
       category: categorize(name),
       file: `src/components/ui/${name}.tsx`,
       dependencies: [],
+      registryDependencies: [],
     }),
     source,
     path: file,
@@ -329,7 +340,7 @@ npm i clsx tailwind-merge class-variance-authority @phosphor-icons/react
 \`\`\`
 
 ## Tokens
-Copy \`templates/vibeui.css\` into global CSS (Tailwind v4). Toggle dark with \`.dark\` on \`<html>\`.
+Import \`vibeui.tokens.css\` (or paste \`templates/vibeui.css\`) into your global CSS **after** \`@import "tailwindcss";\`. It carries colors, radii, shadows, easing, keyframes and the \`dark\` variant the components rely on. Toggle dark with \`.dark\` on \`<html>\`.
 
 ## Utils
 Write \`src/lib/utils.ts\` with cn() from clsx + tailwind-merge. Path alias: \`@/*\` → \`./src/*\`.
@@ -339,6 +350,7 @@ Write \`src/lib/utils.ts\` with cn() from clsx + tailwind-merge. Path alias: \`@
 npx vibeui add button --dir ./src/components/ui
 npx vibeui add trading-card footer-mega --dir ./src/components/ui
 \`\`\`
+Components that import siblings (e.g. dialog → button) pull them in automatically.
 
 ## Add via MCP
 Tools: list_components, search_components, get_component, add_component, get_tokens, get_utils, get_install_guide.
@@ -358,8 +370,17 @@ export function addComponents(names, destDir, { withTokens = false, withUtils = 
   const dest = path.resolve(process.cwd(), destDir);
   fs.mkdirSync(dest, { recursive: true });
   const results = [];
+  const seen = new Set();
+  // Walk requested components plus every sibling they import, so
+  // `add dialog` also brings `button` instead of leaving a broken import.
+  const queue = names.map((raw) => ({ raw, requested: true }));
 
-  for (const raw of names) {
+  while (queue.length) {
+    const { raw, requested } = queue.shift();
+    const key = resolveComponentName(raw);
+    if (seen.has(key)) continue;
+    seen.add(key);
+
     const comp = getComponent(raw);
     if (!comp) {
       results.push({ name: raw, ok: false, error: "not found" });
@@ -373,7 +394,11 @@ export function addComponents(names, destDir, { withTokens = false, withUtils = 
       path: destFile,
       dependencies: comp.dependencies,
       client: comp.client,
+      requested,
     });
+    for (const dep of comp.registryDependencies ?? []) {
+      queue.push({ raw: dep, requested: false });
+    }
   }
 
   if (withUtils) {

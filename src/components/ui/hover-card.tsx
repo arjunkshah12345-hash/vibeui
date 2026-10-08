@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+/** Rich preview card that opens on hover or keyboard focus. */
 export function HoverCard({
   trigger,
   children,
@@ -17,11 +18,19 @@ export function HoverCard({
 
   const show = () => {
     if (timer.current) window.clearTimeout(timer.current);
-    setOpen(true);
+    timer.current = window.setTimeout(() => setOpen(true), 120);
   };
   const hide = () => {
-    timer.current = window.setTimeout(() => setOpen(false), 120);
+    if (timer.current) window.clearTimeout(timer.current);
+    timer.current = window.setTimeout(() => setOpen(false), 140);
   };
+
+  React.useEffect(
+    () => () => {
+      if (timer.current) window.clearTimeout(timer.current);
+    },
+    [],
+  );
 
   return (
     <span
@@ -35,7 +44,7 @@ export function HoverCard({
       {open ? (
         <span
           className={cn(
-            "absolute left-1/2 top-[calc(100%+10px)] z-30 w-64 -translate-x-1/2 rounded-[var(--radius-md)] border border-line bg-surface p-4 text-left shadow-[var(--shadow-lift)] animate-fade-up",
+            "absolute left-1/2 top-[calc(100%+10px)] z-30 block w-72 -translate-x-1/2 animate-pop-in rounded-md border border-line bg-surface p-4 text-left shadow-lift",
             className,
           )}
         >

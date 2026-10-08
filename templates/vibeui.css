@@ -1,67 +1,96 @@
-/* VibeUI design tokens — paste into your global CSS (Tailwind v4). */
-/* Light + dark. Pair with Geist / Instrument Serif or your own fonts. */
+/*
+ * VibeUI tokens — paste into your global CSS (Tailwind v4), after
+ * `@import "tailwindcss";`. Everything the components depend on lives here:
+ * colors, radii, shadows, easing, fonts, keyframes and the `dark` variant.
+ *
+ * Dark mode: add the `dark` class to <html>. Add `light` or `dark` to any
+ * element to force that palette for its subtree.
+ * Fonts: set --font-geist-sans / --font-geist-mono / --font-instrument
+ * (next/font does this) or let the system stack take over.
+ */
 
-:root {
-  --canvas: #fbfbfa;
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root,
+.light {
+  --canvas: #f8f7f4;
   --surface: #ffffff;
-  --surface-muted: #f4f4f2;
-  --ink: #1c1c1a;
-  --ink-soft: #3d3d3a;
-  --muted: #7a7a74;
-  --faint: #a8a8a2;
-  --line: #e8e8e4;
-  --line-strong: #d4d4ce;
-  --focus: #1c1c1a;
-  --overlay: rgba(28, 28, 26, 0.4);
+  --surface-muted: #f2f0ec;
+  --surface-sunken: #eceae4;
+  --ink: #1b1a17;
+  --ink-soft: #44423d;
+  --muted: #77746d;
+  --faint: #a6a39b;
+  --line: rgb(27 26 23 / 0.09);
+  --line-strong: rgb(27 26 23 / 0.17);
+  --overlay: rgb(27 26 23 / 0.42);
 
-  --pastel-rose: #fdebec;
-  --pastel-rose-ink: #9f2f2d;
-  --pastel-sky: #e8f3fb;
-  --pastel-sky-ink: #1f6c9f;
-  --pastel-sage: #edf3ec;
-  --pastel-sage-ink: #346538;
-  --pastel-sand: #fbf3db;
-  --pastel-sand-ink: #8a5a00;
+  --accent: #d9480f;
+  --accent-ink: #ffffff;
+  --accent-soft: rgb(217 72 15 / 0.1);
+  --ring: rgb(217 72 15 / 0.28);
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
+  --pastel-rose: #fdecec;
+  --pastel-rose-ink: #a02e2c;
+  --pastel-sky: #e7f1fb;
+  --pastel-sky-ink: #1c5f93;
+  --pastel-sage: #e9f3ea;
+  --pastel-sage-ink: #2c6a33;
+  --pastel-sand: #fbf1d8;
+  --pastel-sand-ink: #865500;
 
-  --shadow-quiet: 0 1px 2px rgba(28, 28, 26, 0.04);
-  --shadow-lift: 0 8px 24px rgba(28, 28, 26, 0.06);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-quiet: 0 1px 1px rgb(27 26 23 / 0.04), 0 1px 3px rgb(27 26 23 / 0.05);
+  --shadow-lift:
+    0 1px 2px rgb(27 26 23 / 0.04), 0 8px 20px -6px rgb(27 26 23 / 0.1),
+    0 20px 40px -16px rgb(27 26 23 / 0.1);
+  --shadow-pop:
+    0 1px 2px rgb(27 26 23 / 0.06), 0 12px 32px -8px rgb(27 26 23 / 0.18),
+    0 32px 64px -24px rgb(27 26 23 / 0.22);
+  --shadow-inset: inset 0 1px 0 rgb(255 255 255 / 0.14);
 }
 
 .dark {
-  --canvas: #121110;
-  --surface: #1c1b19;
-  --surface-muted: #242320;
-  --ink: #f5f4f2;
-  --ink-soft: #d8d6d1;
-  --muted: #9a9790;
-  --faint: #6f6c65;
-  --line: rgba(245, 244, 242, 0.1);
-  --line-strong: rgba(245, 244, 242, 0.18);
-  --focus: #f5f4f2;
-  --overlay: rgba(0, 0, 0, 0.55);
+  --canvas: #0f0e0d;
+  --surface: #181715;
+  --surface-muted: #201e1c;
+  --surface-sunken: #121110;
+  --ink: #f4f2ee;
+  --ink-soft: #d6d3cc;
+  --muted: #9a968d;
+  --faint: #67645d;
+  --line: rgb(244 242 238 / 0.09);
+  --line-strong: rgb(244 242 238 / 0.18);
+  --overlay: rgb(0 0 0 / 0.6);
 
-  --pastel-rose: #3a2424;
-  --pastel-rose-ink: #f0b4b2;
-  --pastel-sky: #1e2f3a;
-  --pastel-sky-ink: #9ec9e8;
-  --pastel-sage: #243128;
-  --pastel-sage-ink: #a8c9ab;
-  --pastel-sand: #342e1f;
-  --pastel-sand-ink: #e6c77a;
+  --accent: #ff7a3d;
+  --accent-ink: #1f0e05;
+  --accent-soft: rgb(255 122 61 / 0.14);
+  --ring: rgb(255 122 61 / 0.32);
 
-  --shadow-quiet: 0 1px 2px rgba(0, 0, 0, 0.25);
-  --shadow-lift: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --pastel-rose: #3a2323;
+  --pastel-rose-ink: #f2b5b3;
+  --pastel-sky: #1c2e3b;
+  --pastel-sky-ink: #9ecbea;
+  --pastel-sage: #223127;
+  --pastel-sage-ink: #a9ceae;
+  --pastel-sand: #362f1d;
+  --pastel-sand-ink: #e8c978;
+
+  --shadow-quiet: 0 1px 1px rgb(0 0 0 / 0.3), 0 1px 3px rgb(0 0 0 / 0.3);
+  --shadow-lift:
+    0 1px 2px rgb(0 0 0 / 0.3), 0 10px 24px -6px rgb(0 0 0 / 0.45),
+    0 24px 48px -16px rgb(0 0 0 / 0.4);
+  --shadow-pop:
+    0 1px 2px rgb(0 0 0 / 0.4), 0 16px 40px -8px rgb(0 0 0 / 0.6),
+    0 40px 80px -24px rgb(0 0 0 / 0.55);
+  --shadow-inset: inset 0 1px 0 rgb(255 255 255 / 0.06);
 }
 
 @theme inline {
   --color-canvas: var(--canvas);
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
+  --color-surface-sunken: var(--surface-sunken);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-muted: var(--muted);
@@ -69,6 +98,10 @@
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-overlay: var(--overlay);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-ring: var(--ring);
   --color-pastel-rose: var(--pastel-rose);
   --color-pastel-rose-ink: var(--pastel-rose-ink);
   --color-pastel-sky: var(--pastel-sky);
@@ -77,4 +110,140 @@
   --color-pastel-sage-ink: var(--pastel-sage-ink);
   --color-pastel-sand: var(--pastel-sand);
   --color-pastel-sand-ink: var(--pastel-sand-ink);
+
+  --shadow-quiet: var(--shadow-quiet);
+  --shadow-lift: var(--shadow-lift);
+  --shadow-pop: var(--shadow-pop);
+  --shadow-inset: var(--shadow-inset);
+
+  --font-sans:
+    var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, -apple-system,
+    sans-serif;
+  --font-mono:
+    var(--font-geist-mono, "Geist Mono"), ui-monospace, "SF Mono", Menlo,
+    monospace;
+  --font-display:
+    var(--font-instrument, "Instrument Serif"), "Times New Roman", serif;
+}
+
+@theme {
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --animate-fade-up: vibe-fade-up 0.6s var(--ease-out) both;
+  --animate-fade-in: vibe-fade-in 0.25s ease-out both;
+  --animate-pop-in: vibe-pop-in 0.22s var(--ease-out) both;
+  --animate-marquee: vibe-marquee 40s linear infinite;
+  --animate-pulse-quiet: vibe-pulse 1.8s ease-in-out infinite;
+  --animate-spin-quiet: vibe-spin 0.8s linear infinite;
+  --animate-orbit: vibe-spin 28s linear infinite;
+  --animate-shimmer: vibe-shimmer 3s linear infinite;
+  --animate-jelly: vibe-jelly 0.9s ease-in-out infinite;
+  --animate-blink: vibe-blink 1s steps(2, start) infinite;
+
+  @keyframes vibe-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes vibe-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes vibe-pop-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  @keyframes vibe-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes vibe-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
+    }
+  }
+  @keyframes vibe-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes vibe-shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+  @keyframes vibe-jelly {
+    0%,
+    100% {
+      transform: scaleY(0.5);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scaleY(1.1);
+      opacity: 1;
+    }
+  }
+  @keyframes vibe-blink {
+    to {
+      visibility: hidden;
+    }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--accent-soft);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+/** Muted text with a light sweep, good for “thinking…” and loading copy. */
 export function TextShimmer({
   children,
   className,
@@ -10,7 +11,7 @@ export function TextShimmer({
   return (
     <span
       className={cn(
-        "inline-block bg-[linear-gradient(90deg,var(--muted)_0%,var(--ink)_40%,var(--muted)_80%)] bg-[length:200%_100%] bg-clip-text text-transparent animate-[vibe-shimmer_2.8s_linear_infinite]",
+        "inline-block animate-shimmer bg-[linear-gradient(100deg,var(--muted)_35%,var(--ink)_50%,var(--muted)_65%)] bg-[length:250%_100%] bg-clip-text text-transparent",
         className,
       )}
     >

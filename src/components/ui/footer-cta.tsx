@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
-import { Button } from "./button";
+import { buttonVariants } from "./button";
 
+/** Closing call-to-action band that sits above a footer. */
 export function FooterCta({
   title,
   description,
@@ -15,30 +16,30 @@ export function FooterCta({
   className?: string;
 }) {
   return (
-    <section
-      className={cn(
-        "border-t border-line bg-[linear-gradient(180deg,var(--surface)_0%,var(--surface-muted)_100%)]",
-        className,
-      )}
-    >
-      <div className="mx-auto max-w-3xl px-5 py-16 text-center">
-        <h2 className="font-[family-name:var(--font-display)] text-3xl tracking-[-0.03em] text-ink md:text-4xl">
+    <section className={cn("relative overflow-hidden border-t border-line", className)}>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_80%_at_50%_100%,var(--accent-soft),transparent_70%)]"
+      />
+      <div className="relative mx-auto max-w-3xl px-5 py-20 text-center">
+        <h2 className="font-display text-[44px] leading-[1.02] tracking-[-0.01em] text-ink md:text-[56px]">
           {title}
         </h2>
         {description ? (
-          <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-muted">
+          <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-muted">
             {description}
           </p>
         ) : null}
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-          <a href={primary.href}>
-            <Button size="lg">{primary.label}</Button>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a href={primary.href} className={buttonVariants({ size: "lg" })}>
+            {primary.label}
           </a>
           {secondary ? (
-            <a href={secondary.href}>
-              <Button size="lg" variant="secondary">
-                {secondary.label}
-              </Button>
+            <a
+              href={secondary.href}
+              className={buttonVariants({ size: "lg", variant: "secondary" })}
+            >
+              {secondary.label}
             </a>
           ) : null}
         </div>

@@ -14,46 +14,47 @@ const ThemeContext = React.createContext<ThemeContextValue | null>(null);
 
 const STORAGE_KEY = "vibeui-theme";
 
+// The <html class="dark"> is the source of truth (ThemeScript sets it before
+// first paint), so we subscribe to it rather than mirroring it into state.
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  return () => observer.disconnect();
+}
+
+const getSnapshot = (): Theme =>
+  document.documentElement.classList.contains("dark") ? "dark" : "light";
+
+const getServerSnapshot = (): Theme => "light";
+
 function applyTheme(theme: Theme) {
   const root = document.documentElement;
   root.classList.toggle("dark", theme === "dark");
   root.style.colorScheme = theme;
+  try {
+    window.localStorage.setItem(STORAGE_KEY, theme);
+  } catch {
+    // Storage can be unavailable (private mode); the class still applies.
+  }
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = React.useState<Theme>("light");
+  const theme = React.useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
 
-  React.useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY) as Theme | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initial: Theme =
-      stored === "light" || stored === "dark"
-        ? stored
-        : prefersDark
-          ? "dark"
-          : "light";
-    setThemeState(initial);
-    applyTheme(initial);
-  }, []);
-
-  const setTheme = React.useCallback((next: Theme) => {
-    setThemeState(next);
-    applyTheme(next);
-    window.localStorage.setItem(STORAGE_KEY, next);
-  }, []);
-
-  const toggleTheme = React.useCallback(() => {
-    setThemeState((prev) => {
-      const next = prev === "dark" ? "light" : "dark";
-      applyTheme(next);
-      window.localStorage.setItem(STORAGE_KEY, next);
-      return next;
-    });
-  }, []);
-
-  const value = React.useMemo(
-    () => ({ theme, setTheme, toggleTheme }),
-    [theme, setTheme, toggleTheme],
+  const value = React.useMemo<ThemeContextValue>(
+    () => ({
+      theme,
+      setTheme: applyTheme,
+      toggleTheme: () => applyTheme(getSnapshot() === "dark" ? "light" : "dark"),
+    }),
+    [theme],
   );
 
   return (

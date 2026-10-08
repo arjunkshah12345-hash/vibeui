@@ -7,6 +7,7 @@ Copy-owned React + Tailwind UI. Prefer MCP/CLI over guessing component APIs.
 - MCP: `node mcp/server.mjs`
 - CLI: `node bin/vibeui.mjs` / `npx vibeui`
 - Catalog: `registry/components.json` (`npm run registry`)
+- Site: `/components` (live gallery), `/components/<name>` (preview + source), demos in `src/components/showcase/demos/`
 - Brief: `llms.txt` · detail: `docs/agents.md`
 
 ## Integrate loop
@@ -21,7 +22,7 @@ Copy-owned React + Tailwind UI. Prefer MCP/CLI over guessing component APIs.
 
 - Files: `src/components/ui/<kebab>.tsx`
 - Dark: `.dark` on `<html>`
-- Warm canvas `#fbfbfa` / `#121110` — restrained, not neon demos
+- Warm canvas `#f8f7f4` / `#0f0e0d`, one vermilion accent, tokens only (see `templates/vibeui.css`)
 
 <!-- BEGIN:nextjs-agent-rules -->
 

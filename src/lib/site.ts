@@ -1,9 +1,20 @@
 export const site = {
   name: "VibeUI",
-  tagline: "Quiet components for calm interfaces",
+  tagline: "Components with taste, that you own",
   description:
-    "Open-source React + Tailwind component library. Hairline borders, warm dark mode, and signature craft — copy the source, own the tokens.",
+    "104 copy-owned React + Tailwind components with warm tokens, real dark mode and signature motion. Add one with a command, keep every line.",
   url: "https://github.com/arjunkshah12345-hash/vibeui",
   repo: "arjunkshah12345-hash/vibeui",
   license: "MIT",
+  count: 104,
+  /**
+   * How people run the CLI. Not on npm yet, so it runs straight from GitHub.
+   * After publishing, change this to "npx vibeui".
+   */
+  cli: "npx github:arjunkshah12345-hash/vibeui",
 } as const;
+
+export const nav = [
+  { href: "/components", label: "Components" },
+  { href: "/docs", label: "Docs" },
+] as const;

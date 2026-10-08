@@ -1,9 +1,10 @@
 import { cn } from "@/lib/utils";
 
+/** Height-limited scroll container with a slim scrollbar. */
 export function ScrollArea({
   className,
   children,
-  maxHeight = 220,
+  maxHeight = 240,
 }: {
   className?: string;
   children: React.ReactNode;
@@ -11,8 +12,9 @@ export function ScrollArea({
 }) {
   return (
     <div
+      tabIndex={0}
       className={cn(
-        "overflow-y-auto rounded-[var(--radius-md)] border border-line bg-surface",
+        "overflow-y-auto rounded-md border border-line bg-surface [scrollbar-color:var(--line-strong)_transparent] [scrollbar-width:thin]",
         className,
       )}
       style={{ maxHeight }}

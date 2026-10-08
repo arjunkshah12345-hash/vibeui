@@ -1,6 +1,6 @@
 {
   "name": "vibeui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "repository": "https://github.com/arjunkshah12345-hash/vibeui",
   "count": 104,
@@ -154,13 +154,16 @@
       "name": "accordion",
       "title": "Accordion",
       "category": "navigation",
-      "description": "Accordion — VibeUI navigation component. Copy-owned React + Tailwind.",
+      "description": "Expandable sections with smooth height animation. Single or multiple open.",
       "file": "src/components/ui/accordion.tsx",
       "exports": [
         "Accordion"
       ],
       "client": true,
-      "dependencies": [],
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [],
       "tags": [
         "navigation",
         "client"
@@ -170,15 +173,17 @@
       "name": "alert",
       "title": "Alert",
       "category": "feedback",
-      "description": "Alert — VibeUI feedback component. Copy-owned React + Tailwind.",
+      "description": "Inline status message with tone, icon and optional title.",
       "file": "src/components/ui/alert.tsx",
       "exports": [
         "Alert"
       ],
       "client": false,
       "dependencies": [
+        "@phosphor-icons/react",
         "class-variance-authority"
       ],
+      "registryDependencies": [],
       "tags": [
         "feedback",
         "rsc-safe"
@@ -188,7 +193,7 @@
       "name": "arrow-fill-button",
       "title": "ArrowFillButton",
       "category": "craft",
-      "description": "ArrowFillButton — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Outlined button that floods with ink on hover while the arrow slides.",
       "file": "src/components/ui/arrow-fill-button.tsx",
       "exports": [
         "ArrowFillButton"
@@ -197,6 +202,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -206,13 +212,14 @@
       "name": "aspect-ratio",
       "title": "AspectRatio",
       "category": "data",
-      "description": "AspectRatio — VibeUI data component. Copy-owned React + Tailwind.",
+      "description": "Locks children to a width-to-height ratio.",
       "file": "src/components/ui/aspect-ratio.tsx",
       "exports": [
         "AspectRatio"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "data",
         "rsc-safe"
@@ -222,7 +229,7 @@
       "name": "avatar",
       "title": "Avatar",
       "category": "data",
-      "description": "Avatar — VibeUI data component. Copy-owned React + Tailwind.",
+      "description": "Round avatar with image, graceful initials fallback and a stackable group.",
       "file": "src/components/ui/avatar.tsx",
       "exports": [
         "Avatar",
@@ -230,6 +237,7 @@
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "data",
         "rsc-safe"
@@ -239,7 +247,7 @@
       "name": "banner",
       "title": "Banner",
       "category": "feedback",
-      "description": "Banner — VibeUI feedback component. Copy-owned React + Tailwind.",
+      "description": "Full-width announcement bar with optional action and dismiss.",
       "file": "src/components/ui/banner.tsx",
       "exports": [
         "Banner"
@@ -248,6 +256,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "feedback",
         "client"
@@ -257,13 +266,14 @@
       "name": "blur-reveal",
       "title": "BlurReveal",
       "category": "craft",
-      "description": "BlurReveal — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Content that resolves from blur and a slight drop as it enters the viewport.",
       "file": "src/components/ui/blur-reveal.tsx",
       "exports": [
         "BlurReveal"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -273,13 +283,14 @@
       "name": "book-flip",
       "title": "BookFlip",
       "category": "craft",
-      "description": "BookFlip — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "A page that physically turns over its spine to reveal the next.",
       "file": "src/components/ui/book-flip.tsx",
       "exports": [
         "BookFlip"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -289,7 +300,7 @@
       "name": "breadcrumb",
       "title": "Breadcrumb",
       "category": "navigation",
-      "description": "Breadcrumb — VibeUI navigation component. Copy-owned React + Tailwind.",
+      "description": "Path trail showing the current location in a hierarchy.",
       "file": "src/components/ui/breadcrumb.tsx",
       "exports": [
         "Breadcrumb"
@@ -298,6 +309,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "navigation",
         "rsc-safe"
@@ -307,7 +319,7 @@
       "name": "button",
       "title": "Button",
       "category": "actions",
-      "description": "Primary action button with variants (primary, secondary, ghost, soft).",
+      "description": "Primary action button with variants (primary, accent, secondary, ghost, soft, danger).",
       "file": "src/components/ui/button.tsx",
       "exports": [
         "Button"
@@ -316,6 +328,7 @@
       "dependencies": [
         "class-variance-authority"
       ],
+      "registryDependencies": [],
       "tags": [
         "actions",
         "rsc-safe"
@@ -325,7 +338,7 @@
       "name": "calendar",
       "title": "Calendar",
       "category": "forms",
-      "description": "Calendar — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "Month grid date picker. Highlights today after hydration, never during.",
       "file": "src/components/ui/calendar.tsx",
       "exports": [
         "Calendar"
@@ -334,6 +347,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -343,13 +357,14 @@
       "name": "callout",
       "title": "Callout",
       "category": "feedback",
-      "description": "Callout — VibeUI feedback component. Copy-owned React + Tailwind.",
+      "description": "Quiet note with an accent rule, lighter than a filled alert.",
       "file": "src/components/ui/callout.tsx",
       "exports": [
         "Callout"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "feedback",
         "rsc-safe"
@@ -359,7 +374,7 @@
       "name": "card",
       "title": "Card",
       "category": "data",
-      "description": "Card — VibeUI data component. Copy-owned React + Tailwind.",
+      "description": "Surface container with header, content and footer slots.",
       "file": "src/components/ui/card.tsx",
       "exports": [
         "Card",
@@ -371,6 +386,7 @@
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "data",
         "rsc-safe"
@@ -380,15 +396,14 @@
       "name": "checkbox",
       "title": "Checkbox",
       "category": "forms",
-      "description": "Checkbox — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "Native checkbox with an animated check and an optional label.",
       "file": "src/components/ui/checkbox.tsx",
       "exports": [
         "Checkbox"
       ],
       "client": true,
-      "dependencies": [
-        "@phosphor-icons/react"
-      ],
+      "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -398,7 +413,7 @@
       "name": "chip",
       "title": "Chip",
       "category": "actions",
-      "description": "Chip — VibeUI actions component. Copy-owned React + Tailwind.",
+      "description": "Selectable, removable filter chip.",
       "file": "src/components/ui/chip.tsx",
       "exports": [
         "Chip"
@@ -407,6 +422,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "actions",
         "client"
@@ -416,7 +432,7 @@
       "name": "circle-menu",
       "title": "CircleMenu",
       "category": "craft",
-      "description": "CircleMenu — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Radial menu: a button that fans its actions out in a circle.",
       "file": "src/components/ui/circle-menu.tsx",
       "exports": [
         "CircleMenu"
@@ -425,6 +441,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -434,7 +451,7 @@
       "name": "code-block",
       "title": "CodeBlock",
       "category": "data",
-      "description": "CodeBlock — VibeUI data component. Copy-owned React + Tailwind.",
+      "description": "Code panel with lightweight syntax highlighting and one-click copy.",
       "file": "src/components/ui/code-block.tsx",
       "exports": [
         "CodeBlock"
@@ -443,6 +460,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "data",
         "client"
@@ -452,13 +470,14 @@
       "name": "color-swatch",
       "title": "ColorSwatch",
       "category": "data",
-      "description": "ColorSwatch — VibeUI data component. Copy-owned React + Tailwind.",
+      "description": "Color chip with a name and token value.",
       "file": "src/components/ui/color-swatch.tsx",
       "exports": [
         "ColorSwatch"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "data",
         "rsc-safe"
@@ -468,7 +487,7 @@
       "name": "command",
       "title": "Command",
       "category": "overlays",
-      "description": "Command palette with search and grouped actions.",
+      "description": "Command palette: type to filter, arrows to move, Enter to run.",
       "file": "src/components/ui/command.tsx",
       "exports": [
         "Command"
@@ -477,6 +496,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "overlays",
         "client"
@@ -486,13 +506,14 @@
       "name": "comparison",
       "title": "Comparison",
       "category": "data",
-      "description": "ComparisonBar — VibeUI data component. Copy-owned React + Tailwind.",
+      "description": "Two-sided proportion bar for comparing a pair of values.",
       "file": "src/components/ui/comparison.tsx",
       "exports": [
         "ComparisonBar"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "data",
         "rsc-safe"
@@ -502,13 +523,14 @@
       "name": "count-up",
       "title": "CountUp",
       "category": "craft",
-      "description": "CountUp — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Number that eases up from zero the first time it scrolls into view.",
       "file": "src/components/ui/count-up.tsx",
       "exports": [
         "CountUp"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -518,13 +540,14 @@
       "name": "decode-text",
       "title": "DecodeText",
       "category": "text",
-      "description": "DecodeText — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Monospace text that decodes from noise the first time it scrolls into view.",
       "file": "src/components/ui/decode-text.tsx",
       "exports": [
         "DecodeText"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
         "client"
@@ -534,17 +557,19 @@
       "name": "dialog",
       "title": "Dialog",
       "category": "overlays",
-      "description": "Dialog — VibeUI overlays component. Copy-owned React + Tailwind.",
+      "description": "Modal dialog: portaled, focus-restoring, Escape to close, scroll locked.",
       "file": "src/components/ui/dialog.tsx",
       "exports": [
         "Dialog",
         "DialogTrigger",
-        "DialogContent"
+        "DialogContent",
+        "DialogFooter"
       ],
       "client": true,
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "overlays",
         "client"
@@ -554,13 +579,14 @@
       "name": "dock",
       "title": "Dock",
       "category": "craft",
-      "description": "macOS-style icon dock with hover magnification.",
+      "description": "macOS-style dock: icons magnify smoothly with distance from the cursor.",
       "file": "src/components/ui/dock.tsx",
       "exports": [
         "Dock"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -570,29 +596,31 @@
       "name": "dotted-grid",
       "title": "DottedGrid",
       "category": "craft",
-      "description": "DottedGrid — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Dot-matrix surface that lights up under the cursor.",
       "file": "src/components/ui/dotted-grid.tsx",
       "exports": [
         "DottedGrid"
       ],
-      "client": false,
+      "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
-        "rsc-safe"
+        "client"
       ]
     },
     {
       "name": "dropdown-menu",
       "title": "DropdownMenu",
       "category": "overlays",
-      "description": "DropdownMenu — VibeUI overlays component. Copy-owned React + Tailwind.",
+      "description": "Action menu with arrow-key navigation, icons, shortcuts and danger items.",
       "file": "src/components/ui/dropdown-menu.tsx",
       "exports": [
         "DropdownMenu"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "overlays",
         "client"
@@ -602,13 +630,14 @@
       "name": "empty",
       "title": "Empty",
       "category": "feedback",
-      "description": "Empty — VibeUI feedback component. Copy-owned React + Tailwind.",
+      "description": "Empty state with icon, copy and an optional call to action.",
       "file": "src/components/ui/empty.tsx",
       "exports": [
         "Empty"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "feedback",
         "rsc-safe"
@@ -618,7 +647,7 @@
       "name": "file-drop",
       "title": "FileDrop",
       "category": "forms",
-      "description": "FileDrop — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "Drag-and-drop file target that also opens the file picker on click.",
       "file": "src/components/ui/file-drop.tsx",
       "exports": [
         "FileDrop"
@@ -627,6 +656,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -636,13 +666,16 @@
       "name": "flip-card",
       "title": "FlipCard",
       "category": "craft",
-      "description": "FlipCard — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Two-sided card that turns over on click or Enter.",
       "file": "src/components/ui/flip-card.tsx",
       "exports": [
         "FlipCard"
       ],
       "client": true,
-      "dependencies": [],
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -652,30 +685,32 @@
       "name": "flip-text",
       "title": "FlipText",
       "category": "text",
-      "description": "FlipText — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Letters roll up and swap on hover. Hover the text itself, or any `group/flip` parent.",
       "file": "src/components/ui/flip-text.tsx",
       "exports": [
         "FlipText",
         "FlipTextTrigger"
       ],
-      "client": true,
+      "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
-        "client"
+        "rsc-safe"
       ]
     },
     {
       "name": "folder-preview",
       "title": "FolderPreview",
       "category": "craft",
-      "description": "FolderPreview — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Folder that opens to let its files rise out for a peek.",
       "file": "src/components/ui/folder-preview.tsx",
       "exports": [
         "FolderPreview"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -685,13 +720,16 @@
       "name": "footer-cta",
       "title": "FooterCta",
       "category": "footers",
-      "description": "FooterCta — VibeUI footers component. Copy-owned React + Tailwind.",
+      "description": "Closing call-to-action band that sits above a footer.",
       "file": "src/components/ui/footer-cta.tsx",
       "exports": [
         "FooterCta"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [
+        "button"
+      ],
       "tags": [
         "footers",
         "rsc-safe"
@@ -701,13 +739,14 @@
       "name": "footer-legal",
       "title": "FooterLegal",
       "category": "footers",
-      "description": "FooterLegal — VibeUI footers component. Copy-owned React + Tailwind.",
+      "description": "Copyright line with legal links.",
       "file": "src/components/ui/footer-legal.tsx",
       "exports": [
         "FooterLegal"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "footers",
         "rsc-safe"
@@ -717,13 +756,14 @@
       "name": "footer-mega",
       "title": "FooterMega",
       "category": "footers",
-      "description": "Multi-column marketing footer with brand blurb.",
+      "description": "Multi-column footer with brand blurb, link groups and a bottom bar.",
       "file": "src/components/ui/footer-mega.tsx",
       "exports": [
         "FooterMega"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "footers",
         "rsc-safe"
@@ -733,13 +773,19 @@
       "name": "footer-newsletter",
       "title": "FooterNewsletter",
       "category": "footers",
-      "description": "FooterNewsletter — VibeUI footers component. Copy-owned React + Tailwind.",
+      "description": "Email signup card with an inline success state.",
       "file": "src/components/ui/footer-newsletter.tsx",
       "exports": [
         "FooterNewsletter"
       ],
       "client": true,
-      "dependencies": [],
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input"
+      ],
       "tags": [
         "footers",
         "client"
@@ -749,13 +795,14 @@
       "name": "footer-simple",
       "title": "FooterSimple",
       "category": "footers",
-      "description": "FooterSimple — VibeUI footers component. Copy-owned React + Tailwind.",
+      "description": "One-row footer: brand, links and a small note.",
       "file": "src/components/ui/footer-simple.tsx",
       "exports": [
         "FooterSimple"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "footers",
         "rsc-safe"
@@ -765,13 +812,14 @@
       "name": "gradient-text",
       "title": "GradientText",
       "category": "text",
-      "description": "GradientText — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Text filled with an ink-to-accent gradient.",
       "file": "src/components/ui/gradient-text.tsx",
       "exports": [
         "GradientText"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
         "rsc-safe"
@@ -781,29 +829,31 @@
       "name": "highlight-text",
       "title": "HighlightText",
       "category": "text",
-      "description": "HighlightText — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Marker highlight that sweeps across the text when it enters the viewport.",
       "file": "src/components/ui/highlight-text.tsx",
       "exports": [
         "HighlightText"
       ],
-      "client": false,
+      "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
-        "rsc-safe"
+        "client"
       ]
     },
     {
       "name": "hover-border",
       "title": "HoverBorder",
       "category": "hover",
-      "description": "HoverBorder — VibeUI hover component. Copy-owned React + Tailwind.",
+      "description": "Card whose border lights up in accent and gains a top rule on hover.",
       "file": "src/components/ui/hover-border.tsx",
       "exports": [
         "HoverBorder"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "hover",
         "rsc-safe"
@@ -813,13 +863,14 @@
       "name": "hover-card",
       "title": "HoverCard",
       "category": "hover",
-      "description": "HoverCard — VibeUI hover component. Copy-owned React + Tailwind.",
+      "description": "Rich preview card that opens on hover or keyboard focus.",
       "file": "src/components/ui/hover-card.tsx",
       "exports": [
         "HoverCard"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "hover",
         "client"
@@ -829,13 +880,14 @@
       "name": "hover-expand",
       "title": "HoverExpand",
       "category": "hover",
-      "description": "HoverExpand — VibeUI hover component. Copy-owned React + Tailwind.",
+      "description": "Row of panels; the hovered or focused one grows and reveals its body.",
       "file": "src/components/ui/hover-expand.tsx",
       "exports": [
         "HoverExpand"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "hover",
         "rsc-safe"
@@ -845,13 +897,14 @@
       "name": "hover-icon",
       "title": "HoverIcon",
       "category": "hover",
-      "description": "HoverIcon — VibeUI hover component. Copy-owned React + Tailwind.",
+      "description": "Square icon button that scales its glyph and reveals a label on hover.",
       "file": "src/components/ui/hover-icon.tsx",
       "exports": [
         "HoverIcon"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "hover",
         "rsc-safe"
@@ -861,13 +914,14 @@
       "name": "hover-image",
       "title": "HoverImage",
       "category": "hover",
-      "description": "HoverImage — VibeUI hover component. Copy-owned React + Tailwind.",
+      "description": "Inline link that reveals a floating image preview following the cursor.",
       "file": "src/components/ui/hover-image.tsx",
       "exports": [
         "HoverImage"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "hover",
         "client"
@@ -877,13 +931,14 @@
       "name": "hover-lift",
       "title": "HoverLift",
       "category": "hover",
-      "description": "HoverLift — VibeUI hover component. Copy-owned React + Tailwind.",
+      "description": "Card that rises and gains depth on hover.",
       "file": "src/components/ui/hover-lift.tsx",
       "exports": [
         "HoverLift"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "hover",
         "rsc-safe"
@@ -893,13 +948,14 @@
       "name": "hover-shine",
       "title": "HoverShine",
       "category": "hover",
-      "description": "HoverShine — VibeUI hover component. Copy-owned React + Tailwind.",
+      "description": "Card with a soft highlight that tracks the cursor across its surface.",
       "file": "src/components/ui/hover-shine.tsx",
       "exports": [
         "HoverShine"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "hover",
         "client"
@@ -909,13 +965,16 @@
       "name": "hover-slide",
       "title": "HoverSlide",
       "category": "hover",
-      "description": "HoverSlide — VibeUI hover component. Copy-owned React + Tailwind.",
+      "description": "Tile whose description slides up from beneath the title on hover.",
       "file": "src/components/ui/hover-slide.tsx",
       "exports": [
         "HoverSlide"
       ],
       "client": false,
-      "dependencies": [],
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [],
       "tags": [
         "hover",
         "rsc-safe"
@@ -925,13 +984,14 @@
       "name": "hover-tilt",
       "title": "HoverTilt",
       "category": "hover",
-      "description": "HoverTilt — VibeUI hover component. Copy-owned React + Tailwind.",
+      "description": "Card that leans toward the cursor in perspective.",
       "file": "src/components/ui/hover-tilt.tsx",
       "exports": [
         "HoverTilt"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "hover",
         "client"
@@ -941,7 +1001,7 @@
       "name": "input",
       "title": "Input",
       "category": "forms",
-      "description": "Label — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "Text input, textarea, label and Field wrapper sharing one focus language.",
       "file": "src/components/ui/input.tsx",
       "exports": [
         "Label",
@@ -949,6 +1009,7 @@
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "rsc-safe"
@@ -958,13 +1019,14 @@
       "name": "jelly-loader",
       "title": "JellyLoader",
       "category": "craft",
-      "description": "JellyLoader — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Four bars that squash and stretch in sequence.",
       "file": "src/components/ui/jelly-loader.tsx",
       "exports": [
         "JellyLoader"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "rsc-safe"
@@ -974,13 +1036,14 @@
       "name": "kbd",
       "title": "Kbd",
       "category": "actions",
-      "description": "Kbd — VibeUI actions component. Copy-owned React + Tailwind.",
+      "description": "Keyboard key cap for shortcuts.",
       "file": "src/components/ui/kbd.tsx",
       "exports": [
         "Kbd"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "actions",
         "rsc-safe"
@@ -990,13 +1053,14 @@
       "name": "letter-hover",
       "title": "LetterHover",
       "category": "text",
-      "description": "LetterHover — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Each letter lifts and tints as the cursor passes over it.",
       "file": "src/components/ui/letter-hover.tsx",
       "exports": [
         "LetterHover"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
         "rsc-safe"
@@ -1006,7 +1070,7 @@
       "name": "list",
       "title": "List",
       "category": "data",
-      "description": "List — VibeUI data component. Copy-owned React + Tailwind.",
+      "description": "Bordered list of rows with title, description, leading and trailing slots.",
       "file": "src/components/ui/list.tsx",
       "exports": [
         "List",
@@ -1014,6 +1078,7 @@
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "data",
         "rsc-safe"
@@ -1023,13 +1088,14 @@
       "name": "magnet-tabs",
       "title": "MagnetTabs",
       "category": "craft",
-      "description": "MagnetTabs — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Tabs with a hover highlight that glides between items and a marker on the active tab.",
       "file": "src/components/ui/magnet-tabs.tsx",
       "exports": [
         "MagnetTabs"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -1039,13 +1105,14 @@
       "name": "magnetic-button",
       "title": "MagneticButton",
       "category": "hover",
-      "description": "Button that magnetically follows the cursor.",
+      "description": "Button that leans toward the cursor and springs back on leave.",
       "file": "src/components/ui/magnetic-button.tsx",
       "exports": [
         "MagneticButton"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "hover",
         "client"
@@ -1055,7 +1122,7 @@
       "name": "magnetic-link",
       "title": "MagneticLink",
       "category": "hover",
-      "description": "MagneticLink — VibeUI hover component. Copy-owned React + Tailwind.",
+      "description": "Link that drifts toward the cursor, with an arrow that nudges out.",
       "file": "src/components/ui/magnetic-link.tsx",
       "exports": [
         "MagneticLink"
@@ -1064,6 +1131,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "hover",
         "client"
@@ -1073,13 +1141,14 @@
       "name": "marquee",
       "title": "Marquee",
       "category": "craft",
-      "description": "Marquee — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Infinite horizontal ticker with edge fade. Pauses on hover.",
       "file": "src/components/ui/marquee.tsx",
       "exports": [
         "Marquee"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "rsc-safe"
@@ -1089,13 +1158,14 @@
       "name": "masonry",
       "title": "Masonry",
       "category": "craft",
-      "description": "Masonry — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Column masonry of tiles with mixed heights and optional tint.",
       "file": "src/components/ui/masonry.tsx",
       "exports": [
         "Masonry"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "rsc-safe"
@@ -1105,13 +1175,14 @@
       "name": "meter",
       "title": "Meter",
       "category": "feedback",
-      "description": "Meter — VibeUI feedback component. Copy-owned React + Tailwind.",
+      "description": "Segmented gauge for a value within a known range.",
       "file": "src/components/ui/meter.tsx",
       "exports": [
         "Meter"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "feedback",
         "rsc-safe"
@@ -1121,13 +1192,14 @@
       "name": "notification",
       "title": "Notification",
       "category": "feedback",
-      "description": "NotificationItem — VibeUI feedback component. Copy-owned React + Tailwind.",
+      "description": "Notification row with an unread dot, title, body and timestamp.",
       "file": "src/components/ui/notification.tsx",
       "exports": [
         "NotificationItem"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "feedback",
         "rsc-safe"
@@ -1137,7 +1209,7 @@
       "name": "number-field",
       "title": "NumberField",
       "category": "forms",
-      "description": "NumberField — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "Numeric stepper with min/max clamping.",
       "file": "src/components/ui/number-field.tsx",
       "exports": [
         "NumberField"
@@ -1146,6 +1218,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -1155,29 +1228,31 @@
       "name": "orbit-ring",
       "title": "OrbitRing",
       "category": "craft",
-      "description": "OrbitRing — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Labels circling a center point. Chips stay upright while the ring turns.",
       "file": "src/components/ui/orbit-ring.tsx",
       "exports": [
         "OrbitRing"
       ],
-      "client": true,
+      "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
-        "client"
+        "rsc-safe"
       ]
     },
     {
       "name": "otp-field",
       "title": "OtpField",
       "category": "forms",
-      "description": "OtpField — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "One-time-code input with auto-advance, backspace and paste support.",
       "file": "src/components/ui/otp-field.tsx",
       "exports": [
         "OtpField"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -1187,7 +1262,7 @@
       "name": "pagination",
       "title": "Pagination",
       "category": "navigation",
-      "description": "Pagination — VibeUI navigation component. Copy-owned React + Tailwind.",
+      "description": "Page navigator with collapsing ellipses.",
       "file": "src/components/ui/pagination.tsx",
       "exports": [
         "Pagination"
@@ -1196,6 +1271,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "navigation",
         "client"
@@ -1205,7 +1281,7 @@
       "name": "password-field",
       "title": "PasswordField",
       "category": "forms",
-      "description": "PasswordField — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "Password input with a show/hide toggle.",
       "file": "src/components/ui/password-field.tsx",
       "exports": [
         "PasswordField"
@@ -1214,6 +1290,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -1223,7 +1300,7 @@
       "name": "pill",
       "title": "Pill",
       "category": "actions",
-      "description": "Pill — VibeUI actions component. Copy-owned React + Tailwind.",
+      "description": "Small status label with semantic pastel tones and an optional live dot.",
       "file": "src/components/ui/pill.tsx",
       "exports": [
         "Pill"
@@ -1232,6 +1309,7 @@
       "dependencies": [
         "class-variance-authority"
       ],
+      "registryDependencies": [],
       "tags": [
         "actions",
         "rsc-safe"
@@ -1241,13 +1319,14 @@
       "name": "popover",
       "title": "Popover",
       "category": "overlays",
-      "description": "Popover — VibeUI overlays component. Copy-owned React + Tailwind.",
+      "description": "Anchored panel that opens on click and closes on outside click or Escape.",
       "file": "src/components/ui/popover.tsx",
       "exports": [
         "Popover"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "overlays",
         "client"
@@ -1257,13 +1336,14 @@
       "name": "progress",
       "title": "Progress",
       "category": "feedback",
-      "description": "Progress — VibeUI feedback component. Copy-owned React + Tailwind.",
+      "description": "Determinate progress bar with an optional label and percentage.",
       "file": "src/components/ui/progress.tsx",
       "exports": [
         "Progress"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "feedback",
         "rsc-safe"
@@ -1273,13 +1353,14 @@
       "name": "quote",
       "title": "Quote",
       "category": "text",
-      "description": "Quote — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Pull quote set in the display serif with an attribution line.",
       "file": "src/components/ui/quote.tsx",
       "exports": [
         "Quote"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
         "rsc-safe"
@@ -1289,7 +1370,7 @@
       "name": "radio",
       "title": "Radio",
       "category": "forms",
-      "description": "RadioGroup — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "Single-choice group built on native radio inputs.",
       "file": "src/components/ui/radio.tsx",
       "exports": [
         "RadioGroup",
@@ -1297,6 +1378,7 @@
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -1306,7 +1388,7 @@
       "name": "rating",
       "title": "Rating",
       "category": "forms",
-      "description": "Rating — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "Star rating with hover preview. Use readOnly to display a score.",
       "file": "src/components/ui/rating.tsx",
       "exports": [
         "Rating"
@@ -1315,6 +1397,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -1324,13 +1407,14 @@
       "name": "rolling-text",
       "title": "RollingText",
       "category": "text",
-      "description": "RollingText — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Cycles through any number of words with a vertical roll. Width fits the longest word.",
       "file": "src/components/ui/rolling-text.tsx",
       "exports": [
         "RollingText"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
         "client"
@@ -1340,13 +1424,16 @@
       "name": "rotating-carousel",
       "title": "RotatingCarousel",
       "category": "craft",
-      "description": "3D ring card carousel with pause-on-hover and dots.",
+      "description": "3D ring carousel: drag, swipe, arrow keys, autoplay that pauses on hover.",
       "file": "src/components/ui/rotating-carousel.tsx",
       "exports": [
         "RotatingCarousel"
       ],
       "client": true,
-      "dependencies": [],
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -1356,13 +1443,14 @@
       "name": "scramble-text",
       "title": "ScrambleText",
       "category": "text",
-      "description": "Text that scrambles/decodes on hover.",
+      "description": "Text that scrambles through random glyphs and resolves, on hover or focus.",
       "file": "src/components/ui/scramble-text.tsx",
       "exports": [
         "ScrambleText"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
         "client"
@@ -1372,13 +1460,14 @@
       "name": "scroll-area",
       "title": "ScrollArea",
       "category": "data",
-      "description": "ScrollArea — VibeUI data component. Copy-owned React + Tailwind.",
+      "description": "Height-limited scroll container with a slim scrollbar.",
       "file": "src/components/ui/scroll-area.tsx",
       "exports": [
         "ScrollArea"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "data",
         "rsc-safe"
@@ -1388,23 +1477,24 @@
       "name": "scroll-stack",
       "title": "ScrollStack",
       "category": "craft",
-      "description": "ScrollStack — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Cards that pile up as you scroll. Pure CSS (position: sticky).",
       "file": "src/components/ui/scroll-stack.tsx",
       "exports": [
         "ScrollStack"
       ],
-      "client": true,
+      "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
-        "client"
+        "rsc-safe"
       ]
     },
     {
       "name": "search-field",
       "title": "SearchField",
       "category": "forms",
-      "description": "SearchField — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "Search input with a leading icon and a clear button.",
       "file": "src/components/ui/search-field.tsx",
       "exports": [
         "SearchField"
@@ -1413,6 +1503,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -1422,13 +1513,14 @@
       "name": "segmented",
       "title": "Segmented",
       "category": "navigation",
-      "description": "Segmented — VibeUI navigation component. Copy-owned React + Tailwind.",
+      "description": "Segmented control with a sliding selection thumb.",
       "file": "src/components/ui/segmented.tsx",
       "exports": [
         "Segmented"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "navigation",
         "client"
@@ -1438,7 +1530,7 @@
       "name": "select",
       "title": "Select",
       "category": "forms",
-      "description": "Select — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "Native select with the shared field styling and a custom caret.",
       "file": "src/components/ui/select.tsx",
       "exports": [
         "Select"
@@ -1447,6 +1539,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -1456,13 +1549,14 @@
       "name": "separator",
       "title": "Separator",
       "category": "actions",
-      "description": "Separator — VibeUI actions component. Copy-owned React + Tailwind.",
+      "description": "Hairline divider, horizontal or vertical.",
       "file": "src/components/ui/separator.tsx",
       "exports": [
         "Separator"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "actions",
         "rsc-safe"
@@ -1472,7 +1566,7 @@
       "name": "sheet",
       "title": "Sheet",
       "category": "overlays",
-      "description": "Sheet — VibeUI overlays component. Copy-owned React + Tailwind.",
+      "description": "Edge-anchored panel for settings, filters and detail views.",
       "file": "src/components/ui/sheet.tsx",
       "exports": [
         "Sheet"
@@ -1481,6 +1575,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "overlays",
         "client"
@@ -1490,13 +1585,14 @@
       "name": "skeleton",
       "title": "Skeleton",
       "category": "feedback",
-      "description": "Skeleton — VibeUI feedback component. Copy-owned React + Tailwind.",
+      "description": "Loading placeholder with a soft shimmer sweep.",
       "file": "src/components/ui/skeleton.tsx",
       "exports": [
         "Skeleton"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "feedback",
         "rsc-safe"
@@ -1506,13 +1602,14 @@
       "name": "slider",
       "title": "Slider",
       "category": "forms",
-      "description": "Slider — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "Range slider with an accent fill, built on a native range input.",
       "file": "src/components/ui/slider.tsx",
       "exports": [
         "Slider"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -1522,7 +1619,7 @@
       "name": "social-links",
       "title": "SocialLinks",
       "category": "footers",
-      "description": "SocialLinks — VibeUI footers component. Copy-owned React + Tailwind.",
+      "description": "Row of social icon links.",
       "file": "src/components/ui/social-links.tsx",
       "exports": [
         "SocialLinks"
@@ -1531,6 +1628,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "footers",
         "rsc-safe"
@@ -1540,13 +1638,14 @@
       "name": "spinner",
       "title": "Spinner",
       "category": "feedback",
-      "description": "Spinner — VibeUI feedback component. Copy-owned React + Tailwind.",
+      "description": "Indeterminate loading ring. Inherits `currentColor`.",
       "file": "src/components/ui/spinner.tsx",
       "exports": [
         "Spinner"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "feedback",
         "rsc-safe"
@@ -1556,13 +1655,14 @@
       "name": "split-showcase",
       "title": "SplitShowcase",
       "category": "craft",
-      "description": "SplitShowcase — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Before/after comparison with a draggable, keyboard-accessible divider.",
       "file": "src/components/ui/split-showcase.tsx",
       "exports": [
         "SplitShowcase"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -1572,13 +1672,14 @@
       "name": "spotlight",
       "title": "Spotlight",
       "category": "craft",
-      "description": "Spotlight — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Surface with a soft accent light that follows the cursor.",
       "file": "src/components/ui/spotlight.tsx",
       "exports": [
         "Spotlight"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -1588,29 +1689,31 @@
       "name": "stacked-cards",
       "title": "StackedCards",
       "category": "craft",
-      "description": "StackedCards — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Deck of cards. Click the top card to send it to the back.",
       "file": "src/components/ui/stacked-cards.tsx",
       "exports": [
         "StackedCards"
       ],
-      "client": false,
+      "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
-        "rsc-safe"
+        "client"
       ]
     },
     {
       "name": "stagger-words",
       "title": "StaggerWords",
       "category": "text",
-      "description": "StaggerWords — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Words fade, deblur and rise one after another when scrolled into view.",
       "file": "src/components/ui/stagger-words.tsx",
       "exports": [
         "StaggerWords"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
         "client"
@@ -1620,13 +1723,16 @@
       "name": "stat",
       "title": "Stat",
       "category": "data",
-      "description": "Stat — VibeUI data component. Copy-owned React + Tailwind.",
+      "description": "Metric tile with a value and an optional trend delta.",
       "file": "src/components/ui/stat.tsx",
       "exports": [
         "Stat"
       ],
       "client": false,
-      "dependencies": [],
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [],
       "tags": [
         "data",
         "rsc-safe"
@@ -1636,13 +1742,16 @@
       "name": "stepper",
       "title": "Stepper",
       "category": "navigation",
-      "description": "Stepper — VibeUI navigation component. Copy-owned React + Tailwind.",
+      "description": "Progress through numbered steps, vertical or horizontal.",
       "file": "src/components/ui/stepper.tsx",
       "exports": [
         "Stepper"
       ],
       "client": false,
-      "dependencies": [],
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [],
       "tags": [
         "navigation",
         "rsc-safe"
@@ -1652,13 +1761,14 @@
       "name": "switch",
       "title": "Switch",
       "category": "forms",
-      "description": "Switch — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "On/off switch with an accent track and sprung thumb.",
       "file": "src/components/ui/switch.tsx",
       "exports": [
         "Switch"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -1668,7 +1778,7 @@
       "name": "table",
       "title": "Table",
       "category": "data",
-      "description": "Table — VibeUI data component. Copy-owned React + Tailwind.",
+      "description": "Data table with a quiet header and row hover.",
       "file": "src/components/ui/table.tsx",
       "exports": [
         "Table",
@@ -1680,6 +1790,7 @@
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "data",
         "rsc-safe"
@@ -1689,7 +1800,7 @@
       "name": "tabs",
       "title": "Tabs",
       "category": "navigation",
-      "description": "Tabs — VibeUI navigation component. Copy-owned React + Tailwind.",
+      "description": "Tabs with arrow-key navigation, in pill or underline style.",
       "file": "src/components/ui/tabs.tsx",
       "exports": [
         "Tabs",
@@ -1699,6 +1810,7 @@
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "navigation",
         "client"
@@ -1708,7 +1820,7 @@
       "name": "tag-input",
       "title": "TagInput",
       "category": "forms",
-      "description": "TagInput — VibeUI forms component. Copy-owned React + Tailwind.",
+      "description": "Free-form tag entry. Enter or comma adds, Backspace removes the last.",
       "file": "src/components/ui/tag-input.tsx",
       "exports": [
         "TagInput"
@@ -1717,6 +1829,7 @@
       "dependencies": [
         "@phosphor-icons/react"
       ],
+      "registryDependencies": [],
       "tags": [
         "forms",
         "client"
@@ -1726,13 +1839,14 @@
       "name": "text-link",
       "title": "TextLink",
       "category": "text",
-      "description": "TextLink — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Inline link with a sliding underline.",
       "file": "src/components/ui/text-link.tsx",
       "exports": [
         "TextLink"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
         "rsc-safe"
@@ -1742,13 +1856,14 @@
       "name": "text-reveal",
       "title": "TextReveal",
       "category": "text",
-      "description": "TextReveal — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Headline whose words rise out of a mask as it scrolls into view.",
       "file": "src/components/ui/text-reveal.tsx",
       "exports": [
         "TextReveal"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
         "client"
@@ -1758,13 +1873,14 @@
       "name": "text-shimmer",
       "title": "TextShimmer",
       "category": "text",
-      "description": "TextShimmer — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Muted text with a light sweep, good for “thinking…” and loading copy.",
       "file": "src/components/ui/text-shimmer.tsx",
       "exports": [
         "TextShimmer"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
         "rsc-safe"
@@ -1774,13 +1890,14 @@
       "name": "timeline",
       "title": "Timeline",
       "category": "navigation",
-      "description": "Timeline — VibeUI navigation component. Copy-owned React + Tailwind.",
+      "description": "Vertical event timeline with a continuous rail.",
       "file": "src/components/ui/timeline.tsx",
       "exports": [
         "Timeline"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "navigation",
         "rsc-safe"
@@ -1790,7 +1907,7 @@
       "name": "toast",
       "title": "Toast",
       "category": "overlays",
-      "description": "ToastProvider — VibeUI overlays component. Copy-owned React + Tailwind.",
+      "description": "Toast stack. Wrap your app in ToastProvider, call useToast().toast(...).",
       "file": "src/components/ui/toast.tsx",
       "exports": [
         "ToastProvider",
@@ -1798,7 +1915,12 @@
         "ToastDemoButton"
       ],
       "client": true,
-      "dependencies": [],
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
       "tags": [
         "overlays",
         "client"
@@ -1808,7 +1930,7 @@
       "name": "toggle",
       "title": "Toggle",
       "category": "actions",
-      "description": "Toggle — VibeUI actions component. Copy-owned React + Tailwind.",
+      "description": "Two-state pressed button, plus a connected multi-select ToggleGroup.",
       "file": "src/components/ui/toggle.tsx",
       "exports": [
         "Toggle",
@@ -1816,6 +1938,7 @@
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "actions",
         "client"
@@ -1825,13 +1948,14 @@
       "name": "tooltip",
       "title": "Tooltip",
       "category": "overlays",
-      "description": "Tooltip — VibeUI overlays component. Copy-owned React + Tailwind.",
+      "description": "Hover and focus tooltip, pure CSS with a short open delay.",
       "file": "src/components/ui/tooltip.tsx",
       "exports": [
         "Tooltip"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "overlays",
         "client"
@@ -1841,13 +1965,14 @@
       "name": "trading-card",
       "title": "TradingCard",
       "category": "craft",
-      "description": "TradingCard — VibeUI craft component. Copy-owned React + Tailwind.",
+      "description": "Collectible card that tilts in 3D and catches a glare under the cursor.",
       "file": "src/components/ui/trading-card.tsx",
       "exports": [
         "TradingCard"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "craft",
         "client"
@@ -1857,13 +1982,14 @@
       "name": "typewriter",
       "title": "Typewriter",
       "category": "text",
-      "description": "Typewriter — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Types, pauses, deletes and cycles through phrases with a blinking caret.",
       "file": "src/components/ui/typewriter.tsx",
       "exports": [
         "Typewriter"
       ],
       "client": true,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
         "client"
@@ -1873,13 +1999,14 @@
       "name": "underline-reveal",
       "title": "UnderlineReveal",
       "category": "text",
-      "description": "UnderlineReveal — VibeUI text component. Copy-owned React + Tailwind.",
+      "description": "Link or span whose underline draws in from the left on hover.",
       "file": "src/components/ui/underline-reveal.tsx",
       "exports": [
         "UnderlineReveal"
       ],
       "client": false,
       "dependencies": [],
+      "registryDependencies": [],
       "tags": [
         "text",
         "rsc-safe"

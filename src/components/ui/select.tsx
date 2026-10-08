@@ -1,9 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { CaretDown } from "@phosphor-icons/react";
+import { CaretUpDown } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
+/** Native select with the shared field styling and a custom caret. */
 export function Select({
   value,
   defaultValue,
@@ -12,6 +13,7 @@ export function Select({
   placeholder = "Select…",
   className,
   id,
+  disabled,
 }: {
   value?: string;
   defaultValue?: string;
@@ -20,6 +22,7 @@ export function Select({
   placeholder?: string;
   className?: string;
   id?: string;
+  disabled?: boolean;
 }) {
   const [uncontrolled, setUncontrolled] = React.useState(defaultValue ?? "");
   const current = value ?? uncontrolled;
@@ -29,20 +32,28 @@ export function Select({
       <select
         id={id}
         value={current}
+        disabled={disabled}
         onChange={(e) => {
           setUncontrolled(e.target.value);
           onValueChange?.(e.target.value);
         }}
-        className="h-10 w-full appearance-none rounded-[var(--radius-sm)] border border-line bg-surface px-3 pr-9 text-sm text-ink transition-[border-color,box-shadow] duration-150 hover:border-line-strong focus-visible:border-ink focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_oklab,var(--ink)_10%,transparent)]"
+        className={cn(
+          "h-10 w-full appearance-none rounded-sm border border-line-strong bg-surface pl-3 pr-9 text-sm shadow-quiet transition-[border-color,box-shadow] duration-150 hover:border-faint focus-visible:border-accent focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+          current ? "text-ink" : "text-faint",
+        )}
       >
-        {!current ? <option value="">{placeholder}</option> : null}
+        {!current ? (
+          <option value="" disabled>
+            {placeholder}
+          </option>
+        ) : null}
         {options.map((opt) => (
           <option key={opt.value} value={opt.value}>
             {opt.label}
           </option>
         ))}
       </select>
-      <CaretDown
+      <CaretUpDown
         size={14}
         weight="bold"
         className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-muted"

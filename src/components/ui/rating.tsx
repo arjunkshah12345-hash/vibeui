@@ -4,11 +4,13 @@ import * as React from "react";
 import { Star } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
+/** Star rating with hover preview. Use readOnly to display a score. */
 export function Rating({
   value,
   defaultValue = 0,
   onChange,
   max = 5,
+  size = 20,
   className,
   readOnly,
 }: {
@@ -16,6 +18,7 @@ export function Rating({
   defaultValue?: number;
   onChange?: (value: number) => void;
   max?: number;
+  size?: number;
   className?: string;
   readOnly?: boolean;
 }) {
@@ -26,7 +29,9 @@ export function Rating({
 
   return (
     <div
-      className={cn("inline-flex items-center gap-0.5", className)}
+      role={readOnly ? "img" : "radiogroup"}
+      aria-label={`Rating: ${current} of ${max}`}
+      className={cn("inline-flex items-center", className)}
       onMouseLeave={() => setHover(null)}
     >
       {Array.from({ length: max }, (_, i) => {
@@ -36,6 +41,8 @@ export function Rating({
           <button
             key={n}
             type="button"
+            role={readOnly ? undefined : "radio"}
+            aria-checked={readOnly ? undefined : n === current}
             disabled={readOnly}
             aria-label={`${n} star${n === 1 ? "" : "s"}`}
             onMouseEnter={() => !readOnly && setHover(n)}
@@ -44,12 +51,15 @@ export function Rating({
               setUncontrolled(n);
               onChange?.(n);
             }}
-            className="p-0.5 text-ink disabled:cursor-default"
+            className="rounded-sm p-0.5 transition-transform duration-150 enabled:hover:scale-110 enabled:active:scale-95 disabled:cursor-default"
           >
             <Star
-              size={18}
+              size={size}
               weight={filled ? "fill" : "regular"}
-              className={filled ? "text-ink" : "text-line-strong"}
+              className={cn(
+                "transition-colors duration-150",
+                filled ? "text-accent" : "text-line-strong",
+              )}
             />
           </button>
         );

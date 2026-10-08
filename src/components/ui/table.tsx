@@ -1,11 +1,12 @@
 import { cn } from "@/lib/utils";
 
+/** Data table with a quiet header and row hover. */
 export function Table({
   className,
   ...props
 }: React.TableHTMLAttributes<HTMLTableElement>) {
   return (
-    <div className="w-full overflow-x-auto rounded-[var(--radius-lg)] border border-line">
+    <div className="w-full overflow-x-auto rounded-lg border border-line bg-surface shadow-quiet">
       <table className={cn("w-full text-left text-sm", className)} {...props} />
     </div>
   );
@@ -49,7 +50,7 @@ export function TH({
   return (
     <th
       className={cn(
-        "px-4 py-3 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-faint",
+        "whitespace-nowrap px-4 py-3 text-xs font-medium text-muted",
         className,
       )}
       {...props}
@@ -61,5 +62,7 @@ export function TD({
   className,
   ...props
 }: React.TdHTMLAttributes<HTMLTableCellElement>) {
-  return <td className={cn("px-4 py-3 text-ink-soft", className)} {...props} />;
+  return (
+    <td className={cn("px-4 py-3.5 text-ink-soft", className)} {...props} />
+  );
 }

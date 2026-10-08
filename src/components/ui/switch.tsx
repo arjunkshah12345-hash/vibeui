@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+/** On/off switch with an accent track and sprung thumb. */
 export function Switch({
   checked,
   defaultChecked,
@@ -37,15 +38,17 @@ export function Switch({
         onCheckedChange?.(next);
       }}
       className={cn(
-        "relative inline-flex h-6 w-10 shrink-0 items-center rounded-full border transition-colors duration-200 ease-[var(--ease-out)] disabled:opacity-40",
-        isOn ? "border-ink bg-ink" : "border-line bg-surface-muted",
+        "group relative inline-flex h-6 w-[42px] shrink-0 items-center rounded-full border p-0.5 transition-colors duration-200 ease-out disabled:pointer-events-none disabled:opacity-45",
+        isOn
+          ? "border-transparent bg-accent"
+          : "border-line-strong bg-surface-sunken hover:border-faint",
         className,
       )}
     >
       <span
         className={cn(
-          "pointer-events-none block size-4 rounded-full bg-surface shadow-[var(--shadow-quiet)] transition-transform duration-200 ease-[var(--ease-out)]",
-          isOn ? "translate-x-[1.15rem]" : "translate-x-1",
+          "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-[0_1px_3px_rgb(0_0_0/0.3)] transition-[transform,width] duration-300 ease-spring group-active:w-[22px]",
+          isOn ? "translate-x-[18px] group-active:translate-x-4" : "translate-x-0",
         )}
       />
     </button>
