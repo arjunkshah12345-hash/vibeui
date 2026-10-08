@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { DemoStage } from "@/components/showcase/demo-stage";
+import { ApiTable } from "@/components/docs/api-table";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { CodeBlock } from "@/components/ui/code-block";
 import { Pill } from "@/components/ui/pill";
@@ -147,6 +148,19 @@ async function ComponentDetail({
             language="tsx"
             code={`import { ${meta.exports.join(", ")} } from "@/components/ui/${slug}"`}
           />
+        </section>
+
+        <section className="mt-16" aria-label="API reference">
+          <h2 className="font-display text-3xl tracking-[-0.01em] text-ink">API</h2>
+          <p className="mt-2 max-w-xl text-[14px] text-muted">
+            Generated from the component&apos;s TypeScript types, so it always matches the source.{" "}
+            <span className="text-accent">*</span> marks a required prop.
+          </p>
+          <div className="mt-6">
+            {meta.api.map((entry) => (
+              <ApiTable key={entry.name} entry={entry} />
+            ))}
+          </div>
         </section>
 
         <section className="mt-16">

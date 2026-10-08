@@ -22,6 +22,7 @@ const instrument = Instrument_Serif({
   variable: "--font-instrument",
   subsets: ["latin"],
   weight: "400",
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description: site.description,
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/favicon.svg` },
   openGraph: {
     title: `${site.name}: ${site.tagline}`,
     description: site.description,

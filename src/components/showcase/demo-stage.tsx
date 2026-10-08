@@ -15,7 +15,16 @@ export function DemoStage({
   const demo = demos[slug];
   if (!demo) return <p className="text-sm text-muted">No preview yet.</p>;
 
-  const { Component } = demo;
+  const { Component, Tile } = demo;
+
+  if (mode === "tile" && Tile) {
+    return (
+      <div className="flex shrink-0 justify-center">
+        <Tile />
+      </div>
+    );
+  }
+
   const content = (
     <div className={cn("flex w-full justify-center", widths[demo.width ?? "md"])}>
       <Component />

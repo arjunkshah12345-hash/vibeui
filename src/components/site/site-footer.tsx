@@ -1,6 +1,14 @@
 import { SocialLinks } from "@/components/ui/social-links";
 import { FooterMega } from "@/components/ui/footer-mega";
 import { site } from "@/lib/site";
+import { BrandMark } from "./brand-mark";
+
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+/** FooterMega renders plain anchors, so internal links need the base path by hand. */
+function prefix<T extends { href: string }>(link: T): T {
+  return link.href.startsWith("/") ? { ...link, href: `${base}${link.href}` } : link;
+}
 
 /** The site footer is the library's own FooterMega. */
 export function SiteFooter() {
@@ -9,8 +17,7 @@ export function SiteFooter() {
       className="mt-auto"
       brand={
         <span className="flex items-center gap-2.5">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/mark.svg" alt="" width={24} height={24} className="rounded-[6px]" />
+          <BrandMark size={24} />
           <span className="font-display text-2xl leading-none tracking-[-0.01em]">VibeUI</span>
         </span>
       }
@@ -23,7 +30,7 @@ export function SiteFooter() {
             { label: "Signature pieces", href: "/components#craft" },
             { label: "Text effects", href: "/components#text" },
             { label: "Footers", href: "/components#footers" },
-          ],
+          ].map(prefix),
         },
         {
           title: "Docs",
@@ -32,7 +39,7 @@ export function SiteFooter() {
             { label: "Installation", href: "/docs/installation" },
             { label: "Theming", href: "/docs/theming" },
             { label: "CLI", href: "/docs/cli" },
-          ],
+          ].map(prefix),
         },
         {
           title: "Project",
@@ -41,7 +48,7 @@ export function SiteFooter() {
             { label: "Agents and MCP", href: "/docs/agents" },
             { label: "Issues", href: `${site.url}/issues` },
             { label: "MIT license", href: `${site.url}/blob/main/LICENSE` },
-          ],
+          ].map(prefix),
         },
       ]}
       bottom={

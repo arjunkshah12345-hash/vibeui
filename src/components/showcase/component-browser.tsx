@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react";
+import { Reveal } from "@/components/site/reveal";
 import { Empty } from "@/components/ui/empty";
 import { SearchField } from "@/components/ui/search-field";
 import { categories, type ComponentSummary } from "@/lib/categories";
@@ -10,9 +11,11 @@ import { cn } from "@/lib/utils";
 import { DemoStage } from "./demo-stage";
 import { LazyMount } from "./lazy-mount";
 
-function Tile({ component }: { component: ComponentSummary }) {
+function Tile({ component, index }: { component: ComponentSummary; index: number }) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-lg border border-line bg-surface shadow-quiet transition-[border-color,box-shadow] duration-300 hover:border-line-strong hover:shadow-lift">
+    <article
+      style={{ animationDelay: `${Math.min(index, 11) * 45}ms` }}
+      className="group flex animate-fade-up flex-col overflow-hidden rounded-lg border border-line bg-surface shadow-quiet transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-lift">
       <div className="relative flex h-60 items-center justify-center overflow-hidden border-b border-line bg-surface-muted/50 bg-dots px-6">
         <LazyMount
           placeholder={<div className="h-20 w-36 animate-pulse-quiet rounded-md bg-surface-muted" />}
@@ -37,6 +40,70 @@ function Tile({ component }: { component: ComponentSummary }) {
         />
       </Link>
     </article>
+  );
+}
+
+/**
+ * Completes a short last row. It links to the next shelf, so it reads as
+ * navigation rather than padding, and it only exists where a gap would be.
+ */
+function NextShelf({
+  count,
+  next,
+  names,
+}: {
+  count: number;
+  next?: (typeof categories)[number];
+  names: string[];
+}) {
+  const lgGap = (3 - (count % 3)) % 3;
+  const smGap = count % 2;
+  if (!lgGap && !smGap) return null;
+
+  const visibility = cn(
+    "hidden",
+    smGap ? "sm:flex" : "sm:hidden",
+    lgGap ? "lg:flex" : "lg:hidden",
+    lgGap === 2 && "lg:col-span-2",
+  );
+
+  return (
+    <Link
+      href={next ? `#${next.id}` : "/docs/installation"}
+      className={cn(
+        "group flex min-h-48 flex-col justify-between rounded-lg border border-dashed border-line-strong bg-transparent p-6 transition-colors duration-300 hover:border-ink hover:bg-surface",
+        visibility,
+      )}
+    >
+      <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-faint">
+        {next ? "Next shelf" : "Ready?"}
+      </span>
+      {next ? (
+        <ul className="my-4 flex flex-wrap gap-1.5" aria-hidden>
+          {names.map((n) => (
+            <li
+              key={n}
+              className="rounded-full border border-line bg-surface px-2.5 py-1 font-mono text-[11px] text-muted"
+            >
+              {n}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      <div>
+        <p className="font-display text-3xl tracking-[-0.01em] text-ink">
+          {next ? next.label : "Add one to your app"}
+        </p>
+        <p className="mt-1.5 flex items-center justify-between gap-3 text-sm text-muted">
+          <span>{next ? next.blurb : "Two minutes from clone to component."}</span>
+          <ArrowUpRight
+            size={18}
+            weight="bold"
+            className="shrink-0 text-faint transition-[transform,color] duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+          />
+        </p>
+      </div>
+    </Link>
   );
 }
 
@@ -102,19 +169,26 @@ export function ComponentBrowser({ components }: { components: ComponentSummary[
             description="Try a broader term, or clear the category filter."
           />
         ) : (
-          groups.map(({ cat, items }) => (
+          groups.map(({ cat, items }, gi) => (
             <section key={cat.id} id={cat.id} className="mb-16 scroll-mt-36 last:mb-0">
-              <div className="mb-5 flex items-baseline justify-between gap-4">
+              <Reveal className="mb-5 flex items-baseline justify-between gap-4">
                 <div>
                   <h2 className="font-display text-3xl tracking-[-0.01em] text-ink">{cat.label}</h2>
                   <p className="mt-1 text-sm text-muted">{cat.blurb}</p>
                 </div>
                 <span className="font-mono text-xs text-faint">{items.length}</span>
-              </div>
+              </Reveal>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {items.map((c) => (
-                  <Tile key={c.name} component={c} />
+                {items.map((c, i) => (
+                  <Tile key={c.name} component={c} index={i} />
                 ))}
+                {!q && category === "all" ? (
+                  <NextShelf
+                    count={items.length}
+                    next={groups[gi + 1]?.cat}
+                    names={(groups[gi + 1]?.items ?? []).slice(0, 7).map((c) => c.name)}
+                  />
+                ) : null}
               </div>
             </section>
           ))

@@ -1,9 +1,25 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { cacheLife } from "next/cache";
 import registryJson from "../../registry/components.json";
 import { categories, type ComponentSummary } from "./categories";
 
+export type ApiProp = {
+  name: string;
+  type: string;
+  required: boolean;
+  default: string | null;
+  description: string;
+};
+
+export type ApiEntry = {
+  name: string;
+  extends: string[];
+  props: ApiProp[];
+};
+
 export type ComponentMeta = ComponentSummary & {
+  api: ApiEntry[];
   file: string;
   exports: string[];
   client: boolean;
@@ -48,6 +64,7 @@ export function getNeighbors(slug: string) {
 /** Raw source of a component, read at build time. */
 export async function getSource(slug: string): Promise<string> {
   "use cache";
+  cacheLife("max"); // files only change on a new build
   const file = path.join(process.cwd(), "src/components/ui", `${slug}.tsx`);
   return readFile(file, "utf8");
 }

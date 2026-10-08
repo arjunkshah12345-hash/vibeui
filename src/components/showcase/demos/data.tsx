@@ -20,8 +20,8 @@ import { Pill } from "@/components/ui/pill";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Stat } from "@/components/ui/stat";
 import { Table, TBody, TD, TH, THead, TR } from "@/components/ui/table";
-import type { Demo } from "../demo";
-import { art } from "../demo";
+import { cn } from "@/lib/utils";
+import { TILE_W, art, type Demo } from "../demo";
 
 function CardDemo() {
   return (
@@ -174,15 +174,176 @@ function AspectDemo() {
   );
 }
 
+
+/* Gallery tiles: one fixed-width, evenly spaced composition per component. */
+
+function CardTile() {
+  return (
+    <Card interactive className={TILE_W}>
+      <CardHeader>
+        <Pill tone="accent" className="w-fit">New</Pill>
+        <CardTitle>Interactive card</CardTitle>
+        <CardDescription>Lifts on hover. Header, content and footer compose freely.</CardDescription>
+      </CardHeader>
+      <CardFooter>
+        <Button size="sm" variant="secondary">Open</Button>
+      </CardFooter>
+    </Card>
+  );
+}
+
+function TableTile() {
+  return (
+    <div className={TILE_W}>
+    <Table>
+      <THead>
+        <TR>
+          <TH>Component</TH>
+          <TH>Status</TH>
+        </TR>
+      </THead>
+      <TBody>
+        <TR><TD className="font-medium text-ink">Button</TD><TD><Pill tone="sage" dot>Stable</Pill></TD></TR>
+        <TR><TD className="font-medium text-ink">Dialog</TD><TD><Pill tone="sage" dot>Stable</Pill></TD></TR>
+        <TR><TD className="font-medium text-ink">Dock</TD><TD><Pill tone="sky">New</Pill></TD></TR>
+      </TBody>
+    </Table>
+    </div>
+  );
+}
+
+function ListTile() {
+  return (
+    <List className={TILE_W}>
+      <ListItem leading={<House size={16} weight="bold" />} title="Home" description="Recent work" />
+      <ListItem leading={<Cube size={16} weight="bold" />} title="Components" description="104 pieces" trailing={<Pill tone="sage" dot>Live</Pill>} />
+      <ListItem leading={<GearSix size={16} weight="bold" />} title="Settings" description="Tokens, theme" onClick={() => undefined} />
+    </List>
+  );
+}
+
+function AvatarTile() {
+  return (
+    <div className={cn(TILE_W, "flex flex-col items-center gap-6")}>
+      <div className="flex items-center gap-3">
+        <Avatar fallback="Ada Lovelace" size="xs" />
+        <Avatar fallback="Grace Hopper" size="sm" />
+        <Avatar fallback="Alan Turing" size="md" />
+        <Avatar fallback="Margaret Hamilton" size="lg" />
+        <Avatar fallback="Linus" size="lg" src={art("#d9480f", "#7048e8")} alt="" />
+      </div>
+      <AvatarGroup max={4}>
+        <Avatar fallback="Maya Kline" />
+        <Avatar fallback="Rishi Shah" />
+        <Avatar fallback="Ana López" />
+        <Avatar fallback="Sam Ito" />
+        <Avatar fallback="Jo Park" />
+        <Avatar fallback="Eli Voss" />
+      </AvatarGroup>
+    </div>
+  );
+}
+
+function StatTile() {
+  return (
+    <div className={cn(TILE_W, "grid grid-cols-2 gap-3")}>
+      <Stat label="Components" value="104" delta="12 new" trend="up" />
+      <Stat label="Errors" value="0.4%" delta="0.2%" trend="down" />
+    </div>
+  );
+}
+
+function CodeTile() {
+  return (
+    <CodeBlock
+      className={TILE_W}
+      language="tsx"
+      filename="page.tsx"
+      code={`import { Button } from "./ui"
+
+<Button variant="accent">
+  Get started
+</Button>`}
+    />
+  );
+}
+
+function SwatchTile() {
+  return (
+    <div className={cn(TILE_W, "grid grid-cols-2 gap-x-3 gap-y-4")}>
+      <ColorSwatch color="var(--ink)" label="Ink" value="--ink" />
+      <ColorSwatch color="var(--accent)" label="Accent" value="--accent" />
+      <ColorSwatch color="var(--canvas)" label="Canvas" value="--canvas" />
+      <ColorSwatch color="var(--pastel-sage)" label="Sage" value="--sage" />
+    </div>
+  );
+}
+
+function ComparisonTile() {
+  return (
+    <div className={cn(TILE_W, "space-y-6")}>
+      <ComparisonBar left="Light" right="Dark" leftValue={42} rightValue={58} />
+      <ComparisonBar left="Mobile" right="Desktop" leftValue={71} rightValue={29} />
+    </div>
+  );
+}
+
+function ScrollTile() {
+  return (
+    <ScrollArea maxHeight={176} className={TILE_W}>
+      <ul className="divide-y divide-line">
+        {Array.from({ length: 12 }, (_, i) => (
+          <li key={i} className="flex items-center justify-between px-4 py-3 text-sm">
+            <span className="text-ink-soft">Release note #{12 - i}</span>
+            <span className="font-mono text-[11px] text-faint">v0.{12 - i}.0</span>
+          </li>
+        ))}
+      </ul>
+    </ScrollArea>
+  );
+}
+
+function AspectTile() {
+  return (
+    <div className={cn(TILE_W, "space-y-2.5")}>
+      <AspectRatio ratio={16 / 9} className="rounded-md shadow-quiet">
+        <div
+          className="flex size-full items-end p-3"
+          style={{ background: "linear-gradient(135deg, #0ea5e9, #6366f1)" }}
+        >
+          <Pill tone="outline" className="border-white/40 bg-white/20 text-white backdrop-blur">16:9</Pill>
+        </div>
+      </AspectRatio>
+      <div className="flex items-center justify-between px-1">
+        {(
+          [
+            ["1:1", 1],
+            ["4:3", 4 / 3],
+            ["3:4", 3 / 4],
+          ] as const
+        ).map(([label, ratio]) => (
+          <div
+            key={label}
+            style={{ height: 44, aspectRatio: String(ratio) }}
+            className="flex items-center justify-center rounded-sm border border-line-strong bg-surface-muted"
+          >
+            <span className="font-mono text-[10px] text-muted">{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export const data: Record<string, Demo> = {
-  card: { Component: CardDemo, width: "lg", tileScale: 0.8 },
-  table: { Component: TableDemo, width: "lg", tileScale: 0.85 },
-  list: { Component: ListDemo },
-  avatar: { Component: AvatarDemo },
-  stat: { Component: StatDemo, width: "lg", tileScale: 0.8 },
-  "code-block": { Component: CodeDemo, width: "lg", tileScale: 0.85 },
-  "color-swatch": { Component: SwatchDemo },
-  comparison: { Component: ComparisonDemo },
-  "scroll-area": { Component: ScrollDemo, width: "sm" },
-  "aspect-ratio": { Component: AspectDemo },
+  card: { Component: CardDemo, width: "lg", Tile: CardTile },
+  table: { Component: TableDemo, width: "lg", Tile: TableTile },
+  list: { Component: ListDemo, Tile: ListTile },
+  avatar: { Component: AvatarDemo, Tile: AvatarTile },
+  stat: { Component: StatDemo, width: "lg", Tile: StatTile },
+  "code-block": { Component: CodeDemo, width: "lg", Tile: CodeTile },
+  "color-swatch": { Component: SwatchDemo, Tile: SwatchTile },
+  comparison: { Component: ComparisonDemo, Tile: ComparisonTile },
+  "scroll-area": { Component: ScrollDemo, width: "sm", Tile: ScrollTile },
+  "aspect-ratio": { Component: AspectDemo, Tile: AspectTile },
 };

@@ -15,7 +15,8 @@ import { Select } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { TagInput } from "@/components/ui/tag-input";
-import type { Demo } from "../demo";
+import { cn } from "@/lib/utils";
+import { TILE_W, type Demo } from "../demo";
 
 function InputDemo() {
   return (
@@ -208,8 +209,35 @@ function RatingDemo() {
   );
 }
 
+/* Gallery tiles */
+
+function InputTile() {
+  return (
+    <div className={cn(TILE_W, "space-y-4")}>
+      <Field label="Email" hint="Only used for receipts.">
+        <Input type="email" placeholder="you@studio.com" />
+      </Field>
+      <Field label="Username" error="That name is taken.">
+        <Input defaultValue="vibe" aria-invalid />
+      </Field>
+    </div>
+  );
+}
+
+function OtpTile() {
+  const [code, setCode] = React.useState("48");
+  return (
+    <div className={cn(TILE_W, "flex flex-col items-center gap-3")}>
+      <OtpField value={code} onChange={setCode} />
+      <p className="text-xs text-muted">
+        {code.length === 6 ? "Code complete ✓" : "Type or paste a 6 digit code."}
+      </p>
+    </div>
+  );
+}
+
 export const forms: Record<string, Demo> = {
-  input: { Component: InputDemo, width: "sm", height: 460, tileScale: 0.5 },
+  input: { Component: InputDemo, Tile: InputTile, width: "sm", height: 460, tileScale: 0.5 },
   select: { Component: SelectDemo, width: "sm" },
   checkbox: { Component: CheckboxDemo, width: "sm" },
   radio: { Component: RadioDemo, width: "sm" },
@@ -218,7 +246,7 @@ export const forms: Record<string, Demo> = {
   "search-field": { Component: SearchDemo, width: "sm" },
   "password-field": { Component: PasswordDemo, width: "sm" },
   "number-field": { Component: NumberDemo },
-  "otp-field": { Component: OtpDemo },
+  "otp-field": { Component: OtpDemo, Tile: OtpTile },
   "tag-input": { Component: TagDemo, width: "sm" },
   "file-drop": { Component: FileDemo, width: "sm" },
   calendar: { Component: CalendarDemo, width: "sm", tileScale: 0.7 },

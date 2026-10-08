@@ -11,7 +11,16 @@ export type Demo = {
   height?: number;
   /** Scale factor in gallery tiles so large examples fit. */
   tileScale?: number;
+  /**
+   * A compact, fixed-width composition for gallery tiles. When set it replaces
+   * `Component` in the gallery, so the grid reads as a set of tidy posters while
+   * the detail page keeps the full example.
+   */
+  Tile?: ComponentType;
 };
+
+/** Every gallery tile composition is laid out in this column. */
+export const TILE_W = "w-[264px]";
 
 export const widths = {
   sm: "max-w-xs",

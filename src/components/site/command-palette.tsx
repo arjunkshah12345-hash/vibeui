@@ -17,9 +17,19 @@ const pages = [
   { id: "page:/components", label: "All components", href: "/components" },
   { id: "page:/docs", label: "Docs · Introduction", href: "/docs" },
   { id: "page:/docs/installation", label: "Docs · Installation", href: "/docs/installation" },
-  { id: "page:/docs/theming", label: "Docs · Theming and dark mode", href: "/docs/theming" },
+  { id: "page:/docs/components", label: "Docs · How components work", href: "/docs/components" },
+  { id: "page:/docs/theming", label: "Docs · Theming", href: "/docs/theming" },
+  { id: "page:/docs/dark-mode", label: "Docs · Dark mode", href: "/docs/dark-mode" },
+  { id: "page:/docs/motion", label: "Docs · Motion", href: "/docs/motion" },
+  { id: "page:/docs/accessibility", label: "Docs · Accessibility", href: "/docs/accessibility" },
+  { id: "page:/docs/recipes", label: "Docs · Recipes", href: "/docs/recipes" },
+  { id: "page:/docs/upgrading", label: "Docs · Upgrading to 0.2", href: "/docs/upgrading" },
+  { id: "page:/docs/faq", label: "Docs · FAQ", href: "/docs/faq" },
   { id: "page:/docs/cli", label: "Docs · CLI", href: "/docs/cli" },
+  { id: "page:/docs/registry", label: "Docs · Registry", href: "/docs/registry" },
   { id: "page:/docs/agents", label: "Docs · Agents and MCP", href: "/docs/agents" },
+  { id: "page:/docs/contributing", label: "Docs · Contributing", href: "/docs/contributing" },
+  { id: "page:/docs/changelog", label: "Docs · Changelog", href: "/docs/changelog" },
 ];
 
 /** ⌘K palette: jump to any component or docs page, or flip the theme. */

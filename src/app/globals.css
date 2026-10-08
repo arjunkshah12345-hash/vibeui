@@ -2,8 +2,9 @@
 @import "../../templates/vibeui.css";
 
 @layer base {
+  /* No smooth scrolling: Back/Forward must restore position instantly, not
+     animate down the page. scroll-padding keeps hash links clear of the header. */
   html {
-    scroll-behavior: smooth;
     scroll-padding-top: 5rem;
   }
 
@@ -25,6 +26,56 @@
 
 /* Site-only helpers (not part of the copy-owned library). */
 
+@theme {
+  --animate-rise: vibe-rise 1.1s var(--ease-out) both;
+  --animate-scan: vibe-scan 6s ease-in-out infinite;
+
+  @keyframes vibe-rise {
+    from {
+      transform: translateY(112%);
+    }
+  }
+  @keyframes vibe-scan {
+    0%,
+    100% {
+      transform: translateX(-30%);
+      opacity: 0;
+    }
+    10%,
+    90% {
+      opacity: 1;
+    }
+    50% {
+      transform: translateX(130%);
+    }
+  }
+}
+
+/* Route transitions (React <ViewTransition>): content rises in, the old page fades. */
+::view-transition-old(.page-exit) {
+  animation: 160ms ease-in both vibe-vt-out;
+}
+::view-transition-new(.page-enter) {
+  animation: 460ms var(--ease-out) 80ms both vibe-vt-in;
+}
+::view-transition-group(.morph) {
+  animation-duration: 560ms;
+  animation-timing-function: var(--ease-out);
+}
+@keyframes vibe-vt-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(5px);
+  }
+}
+@keyframes vibe-vt-out {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
 .bg-dots {
   background-image: radial-gradient(
     circle,
@@ -45,7 +96,7 @@
   background:
     radial-gradient(
       60% 50% at 50% 0%,
-      color-mix(in oklab, var(--accent) 16%, transparent),
+      color-mix(in oklab, var(--accent) 14%, transparent),
       transparent 70%
     ),
     radial-gradient(

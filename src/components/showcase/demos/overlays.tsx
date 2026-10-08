@@ -27,7 +27,7 @@ import { Switch } from "@/components/ui/switch";
 import { ToastDemoButton, useToast } from "@/components/ui/toast";
 import { Tooltip } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import type { Demo } from "../demo";
+import { TILE_W, type Demo } from "../demo";
 
 function DialogDemo() {
   const [open, setOpen] = React.useState(false);
@@ -188,12 +188,25 @@ function TooltipDemo() {
   );
 }
 
+function CommandTile() {
+  return (
+    <Command
+      className={cn(TILE_W, "shadow-pop")}
+      items={[
+        { id: "components", label: "Go to components", hint: "G C", icon: <MagnifyingGlass size={14} weight="bold" /> },
+        { id: "theme", label: "Toggle theme", hint: "T", icon: <Moon size={14} weight="bold" /> },
+        { id: "button", label: "Copy Button source" },
+      ]}
+    />
+  );
+}
+
 export const overlays: Record<string, Demo> = {
   dialog: { Component: DialogDemo },
   sheet: { Component: SheetDemo },
   popover: { Component: PopoverDemo, top: true, height: 300 },
   "dropdown-menu": { Component: DropdownDemo, top: true, height: 340 },
-  command: { Component: CommandDemo, width: "md", tileScale: 0.7 },
+  command: { Component: CommandDemo, width: "md", Tile: CommandTile },
   toast: { Component: ToastDemo },
   tooltip: { Component: TooltipDemo },
 };

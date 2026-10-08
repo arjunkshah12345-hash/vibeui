@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Callout } from "@/components/ui/callout";
 import { cn } from "@/lib/utils";
 
 export function DocHeader({
@@ -97,5 +98,73 @@ export function Step({
       <h3 className="text-lg font-medium leading-[30px] tracking-[-0.02em] text-ink">{title}</h3>
       <div className="mt-2">{children}</div>
     </div>
+  );
+}
+
+export function H3({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="mb-2 mt-9 text-[17px] font-medium tracking-[-0.015em] text-ink">{children}</h3>
+  );
+}
+
+/** A small, scannable table for docs: first column is monospace. */
+export function DocTable({
+  head,
+  rows,
+  mono = [0],
+}: {
+  head: string[];
+  rows: React.ReactNode[][];
+  /** Column indexes rendered in monospace. */
+  mono?: number[];
+}) {
+  return (
+    <div className="my-6 overflow-x-auto rounded-lg border border-line bg-surface shadow-quiet">
+      <table className="w-full min-w-[480px] text-left text-[13.5px]">
+        <thead className="border-b border-line bg-surface-muted/60 text-xs text-muted">
+          <tr>
+            {head.map((h) => (
+              <th key={h} className="px-4 py-2.5 font-medium">
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-line align-top">
+          {rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td
+                  key={j}
+                  className={cn(
+                    "px-4 py-3 leading-relaxed text-ink-soft",
+                    mono.includes(j) && "whitespace-nowrap font-mono text-[12.5px] text-ink",
+                  )}
+                >
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** Aside for tips and warnings, built from the library's own Callout. */
+export function Note({ title, children }: { title?: string; children: React.ReactNode }) {
+  return (
+    <div className="my-6">
+      <Callout title={title}>{children}</Callout>
+    </div>
+  );
+}
+
+export function OL({ children }: { children: React.ReactNode }) {
+  return (
+    <ol className="my-4 space-y-2 pl-5 text-[15px] leading-[1.7] text-ink-soft marker:font-mono marker:text-faint [&>li]:list-decimal">
+      {children}
+    </ol>
   );
 }
