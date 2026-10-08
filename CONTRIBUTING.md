@@ -63,7 +63,7 @@ The site runs at http://localhost:3000. Add `?theme=dark` to preview dark mode.
 Before opening a pull request:
 
 ```bash
-npx tsc --noEmit
+npm run typecheck
 npx eslint
 npm run build
 ```

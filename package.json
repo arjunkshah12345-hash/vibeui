@@ -54,8 +54,8 @@
     "vibeui": "node bin/vibeui.mjs",
     "mcp": "node mcp/server.mjs",
     "prebuild": "node scripts/registry.mjs",
-    "typecheck": "tsc --noEmit",
-    "check": "tsc --noEmit && eslint && next build",
+    "typecheck": "next typegen && tsc --noEmit",
+    "check": "next typegen && tsc --noEmit && eslint && next build",
     "notices": "node scripts/notices.mjs"
   },
   "dependencies": {
