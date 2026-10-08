@@ -10,6 +10,7 @@ Machine-facing entrypoints so coding agents can discover and install components 
 | CLI | `npx github:arjunkshah12345-hash/vibeui` / `node bin/vibeui.mjs` | Scripts, CI, one-shot agent shells |
 | Registry JSON | `registry/components.json` | Offline catalog |
 | llms.txt | `/llms.txt` in repo root | Model context bootstrap |
+| llms-full.txt | `/llms-full.txt` in repo root | Every component with props, in one file (generated) |
 
 ## MCP setup (Cursor)
 
@@ -32,7 +33,7 @@ See also `.cursor/mcp.vibeui.example.json`.
 
 - `library_info` — version, count, peers
 - `list_components` / `search_components` — discovery
-- `get_component` — full source + metadata
+- `get_component` — full source + metadata + generated `api` (props)
 - `add_component` — copy into a project dir
 - `get_tokens` / `get_utils` / `get_install_guide` — bootstrap files
 - `list_categories` / `refresh_registry`

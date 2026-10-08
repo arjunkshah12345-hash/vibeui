@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# HyperFrames launch film: keep sources, ignore renders and generated previews
+videos/*/renders/
+videos/*/snapshots/
+videos/*/node_modules/
+videos/*/.hyperframes/

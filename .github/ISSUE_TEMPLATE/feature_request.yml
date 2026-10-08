@@ -1,0 +1,22 @@
+name: Feature or component request
+description: Suggest a new component, prop or improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What do you need?
+      description: Describe the use case, not just the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: ideas
+    attributes:
+      label: Ideas or references
+      description: Sketches, links, or similar components elsewhere (we credit inspiration, we don't copy code).
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Can you help?
+      options:
+        - label: I'm willing to open a pull request

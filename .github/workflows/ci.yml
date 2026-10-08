@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Typecheck, lint, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npx eslint
+
+      - name: Registry is up to date
+        run: |
+          npm run registry
+          git diff --exit-code registry/components.json
+
+      - name: Build
+        run: npm run build
+
+      - name: CLI smoke test
+        run: |
+          node bin/vibeui.mjs list --json > /dev/null
+          node bin/vibeui.mjs add footer-cta --dir ./tmp/src/components/ui
+          test -f ./tmp/src/components/ui/button.tsx   # sibling dependency was copied
