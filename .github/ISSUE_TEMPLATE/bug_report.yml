@@ -29,7 +29,7 @@ body:
     attributes:
       label: Versions
       description: VibeUI version, React, Tailwind, framework, browser.
-      placeholder: "vibeui 0.4.0, React 19, Tailwind 4.3, Next 16, Safari 26"
+      placeholder: "vibeui 0.5.0, React 19, Tailwind 4.3, Next 16, Safari 26"
     validations:
       required: true
   - type: dropdown
