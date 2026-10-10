@@ -1,9 +1,9 @@
 {
   "name": "vibeui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "repository": "https://github.com/arjunkshah12345-hash/vibeui",
-  "count": 104,
+  "count": 112,
   "tokens": "templates/vibeui.css",
   "utils": "src/lib/utils.ts",
   "peerDependencies": [
@@ -33,6 +33,36 @@
       "tabs",
       "timeline"
     ],
+    "craft": [
+      "ai-orb",
+      "arrow-fill-button",
+      "blur-reveal",
+      "book-flip",
+      "circle-menu",
+      "count-up",
+      "dock",
+      "dotted-grid",
+      "dynamic-island",
+      "flip-card",
+      "folder-preview",
+      "gooey-menu",
+      "jelly-loader",
+      "liquid-glass",
+      "liquid-switch",
+      "magnet-tabs",
+      "marquee",
+      "masonry",
+      "mesh-gradient",
+      "odometer",
+      "orbit-ring",
+      "rotating-carousel",
+      "scratch-reveal",
+      "scroll-stack",
+      "split-showcase",
+      "spotlight",
+      "stacked-cards",
+      "trading-card"
+    ],
     "feedback": [
       "alert",
       "banner",
@@ -43,28 +73,6 @@
       "progress",
       "skeleton",
       "spinner"
-    ],
-    "craft": [
-      "arrow-fill-button",
-      "blur-reveal",
-      "book-flip",
-      "circle-menu",
-      "count-up",
-      "dock",
-      "dotted-grid",
-      "flip-card",
-      "folder-preview",
-      "jelly-loader",
-      "magnet-tabs",
-      "marquee",
-      "masonry",
-      "orbit-ring",
-      "rotating-carousel",
-      "scroll-stack",
-      "split-showcase",
-      "spotlight",
-      "stacked-cards",
-      "trading-card"
     ],
     "data": [
       "aspect-ratio",
@@ -192,6 +200,66 @@
               "required": false,
               "default": null,
               "description": "Initial open state when uncontrolled."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
+      ]
+    },
+    {
+      "name": "ai-orb",
+      "title": "AI Orb",
+      "category": "craft",
+      "description": "A living orb for voice and AI moments that swirls faster as it moves from idle to speaking.",
+      "file": "src/components/ui/ai-orb.tsx",
+      "exports": [
+        "AiOrb"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "AiOrb",
+          "props": [
+            {
+              "name": "state",
+              "type": "OrbState",
+              "required": false,
+              "default": "\"idle\"",
+              "description": "What the assistant is doing. Changes are eased, never snapped."
+            },
+            {
+              "name": "level",
+              "type": "number",
+              "required": false,
+              "default": "0",
+              "description": "Live loudness from 0 to 1 (microphone or voice output). It swells the orb."
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "required": false,
+              "default": "168",
+              "description": "Diameter in px."
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Accessible description. Defaults to the state."
             },
             {
               "name": "className",
@@ -1607,6 +1675,52 @@
       ]
     },
     {
+      "name": "dynamic-island",
+      "title": "DynamicIsland",
+      "category": "craft",
+      "description": "A pill that flows between states, resizing and cross-fading its content with a soft overshoot.",
+      "file": "src/components/ui/dynamic-island.tsx",
+      "exports": [
+        "DynamicIsland"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "DynamicIsland",
+          "props": [
+            {
+              "name": "views",
+              "type": "IslandView[]",
+              "required": true,
+              "default": null,
+              "description": ""
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "The id of the active view."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
+      ]
+    },
+    {
       "name": "empty",
       "title": "Empty",
       "category": "feedback",
@@ -2141,6 +2255,96 @@
               "required": false,
               "default": null,
               "description": "Small text on the right."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
+      ]
+    },
+    {
+      "name": "gooey-menu",
+      "title": "GooeyMenu",
+      "category": "craft",
+      "description": "A button whose actions bud off like liquid and stay fused to it.",
+      "file": "src/components/ui/gooey-menu.tsx",
+      "exports": [
+        "GooeyMenu"
+      ],
+      "client": true,
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "GooeyMenu",
+          "props": [
+            {
+              "name": "items",
+              "type": "GooeyItem[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "direction",
+              "type": "Direction",
+              "required": false,
+              "default": "\"fan\"",
+              "description": "Where the items emerge: a fan arc, or a straight line."
+            },
+            {
+              "name": "spacing",
+              "type": "number",
+              "required": false,
+              "default": "54",
+              "description": "Distance between the button and each item, in px."
+            },
+            {
+              "name": "open",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Controlled open state."
+            },
+            {
+              "name": "defaultOpen",
+              "type": "boolean",
+              "required": false,
+              "default": "false",
+              "description": "Initial open state when uncontrolled."
+            },
+            {
+              "name": "onOpenChange",
+              "type": "((open: boolean) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called when the open state should change."
+            },
+            {
+              "name": "icon",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "Icon on the main button. It turns 45° when open."
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "required": false,
+              "default": "\"Menu\"",
+              "description": "Accessible name of the main button."
             },
             {
               "name": "className",
@@ -2787,6 +2991,130 @@
       ]
     },
     {
+      "name": "liquid-glass",
+      "title": "LiquidGlass",
+      "category": "craft",
+      "description": "Liquid glass: a surface that bends the light behind it, with a specular rim that follows the pointer.",
+      "file": "src/components/ui/liquid-glass.tsx",
+      "exports": [
+        "LiquidGlass"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "LiquidGlass",
+          "props": [
+            {
+              "name": "radius",
+              "type": "number",
+              "required": false,
+              "default": "28",
+              "description": "Corner radius in px. Use a large value for a pill."
+            },
+            {
+              "name": "blur",
+              "type": "number",
+              "required": false,
+              "default": "1",
+              "description": "Blur behind the glass in px. Keep it low so the refraction stays readable."
+            },
+            {
+              "name": "refraction",
+              "type": "number",
+              "required": false,
+              "default": "60",
+              "description": "How far the rim bends the backdrop, in px. 0 turns refraction off."
+            },
+            {
+              "name": "aberration",
+              "type": "number",
+              "required": false,
+              "default": "8",
+              "description": "Colour fringing at the rim, in px of channel offset."
+            },
+            {
+              "name": "saturation",
+              "type": "number",
+              "required": false,
+              "default": "1.5",
+              "description": "Backdrop saturation multiplier."
+            },
+            {
+              "name": "interactive",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Let the highlight and rim light follow the pointer."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "liquid-switch",
+      "title": "LiquidSwitch",
+      "category": "craft",
+      "description": "Toggle with a liquid-glass thumb that stretches under your finger and settles with a squish.",
+      "file": "src/components/ui/liquid-switch.tsx",
+      "exports": [
+        "LiquidSwitch"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "LiquidSwitch",
+          "props": [
+            {
+              "name": "defaultChecked",
+              "type": "boolean",
+              "required": false,
+              "default": "false",
+              "description": "Initial state when uncontrolled."
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Submit the state with a form under this name."
+            },
+            {
+              "name": "checked",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Controlled state."
+            },
+            {
+              "name": "onCheckedChange",
+              "type": "((checked: boolean) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the new state after a tap, drag or key press."
+            }
+          ],
+          "extends": [
+            "ButtonHTMLAttributes<HTMLButtonElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "list",
       "title": "List",
       "category": "data",
@@ -3109,6 +3437,54 @@
       ]
     },
     {
+      "name": "mesh-gradient",
+      "title": "MeshGradient",
+      "category": "craft",
+      "description": "A flowing mesh gradient drawn by a WebGL shader, with no images and no dependencies.",
+      "file": "src/components/ui/mesh-gradient.tsx",
+      "exports": [
+        "MeshGradient"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "MeshGradient",
+          "props": [
+            {
+              "name": "colors",
+              "type": "string[]",
+              "required": false,
+              "default": "DEFAULT_COLORS",
+              "description": "Four CSS colours, blended from the base to the highlights."
+            },
+            {
+              "name": "speed",
+              "type": "number",
+              "required": false,
+              "default": "1",
+              "description": "Flow speed multiplier. 0 freezes it."
+            },
+            {
+              "name": "interactive",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Let the gradient bend toward the pointer."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "meter",
       "title": "Meter",
       "category": "feedback",
@@ -3308,6 +3684,61 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "odometer",
+      "title": "Odometer",
+      "category": "craft",
+      "description": "Mechanical rolling digits: each one is a wheel that spins to its number, right to left.",
+      "file": "src/components/ui/odometer.tsx",
+      "exports": [
+        "Odometer"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Odometer",
+          "props": [
+            {
+              "name": "value",
+              "type": "number",
+              "required": true,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "locale",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "BCP 47 locale for formatting. Defaults to the browser's."
+            },
+            {
+              "name": "format",
+              "type": "NumberFormatOptions",
+              "required": false,
+              "default": null,
+              "description": "`Intl.NumberFormat` options, for example `{ style: \"currency\", currency: \"USD\" }`."
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "required": false,
+              "default": "1100",
+              "description": "Roll time in ms. Wheels to the left start a little later."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLSpanElement>"
+          ]
         }
       ]
     },
@@ -4042,6 +4473,73 @@
       ]
     },
     {
+      "name": "scratch-reveal",
+      "title": "ScratchReveal",
+      "category": "craft",
+      "description": "A scratch-off foil over your content that you drag away to reveal what is underneath.",
+      "file": "src/components/ui/scratch-reveal.tsx",
+      "exports": [
+        "ScratchReveal"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "ScratchReveal",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "What hides underneath. It stays in the DOM, so screen readers can read it."
+            },
+            {
+              "name": "cover",
+              "type": "string",
+              "required": false,
+              "default": "\"Scratch to reveal\"",
+              "description": "Text printed on the foil."
+            },
+            {
+              "name": "brush",
+              "type": "number",
+              "required": false,
+              "default": "30",
+              "description": "Brush width in px."
+            },
+            {
+              "name": "threshold",
+              "type": "number",
+              "required": false,
+              "default": "0.5",
+              "description": "Fraction of the foil (0–1) that must be cleared to reveal everything."
+            },
+            {
+              "name": "onReveal",
+              "type": "(() => void)",
+              "required": false,
+              "default": null,
+              "description": ""
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
+      ]
+    },
+    {
       "name": "scroll-area",
       "title": "ScrollArea",
       "category": "data",
@@ -4436,7 +4934,7 @@
             },
             {
               "name": "side",
-              "type": "\"bottom\" | \"right\" | \"left\"",
+              "type": "\"left\" | \"right\" | \"bottom\"",
               "required": false,
               "default": "\"right\"",
               "description": "Which edge or side to anchor to."
@@ -5576,7 +6074,7 @@
             },
             {
               "name": "side",
-              "type": "\"top\" | \"bottom\" | \"right\" | \"left\"",
+              "type": "\"left\" | \"right\" | \"top\" | \"bottom\"",
               "required": false,
               "default": "\"top\"",
               "description": "Which edge or side to anchor to."

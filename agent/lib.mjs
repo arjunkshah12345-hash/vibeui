@@ -69,6 +69,14 @@ const CATEGORY_RULES = [
         "spotlight",
         "marquee",
         "masonry",
+        "liquid-glass",
+        "liquid-switch",
+        "gooey-menu",
+        "dynamic-island",
+        "ai-orb",
+        "mesh-gradient",
+        "scratch-reveal",
+        "odometer",
       ].includes(n),
   },
   {
@@ -183,6 +191,9 @@ function describe(name, src) {
   );
 }
 
+// Titles that PascalCase would get wrong, such as acronyms.
+const TITLES = { "ai-orb": "AI Orb" };
+
 function toPascal(kebab) {
   return kebab
     .split("-")
@@ -233,7 +244,7 @@ export function buildRegistry() {
 
     return {
       name,
-      title: toPascal(name),
+      title: TITLES[name] ?? toPascal(name),
       category: categorize(name),
       description: describe(name, src),
       file: `src/components/ui/${file}`,
@@ -310,7 +321,7 @@ export function getComponent(rawName) {
   return {
     ...(meta ?? {
       name,
-      title: toPascal(name),
+      title: TITLES[name] ?? toPascal(name),
       category: categorize(name),
       file: `src/components/ui/${name}.tsx`,
       dependencies: [],
