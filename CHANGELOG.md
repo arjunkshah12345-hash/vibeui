@@ -11,6 +11,7 @@ versions may include breaking changes).
 
 ### Changed
 
+- The CLI is on npm as `@agents-npm-packages/vibeui`: `npx @agents-npm-packages/vibeui add button`.
 - The package's runtime dependencies are now only the two the MCP server needs; the website's own (Next, React, Motion) are dev-only, so installing the CLI stays small.
 - Light mode is now monochrome like dark mode: the default accent is the ink, and a single `--accent` variable still retints everything.
 - Rebuilt the landing page: a one-line animated headline, a live composed interface in the hero, a "ten shelves" section whose previews fit their cards and reveal on scroll, a short agents section, and the source viewer.

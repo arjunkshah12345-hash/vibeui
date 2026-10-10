@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Legacy shim — prefer: npx vibeui add <name> --dir <dest>
+ * Legacy shim — prefer: npx @agents-npm-packages/vibeui add <name> --dir <dest>
  *
  *   node scripts/add.mjs button ../my-app/src/components/ui
  */
@@ -9,7 +9,7 @@ import { addComponents } from "../agent/lib.mjs";
 const [, , rawName, destArg] = process.argv;
 if (!rawName || !destArg) {
   console.error("Usage: node scripts/add.mjs <component> <destination-dir>");
-  console.error("Prefer: npx vibeui add <component> --dir <destination-dir>");
+  console.error("Prefer: npx @agents-npm-packages/vibeui add <component> --dir <destination-dir>");
   process.exit(1);
 }
 
@@ -22,4 +22,4 @@ for (const r of results) {
   }
 }
 console.log("\nAlso paste tokens from templates/vibeui.css into your global CSS.");
-console.log("Or: npx vibeui add <name> --dir <dest> --tokens");
+console.log("Or: npx @agents-npm-packages/vibeui add <name> --dir <dest> --tokens");
