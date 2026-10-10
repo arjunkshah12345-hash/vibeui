@@ -1,7 +1,7 @@
 # VibeUI (full reference)
 
 > Copy-owned React + Tailwind components. MIT. https://github.com/arjunkshah12345-hash/vibeui
-> Version 0.3.0 · 112 components · generated from registry/components.json
+> Version 0.3.0 · 120 components · generated from registry/components.json
 
 ## Setup
 
@@ -183,6 +183,18 @@ macOS-style dock: icons magnify smoothly with distance from the cursor.
   - items: { id: string; label: string; icon: ReactNode; onSelect?: (() => void) | undefined; }[] — The items to render.
   - className?: string — Extra classes, merged with the component's own.
 
+#### dot-globe
+An interactive dotted globe you drag to spin, with pulsing markers and animated arcs.
+- file: src/components/ui/dot-globe.tsx
+- exports: DotGlobe
+- client component
+- <DotGlobe> (also accepts HTMLAttributes<HTMLDivElement>)
+  - markers?: GlobeMarker[] = [] — Places to mark, by latitude and longitude.
+  - arcs?: [number, number][] = [] — Pairs of indexes into `markers` to join with an animated arc.
+  - autoRotate?: boolean = true — Spin slowly when you are not dragging.
+  - speed?: number = 0.12 — Spin speed in radians per second.
+  - initial?: { lat: number; lng: number; } = { lat: 18, lng: 12 } — The point facing you at first.
+
 #### dotted-grid
 Dot-matrix surface that lights up under the cursor.
 - file: src/components/ui/dotted-grid.tsx
@@ -336,6 +348,16 @@ Labels circling a center point. Chips stay upright while the ring turns.
   - radius?: number = 104 — Ring radius in pixels.
   - className?: string — Extra classes, merged with the component's own.
 
+#### ripple-image
+An image that ripples like liquid wherever the pointer moves: refraction, colour splitting and a glint on every crest.
+- file: src/components/ui/ripple-image.tsx
+- exports: RippleImage
+- client component
+- <RippleImage> (also accepts HTMLAttributes<HTMLDivElement>)
+  - src: string — Image URL.
+  - alt: string — Describes the image. Required, because this is content, not decoration.
+  - strength?: number = 1 — How hard the ripples bend the image. 0 turns them off.
+
 #### rotating-carousel
 3D ring carousel: drag, swipe, arrow keys, autoplay that pauses on hover.
 - file: src/components/ui/rotating-carousel.tsx
@@ -411,6 +433,18 @@ Collectible card that tilts in 3D and catches a glare under the cursor.
   - meta?: string — Small label in the top corner.
   - className?: string — Extra classes, merged with the component's own.
   - children?: ReactNode — Content rendered inside the component.
+
+#### waveform
+A live audio waveform: rounded bars that dance to a loudness level or to any Web Audio analyser.
+- file: src/components/ui/waveform.tsx
+- exports: Waveform
+- client component
+- <Waveform> (also accepts HTMLAttributes<HTMLDivElement>)
+  - className?: string — Extra classes, merged with the component's own.
+  - level?: number = 0 — Loudness from 0 to 1. Ignored while an `analyser` is given.
+  - analyser?: AnalyserNode — A Web Audio analyser, for example from a microphone. Its frequency data drives the bars.
+  - bars?: number = 48 — How many bars to draw.
+  - active?: boolean = true — Set false to settle the bars flat.
 
 ### feedback
 
@@ -511,6 +545,19 @@ Indeterminate loading ring. Inherits `currentColor`.
 
 ### data
 
+#### area-chart
+A smooth area chart with a crosshair tooltip you can drive with a pointer or the arrow keys.
+- file: src/components/ui/area-chart.tsx
+- exports: AreaChart
+- client component
+- <AreaChart> (also accepts HTMLAttributes<HTMLDivElement>)
+  - labels: string[] — One label per point along the x axis, for example months.
+  - series: ChartSeries[] — One or more lines. Every `values` array should be as long as `labels`.
+  - height?: number = 240 — Chart height in px. The width follows its container.
+  - format?: ((value: number) => string) = (n) => n.toLocaleString() — Formats values on the axis and in the tooltip.
+  - grid?: boolean = true — Draw horizontal grid lines.
+  - animate?: boolean = true — Draw the lines in when the chart first appears.
+
 #### aspect-ratio
 Locks children to a width-to-height ratio.
 - file: src/components/ui/aspect-ratio.tsx
@@ -587,6 +634,16 @@ Two-sided proportion bar for comparing a pair of values.
   - rightValue: number — Magnitude of the right side.
   - className?: string — Extra classes, merged with the component's own.
 
+#### heatmap
+An activity heatmap in the style of a contribution graph: one cell per day, shaded by how much happened.
+- file: src/components/ui/heatmap.tsx
+- exports: Heatmap
+- client component
+- <Heatmap> (also accepts HTMLAttributes<HTMLDivElement>)
+  - data: HeatmapDay[] — One entry per day. Missing days count as zero.
+  - weeks?: number = 26 — How many weeks to show, ending with the week of the latest date.
+  - unit?: string = "contributions" — What the values count, used in the tooltip.
+
 #### list
 Bordered list of rows with title, description, leading and trailing slots.
 - file: src/components/ui/list.tsx
@@ -603,6 +660,19 @@ Bordered list of rows with title, description, leading and trailing slots.
   - className?: string — Extra classes, merged with the component's own.
   - onClick?: (() => void) — Called on click.
 
+#### resizable
+Split panels with draggable dividers, laid out side by side or stacked.
+- file: src/components/ui/resizable.tsx
+- exports: Resizable
+- client component
+- <Resizable> (also accepts HTMLAttributes<HTMLDivElement>)
+  - children: ReactNode — One child per panel.
+  - direction?: "horizontal" | "vertical" = "horizontal" — `horizontal` puts panels side by side, `vertical` stacks them (give the container a height).
+  - sizes?: number[] — Controlled panel sizes as percentages that add up to 100.
+  - defaultSizes?: number[] — Initial sizes when uncontrolled. Defaults to equal panels.
+  - minSize?: number | number[] = 12 — Smallest size any panel can shrink to, as a percentage. One number, or one per panel.
+  - onSizesChange?: ((sizes: number[]) => void) — Called while a divider moves.
+
 #### scroll-area
 Height-limited scroll container with a slim scrollbar.
 - file: src/components/ui/scroll-area.tsx
@@ -612,6 +682,19 @@ Height-limited scroll container with a slim scrollbar.
   - children: ReactNode — Content rendered inside the component.
   - className?: string — Extra classes, merged with the component's own.
   - maxHeight?: number = 240 — Maximum height in pixels before content scrolls.
+
+#### sortable-list
+A list you reorder by dragging. The other rows glide out of the way and the dropped row settles into place.
+- file: src/components/ui/sortable-list.tsx
+- exports: SortableList
+- client component
+- peers: @phosphor-icons/react
+- <SortableList> (also accepts HTMLAttributes<HTMLUListElement>)
+  - items?: SortableItem[] — Controlled items, in order.
+  - defaultItems?: SortableItem[] = [] — Initial items when uncontrolled.
+  - onItemsChange?: ((items: SortableItem[]) => void) — Called with the new order after a drop or a keyboard move.
+  - handle?: boolean = true — Drag only by the grip. Turn off to drag from anywhere on the row (not for rows with their own controls).
+  - itemClassName?: string — Classes for every row.
 
 #### stat
 Metric tile with a value and an optional trend delta.
@@ -936,6 +1019,23 @@ Modal dialog: portaled, focus-trapping, animated in and out, Escape to close.
   - children?: ReactNode — Content rendered inside the component.
   - className?: string — Extra classes, merged with the component's own.
 - <DialogFooter> (also accepts HTMLAttributes<HTMLDivElement>)
+
+#### drawer
+A bottom sheet for touch: drag it between snap points, fling it down to dismiss, tap the handle to step through.
+- file: src/components/ui/drawer.tsx
+- exports: Drawer
+- client component
+- peers: @phosphor-icons/react
+- <Drawer>
+  - title: string — Heading text.
+  - children: ReactNode — Content rendered inside the component.
+  - trigger: ReactNode — The element that opens it.
+  - open?: boolean — Controlled open state.
+  - onOpenChange?: ((open: boolean) => void) — Called when the open state should change.
+  - description?: string — Supporting text under the title.
+  - snapPoints?: number[] = [0.5, 0.92] — How much of the screen the drawer shows at each stop, from 0 to 1, smallest first.
+  - defaultSnap?: number = 0 — Which snap point it opens at, as an index into `snapPoints`.
+  - dismissible?: boolean = true — Allow dragging down past the lowest stop (or Escape, or the backdrop) to close.
 
 #### dropdown-menu
 Action menu: arrow-key navigation, staggered items, animates in and out.

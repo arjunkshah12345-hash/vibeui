@@ -77,6 +77,9 @@ const CATEGORY_RULES = [
         "mesh-gradient",
         "scratch-reveal",
         "odometer",
+        "dot-globe",
+        "ripple-image",
+        "waveform",
       ].includes(n),
   },
   {
@@ -103,9 +106,16 @@ const CATEGORY_RULES = [
   {
     cat: "overlays",
     test: (n) =>
-      ["dialog", "sheet", "popover", "dropdown-menu", "command", "toast", "tooltip"].includes(
-        n,
-      ),
+      [
+        "dialog",
+        "sheet",
+        "drawer",
+        "popover",
+        "dropdown-menu",
+        "command",
+        "toast",
+        "tooltip",
+      ].includes(n),
   },
   {
     cat: "navigation",
@@ -149,12 +159,15 @@ const CATEGORY_RULES = [
         "comparison",
         "scroll-area",
         "aspect-ratio",
+        "area-chart",
+        "heatmap",
+        "sortable-list",
+        "resizable",
       ].includes(n),
   },
   {
     cat: "actions",
-    test: (n) =>
-      ["button", "pill", "chip", "toggle", "kbd", "separator"].includes(n),
+    test: (n) => ["button", "pill", "chip", "toggle", "kbd", "separator"].includes(n),
   },
 ];
 
@@ -229,14 +242,11 @@ export function buildRegistry() {
     if (src.includes("@phosphor-icons/react")) deps.push("@phosphor-icons/react");
     if (src.includes("class-variance-authority") || src.includes("cva("))
       deps.push("class-variance-authority");
-    if (src.includes('from "motion') || src.includes("from 'motion"))
-      deps.push("motion");
+    if (src.includes('from "motion') || src.includes("from 'motion")) deps.push("motion");
 
     // Sibling components this one imports (`from "./button"`), installed transitively.
     const registryDependencies = [
-      ...new Set(
-        [...src.matchAll(/from ["']\.\/([\w-]+)["']/g)].map((m) => m[1]),
-      ),
+      ...new Set([...src.matchAll(/from ["']\.\/([\w-]+)["']/g)].map((m) => m[1])),
     ].sort();
 
     const exports = [...src.matchAll(/export function (\w+)/g)].map((m) => m[1]);

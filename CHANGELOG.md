@@ -32,6 +32,15 @@ versions may include breaking changes).
   - `MeshGradient`: a flowing WebGL gradient with a static CSS fallback.
   - `ScratchReveal`: a scratch-off foil over any content.
   - `Odometer`: mechanical rolling digits with `Intl.NumberFormat` formatting.
+- Eight more components:
+  - `DotGlobe`: an interactive dotted globe drawn from real coastline data, with drag momentum, hover labels, pulsing markers and animated arcs.
+  - `RippleImage`: an image that ripples like liquid under the pointer (WebGL, with a plain `<img>` underneath).
+  - `Waveform`: a live audio waveform driven by a level or a Web Audio analyser.
+  - `AreaChart`: a smooth multi-series chart with a crosshair tooltip and arrow-key reading.
+  - `Heatmap`: a contribution-style activity grid with month labels and a legend.
+  - `SortableList`: drag to reorder, with a full keyboard path and screen-reader announcements.
+  - `Resizable`: split panels with accessible, keyboard-friendly dividers.
+  - `Drawer`: a bottom sheet with snap points, rubber-banding and fling-to-dismiss.
 - An `animate-eq` token (the island's equalizer bars).
 - A social share image and a large Twitter card.
 - `BASE_PATH` build option: set it (for example `/ui`) to serve the site under a sub-path of another domain.

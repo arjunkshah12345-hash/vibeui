@@ -65,7 +65,7 @@ export function HeroCollage() {
                 On track
               </Pill>
             </div>
-            <p className="mt-1 text-[13px] text-muted">112 components · 15 docs pages</p>
+            <p className="mt-1 text-[13px] text-muted">120 components · 15 docs pages</p>
             <AvatarGroup max={4} className="mt-4">
               <Avatar fallback="Maya Kline" />
               <Avatar fallback="Rishi Shah" />
@@ -186,7 +186,7 @@ export function HeroCollage() {
         {/* right */}
         <div className="flex flex-col gap-4 md:col-span-2 lg:col-span-3 lg:gap-5">
           <Piece delay={100} className="grid grid-cols-2 gap-3 lg:grid-cols-1">
-            <Stat label="Components" value="112" delta="12 new" trend="up" />
+            <Stat label="Components" value="120" delta="12 new" trend="up" />
             <Stat label="Runtime" value="0 kb" delta="Copy-owned" trend="neutral" />
           </Piece>
 
@@ -210,7 +210,7 @@ export function HeroCollage() {
 
           <Piece delay={260}>
             <Alert tone="sage" title="Tokens synced">
-              Accent and radius updated across 112 components.
+              Accent and radius updated across 120 components.
             </Alert>
           </Piece>
 

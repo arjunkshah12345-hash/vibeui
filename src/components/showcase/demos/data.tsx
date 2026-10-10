@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Cube, GearSix, House } from "@phosphor-icons/react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Avatar, AvatarGroup } from "@/components/ui/avatar";
@@ -20,6 +21,11 @@ import { Pill } from "@/components/ui/pill";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Stat } from "@/components/ui/stat";
 import { Table, TBody, TD, TH, THead, TR } from "@/components/ui/table";
+import { AreaChart } from "@/components/ui/area-chart";
+import { Heatmap, type HeatmapDay } from "@/components/ui/heatmap";
+import { Resizable } from "@/components/ui/resizable";
+import { SortableList, type SortableItem } from "@/components/ui/sortable-list";
+
 import { cn } from "@/lib/utils";
 import { TILE_W, art, type Demo } from "../demo";
 
@@ -28,12 +34,16 @@ function CardDemo() {
     <div className="grid w-full gap-4 sm:grid-cols-2">
       <Card interactive>
         <CardHeader>
-          <Pill tone="accent" className="w-fit">New</Pill>
+          <Pill tone="accent" className="w-fit">
+            New
+          </Pill>
           <CardTitle>Interactive card</CardTitle>
           <CardDescription>Lifts gently on hover. No glow.</CardDescription>
         </CardHeader>
         <CardFooter>
-          <Button size="sm" variant="ghost">Open</Button>
+          <Button size="sm" variant="ghost">
+            Open
+          </Button>
         </CardFooter>
       </Card>
       <Card>
@@ -58,9 +68,31 @@ function TableDemo() {
         </TR>
       </THead>
       <TBody>
-        <TR><TD className="font-medium text-ink">Button</TD><TD>Actions</TD><TD><Pill tone="sage" dot>Stable</Pill></TD></TR>
-        <TR><TD className="font-medium text-ink">Dialog</TD><TD>Overlays</TD><TD><Pill tone="sage" dot>Stable</Pill></TD></TR>
-        <TR><TD className="font-medium text-ink">Dock</TD><TD>Signature</TD><TD><Pill tone="sky">New</Pill></TD></TR>
+        <TR>
+          <TD className="font-medium text-ink">Button</TD>
+          <TD>Actions</TD>
+          <TD>
+            <Pill tone="sage" dot>
+              Stable
+            </Pill>
+          </TD>
+        </TR>
+        <TR>
+          <TD className="font-medium text-ink">Dialog</TD>
+          <TD>Overlays</TD>
+          <TD>
+            <Pill tone="sage" dot>
+              Stable
+            </Pill>
+          </TD>
+        </TR>
+        <TR>
+          <TD className="font-medium text-ink">Dock</TD>
+          <TD>Signature</TD>
+          <TD>
+            <Pill tone="sky">New</Pill>
+          </TD>
+        </TR>
       </TBody>
     </Table>
   );
@@ -69,9 +101,28 @@ function TableDemo() {
 function ListDemo() {
   return (
     <List>
-      <ListItem leading={<House size={16} weight="bold" />} title="Home" description="Overview and recent work" trailing={<Pill tone="outline">⌘1</Pill>} />
-      <ListItem leading={<Cube size={16} weight="bold" />} title="Components" description="112 pieces" trailing={<Pill tone="sage" dot>Live</Pill>} />
-      <ListItem leading={<GearSix size={16} weight="bold" />} title="Settings" description="Tokens and theme" onClick={() => undefined} />
+      <ListItem
+        leading={<House size={16} weight="bold" />}
+        title="Home"
+        description="Overview and recent work"
+        trailing={<Pill tone="outline">⌘1</Pill>}
+      />
+      <ListItem
+        leading={<Cube size={16} weight="bold" />}
+        title="Components"
+        description="120 pieces"
+        trailing={
+          <Pill tone="sage" dot>
+            Live
+          </Pill>
+        }
+      />
+      <ListItem
+        leading={<GearSix size={16} weight="bold" />}
+        title="Settings"
+        description="Tokens and theme"
+        onClick={() => undefined}
+      />
     </List>
   );
 }
@@ -101,7 +152,7 @@ function AvatarDemo() {
 function StatDemo() {
   return (
     <div className="grid w-full gap-3 sm:grid-cols-3">
-      <Stat label="Components" value="112" delta="12 this release" trend="up" />
+      <Stat label="Components" value="120" delta="12 this release" trend="up" />
       <Stat label="Bundle" value="0 kb" delta="Copy-owned" trend="neutral" />
       <Stat label="Errors" value="0.4%" delta="0.2% vs last week" trend="down" />
     </div>
@@ -174,19 +225,24 @@ function AspectDemo() {
   );
 }
 
-
 /* Gallery tiles: one fixed-width, evenly spaced composition per component. */
 
 function CardTile() {
   return (
     <Card interactive className={TILE_W}>
       <CardHeader>
-        <Pill tone="accent" className="w-fit">New</Pill>
+        <Pill tone="accent" className="w-fit">
+          New
+        </Pill>
         <CardTitle>Interactive card</CardTitle>
-        <CardDescription>Lifts on hover. Header, content and footer compose freely.</CardDescription>
+        <CardDescription>
+          Lifts on hover. Header, content and footer compose freely.
+        </CardDescription>
       </CardHeader>
       <CardFooter>
-        <Button size="sm" variant="secondary">Open</Button>
+        <Button size="sm" variant="secondary">
+          Open
+        </Button>
       </CardFooter>
     </Card>
   );
@@ -195,19 +251,38 @@ function CardTile() {
 function TableTile() {
   return (
     <div className={TILE_W}>
-    <Table>
-      <THead>
-        <TR>
-          <TH>Component</TH>
-          <TH>Status</TH>
-        </TR>
-      </THead>
-      <TBody>
-        <TR><TD className="font-medium text-ink">Button</TD><TD><Pill tone="sage" dot>Stable</Pill></TD></TR>
-        <TR><TD className="font-medium text-ink">Dialog</TD><TD><Pill tone="sage" dot>Stable</Pill></TD></TR>
-        <TR><TD className="font-medium text-ink">Dock</TD><TD><Pill tone="sky">New</Pill></TD></TR>
-      </TBody>
-    </Table>
+      <Table>
+        <THead>
+          <TR>
+            <TH>Component</TH>
+            <TH>Status</TH>
+          </TR>
+        </THead>
+        <TBody>
+          <TR>
+            <TD className="font-medium text-ink">Button</TD>
+            <TD>
+              <Pill tone="sage" dot>
+                Stable
+              </Pill>
+            </TD>
+          </TR>
+          <TR>
+            <TD className="font-medium text-ink">Dialog</TD>
+            <TD>
+              <Pill tone="sage" dot>
+                Stable
+              </Pill>
+            </TD>
+          </TR>
+          <TR>
+            <TD className="font-medium text-ink">Dock</TD>
+            <TD>
+              <Pill tone="sky">New</Pill>
+            </TD>
+          </TR>
+        </TBody>
+      </Table>
     </div>
   );
 }
@@ -215,9 +290,27 @@ function TableTile() {
 function ListTile() {
   return (
     <List className={TILE_W}>
-      <ListItem leading={<House size={16} weight="bold" />} title="Home" description="Recent work" />
-      <ListItem leading={<Cube size={16} weight="bold" />} title="Components" description="112 pieces" trailing={<Pill tone="sage" dot>Live</Pill>} />
-      <ListItem leading={<GearSix size={16} weight="bold" />} title="Settings" description="Tokens, theme" onClick={() => undefined} />
+      <ListItem
+        leading={<House size={16} weight="bold" />}
+        title="Home"
+        description="Recent work"
+      />
+      <ListItem
+        leading={<Cube size={16} weight="bold" />}
+        title="Components"
+        description="120 pieces"
+        trailing={
+          <Pill tone="sage" dot>
+            Live
+          </Pill>
+        }
+      />
+      <ListItem
+        leading={<GearSix size={16} weight="bold" />}
+        title="Settings"
+        description="Tokens, theme"
+        onClick={() => undefined}
+      />
     </List>
   );
 }
@@ -247,7 +340,7 @@ function AvatarTile() {
 function StatTile() {
   return (
     <div className={cn(TILE_W, "grid grid-cols-2 gap-3")}>
-      <Stat label="Components" value="112" delta="12 new" trend="up" />
+      <Stat label="Components" value="120" delta="12 new" trend="up" />
       <Stat label="Errors" value="0.4%" delta="0.2%" trend="down" />
     </div>
   );
@@ -311,7 +404,9 @@ function AspectTile() {
           className="flex size-full items-end p-3"
           style={{ background: "linear-gradient(135deg, #0ea5e9, #6366f1)" }}
         >
-          <Pill tone="outline" className="border-white/40 bg-white/20 text-white backdrop-blur">16:9</Pill>
+          <Pill tone="outline" className="border-white/40 bg-white/20 text-white backdrop-blur">
+            16:9
+          </Pill>
         </div>
       </AspectRatio>
       <div className="flex items-center justify-between px-1">
@@ -335,6 +430,200 @@ function AspectTile() {
   );
 }
 
+/* ─────────────────────────── area chart ─────────────────────────── */
+
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const compact = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 });
+
+function AreaChartDemo() {
+  return (
+    <AreaChart
+      labels={months}
+      format={(n) => compact.format(n)}
+      height={260}
+      series={[
+        {
+          name: "Visitors",
+          values: [4200, 5100, 4800, 6400, 7900, 7400, 9300, 10800, 10200, 12900, 14100, 15600],
+        },
+        {
+          name: "Signups",
+          values: [900, 1250, 1100, 1900, 2400, 2100, 3000, 3600, 3300, 4500, 5100, 5800],
+        },
+      ]}
+    />
+  );
+}
+
+function AreaChartTile() {
+  return (
+    <div className={TILE_W}>
+      <AreaChart
+        labels={months.slice(0, 9)}
+        format={(n) => compact.format(n)}
+        height={150}
+        series={[
+          { name: "Visitors", values: [4200, 5100, 4800, 6400, 7900, 7400, 9300, 10800, 10200] },
+        ]}
+      />
+    </div>
+  );
+}
+
+/* ─────────────────────────── heatmap ─────────────────────────── */
+
+// Deterministic pseudo-random activity, so server and client render identically.
+function activity(end: string, days: number): HeatmapDay[] {
+  const [y, m, d] = end.split("-").map(Number);
+  const out: HeatmapDay[] = [];
+  for (let i = 0; i < days; i++) {
+    const t = new Date(Date.UTC(y, m - 1, d - i));
+    const noise = Math.abs(Math.sin((i + 1) * 12.9898) * 43758.5453) % 1;
+    const dow = t.getUTCDay();
+    const base = dow === 0 || dow === 6 ? 0.25 : 1;
+    const burst = Math.abs(Math.sin(i / 9)) > 0.8 ? 2.4 : 1;
+    const v = noise < 0.22 ? 0 : Math.round(noise * 9 * base * burst);
+    out.push({ date: t.toISOString().slice(0, 10), value: v });
+  }
+  return out;
+}
+
+const history = activity("2026-10-08", 26 * 7);
+
+function HeatmapDemo() {
+  return <Heatmap data={history} weeks={26} unit="commits" />;
+}
+
+function HeatmapTile() {
+  return (
+    <div className={TILE_W}>
+      <Heatmap data={history} weeks={17} unit="commits" />
+    </div>
+  );
+}
+
+/* ─────────────────────────── sortable list ─────────────────────────── */
+
+const tasks: SortableItem[] = [
+  {
+    id: "tokens",
+    label: "Design the token file",
+    content: <span className="text-sm text-ink">Design the token file</span>,
+  },
+  {
+    id: "motion",
+    label: "Tune the motion",
+    content: <span className="text-sm text-ink">Tune the motion</span>,
+  },
+  {
+    id: "docs",
+    label: "Write the docs",
+    content: <span className="text-sm text-ink">Write the docs</span>,
+  },
+  {
+    id: "film",
+    label: "Cut the launch film",
+    content: <span className="text-sm text-ink">Cut the launch film</span>,
+  },
+  { id: "ship", label: "Ship it", content: <span className="text-sm text-ink">Ship it</span> },
+];
+
+function SortableDemo() {
+  const [items, setItems] = React.useState(tasks);
+  return (
+    <div className="w-full max-w-sm">
+      <SortableList items={items} onItemsChange={setItems} aria-label="Launch checklist" />
+      <p className="mt-3 text-center text-xs text-muted">
+        Drag a grip, or focus it and press Space, then the arrow keys.
+      </p>
+    </div>
+  );
+}
+
+function SortableTile() {
+  const [items, setItems] = React.useState(tasks.slice(0, 4));
+  return (
+    <div className={TILE_W}>
+      <SortableList
+        items={items}
+        onItemsChange={setItems}
+        aria-label="Checklist"
+        className="gap-1.5"
+      />
+    </div>
+  );
+}
+
+/* ─────────────────────────── resizable ─────────────────────────── */
+
+function Pane({
+  title,
+  children,
+  className,
+}: {
+  title: string;
+  children?: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={cn("h-full bg-surface p-3", className)}>
+      <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-faint">{title}</p>
+      {children}
+    </div>
+  );
+}
+
+function ResizableDemo() {
+  return (
+    <div className="h-72 w-full overflow-hidden rounded-xl border border-line bg-surface shadow-quiet">
+      <Resizable defaultSizes={[28, 72]} minSize={16}>
+        <Pane title="Files" className="bg-surface-muted/60">
+          <ul className="space-y-1.5 font-mono text-xs text-muted">
+            <li className="text-ink">button.tsx</li>
+            <li>dialog.tsx</li>
+            <li>dock.tsx</li>
+            <li>drawer.tsx</li>
+            <li>tokens.css</li>
+          </ul>
+        </Pane>
+        <Resizable direction="vertical" defaultSizes={[62, 38]} minSize={20} className="h-full">
+          <Pane title="Editor">
+            <pre className="font-mono text-xs leading-5 text-muted">
+              <span className="text-ink">export function</span> Button() {"{"}
+              {"\n"} <span className="text-ink">return</span> {"<button className="}
+              {'"…"'} {"/>"}
+              {"\n"}
+              {"}"}
+            </pre>
+          </Pane>
+          <Pane title="Terminal" className="bg-surface-muted/60">
+            <p className="font-mono text-xs text-muted">
+              <span className="text-faint">$</span> npx vibeui add drawer
+            </p>
+            <p className="font-mono text-xs text-ink">✓ drawer → src/components/ui/drawer.tsx</p>
+          </Pane>
+        </Resizable>
+      </Resizable>
+    </div>
+  );
+}
+
+function ResizableTile() {
+  return (
+    <div
+      className={cn(
+        TILE_W,
+        "h-[150px] overflow-hidden rounded-xl border border-line bg-surface shadow-quiet",
+      )}
+    >
+      <Resizable defaultSizes={[40, 60]} minSize={20}>
+        <Pane title="Files" className="bg-surface-muted/60" />
+        <Pane title="Editor" />
+      </Resizable>
+    </div>
+  );
+}
+
 export const data: Record<string, Demo> = {
   card: { Component: CardDemo, width: "lg", Tile: CardTile },
   table: { Component: TableDemo, width: "lg", Tile: TableTile },
@@ -346,4 +635,8 @@ export const data: Record<string, Demo> = {
   comparison: { Component: ComparisonDemo, Tile: ComparisonTile },
   "scroll-area": { Component: ScrollDemo, width: "sm", Tile: ScrollTile },
   "aspect-ratio": { Component: AspectDemo, Tile: AspectTile },
+  "area-chart": { Component: AreaChartDemo, width: "lg", Tile: AreaChartTile },
+  heatmap: { Component: HeatmapDemo, width: "lg", Tile: HeatmapTile },
+  "sortable-list": { Component: SortableDemo, width: "sm", Tile: SortableTile },
+  resizable: { Component: ResizableDemo, width: "lg", Tile: ResizableTile },
 };

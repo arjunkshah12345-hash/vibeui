@@ -1,7 +1,7 @@
 ---
 format: 1920x1080
 duration: 50s
-message: "Everything an interface is made of: 112 components you copy and own."
+message: "Everything an interface is made of: 120 components you copy and own."
 arc: Hook → Show → Own it → Tokens → Motion → Agents → CTA
 audience: frontend engineers and designers
 mode: autonomous
@@ -17,12 +17,12 @@ music: original, 96 BPM, procedurally synthesised
 Opens cold on the thesis. Two lines rise out of masks; the italic phrase gets a stroke underline. A mono tag and the subline arrive late.
 
 ## Frame 2 — The table
-- scene: Light canvas. 112 cells pop in as a wave; a count-up lands on 112; a cursor magnifies cells as it sweeps; cells light up one by one.
+- scene: Light canvas. 120 cells pop in as a wave; a count-up lands on 120; a cursor magnifies cells as it sweeps; cells light up one by one.
 - duration: 7.5s
 - transition_in: wipe
 - status: outline
 - music: kick + bass + pluck arpeggio join
-Source: the landing page's component table (14 × 8 = 112 cells, symbols = initials).
+Source: the landing page's component table (15 × 8 = 120 cells, symbols = initials).
 
 ## Frame 3 — Own it
 - scene: A terminal types the real install command; files land with ✓; a code card flips in.

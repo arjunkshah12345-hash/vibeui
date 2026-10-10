@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "license": "MIT",
   "repository": "https://github.com/arjunkshah12345-hash/vibeui",
-  "count": 112,
+  "count": 120,
   "tokens": "templates/vibeui.css",
   "utils": "src/lib/utils.ts",
   "peerDependencies": [
@@ -41,6 +41,7 @@
       "circle-menu",
       "count-up",
       "dock",
+      "dot-globe",
       "dotted-grid",
       "dynamic-island",
       "flip-card",
@@ -55,13 +56,15 @@
       "mesh-gradient",
       "odometer",
       "orbit-ring",
+      "ripple-image",
       "rotating-carousel",
       "scratch-reveal",
       "scroll-stack",
       "split-showcase",
       "spotlight",
       "stacked-cards",
-      "trading-card"
+      "trading-card",
+      "waveform"
     ],
     "feedback": [
       "alert",
@@ -75,14 +78,18 @@
       "spinner"
     ],
     "data": [
+      "area-chart",
       "aspect-ratio",
       "avatar",
       "card",
       "code-block",
       "color-swatch",
       "comparison",
+      "heatmap",
       "list",
+      "resizable",
       "scroll-area",
+      "sortable-list",
       "stat",
       "table"
     ],
@@ -113,6 +120,7 @@
     "overlays": [
       "command",
       "dialog",
+      "drawer",
       "dropdown-menu",
       "popover",
       "sheet",
@@ -309,6 +317,75 @@
               "required": false,
               "default": null,
               "description": "Heading text."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "area-chart",
+      "title": "AreaChart",
+      "category": "data",
+      "description": "A smooth area chart with a crosshair tooltip you can drive with a pointer or the arrow keys.",
+      "file": "src/components/ui/area-chart.tsx",
+      "exports": [
+        "AreaChart"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "data",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "AreaChart",
+          "props": [
+            {
+              "name": "labels",
+              "type": "string[]",
+              "required": true,
+              "default": null,
+              "description": "One label per point along the x axis, for example months."
+            },
+            {
+              "name": "series",
+              "type": "ChartSeries[]",
+              "required": true,
+              "default": null,
+              "description": "One or more lines. Every `values` array should be as long as `labels`."
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "required": false,
+              "default": "240",
+              "description": "Chart height in px. The width follows its container."
+            },
+            {
+              "name": "format",
+              "type": "((value: number) => string)",
+              "required": false,
+              "default": "(n) => n.toLocaleString()",
+              "description": "Formats values on the axis and in the tooltip."
+            },
+            {
+              "name": "grid",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Draw horizontal grid lines."
+            },
+            {
+              "name": "animate",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Draw the lines in when the chart first appears."
             }
           ],
           "extends": [
@@ -1583,6 +1660,68 @@
       ]
     },
     {
+      "name": "dot-globe",
+      "title": "DotGlobe",
+      "category": "craft",
+      "description": "An interactive dotted globe you drag to spin, with pulsing markers and animated arcs.",
+      "file": "src/components/ui/dot-globe.tsx",
+      "exports": [
+        "DotGlobe"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "DotGlobe",
+          "props": [
+            {
+              "name": "markers",
+              "type": "GlobeMarker[]",
+              "required": false,
+              "default": "[]",
+              "description": "Places to mark, by latitude and longitude."
+            },
+            {
+              "name": "arcs",
+              "type": "[number, number][]",
+              "required": false,
+              "default": "[]",
+              "description": "Pairs of indexes into `markers` to join with an animated arc."
+            },
+            {
+              "name": "autoRotate",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Spin slowly when you are not dragging."
+            },
+            {
+              "name": "speed",
+              "type": "number",
+              "required": false,
+              "default": "0.12",
+              "description": "Spin speed in radians per second."
+            },
+            {
+              "name": "initial",
+              "type": "{ lat: number; lng: number; }",
+              "required": false,
+              "default": "{ lat: 18, lng: 12 }",
+              "description": "The point facing you at first."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "dotted-grid",
       "title": "DottedGrid",
       "category": "craft",
@@ -1615,6 +1754,96 @@
               "required": false,
               "default": null,
               "description": "Extra classes, merged with the component's own."
+            }
+          ],
+          "extends": []
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "title": "Drawer",
+      "category": "overlays",
+      "description": "A bottom sheet for touch: drag it between snap points, fling it down to dismiss, tap the handle to step through.",
+      "file": "src/components/ui/drawer.tsx",
+      "exports": [
+        "Drawer"
+      ],
+      "client": true,
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [],
+      "tags": [
+        "overlays",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Drawer",
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Heading text."
+            },
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "Content rendered inside the component."
+            },
+            {
+              "name": "trigger",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "The element that opens it."
+            },
+            {
+              "name": "open",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Controlled open state."
+            },
+            {
+              "name": "onOpenChange",
+              "type": "((open: boolean) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called when the open state should change."
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Supporting text under the title."
+            },
+            {
+              "name": "snapPoints",
+              "type": "number[]",
+              "required": false,
+              "default": "[0.5, 0.92]",
+              "description": "How much of the screen the drawer shows at each stop, from 0 to 1, smallest first."
+            },
+            {
+              "name": "defaultSnap",
+              "type": "number",
+              "required": false,
+              "default": "0",
+              "description": "Which snap point it opens at, as an index into `snapPoints`."
+            },
+            {
+              "name": "dismissible",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Allow dragging down past the lowest stop (or Escape, or the backdrop) to close."
             }
           ],
           "extends": []
@@ -2394,6 +2623,54 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "heatmap",
+      "title": "Heatmap",
+      "category": "data",
+      "description": "An activity heatmap in the style of a contribution graph: one cell per day, shaded by how much happened.",
+      "file": "src/components/ui/heatmap.tsx",
+      "exports": [
+        "Heatmap"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "data",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Heatmap",
+          "props": [
+            {
+              "name": "data",
+              "type": "HeatmapDay[]",
+              "required": true,
+              "default": null,
+              "description": "One entry per day. Missing days count as zero."
+            },
+            {
+              "name": "weeks",
+              "type": "number",
+              "required": false,
+              "default": "26",
+              "description": "How many weeks to show, ending with the week of the latest date."
+            },
+            {
+              "name": "unit",
+              "type": "string",
+              "required": false,
+              "default": "\"contributions\"",
+              "description": "What the values count, used in the tooltip."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },
@@ -4319,6 +4596,123 @@
       ]
     },
     {
+      "name": "resizable",
+      "title": "Resizable",
+      "category": "data",
+      "description": "Split panels with draggable dividers, laid out side by side or stacked.",
+      "file": "src/components/ui/resizable.tsx",
+      "exports": [
+        "Resizable"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "data",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Resizable",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "One child per panel."
+            },
+            {
+              "name": "direction",
+              "type": "\"horizontal\" | \"vertical\"",
+              "required": false,
+              "default": "\"horizontal\"",
+              "description": "`horizontal` puts panels side by side, `vertical` stacks them (give the container a height)."
+            },
+            {
+              "name": "sizes",
+              "type": "number[]",
+              "required": false,
+              "default": null,
+              "description": "Controlled panel sizes as percentages that add up to 100."
+            },
+            {
+              "name": "defaultSizes",
+              "type": "number[]",
+              "required": false,
+              "default": null,
+              "description": "Initial sizes when uncontrolled. Defaults to equal panels."
+            },
+            {
+              "name": "minSize",
+              "type": "number | number[]",
+              "required": false,
+              "default": "12",
+              "description": "Smallest size any panel can shrink to, as a percentage. One number, or one per panel."
+            },
+            {
+              "name": "onSizesChange",
+              "type": "((sizes: number[]) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called while a divider moves."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ripple-image",
+      "title": "RippleImage",
+      "category": "craft",
+      "description": "An image that ripples like liquid wherever the pointer moves: refraction, colour splitting and a glint on every crest.",
+      "file": "src/components/ui/ripple-image.tsx",
+      "exports": [
+        "RippleImage"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "RippleImage",
+          "props": [
+            {
+              "name": "src",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Image URL."
+            },
+            {
+              "name": "alt",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Describes the image. Required, because this is content, not decoration."
+            },
+            {
+              "name": "strength",
+              "type": "number",
+              "required": false,
+              "default": "1",
+              "description": "How hard the ripples bend the image. 0 turns them off."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "rolling-text",
       "title": "RollingText",
       "category": "text",
@@ -5103,6 +5497,70 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "sortable-list",
+      "title": "SortableList",
+      "category": "data",
+      "description": "A list you reorder by dragging. The other rows glide out of the way and the dropped row settles into place.",
+      "file": "src/components/ui/sortable-list.tsx",
+      "exports": [
+        "SortableList"
+      ],
+      "client": true,
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [],
+      "tags": [
+        "data",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "SortableList",
+          "props": [
+            {
+              "name": "items",
+              "type": "SortableItem[]",
+              "required": false,
+              "default": null,
+              "description": "Controlled items, in order."
+            },
+            {
+              "name": "defaultItems",
+              "type": "SortableItem[]",
+              "required": false,
+              "default": "[]",
+              "description": "Initial items when uncontrolled."
+            },
+            {
+              "name": "onItemsChange",
+              "type": "((items: SortableItem[]) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the new order after a drop or a keyboard move."
+            },
+            {
+              "name": "handle",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Drag only by the grip. Turn off to drag from anywhere on the row (not for rows with their own controls)."
+            },
+            {
+              "name": "itemClassName",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Classes for every row."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLUListElement>"
+          ]
         }
       ]
     },
@@ -6247,6 +6705,68 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "waveform",
+      "title": "Waveform",
+      "category": "craft",
+      "description": "A live audio waveform: rounded bars that dance to a loudness level or to any Web Audio analyser.",
+      "file": "src/components/ui/waveform.tsx",
+      "exports": [
+        "Waveform"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Waveform",
+          "props": [
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "level",
+              "type": "number",
+              "required": false,
+              "default": "0",
+              "description": "Loudness from 0 to 1. Ignored while an `analyser` is given."
+            },
+            {
+              "name": "analyser",
+              "type": "AnalyserNode",
+              "required": false,
+              "default": null,
+              "description": "A Web Audio analyser, for example from a microphone. Its frequency data drives the bars."
+            },
+            {
+              "name": "bars",
+              "type": "number",
+              "required": false,
+              "default": "48",
+              "description": "How many bars to draw."
+            },
+            {
+              "name": "active",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Set false to settle the bars flat."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     }

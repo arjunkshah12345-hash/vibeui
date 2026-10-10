@@ -22,6 +22,10 @@ import { MeshGradient } from "@/components/ui/mesh-gradient";
 import { Odometer } from "@/components/ui/odometer";
 import { ScratchReveal } from "@/components/ui/scratch-reveal";
 import { Segmented } from "@/components/ui/segmented";
+import { DotGlobe } from "@/components/ui/dot-globe";
+import { RippleImage } from "@/components/ui/ripple-image";
+import { Waveform } from "@/components/ui/waveform";
+
 import { cn } from "@/lib/utils";
 import { TILE_W, type Demo } from "../demo";
 
@@ -512,7 +516,7 @@ function ScratchDemo({ compact }: { compact?: boolean }) {
             Yours to keep.
           </p>
           <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-pastel-sky-ink/70">
-            112 components · 0 kb runtime
+            120 components · 0 kb runtime
           </p>
         </div>
       </ScratchReveal>
@@ -594,6 +598,170 @@ function OdometerTile() {
   );
 }
 
+/* ─────────────────────────── dot globe ─────────────────────────── */
+
+const cities = [
+  { lat: 37.77, lng: -122.42, label: "San Francisco" },
+  { lat: 40.71, lng: -74.0, label: "New York" },
+  { lat: 51.5, lng: -0.12, label: "London" },
+  { lat: 6.52, lng: 3.38, label: "Lagos" },
+  { lat: 19.07, lng: 72.88, label: "Mumbai" },
+  { lat: 35.68, lng: 139.69, label: "Tokyo" },
+  { lat: -33.87, lng: 151.21, label: "Sydney" },
+  { lat: -23.55, lng: -46.63, label: "São Paulo" },
+];
+const routes: [number, number][] = [
+  [0, 1],
+  [1, 2],
+  [2, 4],
+  [4, 5],
+  [5, 6],
+  [3, 2],
+  [7, 1],
+  [0, 5],
+];
+
+function GlobeDemo() {
+  return <DotGlobe markers={cities} arcs={routes} className="max-w-[420px]" />;
+}
+
+function GlobeTile() {
+  return (
+    <div className={cn(TILE_W, "flex justify-center")}>
+      <DotGlobe markers={cities} arcs={routes} className="size-[190px]" />
+    </div>
+  );
+}
+
+/* ─────────────────────────── ripple image ─────────────────────────── */
+
+/** A busy, colourful scene, so the ripples have something worth bending. */
+function rippleScene() {
+  const stripes = Array.from({ length: 26 }, (_, i) => {
+    const y = 330 + i * 17;
+    return `<rect x='0' y='${y}' width='1200' height='${3 + (i % 3)}' fill='white' fill-opacity='${0.05 + (i % 4) * 0.025}'/>`;
+  }).join("");
+  const rings = [60, 120, 190, 270, 360]
+    .map(
+      (r) =>
+        `<circle cx='820' cy='250' r='${r}' fill='none' stroke='white' stroke-opacity='0.22' stroke-width='3'/>`,
+    )
+    .join("");
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'>
+<defs>
+<linearGradient id='sky' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#1b1464'/><stop offset='0.45' stop-color='#6d3fd8'/><stop offset='0.7' stop-color='#ff5d8f'/><stop offset='1' stop-color='#ffb454'/></linearGradient>
+<linearGradient id='sea' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#ff9d6c'/><stop offset='1' stop-color='#241b5c'/></linearGradient>
+</defs>
+<rect width='1200' height='800' fill='url(#sky)'/>
+<circle cx='820' cy='250' r='96' fill='#fff3d6'/>${rings}
+<rect y='330' width='1200' height='470' fill='url(#sea)'/>${stripes}
+<path d='M0 330 L160 250 L300 320 L470 210 L640 330 Z' fill='#17104a' fill-opacity='0.9'/>
+<path d='M380 330 L560 260 L700 330 Z' fill='#241b5c'/>
+<text x='70' y='640' font-family='Georgia,serif' font-size='132' fill='white' fill-opacity='0.95'>Touch the water</text>
+<text x='76' y='700' font-family='monospace' font-size='28' letter-spacing='6' fill='white' fill-opacity='0.7'>MOVE YOUR CURSOR · CLICK TO DROP A STONE</text>
+</svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
+const rippleSrc = rippleScene();
+
+function RippleDemo() {
+  return (
+    <RippleImage src={rippleSrc} alt="A sunset over a calm purple sea" className="rounded-xl" />
+  );
+}
+
+function RippleTile() {
+  return (
+    <div className={TILE_W}>
+      <RippleImage
+        src={rippleSrc}
+        alt="A sunset over a calm purple sea"
+        className="aspect-auto h-[170px] rounded-xl"
+      />
+    </div>
+  );
+}
+
+/* ─────────────────────────── waveform ─────────────────────────── */
+
+type WaveMode = "paused" | "demo" | "mic";
+
+function WaveformDemo() {
+  const [mode, setMode] = React.useState<WaveMode>("demo");
+  const [analyser, setAnalyser] = React.useState<AnalyserNode | null>(null);
+  const [note, setNote] = React.useState("Simulated voice.");
+  const level = useFakeLevel(mode === "demo");
+  const stream = React.useRef<MediaStream | null>(null);
+  const ctx = React.useRef<AudioContext | null>(null);
+
+  const stopMic = React.useCallback(() => {
+    stream.current?.getTracks().forEach((t) => t.stop());
+    stream.current = null;
+    void ctx.current?.close();
+    ctx.current = null;
+    setAnalyser(null);
+  }, []);
+
+  React.useEffect(() => stopMic, [stopMic]);
+
+  const choose = async (next: WaveMode) => {
+    setMode(next);
+    stopMic();
+    if (next === "demo") setNote("Simulated voice.");
+    if (next === "paused") setNote("Paused.");
+    if (next !== "mic") return;
+    try {
+      const media = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const ac = new AudioContext();
+      const node = ac.createAnalyser();
+      node.fftSize = 256;
+      node.smoothingTimeConstant = 0.6;
+      ac.createMediaStreamSource(media).connect(node);
+      stream.current = media;
+      ctx.current = ac;
+      setAnalyser(node);
+      setNote("Listening to your microphone. Nothing leaves your device.");
+    } catch {
+      setMode("demo");
+      setNote("Microphone unavailable, so it is back to the simulated voice.");
+    }
+  };
+
+  return (
+    <div className="flex w-full flex-col items-center gap-6">
+      <Waveform
+        level={level}
+        analyser={analyser}
+        active={mode !== "paused"}
+        bars={56}
+        className="h-28"
+      />
+      <Segmented
+        options={[
+          { value: "paused", label: "Paused" },
+          { value: "demo", label: "Simulated" },
+          { value: "mic", label: "Microphone" },
+        ]}
+        value={mode}
+        onChange={(v) => void choose(v)}
+      />
+      <p className="text-xs text-muted" aria-live="polite">
+        {note}
+      </p>
+    </div>
+  );
+}
+
+function WaveformTile() {
+  const level = useFakeLevel(true);
+  return (
+    <div className={TILE_W}>
+      <Waveform level={level} bars={32} className="h-20" />
+    </div>
+  );
+}
+
 export const signature: Record<string, Demo> = {
   "liquid-glass": { Component: LiquidGlassDemo, width: "md", Tile: LiquidGlassTile },
   "liquid-switch": { Component: LiquidSwitchDemo, width: "sm", Tile: LiquidSwitchTile },
@@ -611,4 +779,7 @@ export const signature: Record<string, Demo> = {
     Tile: () => <ScratchDemo compact />,
   },
   odometer: { Component: OdometerDemo, width: "sm", Tile: OdometerTile },
+  "dot-globe": { Component: GlobeDemo, width: "md", Tile: GlobeTile },
+  "ripple-image": { Component: RippleDemo, width: "md", Tile: RippleTile },
+  waveform: { Component: WaveformDemo, width: "md", Tile: WaveformTile },
 };

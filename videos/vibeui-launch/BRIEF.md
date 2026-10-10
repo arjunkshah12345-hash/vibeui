@@ -2,7 +2,7 @@
 workflow: product-launch-video
 flow: automation
 storyboard: no
-message: "Everything an interface is made of: 112 components you copy and own."
+message: "Everything an interface is made of: 120 components you copy and own."
 destination: youtube
 aspect: 1920x1080
 language: en
@@ -12,7 +12,7 @@ angle: "The periodic table of interface: show, don't tell"
 
 ## Intent
 
-A 50-second launch film for VibeUI (open-source, copy-owned React + Tailwind components). Warm, precise, a little playful; typographic and motion-led, no narration. It opens on the site's own tagline and its signature "periodic table" of 112 components, then proves the three claims: you own the files, one token file retints everything, and motion + agent tooling are built in.
+A 50-second launch film for VibeUI (open-source, copy-owned React + Tailwind components). Warm, precise, a little playful; typographic and motion-led, no narration. It opens on the site's own tagline and its signature "periodic table" of 120 components, then proves the three claims: you own the files, one token file retints everything, and motion + agent tooling are built in.
 
 ## Assets
 
