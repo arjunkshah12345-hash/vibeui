@@ -8,6 +8,7 @@ import { forms } from "./forms";
 import { hover } from "./hover";
 import { navigation } from "./navigation";
 import { overlays } from "./overlays";
+import { signature } from "./signature";
 import { text } from "./text";
 
 /** Every demo, keyed by registry slug. Imported synchronously so previews prerender statically. */
@@ -19,6 +20,7 @@ export const demos: Record<string, Demo> = {
   ...overlays,
   ...navigation,
   ...craft,
+  ...signature,
   ...text,
   ...hover,
   ...footers,

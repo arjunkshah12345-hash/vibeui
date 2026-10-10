@@ -33,7 +33,7 @@ export default function DarkMode() {
         head={["Mode", "Palette", "Accent"]}
         mono={[]}
         rows={[
-          ["Light", "Warm bone canvas, white surfaces, ink text", "Vermilion"],
+          ["Light", "Warm bone canvas, white surfaces, ink text", "The ink (monochrome)"],
           ["Dark", "Warm stone canvas, charcoal surfaces, off-white text", "The ink (monochrome)"],
         ]}
       />

@@ -38,9 +38,14 @@ export function Command({
   const index = Math.min(active, Math.max(filtered.length - 1, 0));
 
   React.useEffect(() => {
-    listRef.current
-      ?.querySelector<HTMLElement>('[data-active="true"]')
-      ?.scrollIntoView({ block: "nearest" });
+    // Scroll only the list. scrollIntoView would also scroll the page.
+    const list = listRef.current;
+    const el = list?.querySelector<HTMLElement>('[data-active="true"]');
+    if (!list || !el) return;
+    const l = list.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    if (r.top < l.top) list.scrollTop -= l.top - r.top;
+    else if (r.bottom > l.bottom) list.scrollTop += r.bottom - l.bottom;
   }, [index, q]);
 
   return (

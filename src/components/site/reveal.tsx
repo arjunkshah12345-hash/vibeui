@@ -40,7 +40,7 @@ export function Reveal({
       ref={ref as React.Ref<never>}
       style={{ transitionDelay: on ? `${delay}ms` : "0ms" }}
       className={cn(
-        "transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+        "transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none",
         on ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0",
         className,
       )}

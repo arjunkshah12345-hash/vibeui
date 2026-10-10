@@ -69,6 +69,17 @@ const CATEGORY_RULES = [
         "spotlight",
         "marquee",
         "masonry",
+        "liquid-glass",
+        "liquid-switch",
+        "gooey-menu",
+        "dynamic-island",
+        "ai-orb",
+        "mesh-gradient",
+        "scratch-reveal",
+        "odometer",
+        "dot-globe",
+        "ripple-image",
+        "waveform",
       ].includes(n),
   },
   {
@@ -95,9 +106,16 @@ const CATEGORY_RULES = [
   {
     cat: "overlays",
     test: (n) =>
-      ["dialog", "sheet", "popover", "dropdown-menu", "command", "toast", "tooltip"].includes(
-        n,
-      ),
+      [
+        "dialog",
+        "sheet",
+        "drawer",
+        "popover",
+        "dropdown-menu",
+        "command",
+        "toast",
+        "tooltip",
+      ].includes(n),
   },
   {
     cat: "navigation",
@@ -141,12 +159,15 @@ const CATEGORY_RULES = [
         "comparison",
         "scroll-area",
         "aspect-ratio",
+        "area-chart",
+        "heatmap",
+        "sortable-list",
+        "resizable",
       ].includes(n),
   },
   {
     cat: "actions",
-    test: (n) =>
-      ["button", "pill", "chip", "toggle", "kbd", "separator"].includes(n),
+    test: (n) => ["button", "pill", "chip", "toggle", "kbd", "separator"].includes(n),
   },
 ];
 
@@ -183,6 +204,9 @@ function describe(name, src) {
   );
 }
 
+// Titles that PascalCase would get wrong, such as acronyms.
+const TITLES = { "ai-orb": "AI Orb" };
+
 function toPascal(kebab) {
   return kebab
     .split("-")
@@ -218,14 +242,11 @@ export function buildRegistry() {
     if (src.includes("@phosphor-icons/react")) deps.push("@phosphor-icons/react");
     if (src.includes("class-variance-authority") || src.includes("cva("))
       deps.push("class-variance-authority");
-    if (src.includes('from "motion') || src.includes("from 'motion"))
-      deps.push("motion");
+    if (src.includes('from "motion') || src.includes("from 'motion")) deps.push("motion");
 
     // Sibling components this one imports (`from "./button"`), installed transitively.
     const registryDependencies = [
-      ...new Set(
-        [...src.matchAll(/from ["']\.\/([\w-]+)["']/g)].map((m) => m[1]),
-      ),
+      ...new Set([...src.matchAll(/from ["']\.\/([\w-]+)["']/g)].map((m) => m[1])),
     ].sort();
 
     const exports = [...src.matchAll(/export function (\w+)/g)].map((m) => m[1]);
@@ -233,7 +254,7 @@ export function buildRegistry() {
 
     return {
       name,
-      title: toPascal(name),
+      title: TITLES[name] ?? toPascal(name),
       category: categorize(name),
       description: describe(name, src),
       file: `src/components/ui/${file}`,
@@ -310,7 +331,7 @@ export function getComponent(rawName) {
   return {
     ...(meta ?? {
       name,
-      title: toPascal(name),
+      title: TITLES[name] ?? toPascal(name),
       category: categorize(name),
       file: `src/components/ui/${name}.tsx`,
       dependencies: [],

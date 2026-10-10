@@ -13,12 +13,7 @@ import {
 import { Avatar } from "@/components/ui/avatar";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Command } from "@/components/ui/command";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogFooter, DialogTrigger } from "@/components/ui/dialog";
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
 import { Field, Input } from "@/components/ui/input";
 import { Popover } from "@/components/ui/popover";
@@ -26,6 +21,8 @@ import { Sheet } from "@/components/ui/sheet";
 import { Switch } from "@/components/ui/switch";
 import { ToastDemoButton, useToast } from "@/components/ui/toast";
 import { Tooltip } from "@/components/ui/tooltip";
+import { Drawer } from "@/components/ui/drawer";
+
 import { cn } from "@/lib/utils";
 import { TILE_W, type Demo } from "../demo";
 
@@ -79,11 +76,7 @@ function SheetDemo() {
           </Field>
         </div>
       </Sheet>
-      <Sheet
-        side="bottom"
-        title="Share"
-        trigger={<Button variant="ghost">Bottom sheet</Button>}
-      >
+      <Sheet side="bottom" title="Share" trigger={<Button variant="ghost">Bottom sheet</Button>}>
         <p className="text-sm text-muted">Anchored to the bottom edge, great on mobile.</p>
       </Sheet>
     </div>
@@ -92,10 +85,7 @@ function SheetDemo() {
 
 function PopoverDemo() {
   return (
-    <Popover
-      trigger={<Button variant="secondary">Account</Button>}
-      className="w-64"
-    >
+    <Popover trigger={<Button variant="secondary">Account</Button>} className="w-64">
       <div className="flex items-center gap-3">
         <Avatar fallback="Maya Kline" />
         <div>
@@ -104,8 +94,12 @@ function PopoverDemo() {
         </div>
       </div>
       <div className="mt-3 flex gap-2 border-t border-line pt-3">
-        <Button size="sm" variant="secondary" className="flex-1">Profile</Button>
-        <Button size="sm" variant="ghost" className="flex-1">Sign out</Button>
+        <Button size="sm" variant="secondary" className="flex-1">
+          Profile
+        </Button>
+        <Button size="sm" variant="ghost" className="flex-1">
+          Sign out
+        </Button>
       </div>
     </Popover>
   );
@@ -139,8 +133,20 @@ function CommandDemo() {
       className="w-full"
       onSelect={(id) => toast({ title: `Ran “${id}”` })}
       items={[
-        { id: "Go to components", label: "Go to components", hint: "G C", group: "Navigate", icon: <MagnifyingGlass size={14} weight="bold" /> },
-        { id: "Toggle theme", label: "Toggle theme", hint: "T", group: "Navigate", icon: <Moon size={14} weight="bold" /> },
+        {
+          id: "Go to components",
+          label: "Go to components",
+          hint: "G C",
+          group: "Navigate",
+          icon: <MagnifyingGlass size={14} weight="bold" />,
+        },
+        {
+          id: "Toggle theme",
+          label: "Toggle theme",
+          hint: "T",
+          group: "Navigate",
+          icon: <Moon size={14} weight="bold" />,
+        },
         { id: "Copy button", label: "Copy Button source", group: "Components" },
         { id: "Copy dialog", label: "Copy Dialog source", group: "Components" },
         { id: "Copy dock", label: "Copy Dock source", group: "Components" },
@@ -176,13 +182,19 @@ function TooltipDemo() {
   return (
     <div className="flex flex-wrap items-center justify-center gap-4 pt-8">
       <Tooltip content="Top (default)">
-        <Button variant="secondary" size="sm">Top</Button>
+        <Button variant="secondary" size="sm">
+          Top
+        </Button>
       </Tooltip>
       <Tooltip content="Appears below" side="bottom">
-        <Button variant="secondary" size="sm">Bottom</Button>
+        <Button variant="secondary" size="sm">
+          Bottom
+        </Button>
       </Tooltip>
       <Tooltip content="Copy token path" side="right">
-        <Button variant="secondary" size="sm">Right</Button>
+        <Button variant="secondary" size="sm">
+          Right
+        </Button>
       </Tooltip>
     </div>
   );
@@ -193,11 +205,68 @@ function CommandTile() {
     <Command
       className={cn(TILE_W, "shadow-pop")}
       items={[
-        { id: "components", label: "Go to components", hint: "G C", icon: <MagnifyingGlass size={14} weight="bold" /> },
+        {
+          id: "components",
+          label: "Go to components",
+          hint: "G C",
+          icon: <MagnifyingGlass size={14} weight="bold" />,
+        },
         { id: "theme", label: "Toggle theme", hint: "T", icon: <Moon size={14} weight="bold" /> },
         { id: "button", label: "Copy Button source" },
       ]}
     />
+  );
+}
+
+/* ─────────────────────────── drawer ─────────────────────────── */
+
+function DrawerDemo() {
+  return (
+    <div className="flex flex-col items-center gap-3">
+      <Drawer
+        title="Share this component"
+        description="Anyone with the link can copy it."
+        trigger={<Button>Open the drawer</Button>}
+        snapPoints={[0.46, 0.9]}
+      >
+        <div className="space-y-2">
+          {[
+            "Copy link",
+            "Copy install command",
+            "Open in a new tab",
+            "Send to a teammate",
+            "Download the source",
+          ].map((label) => (
+            <button
+              key={label}
+              type="button"
+              className="flex w-full items-center justify-between rounded-lg border border-line bg-surface px-4 py-3 text-left text-sm text-ink transition-colors hover:bg-surface-muted"
+            >
+              {label}
+              <span className="font-mono text-xs text-faint">→</span>
+            </button>
+          ))}
+          <p className="pt-2 text-center text-xs text-muted">
+            Drag the handle, fling it down to dismiss, or tap it to change height.
+          </p>
+        </div>
+      </Drawer>
+    </div>
+  );
+}
+
+function DrawerTile() {
+  return (
+    <div className={cn(TILE_W, "flex flex-col items-center gap-3")}>
+      <Drawer
+        title="Share"
+        trigger={<Button size="sm">Open drawer</Button>}
+        snapPoints={[0.4, 0.8]}
+      >
+        <p className="text-sm text-muted">Snap points, rubber-banding and fling to dismiss.</p>
+      </Drawer>
+      <p className="text-center text-xs text-muted">Drag it, fling it, snap it.</p>
+    </div>
   );
 }
 
@@ -209,4 +278,5 @@ export const overlays: Record<string, Demo> = {
   command: { Component: CommandDemo, width: "md", Tile: CommandTile },
   toast: { Component: ToastDemo },
   tooltip: { Component: TooltipDemo },
+  drawer: { Component: DrawerDemo, top: true, height: 240, Tile: DrawerTile },
 };

@@ -26,6 +26,8 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
+  // Absolute URLs for the social image. Override per deployment with NEXT_PUBLIC_SITE_URL.
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://tryjasmine.dev"),
   title: {
     default: `${site.name}: ${site.tagline}`,
     template: `%s · ${site.name}`,
@@ -36,6 +38,11 @@ export const metadata: Metadata = {
     title: `${site.name}: ${site.tagline}`,
     description: site.description,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name}: ${site.tagline}`,
+    description: site.description,
   },
 };
 

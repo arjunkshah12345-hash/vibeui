@@ -37,7 +37,7 @@ function AlertDemo() {
 function BannerDemo() {
   return (
     <Banner dismissible action={<Button size="sm" variant="secondary">Read more</Button>}>
-      VibeUI 0.2 is here: new tokens, 104 refined components.
+      VibeUI 0.2 is here: new tokens, 120 refined components.
     </Banner>
   );
 }

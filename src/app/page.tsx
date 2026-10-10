@@ -68,7 +68,7 @@ export default async function Home() {
           <div className="text-left">
             <p className="mb-6 inline-flex animate-fade-up items-center gap-2.5 rounded-md border border-line bg-surface px-3 py-1.5 font-mono text-[12px] text-muted shadow-quiet">
               <span className="size-1.5 rounded-full bg-ink" />
-              v0.2 · open source · MIT
+              v0.3 · open source · MIT
             </p>
             <HeroHeadline />
             <div className="max-w-2xl">
@@ -123,9 +123,7 @@ export default async function Home() {
               All {site.count} components <ArrowRight size={14} weight="bold" />
             </Link>
           </Reveal>
-          <Reveal delay={80}>
-            <Shelves counts={counts} />
-          </Reveal>
+          <Shelves counts={counts} />
         </div>
       </section>
 

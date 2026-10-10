@@ -160,6 +160,7 @@
   --animate-shrink-x: vibe-shrink-x 4s linear forwards;
   --animate-ping-soft: vibe-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
   --animate-float: vibe-float 4.5s ease-in-out infinite;
+  --animate-eq: vibe-eq 0.9s ease-in-out infinite;
   --animate-tick: vibe-tick 0.35s var(--ease-out) both;
   --animate-month-next: vibe-month-next 0.38s var(--ease-out) both;
   --animate-month-prev: vibe-month-prev 0.38s var(--ease-out) both;
@@ -310,6 +311,15 @@
     }
     50% {
       transform: translateY(-4px);
+    }
+  }
+  @keyframes vibe-eq {
+    0%,
+    100% {
+      transform: scaleY(0.25);
+    }
+    50% {
+      transform: scaleY(1);
     }
   }
   @keyframes vibe-tick {
