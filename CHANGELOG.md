@@ -7,6 +7,20 @@ versions may include breaking changes).
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-10
+
+### Added
+
+- Eight more Signature components, each dependency-free:
+  - `PointerMorph`: the iPadOS pointer for the web. A dot that becomes the outline of whatever you hover, and gently pulls it toward you.
+  - `ParticleText`: text made of thousands of particles that scatter from the cursor, spring back, and burst on click.
+  - `Knob`: a rotary dial with ticks. Drag, scroll, arrow keys, double-click to reset.
+  - `WheelPicker`: the iOS wheel with native momentum and snapping, curved in 3D.
+  - `AuraBorder`: a glowing, colour-shifting border for "thinking" states.
+  - `HoldButton`: press and hold to confirm, with a fill, a shake on early release, and keyboard support.
+  - `CoverFlow`: the classic 3D cover browser. Drag, scroll sideways, arrow keys, click.
+  - `LiquidMetal`: a WebGL blob of liquid chrome that chases the pointer.
+
 ## [0.3.1] - 2026-10-10
 
 ### Fixed

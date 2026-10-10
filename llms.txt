@@ -1,6 +1,6 @@
 # VibeUI
 
-> Copy-owned React + Tailwind component library. 120 components, warm tokens, real dark mode. MIT.
+> Copy-owned React + Tailwind component library. 128 components, warm tokens, real dark mode. MIT.
 > https://github.com/arjunkshah12345-hash/vibeui
 
 ## For agents

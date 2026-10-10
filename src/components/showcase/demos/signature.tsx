@@ -624,7 +624,7 @@ function ScratchDemo({ compact }: { compact?: boolean }) {
             Yours to keep.
           </p>
           <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-pastel-sky-ink/70">
-            120 components · 0 kb runtime
+            128 components · 0 kb runtime
           </p>
         </div>
       </ScratchReveal>
