@@ -122,11 +122,11 @@ vibeui get dialog --json | jq '.api[0].props[] | {name, type}'`}
       <H3>In CI</H3>
       <P>
         Because <Code>add</Code> exits non-zero on failure, it is safe to run in a script or a
-        bootstrap step. Pin to a commit (or a tag, once releases are tagged) for reproducible installs:
+        bootstrap step. Pin the version for reproducible installs:
       </P>
       <CodeBlock
         language="bash"
-        code={`npx github:arjunkshah12345-hash/vibeui#<commit-sha> add button dialog --dir ./src/components/ui`}
+        code={`npx vibeui@0.3.0 add button dialog --dir ./src/components/ui`}
       />
     </>
   );

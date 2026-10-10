@@ -1,7 +1,7 @@
 # VibeUI (full reference)
 
 > Copy-owned React + Tailwind components. MIT. https://github.com/arjunkshah12345-hash/vibeui
-> Version 0.2.0 · 104 components · generated from registry/components.json
+> Version 0.3.0 · 112 components · generated from registry/components.json
 
 ## Setup
 
@@ -9,7 +9,7 @@
 - Tailwind v4. Import the token file AFTER `@import "tailwindcss";` (templates/vibeui.css or vibeui.tokens.css).
 - Path alias `@/*` -> `src/*`. Components import `cn` from `@/lib/utils`.
 - Dark mode: `dark` class on <html>. `light` / `dark` on any element pins that subtree.
-- Install: `npx github:arjunkshah12345-hash/vibeui add <name...> --dir ./src/components/ui` (siblings are copied automatically).
+- Install: `npx vibeui add <name...> --dir ./src/components/ui` (siblings are copied automatically).
 - Toasts need <ToastProvider> once near the root.
 
 ## Conventions
@@ -109,6 +109,309 @@ Vertical event timeline with a continuous rail.
   - items: { title: string; time: string; body?: string | undefined; }[] — The items to render.
   - className?: string — Extra classes, merged with the component's own.
 
+### craft
+
+#### ai-orb
+A living orb for voice and AI moments that swirls faster as it moves from idle to speaking.
+- file: src/components/ui/ai-orb.tsx
+- exports: AiOrb
+- client component
+- <AiOrb>
+  - state?: OrbState = "idle" — What the assistant is doing. Changes are eased, never snapped.
+  - level?: number = 0 — Live loudness from 0 to 1 (microphone or voice output). It swells the orb.
+  - size?: number = 168 — Diameter in px.
+  - label?: string — Accessible description. Defaults to the state.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### arrow-fill-button
+Outlined button that floods with ink on hover while the arrow slides.
+- file: src/components/ui/arrow-fill-button.tsx
+- exports: ArrowFillButton
+- client component
+- peers: @phosphor-icons/react
+- <ArrowFillButton> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+
+#### blur-reveal
+Content that resolves from blur and a slight drop as it enters the viewport.
+- file: src/components/ui/blur-reveal.tsx
+- exports: BlurReveal
+- client component
+- <BlurReveal>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+  - delay?: number = 0 — Milliseconds before the reveal starts.
+
+#### book-flip
+A page that physically turns over its spine to reveal the next.
+- file: src/components/ui/book-flip.tsx
+- exports: BookFlip
+- client component
+- <BookFlip>
+  - pages: { title: string; body: string; }[] — Array of { title, body } pages.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### circle-menu
+Radial menu: a button that fans its actions out in a circle.
+- file: src/components/ui/circle-menu.tsx
+- exports: CircleMenu
+- client component
+- peers: @phosphor-icons/react
+- <CircleMenu>
+  - items: { id: string; label: string; icon: ReactNode; onSelect?: (() => void) | undefined; }[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+  - radius?: number = 76 — Ring radius in pixels.
+
+#### count-up
+Number that eases up from zero the first time it scrolls into view.
+- file: src/components/ui/count-up.tsx
+- exports: CountUp
+- client component
+- <CountUp>
+  - value: number — Controlled value.
+  - duration?: number = 1400 — Animation length in milliseconds (or seconds where noted).
+  - decimals?: number = 0 — Fraction digits to display.
+  - suffix?: string = "" — Text appended to the number.
+  - prefix?: string = "" — Text prepended to the number.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### dock
+macOS-style dock: icons magnify smoothly with distance from the cursor.
+- file: src/components/ui/dock.tsx
+- exports: Dock
+- client component
+- <Dock>
+  - items: { id: string; label: string; icon: ReactNode; onSelect?: (() => void) | undefined; }[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### dotted-grid
+Dot-matrix surface that lights up under the cursor.
+- file: src/components/ui/dotted-grid.tsx
+- exports: DottedGrid
+- client component
+- <DottedGrid>
+  - children?: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### dynamic-island
+A pill that flows between states, resizing and cross-fading its content with a soft overshoot.
+- file: src/components/ui/dynamic-island.tsx
+- exports: DynamicIsland
+- client component
+- <DynamicIsland>
+  - views: IslandView[]
+  - value: string — The id of the active view.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### flip-card
+Two-sided card that turns over on click or Enter.
+- file: src/components/ui/flip-card.tsx
+- exports: FlipCard
+- client component
+- peers: @phosphor-icons/react
+- <FlipCard>
+  - front: ReactNode — Content of the front face.
+  - back: ReactNode — Content of the back face.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### folder-preview
+Folder that opens to let its files rise out for a peek.
+- file: src/components/ui/folder-preview.tsx
+- exports: FolderPreview
+- client component
+- <FolderPreview>
+  - title: string — Heading text.
+  - files: string[] — File names to show.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### gooey-menu
+A button whose actions bud off like liquid and stay fused to it.
+- file: src/components/ui/gooey-menu.tsx
+- exports: GooeyMenu
+- client component
+- peers: @phosphor-icons/react
+- <GooeyMenu>
+  - items: GooeyItem[] — The items to render.
+  - direction?: Direction = "fan" — Where the items emerge: a fan arc, or a straight line.
+  - spacing?: number = 54 — Distance between the button and each item, in px.
+  - open?: boolean — Controlled open state.
+  - defaultOpen?: boolean = false — Initial open state when uncontrolled.
+  - onOpenChange?: ((open: boolean) => void) — Called when the open state should change.
+  - icon?: ReactNode — Icon on the main button. It turns 45° when open.
+  - label?: string = "Menu" — Accessible name of the main button.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### jelly-loader
+Four bars that squash and stretch in sequence.
+- file: src/components/ui/jelly-loader.tsx
+- exports: JellyLoader
+- server-safe
+- <JellyLoader>
+  - className?: string — Extra classes, merged with the component's own.
+
+#### liquid-glass
+Liquid glass: a surface that bends the light behind it, with a specular rim that follows the pointer.
+- file: src/components/ui/liquid-glass.tsx
+- exports: LiquidGlass
+- client component
+- <LiquidGlass> (also accepts HTMLAttributes<HTMLDivElement>)
+  - radius?: number = 28 — Corner radius in px. Use a large value for a pill.
+  - blur?: number = 1 — Blur behind the glass in px. Keep it low so the refraction stays readable.
+  - refraction?: number = 60 — How far the rim bends the backdrop, in px. 0 turns refraction off.
+  - aberration?: number = 8 — Colour fringing at the rim, in px of channel offset.
+  - saturation?: number = 1.5 — Backdrop saturation multiplier.
+  - interactive?: boolean = true — Let the highlight and rim light follow the pointer.
+
+#### liquid-switch
+Toggle with a liquid-glass thumb that stretches under your finger and settles with a squish.
+- file: src/components/ui/liquid-switch.tsx
+- exports: LiquidSwitch
+- client component
+- <LiquidSwitch> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - defaultChecked?: boolean = false — Initial state when uncontrolled.
+  - name?: string — Submit the state with a form under this name.
+  - checked?: boolean — Controlled state.
+  - onCheckedChange?: ((checked: boolean) => void) — Called with the new state after a tap, drag or key press.
+
+#### magnet-tabs
+Tabs with a hover highlight that glides between items and a marker on the active tab.
+- file: src/components/ui/magnet-tabs.tsx
+- exports: MagnetTabs
+- client component
+- <MagnetTabs>
+  - tabs: { value: string; label: string; }[] — Array of { value, label }.
+  - value: string — Controlled value.
+  - onChange: (value: string) => void — Called when the value changes.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### marquee
+Infinite horizontal ticker with edge fade. Pauses on hover.
+- file: src/components/ui/marquee.tsx
+- exports: Marquee
+- server-safe
+- <Marquee>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+  - pauseOnHover?: boolean = true — Pauses the animation while hovered.
+  - reverse?: boolean = false — Runs the animation in the opposite direction.
+  - duration?: number = 40 — Seconds for one full loop.
+
+#### masonry
+Column masonry of tiles with mixed heights and optional tint.
+- file: src/components/ui/masonry.tsx
+- exports: Masonry
+- server-safe
+- <Masonry>
+  - items: { id: string; title: string; height: "sm" | "md" | "lg"; tone?: string | undefined; }[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### mesh-gradient
+A flowing mesh gradient drawn by a WebGL shader, with no images and no dependencies.
+- file: src/components/ui/mesh-gradient.tsx
+- exports: MeshGradient
+- client component
+- <MeshGradient> (also accepts HTMLAttributes<HTMLDivElement>)
+  - colors?: string[] = DEFAULT_COLORS — Four CSS colours, blended from the base to the highlights.
+  - speed?: number = 1 — Flow speed multiplier. 0 freezes it.
+  - interactive?: boolean = true — Let the gradient bend toward the pointer.
+
+#### odometer
+Mechanical rolling digits: each one is a wheel that spins to its number, right to left.
+- file: src/components/ui/odometer.tsx
+- exports: Odometer
+- client component
+- <Odometer> (also accepts HTMLAttributes<HTMLSpanElement>)
+  - value: number — Controlled value.
+  - locale?: string — BCP 47 locale for formatting. Defaults to the browser's.
+  - format?: NumberFormatOptions — `Intl.NumberFormat` options, for example `{ style: "currency", currency: "USD" }`.
+  - duration?: number = 1100 — Roll time in ms. Wheels to the left start a little later.
+
+#### orbit-ring
+Labels circling a center point. Chips stay upright while the ring turns.
+- file: src/components/ui/orbit-ring.tsx
+- exports: OrbitRing
+- server-safe
+- <OrbitRing>
+  - items: { id: string; label: string; }[] — The items to render.
+  - center?: ReactNode — Content for the center of the ring.
+  - radius?: number = 104 — Ring radius in pixels.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### rotating-carousel
+3D ring carousel: drag, swipe, arrow keys, autoplay that pauses on hover.
+- file: src/components/ui/rotating-carousel.tsx
+- exports: RotatingCarousel
+- client component
+- peers: @phosphor-icons/react
+- <RotatingCarousel>
+  - items: CarouselItem[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+  - autoPlay?: boolean = true — Advances automatically until hovered.
+  - intervalMs?: number = 3600 — Milliseconds between automatic changes.
+  - radius?: number = 300 — Ring radius in pixels.
+
+#### scratch-reveal
+A scratch-off foil over your content that you drag away to reveal what is underneath.
+- file: src/components/ui/scratch-reveal.tsx
+- exports: ScratchReveal
+- client component
+- <ScratchReveal>
+  - children: ReactNode — What hides underneath. It stays in the DOM, so screen readers can read it.
+  - cover?: string = "Scratch to reveal" — Text printed on the foil.
+  - brush?: number = 30 — Brush width in px.
+  - threshold?: number = 0.5 — Fraction of the foil (0–1) that must be cleared to reveal everything.
+  - onReveal?: (() => void)
+  - className?: string — Extra classes, merged with the component's own.
+
+#### scroll-stack
+Cards that pile up as you scroll. Pure CSS (position: sticky).
+- file: src/components/ui/scroll-stack.tsx
+- exports: ScrollStack
+- server-safe
+- <ScrollStack>
+  - items: { title: string; body: string; }[] — The items to render.
+  - height?: number — Height in pixels; makes the component its own scroll container.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### split-showcase
+Before/after comparison with a draggable, keyboard-accessible divider.
+- file: src/components/ui/split-showcase.tsx
+- exports: SplitShowcase
+- client component
+- <SplitShowcase>
+  - left: ReactNode — Content (or label) for the left side.
+  - right: ReactNode — Content (or label) for the right side.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### spotlight
+Surface with a soft accent light that follows the cursor.
+- file: src/components/ui/spotlight.tsx
+- exports: Spotlight
+- client component
+- <Spotlight>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### stacked-cards
+Deck of cards. Click the top card to send it to the back.
+- file: src/components/ui/stacked-cards.tsx
+- exports: StackedCards
+- client component
+- <StackedCards>
+  - items: { title: string; body: string; }[] — The items to render.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### trading-card
+Collectible card that tilts in 3D and catches a glare under the cursor.
+- file: src/components/ui/trading-card.tsx
+- exports: TradingCard
+- client component
+- <TradingCard>
+  - title: string — Heading text.
+  - subtitle?: string — Supporting text under the title.
+  - meta?: string — Small label in the top corner.
+  - className?: string — Extra classes, merged with the component's own.
+  - children?: ReactNode — Content rendered inside the component.
+
 ### feedback
 
 #### alert
@@ -205,212 +508,6 @@ Indeterminate loading ring. Inherits `currentColor`.
 - <Spinner>
   - className?: string — Extra classes, merged with the component's own.
   - size?: number = 18 — Size preset.
-
-### craft
-
-#### arrow-fill-button
-Outlined button that floods with ink on hover while the arrow slides.
-- file: src/components/ui/arrow-fill-button.tsx
-- exports: ArrowFillButton
-- client component
-- peers: @phosphor-icons/react
-- <ArrowFillButton> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
-
-#### blur-reveal
-Content that resolves from blur and a slight drop as it enters the viewport.
-- file: src/components/ui/blur-reveal.tsx
-- exports: BlurReveal
-- client component
-- <BlurReveal>
-  - children: ReactNode — Content rendered inside the component.
-  - className?: string — Extra classes, merged with the component's own.
-  - delay?: number = 0 — Milliseconds before the reveal starts.
-
-#### book-flip
-A page that physically turns over its spine to reveal the next.
-- file: src/components/ui/book-flip.tsx
-- exports: BookFlip
-- client component
-- <BookFlip>
-  - pages: { title: string; body: string; }[] — Array of { title, body } pages.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### circle-menu
-Radial menu: a button that fans its actions out in a circle.
-- file: src/components/ui/circle-menu.tsx
-- exports: CircleMenu
-- client component
-- peers: @phosphor-icons/react
-- <CircleMenu>
-  - items: { id: string; label: string; icon: ReactNode; onSelect?: (() => void) | undefined; }[] — The items to render.
-  - className?: string — Extra classes, merged with the component's own.
-  - radius?: number = 76 — Ring radius in pixels.
-
-#### count-up
-Number that eases up from zero the first time it scrolls into view.
-- file: src/components/ui/count-up.tsx
-- exports: CountUp
-- client component
-- <CountUp>
-  - value: number — Controlled value.
-  - duration?: number = 1400 — Animation length in milliseconds (or seconds where noted).
-  - decimals?: number = 0 — Fraction digits to display.
-  - suffix?: string = "" — Text appended to the number.
-  - prefix?: string = "" — Text prepended to the number.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### dock
-macOS-style dock: icons magnify smoothly with distance from the cursor.
-- file: src/components/ui/dock.tsx
-- exports: Dock
-- client component
-- <Dock>
-  - items: { id: string; label: string; icon: ReactNode; onSelect?: (() => void) | undefined; }[] — The items to render.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### dotted-grid
-Dot-matrix surface that lights up under the cursor.
-- file: src/components/ui/dotted-grid.tsx
-- exports: DottedGrid
-- client component
-- <DottedGrid>
-  - children?: ReactNode — Content rendered inside the component.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### flip-card
-Two-sided card that turns over on click or Enter.
-- file: src/components/ui/flip-card.tsx
-- exports: FlipCard
-- client component
-- peers: @phosphor-icons/react
-- <FlipCard>
-  - front: ReactNode — Content of the front face.
-  - back: ReactNode — Content of the back face.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### folder-preview
-Folder that opens to let its files rise out for a peek.
-- file: src/components/ui/folder-preview.tsx
-- exports: FolderPreview
-- client component
-- <FolderPreview>
-  - title: string — Heading text.
-  - files: string[] — File names to show.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### jelly-loader
-Four bars that squash and stretch in sequence.
-- file: src/components/ui/jelly-loader.tsx
-- exports: JellyLoader
-- server-safe
-- <JellyLoader>
-  - className?: string — Extra classes, merged with the component's own.
-
-#### magnet-tabs
-Tabs with a hover highlight that glides between items and a marker on the active tab.
-- file: src/components/ui/magnet-tabs.tsx
-- exports: MagnetTabs
-- client component
-- <MagnetTabs>
-  - tabs: { value: string; label: string; }[] — Array of { value, label }.
-  - value: string — Controlled value.
-  - onChange: (value: string) => void — Called when the value changes.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### marquee
-Infinite horizontal ticker with edge fade. Pauses on hover.
-- file: src/components/ui/marquee.tsx
-- exports: Marquee
-- server-safe
-- <Marquee>
-  - children: ReactNode — Content rendered inside the component.
-  - className?: string — Extra classes, merged with the component's own.
-  - pauseOnHover?: boolean = true — Pauses the animation while hovered.
-  - reverse?: boolean = false — Runs the animation in the opposite direction.
-  - duration?: number = 40 — Seconds for one full loop.
-
-#### masonry
-Column masonry of tiles with mixed heights and optional tint.
-- file: src/components/ui/masonry.tsx
-- exports: Masonry
-- server-safe
-- <Masonry>
-  - items: { id: string; title: string; height: "sm" | "md" | "lg"; tone?: string | undefined; }[] — The items to render.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### orbit-ring
-Labels circling a center point. Chips stay upright while the ring turns.
-- file: src/components/ui/orbit-ring.tsx
-- exports: OrbitRing
-- server-safe
-- <OrbitRing>
-  - items: { id: string; label: string; }[] — The items to render.
-  - center?: ReactNode — Content for the center of the ring.
-  - radius?: number = 104 — Ring radius in pixels.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### rotating-carousel
-3D ring carousel: drag, swipe, arrow keys, autoplay that pauses on hover.
-- file: src/components/ui/rotating-carousel.tsx
-- exports: RotatingCarousel
-- client component
-- peers: @phosphor-icons/react
-- <RotatingCarousel>
-  - items: CarouselItem[] — The items to render.
-  - className?: string — Extra classes, merged with the component's own.
-  - autoPlay?: boolean = true — Advances automatically until hovered.
-  - intervalMs?: number = 3600 — Milliseconds between automatic changes.
-  - radius?: number = 300 — Ring radius in pixels.
-
-#### scroll-stack
-Cards that pile up as you scroll. Pure CSS (position: sticky).
-- file: src/components/ui/scroll-stack.tsx
-- exports: ScrollStack
-- server-safe
-- <ScrollStack>
-  - items: { title: string; body: string; }[] — The items to render.
-  - height?: number — Height in pixels; makes the component its own scroll container.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### split-showcase
-Before/after comparison with a draggable, keyboard-accessible divider.
-- file: src/components/ui/split-showcase.tsx
-- exports: SplitShowcase
-- client component
-- <SplitShowcase>
-  - left: ReactNode — Content (or label) for the left side.
-  - right: ReactNode — Content (or label) for the right side.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### spotlight
-Surface with a soft accent light that follows the cursor.
-- file: src/components/ui/spotlight.tsx
-- exports: Spotlight
-- client component
-- <Spotlight>
-  - children: ReactNode — Content rendered inside the component.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### stacked-cards
-Deck of cards. Click the top card to send it to the back.
-- file: src/components/ui/stacked-cards.tsx
-- exports: StackedCards
-- client component
-- <StackedCards>
-  - items: { title: string; body: string; }[] — The items to render.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### trading-card
-Collectible card that tilts in 3D and catches a glare under the cursor.
-- file: src/components/ui/trading-card.tsx
-- exports: TradingCard
-- client component
-- <TradingCard>
-  - title: string — Heading text.
-  - subtitle?: string — Supporting text under the title.
-  - meta?: string — Small label in the top corner.
-  - className?: string — Extra classes, merged with the component's own.
-  - children?: ReactNode — Content rendered inside the component.
 
 ### data
 
@@ -875,7 +972,7 @@ Edge-anchored panel that slides in and out. Settings, filters, detail views.
   - trigger: ReactNode — The element that opens it.
   - open?: boolean — Controlled open state.
   - onOpenChange?: ((open: boolean) => void) — Called when the open state should change.
-  - side?: "bottom" | "right" | "left" = "right" — Which edge or side to anchor to.
+  - side?: "left" | "right" | "bottom" = "right" — Which edge or side to anchor to.
   - description?: string — Supporting text under the title.
 
 #### toast
@@ -898,7 +995,7 @@ Hover and focus tooltip: pure CSS, short open delay, scales and slides in.
 - <Tooltip>
   - content: ReactNode — Tooltip content.
   - children: ReactNode — Content rendered inside the component.
-  - side?: "top" | "bottom" | "right" | "left" = "top" — Which edge or side to anchor to.
+  - side?: "left" | "right" | "top" | "bottom" = "top" — Which edge or side to anchor to.
   - className?: string — Extra classes, merged with the component's own.
 
 ### text

@@ -19,7 +19,7 @@ export function HeroHeadline() {
       <span className="sr-only">Components with taste, that you own.</span>
       <span
         aria-hidden
-        className="block whitespace-nowrap font-display text-[min(4.5rem,5.35cqw)] leading-[1.12] tracking-[-0.02em] text-ink"
+        className="block whitespace-nowrap font-display text-[min(5.5rem,7.9cqw)] leading-[1.12] tracking-[-0.02em] text-ink"
       >
         {words.map((word, i) => {
           const last = i === words.length - 1;

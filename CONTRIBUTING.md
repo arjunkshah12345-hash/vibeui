@@ -88,4 +88,4 @@ By contributing you agree that your work is licensed under the project’s MIT l
 ## Brand
 
 - Mark: `public/brand/mark.svg`; wordmark: `public/brand/logo.svg`
-- Light canvas `#f8f7f4`, ink `#1b1a17`, accent `#d9480f`; dark canvas `#0f0e0d`, dark accent is the ink (`#f4f2ee`)
+- Light canvas `#f8f7f4`, ink `#1b1a17`, accent is the ink (`#1b1a17`); dark canvas `#0f0e0d`, accent is the ink (`#f4f2ee`)

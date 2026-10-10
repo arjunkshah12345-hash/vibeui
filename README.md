@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>Everything an interface is made of.</strong><br />
-  104 copy-owned React + Tailwind components with warm tokens, real dark mode and motion that earns its place.
+  112 copy-owned React + Tailwind components with warm tokens, real dark mode and motion that earns its place.
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 
 **VibeUI** is a component library you copy into your project instead of installing. Add a file and it is yours to read, change and keep: no runtime package, no theme provider, no black box. Every component reads one token file, so pieces from different corners of the library look like they were made together.
 
-Run the repo to browse all 104 components live (`/components`), read the docs (`/docs`), and open any component for its source, install command and generated API table.
+Run the repo to browse all 112 components live (`/components`), read the docs (`/docs`), and open any component for its source, install command and generated API table.
 
 ## Why
 
@@ -39,7 +39,7 @@ Run the repo to browse all 104 components live (`/components`), read the docs (`
 - **Four peers.** `clsx`, `tailwind-merge`, `class-variance-authority`, `@phosphor-icons/react`. No animation library.
 - **Agent-ready.** A CLI, an MCP server, `llms.txt` and a JSON registry with generated API tables.
 
-> **Status.** Pre-1.0 and not on npm yet. The CLI runs from GitHub (see [CLI](#cli)); once published, `npx github:arjunkshah12345-hash/vibeui` becomes `npx vibeui`.
+> **Status.** Pre-1.0. Install the CLI with `npx vibeui` (see [CLI](#cli)). Live site: [tryjasmine.dev](https://tryjasmine.dev).
 
 ## Quick start
 
@@ -72,7 +72,7 @@ npm i clsx tailwind-merge class-variance-authority @phosphor-icons/react
 **2. Add the tokens and `cn()`**
 
 ```bash
-npx github:arjunkshah12345-hash/vibeui init --dir .
+npx vibeui init --dir .
 ```
 
 This writes `vibeui.tokens.css` and `src/lib/utils.ts`. Import the tokens **after** Tailwind:
@@ -85,7 +85,7 @@ This writes `vibeui.tokens.css` and `src/lib/utils.ts`. Import the tokens **afte
 **3. Add a component**
 
 ```bash
-npx github:arjunkshah12345-hash/vibeui add button dialog --dir ./src/components/ui
+npx vibeui add button dialog --dir ./src/components/ui
 ```
 
 Components that import siblings bring them along, so `add footer-cta` also copies `button` (and `button` copies `spinner`).
@@ -109,7 +109,7 @@ You need a `@/*` → `src/*` path alias and Tailwind CSS v4. Toasts need `ToastP
 | Data & surfaces | 10 | `aspect-ratio` · `avatar` · `card` · `code-block` · `color-swatch` · `comparison` · `list` · `scroll-area` · `stat` · `table` |
 | Overlays | 7 | `command` · `dialog` · `dropdown-menu` · `popover` · `sheet` · `toast` · `tooltip` |
 | Navigation | 7 | `accordion` · `breadcrumb` · `pagination` · `segmented` · `stepper` · `tabs` · `timeline` |
-| Signature | 20 | `arrow-fill-button` · `blur-reveal` · `book-flip` · `circle-menu` · `count-up` · `dock` · `dotted-grid` · `flip-card` · `folder-preview` · `jelly-loader` · `magnet-tabs` · `marquee` · `masonry` · `orbit-ring` · `rotating-carousel` · `scroll-stack` · `split-showcase` · `spotlight` · `stacked-cards` · `trading-card` |
+| Signature | 28 | `ai-orb` · `arrow-fill-button` · `blur-reveal` · `book-flip` · `circle-menu` · `count-up` · `dock` · `dotted-grid` · `dynamic-island` · `flip-card` · `folder-preview` · `gooey-menu` · `jelly-loader` · `liquid-glass` · `liquid-switch` · `magnet-tabs` · `marquee` · `masonry` · `mesh-gradient` · `odometer` · `orbit-ring` · `rotating-carousel` · `scratch-reveal` · `scroll-stack` · `split-showcase` · `spotlight` · `stacked-cards` · `trading-card` |
 | Text effects | 14 | `decode-text` · `flip-text` · `gradient-text` · `highlight-text` · `letter-hover` · `quote` · `rolling-text` · `scramble-text` · `stagger-words` · `text-link` · `text-reveal` · `text-shimmer` · `typewriter` · `underline-reveal` |
 | Hover effects | 11 | `hover-border` · `hover-card` · `hover-expand` · `hover-icon` · `hover-image` · `hover-lift` · `hover-shine` · `hover-slide` · `hover-tilt` · `magnetic-button` · `magnetic-link` |
 | Footers | 6 | `footer-cta` · `footer-legal` · `footer-mega` · `footer-newsletter` · `footer-simple` · `social-links` |
@@ -126,15 +126,15 @@ Everything is a CSS variable. Retint the accent for both themes:
 .dark { --accent: #7aa7ff; --accent-ink: #06142e; --accent-soft: rgb(122 167 255 / .14); --ring: rgb(122 167 255 / .3); }
 ```
 
-Light mode ships with a vermilion accent; dark mode is monochrome (the accent is the ink). Radii, shadows, fonts and motion are tokens too, and you can override any of them on a single element to scope a theme. See `/docs/theming`, `/docs/dark-mode` and `/docs/motion`.
+Both modes are monochrome by default: the accent is the ink, and one `--accent` variable retints everything. Radii, shadows, fonts and motion are tokens too, and you can override any of them on a single element to scope a theme. See `/docs/theming`, `/docs/dark-mode` and `/docs/motion`.
 
 ## CLI
 
 ```bash
-npx github:arjunkshah12345-hash/vibeui list --category forms
-npx github:arjunkshah12345-hash/vibeui search "date picker" --json
-npx github:arjunkshah12345-hash/vibeui get calendar --source
-npx github:arjunkshah12345-hash/vibeui add calendar --dir ./src/components/ui
+npx vibeui list --category forms
+npx vibeui search "date picker" --json
+npx vibeui get calendar --source
+npx vibeui add calendar --dir ./src/components/ui
 ```
 
 | Command | Purpose |

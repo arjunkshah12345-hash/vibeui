@@ -70,7 +70,7 @@ function ListDemo() {
   return (
     <List>
       <ListItem leading={<House size={16} weight="bold" />} title="Home" description="Overview and recent work" trailing={<Pill tone="outline">⌘1</Pill>} />
-      <ListItem leading={<Cube size={16} weight="bold" />} title="Components" description="104 pieces" trailing={<Pill tone="sage" dot>Live</Pill>} />
+      <ListItem leading={<Cube size={16} weight="bold" />} title="Components" description="112 pieces" trailing={<Pill tone="sage" dot>Live</Pill>} />
       <ListItem leading={<GearSix size={16} weight="bold" />} title="Settings" description="Tokens and theme" onClick={() => undefined} />
     </List>
   );
@@ -101,7 +101,7 @@ function AvatarDemo() {
 function StatDemo() {
   return (
     <div className="grid w-full gap-3 sm:grid-cols-3">
-      <Stat label="Components" value="104" delta="12 this release" trend="up" />
+      <Stat label="Components" value="112" delta="12 this release" trend="up" />
       <Stat label="Bundle" value="0 kb" delta="Copy-owned" trend="neutral" />
       <Stat label="Errors" value="0.4%" delta="0.2% vs last week" trend="down" />
     </div>
@@ -216,7 +216,7 @@ function ListTile() {
   return (
     <List className={TILE_W}>
       <ListItem leading={<House size={16} weight="bold" />} title="Home" description="Recent work" />
-      <ListItem leading={<Cube size={16} weight="bold" />} title="Components" description="104 pieces" trailing={<Pill tone="sage" dot>Live</Pill>} />
+      <ListItem leading={<Cube size={16} weight="bold" />} title="Components" description="112 pieces" trailing={<Pill tone="sage" dot>Live</Pill>} />
       <ListItem leading={<GearSix size={16} weight="bold" />} title="Settings" description="Tokens, theme" onClick={() => undefined} />
     </List>
   );
@@ -247,7 +247,7 @@ function AvatarTile() {
 function StatTile() {
   return (
     <div className={cn(TILE_W, "grid grid-cols-2 gap-3")}>
-      <Stat label="Components" value="104" delta="12 new" trend="up" />
+      <Stat label="Components" value="112" delta="12 new" trend="up" />
       <Stat label="Errors" value="0.4%" delta="0.2%" trend="down" />
     </div>
   );

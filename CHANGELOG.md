@@ -7,14 +7,33 @@ versions may include breaking changes).
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-09
+
 ### Changed
 
-- Rebuilt the landing page: a live composed interface in the hero, a "ten shelves" section with a real preview for each category, a short agents section, and the existing token playground and source viewer.
+- VibeUI is now on npm: `npx vibeui add button`. The published package installs only the two dependencies the MCP server needs; the website's own dependencies (Next, React, Motion) are dev-only, so `npx vibeui` stays small.
+- Light mode is now monochrome like dark mode: the default accent is the ink, and a single `--accent` variable still retints everything.
+- Rebuilt the landing page: a one-line animated headline, a live composed interface in the hero, a "ten shelves" section whose previews fit their cards and reveal on scroll, a short agents section, and the source viewer.
 - Gallery tiles now use compact, fixed-width `Tile` compositions for Actions, Data & surfaces and the weakest tiles in Forms, Feedback and Overlays, so the grid reads evenly. Detail pages keep the full examples.
 - A short last row in each gallery section now ends with a "next shelf" card instead of leaving a gap.
 
+### Fixed
+
+- `Command`: moving the active item no longer scrolls the whole page, only the list.
+
 ### Added
 
+- Eight Signature components, all dependency-free:
+  - `LiquidGlass`: a surface that refracts what is behind it, with chromatic edges and a pointer-tracked rim light (frosted fallback outside Chromium).
+  - `LiquidSwitch`: a toggle with a glass thumb that stretches when held, drags freely and settles with a squish.
+  - `GooeyMenu`: a metaball menu whose actions bud off the button like liquid.
+  - `DynamicIsland`: a pill that morphs between states with a soft overshoot.
+  - `AiOrb`: a living orb for voice and AI, driven by `state` and an audio `level`, tinted by `--accent`.
+  - `MeshGradient`: a flowing WebGL gradient with a static CSS fallback.
+  - `ScratchReveal`: a scratch-off foil over any content.
+  - `Odometer`: mechanical rolling digits with `Intl.NumberFormat` formatting.
+- An `animate-eq` token (the island's equalizer bars).
+- A social share image and a large Twitter card.
 - `BASE_PATH` build option: set it (for example `/ui`) to serve the site under a sub-path of another domain.
 
 ## [0.2.0] - 2026-10-07

@@ -1,6 +1,6 @@
 # VibeUI
 
-> Copy-owned React + Tailwind component library. 104 components, warm tokens, real dark mode. MIT.
+> Copy-owned React + Tailwind component library. 112 components, warm tokens, real dark mode. MIT.
 > https://github.com/arjunkshah12345-hash/vibeui
 
 ## For agents
@@ -15,8 +15,8 @@ Prefer tools over guessing:
 
 ```bash
 npm i clsx tailwind-merge class-variance-authority @phosphor-icons/react
-npx github:arjunkshah12345-hash/vibeui init --dir .
-npx github:arjunkshah12345-hash/vibeui add button --dir ./src/components/ui
+npx vibeui init --dir .
+npx vibeui add button --dir ./src/components/ui
 ```
 
 (Not on npm yet, so the CLI runs from GitHub. Inside a clone: `node bin/vibeui.mjs ...`.)
@@ -30,7 +30,7 @@ Import `vibeui.tokens.css` (or paste `templates/vibeui.css`) into global CSS **a
 - Icons: `@phosphor-icons/react` (use `/dist/ssr` in files without `"use client"`)
 - Variants: `class-variance-authority` (cva)
 - Client components marked `"use client"` when needed
-- Warm canvas `#f8f7f4` / dark `#0f0e0d`, ink primary buttons, one vermilion accent (`--accent`) for focus, selection and progress. Use tokens (`bg-surface`, `text-muted`, `border-line`, `ring-ring`), never raw hex
+- Warm canvas `#f8f7f4` / dark `#0f0e0d`, ink primary buttons, one accent (`--accent`, the ink by default) for focus, selection and progress. Use tokens (`bg-surface`, `text-muted`, `border-line`, `ring-ring`), never raw hex
 
 ## Categories
 

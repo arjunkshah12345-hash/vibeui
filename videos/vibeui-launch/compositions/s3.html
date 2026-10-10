@@ -80,7 +80,7 @@
       tl.to("#s3sub", { opacity: 1, duration: 0.6 }, 13.5);
       tl.to("#term", { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 12.75);
       const typeInto = (sel, text, t0, dur) => { const o = { n: 0 }; const el = $(sel); el.textContent = ""; tl.to(o, { n: text.length, duration: dur, ease: "none", onUpdate: () => { el.innerHTML = '<span class="dim">$ </span>' + text.slice(0, Math.round(o.n)).replace(/&/g, "&amp;") + '<span class="caret"></span>'; } }, t0); };
-      typeInto("#t1", "npx github:arjunkshah12345-hash/vibeui add dialog dock", 13.0, 1.5);
+      typeInto("#t1", "npx vibeui add dialog dock", 13.0, 1.5);
       tl.set("#t1 .caret", { opacity: 0 }, 14.7);
       [["#t2", 14.9], ["#t3", 15.2], ["#t4", 15.5], ["#t5", 16.1], ["#t6", 16.35]].forEach(([s, t]) => tl.fromTo(s, { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, t));
       tl.to("#codecard", { opacity: 1, y: 0, duration: 0.7, ease: "back.out(1.4)" }, 17.55);

@@ -22,7 +22,7 @@ Copy-owned React + Tailwind UI. Prefer MCP/CLI over guessing component APIs.
 
 - Files: `src/components/ui/<kebab>.tsx`
 - Dark: `.dark` on `<html>`
-- Warm canvas `#f8f7f4` / `#0f0e0d`, one vermilion accent, tokens only (see `templates/vibeui.css`)
+- Warm canvas `#f8f7f4` / `#0f0e0d`, one accent (the ink by default), tokens only (see `templates/vibeui.css`)
 
 <!-- BEGIN:nextjs-agent-rules -->
 
