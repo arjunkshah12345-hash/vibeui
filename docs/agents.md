@@ -7,7 +7,7 @@ Machine-facing entrypoints so coding agents can discover and install components 
 | Surface | Entry | When |
 |---------|-------|------|
 | MCP (stdio) | `node mcp/server.mjs` or `vibeui mcp` | Cursor / Claude Desktop / any MCP host |
-| CLI | `npx github:arjunkshah12345-hash/vibeui` / `node bin/vibeui.mjs` | Scripts, CI, one-shot agent shells |
+| CLI | `npx @agents-npm-packages/vibeui` / `node bin/vibeui.mjs` | Scripts, CI, one-shot agent shells |
 | Registry JSON | `registry/components.json` | Offline catalog |
 | llms.txt | `/llms.txt` in repo root | Model context bootstrap |
 | llms-full.txt | `/llms-full.txt` in repo root | Every component with props, in one file (generated) |

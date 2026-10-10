@@ -15,7 +15,7 @@
     "@phosphor-icons/react"
   ],
   "agent": {
-    "cli": "npx vibeui",
+    "cli": "npx @agents-npm-packages/vibeui",
     "mcp": "node mcp/server.mjs",
     "docs": [
       "llms.txt",
