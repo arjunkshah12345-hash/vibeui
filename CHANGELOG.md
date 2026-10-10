@@ -11,7 +11,7 @@ versions may include breaking changes).
 
 ### Changed
 
-- VibeUI is now on npm: `npx vibeui add button`. The published package installs only the two dependencies the MCP server needs; the website's own dependencies (Next, React, Motion) are dev-only, so `npx vibeui` stays small.
+- The package's runtime dependencies are now only the two the MCP server needs; the website's own (Next, React, Motion) are dev-only, so installing the CLI stays small.
 - Light mode is now monochrome like dark mode: the default accent is the ink, and a single `--accent` variable still retints everything.
 - Rebuilt the landing page: a one-line animated headline, a live composed interface in the hero, a "ten shelves" section whose previews fit their cards and reveal on scroll, a short agents section, and the source viewer.
 - Gallery tiles now use compact, fixed-width `Tile` compositions for Actions, Data & surfaces and the weakest tiles in Forms, Feedback and Overlays, so the grid reads evenly. Detail pages keep the full examples.

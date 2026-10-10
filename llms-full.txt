@@ -9,7 +9,7 @@
 - Tailwind v4. Import the token file AFTER `@import "tailwindcss";` (templates/vibeui.css or vibeui.tokens.css).
 - Path alias `@/*` -> `src/*`. Components import `cn` from `@/lib/utils`.
 - Dark mode: `dark` class on <html>. `light` / `dark` on any element pins that subtree.
-- Install: `npx vibeui add <name...> --dir ./src/components/ui` (siblings are copied automatically).
+- Install: `npx github:arjunkshah12345-hash/vibeui add <name...> --dir ./src/components/ui` (siblings are copied automatically).
 - Toasts need <ToastProvider> once near the root.
 
 ## Conventions

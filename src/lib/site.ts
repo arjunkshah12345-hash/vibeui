@@ -7,8 +7,11 @@ export const site = {
   repo: "arjunkshah12345-hash/vibeui",
   license: "MIT",
   count: 112,
-  /** How people run the CLI. */
-  cli: "npx vibeui",
+  /**
+   * How people run the CLI. Not on npm yet, so it runs straight from GitHub.
+   * After publishing, change this to the npm command.
+   */
+  cli: "npx github:arjunkshah12345-hash/vibeui",
 } as const;
 
 export const nav = [

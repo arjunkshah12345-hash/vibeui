@@ -8,15 +8,15 @@
 Prefer tools over guessing:
 
 1. **MCP** — run `node mcp/server.mjs` (stdio). Tools: `list_components`, `search_components`, `get_component`, `add_component`, `get_tokens`, `get_utils`, `get_install_guide`, `list_categories`, `library_info`, `refresh_registry`.
-2. **CLI** — `npx vibeui` / `node bin/vibeui.mjs` — same surface: list, search, get, add, init, categories, mcp.
+2. **CLI** — `npx github:arjunkshah12345-hash/vibeui` / `node bin/vibeui.mjs` — same surface: list, search, get, add, init, categories, mcp.
 3. **Registry** — `registry/components.json` (regenerate with `npm run registry`).
 
 ## Integrate (minimal)
 
 ```bash
 npm i clsx tailwind-merge class-variance-authority @phosphor-icons/react
-npx vibeui init --dir .
-npx vibeui add button --dir ./src/components/ui
+npx github:arjunkshah12345-hash/vibeui init --dir .
+npx github:arjunkshah12345-hash/vibeui add button --dir ./src/components/ui
 ```
 
 (Not on npm yet, so the CLI runs from GitHub. Inside a clone: `node bin/vibeui.mjs ...`.)
