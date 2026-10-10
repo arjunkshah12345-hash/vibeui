@@ -1,9 +1,9 @@
 {
   "name": "vibeui",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "license": "MIT",
   "repository": "https://github.com/arjunkshah12345-hash/vibeui",
-  "count": 128,
+  "count": 136,
   "tokens": "templates/vibeui.css",
   "utils": "src/lib/utils.ts",
   "peerDependencies": [
@@ -40,6 +40,8 @@
       "blur-reveal",
       "book-flip",
       "circle-menu",
+      "color-picker",
+      "confetti",
       "count-up",
       "cover-flow",
       "dock",
@@ -51,6 +53,7 @@
       "gooey-menu",
       "hold-button",
       "jelly-loader",
+      "keycap",
       "knob",
       "liquid-glass",
       "liquid-metal",
@@ -61,16 +64,21 @@
       "mesh-gradient",
       "odometer",
       "orbit-ring",
+      "pan-zoom",
       "particle-text",
+      "peel-card",
       "pointer-morph",
+      "progressive-blur",
       "ripple-image",
       "rotating-carousel",
       "scratch-reveal",
       "scroll-stack",
+      "slide-to-confirm",
       "split-showcase",
       "spotlight",
       "stacked-cards",
       "trading-card",
+      "velocity-marquee",
       "waveform",
       "wheel-picker"
     ],
@@ -1302,6 +1310,70 @@
       ]
     },
     {
+      "name": "color-picker",
+      "title": "ColorPicker",
+      "category": "craft",
+      "description": "A colour picker with a saturation field, hue and opacity strips, a hex field and an eyedropper.",
+      "file": "src/components/ui/color-picker.tsx",
+      "exports": [
+        "ColorPicker"
+      ],
+      "client": true,
+      "dependencies": [
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "ColorPicker",
+          "props": [
+            {
+              "name": "value",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Controlled colour as hex: `#rgb`, `#rrggbb` or `#rrggbbaa`."
+            },
+            {
+              "name": "defaultValue",
+              "type": "string",
+              "required": false,
+              "default": "\"#6d5dfc\"",
+              "description": "Initial value when uncontrolled."
+            },
+            {
+              "name": "onChange",
+              "type": "((hex: string) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called when the value changes."
+            },
+            {
+              "name": "alpha",
+              "type": "boolean",
+              "required": false,
+              "default": "false",
+              "description": "Show an opacity strip and write `#rrggbbaa`."
+            },
+            {
+              "name": "swatches",
+              "type": "string[]",
+              "required": false,
+              "default": "SWATCHES",
+              "description": "Quick picks under the controls. Pass `[]` to hide them."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "color-swatch",
       "title": "ColorSwatch",
       "category": "data",
@@ -1475,6 +1547,47 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "confetti",
+      "title": "Confetti",
+      "category": "craft",
+      "description": "A burst of confetti that tumbles, flips and drifts down, drawn on a canvas that spans the screen.",
+      "file": "src/components/ui/confetti.tsx",
+      "exports": [
+        "Confetti"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Confetti",
+          "props": [
+            {
+              "name": "onClickFire",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Fire from the pointer whenever the children are clicked."
+            },
+            {
+              "name": "options",
+              "type": "ConfettiOptions",
+              "required": false,
+              "default": null,
+              "description": "Defaults for every burst."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },
@@ -3437,6 +3550,77 @@
       ]
     },
     {
+      "name": "keycap",
+      "title": "Keycap",
+      "category": "craft",
+      "description": "A keyboard key with real travel: it dips under your finger, springs back, and can click.",
+      "file": "src/components/ui/keycap.tsx",
+      "exports": [
+        "Keycap"
+      ],
+      "client": true,
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Keycap",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "The label on the cap."
+            },
+            {
+              "name": "size",
+              "type": "\"sm\" | \"md\" | \"lg\"",
+              "required": false,
+              "default": "\"md\"",
+              "description": "Size preset."
+            },
+            {
+              "name": "legend",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "A small label in the corner, such as a modifier symbol."
+            },
+            {
+              "name": "shortcut",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Press this key combination to press the cap, for example `k`, `mod+k` or `shift+enter`."
+            },
+            {
+              "name": "sound",
+              "type": "boolean",
+              "required": false,
+              "default": "false",
+              "description": "Play a small click. Off unless you ask for it."
+            },
+            {
+              "name": "onPress",
+              "type": "(() => void)",
+              "required": false,
+              "default": null,
+              "description": "Called on every press, whether it came from a pointer, the keyboard or the shortcut."
+            }
+          ],
+          "extends": [
+            "ButtonHTMLAttributes<HTMLButtonElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "knob",
       "title": "Knob",
       "category": "craft",
@@ -4527,6 +4711,82 @@
       ]
     },
     {
+      "name": "pan-zoom",
+      "title": "PanZoom",
+      "category": "craft",
+      "description": "An infinite canvas: drag to pan, pinch or scroll to zoom toward the cursor, double-click to zoom in.",
+      "file": "src/components/ui/pan-zoom.tsx",
+      "exports": [
+        "PanZoom"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "PanZoom",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "What sits on the canvas. It is laid out from the centre."
+            },
+            {
+              "name": "minScale",
+              "type": "number",
+              "required": false,
+              "default": "0.4",
+              "description": ""
+            },
+            {
+              "name": "maxScale",
+              "type": "number",
+              "required": false,
+              "default": "4",
+              "description": ""
+            },
+            {
+              "name": "initialScale",
+              "type": "number",
+              "required": false,
+              "default": "1",
+              "description": ""
+            },
+            {
+              "name": "grid",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Draw a dot grid that moves and scales with the canvas."
+            },
+            {
+              "name": "controls",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Show the zoom buttons."
+            },
+            {
+              "name": "onViewChange",
+              "type": "((view: PanZoomView) => void)",
+              "required": false,
+              "default": null,
+              "description": ""
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "particle-text",
       "title": "ParticleText",
       "category": "craft",
@@ -4605,6 +4865,68 @@
           "props": [],
           "extends": [
             "InputHTMLAttributes<HTMLInputElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "peel-card",
+      "title": "PeelCard",
+      "category": "craft",
+      "description": "A card whose corner you can lift and peel back, like a sticker, to see what is underneath.",
+      "file": "src/components/ui/peel-card.tsx",
+      "exports": [
+        "PeelCard"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "PeelCard",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "The face of the card."
+            },
+            {
+              "name": "under",
+              "type": "ReactNode",
+              "required": false,
+              "default": null,
+              "description": "What is revealed underneath."
+            },
+            {
+              "name": "corner",
+              "type": "Corner",
+              "required": false,
+              "default": "\"br\"",
+              "description": "Which corner lifts."
+            },
+            {
+              "name": "threshold",
+              "type": "number",
+              "required": false,
+              "default": "0.5",
+              "description": "How far across the card (0 to 1 of its diagonal) a peel has to go to count."
+            },
+            {
+              "name": "onPeel",
+              "type": "(() => void)",
+              "required": false,
+              "default": null,
+              "description": "Called when you let go after peeling past the threshold."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
           ]
         }
       ]
@@ -4810,6 +5132,68 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "progressive-blur",
+      "title": "ProgressiveBlur",
+      "category": "craft",
+      "description": "A blur that builds gradually toward an edge, with no visible line where it starts.",
+      "file": "src/components/ui/progressive-blur.tsx",
+      "exports": [
+        "ProgressiveBlur"
+      ],
+      "client": false,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "rsc-safe"
+      ],
+      "api": [
+        {
+          "name": "ProgressiveBlur",
+          "props": [
+            {
+              "name": "side",
+              "type": "Side",
+              "required": false,
+              "default": "\"bottom\"",
+              "description": "Which edge of the parent it sits on."
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "required": false,
+              "default": "96",
+              "description": "How deep the band is, in px."
+            },
+            {
+              "name": "blur",
+              "type": "number",
+              "required": false,
+              "default": "14",
+              "description": "Blur radius at the very edge, in px."
+            },
+            {
+              "name": "layers",
+              "type": "number",
+              "required": false,
+              "default": "8",
+              "description": "More layers make a smoother ramp and cost a little more to draw."
+            },
+            {
+              "name": "tint",
+              "type": "boolean",
+              "required": false,
+              "default": "false",
+              "description": "Fade into the page colour as well, so text on top stays readable."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },
@@ -5814,6 +6198,75 @@
         {
           "name": "Skeleton",
           "props": [],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "slide-to-confirm",
+      "title": "SlideToConfirm",
+      "category": "craft",
+      "description": "The slide-to-unlock control: drag the handle across to confirm, and it springs back if you stop short.",
+      "file": "src/components/ui/slide-to-confirm.tsx",
+      "exports": [
+        "SlideToConfirm"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "SlideToConfirm",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": false,
+              "default": "\"Slide to confirm\"",
+              "description": "The invitation printed on the track."
+            },
+            {
+              "name": "confirmedLabel",
+              "type": "ReactNode",
+              "required": false,
+              "default": "\"Confirmed\"",
+              "description": "Shown after confirming."
+            },
+            {
+              "name": "onConfirm",
+              "type": "(() => void)",
+              "required": false,
+              "default": null,
+              "description": "Called once the handle reaches the end."
+            },
+            {
+              "name": "threshold",
+              "type": "number",
+              "required": false,
+              "default": "0.92",
+              "description": "How far across (0 to 1) counts as done."
+            },
+            {
+              "name": "resetMs",
+              "type": "number",
+              "required": false,
+              "default": "2400",
+              "description": "After this many ms the control resets. 0 leaves it confirmed."
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "required": false,
+              "default": null,
+              "description": "Prevents interaction and dims the control."
+            }
+          ],
           "extends": [
             "HTMLAttributes<HTMLDivElement>"
           ]
@@ -7154,6 +7607,75 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "velocity-marquee",
+      "title": "VelocityMarquee",
+      "category": "craft",
+      "description": "A ticker that responds to you: scroll the page and it speeds up, reverses and leans into the motion.",
+      "file": "src/components/ui/velocity-marquee.tsx",
+      "exports": [
+        "VelocityMarquee"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "VelocityMarquee",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "The items to run. They repeat to fill the width."
+            },
+            {
+              "name": "speed",
+              "type": "number",
+              "required": false,
+              "default": "70",
+              "description": "Resting speed in px per second."
+            },
+            {
+              "name": "direction",
+              "type": "1 | -1",
+              "required": false,
+              "default": "1",
+              "description": "`1` runs left, `-1` runs right."
+            },
+            {
+              "name": "skew",
+              "type": "number",
+              "required": false,
+              "default": "10",
+              "description": "The most the text can lean, in degrees, when it is moving fast. 0 turns it off."
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "required": false,
+              "default": "40",
+              "description": "Space between items, in px."
+            },
+            {
+              "name": "pauseOnHover",
+              "type": "boolean",
+              "required": false,
+              "default": "false",
+              "description": "Stop while the pointer is over it."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },

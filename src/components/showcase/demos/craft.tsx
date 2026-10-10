@@ -149,7 +149,7 @@ function CountUpDemo() {
   return (
     <div className="flex items-end gap-10">
       <div>
-        <CountUp value={128} className="text-6xl" />
+        <CountUp value={136} className="text-6xl" />
         <p className="mt-1 text-[13px] text-muted">components</p>
       </div>
       <div>
