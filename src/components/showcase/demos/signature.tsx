@@ -7,9 +7,7 @@ import {
   PencilSimple,
   Phone,
   PhoneX,
-  Play,
   Share,
-  Timer,
   Trash,
 } from "@phosphor-icons/react";
 import { AiOrb, type OrbState } from "@/components/ui/ai-orb";
@@ -64,13 +62,64 @@ function GlassBackdrop({
 
 function GlassScene({ compact }: { compact?: boolean }) {
   const stage = React.useRef<HTMLDivElement>(null);
-  // Start low, so the lens refracts the lower half of the title and its label stays readable.
-  const [pos, setPos] = React.useState(compact ? { x: 34, y: 34 } : { x: 0, y: 72 });
-  const drag = React.useRef<{ px: number; py: number; ox: number; oy: number } | null>(null);
-  const lens = compact ? { w: 148, h: 64 } : { w: 224, h: 112 };
+  const lens = React.useRef<HTMLDivElement>(null);
+  const size = compact ? { w: 148, h: 64 } : { w: 224, h: 112 };
+  const height = compact ? 176 : 320;
+
+  // The lens glides after the pointer, and drifts on its own when nothing is pointing at the stage.
+  React.useEffect(() => {
+    const host = stage.current;
+    const el = lens.current;
+    if (!host || !el) return;
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const pos = { x: 0, y: 0 };
+    const goal = { x: 0, y: 0 };
+    let over = false;
+    let raf = 0;
+    let last = performance.now();
+
+    const onMove = (e: PointerEvent) => {
+      const r = host.getBoundingClientRect();
+      const k = host.offsetWidth / (r.width || 1);
+      goal.x = (e.clientX - r.left) * k - host.offsetWidth / 2;
+      goal.y = (e.clientY - r.top) * k - height / 2;
+      over = true;
+    };
+    const onLeave = () => {
+      over = false;
+    };
+    const tick = (t: number) => {
+      const dt = Math.min((t - last) / 1000, 0.05);
+      last = t;
+      const w = host.offsetWidth;
+      if (!over && !calm) {
+        goal.x = Math.sin(t / 2100) * w * 0.26;
+        goal.y = Math.sin(t / 1500 + 1) * height * 0.18;
+      }
+      const k = 1 - Math.exp(-dt * (over ? 16 : 2.5));
+      pos.x += (goal.x - pos.x) * k;
+      pos.y += (goal.y - pos.y) * k;
+      const mx = w / 2 - size.w / 2;
+      const my = height / 2 - size.h / 2;
+      const x = Math.max(-mx, Math.min(mx, pos.x));
+      const y = Math.max(-my, Math.min(my, pos.y));
+      el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+      raf = requestAnimationFrame(tick);
+    };
+    host.addEventListener("pointermove", onMove);
+    host.addEventListener("pointerdown", onMove);
+    host.addEventListener("pointerleave", onLeave);
+    raf = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(raf);
+      host.removeEventListener("pointermove", onMove);
+      host.removeEventListener("pointerdown", onMove);
+      host.removeEventListener("pointerleave", onLeave);
+    };
+  }, [height, size.h, size.w]);
 
   return (
-    <div ref={stage} className={compact ? "w-full" : "w-full max-w-lg"}>
+    <div ref={stage} className={cn("touch-pan-y", compact ? "w-full" : "w-full max-w-lg")}>
       <GlassBackdrop className={compact ? "h-[176px]" : "h-[320px]"}>
         <p
           className={cn(
@@ -81,33 +130,15 @@ function GlassScene({ compact }: { compact?: boolean }) {
           Liquid glass
         </p>
         <div
-          className="absolute left-1/2 top-1/2 cursor-grab touch-none active:cursor-grabbing"
-          style={{ transform: `translate(calc(-50% + ${pos.x}px), calc(-50% + ${pos.y}px))` }}
-          onPointerDown={(e) => {
-            e.currentTarget.setPointerCapture(e.pointerId);
-            drag.current = { px: e.clientX, py: e.clientY, ox: pos.x, oy: pos.y };
-          }}
-          onPointerMove={(e) => {
-            const d = drag.current;
-            const box = stage.current?.getBoundingClientRect();
-            if (!d || !box) return;
-            const mx = box.width / 2 - lens.w / 2;
-            const my = (compact ? 176 : 320) / 2 - lens.h / 2;
-            setPos({
-              x: Math.max(-mx, Math.min(mx, d.ox + e.clientX - d.px)),
-              y: Math.max(-my, Math.min(my, d.oy + e.clientY - d.py)),
-            });
-          }}
-          onPointerUp={() => (drag.current = null)}
+          ref={lens}
+          className="pointer-events-none absolute left-1/2 top-1/2 will-change-transform"
         >
           <LiquidGlass
             radius={compact ? 32 : 56}
-            className="flex items-center justify-center"
-            style={{ width: lens.w, height: lens.h }}
+            interactive={false}
+            style={{ width: size.w, height: size.h }}
           >
-            <span className="flex h-full items-center justify-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-white/90">
-              <Play size={compact ? 12 : 14} weight="fill" /> drag me
-            </span>
+            <span className="block h-full w-full" />
           </LiquidGlass>
         </div>
       </GlassBackdrop>
@@ -221,7 +252,7 @@ function Bars() {
       {[0, 0.2, 0.4, 0.1, 0.3].map((d) => (
         <span
           key={d}
-          className="h-full w-[3px] origin-bottom animate-eq rounded-full bg-surface"
+          className="h-full w-[3px] origin-bottom animate-eq rounded-full bg-white"
           style={{ animationDelay: `${-d}s` }}
         />
       ))}
@@ -233,40 +264,60 @@ const islandViews: IslandView[] = [
   {
     id: "idle",
     label: "Idle",
-    width: 132,
-    height: 38,
+    width: 126,
+    height: 36,
     content: (
-      <div className="flex size-full items-center justify-center gap-2 text-[12px] font-medium">
-        <span className="size-2 rounded-full bg-surface/70" /> Studio
+      <div className="flex size-full items-center justify-end pr-3.5">
+        <span className="size-3 rounded-full bg-[#15151c] ring-1 ring-white/10" />
       </div>
     ),
   },
   {
     id: "timer",
     label: "Focus timer, 4 minutes 32 seconds",
-    width: 214,
-    height: 44,
+    width: 196,
+    height: 38,
     content: (
-      <div className="flex size-full items-center justify-between px-4 text-[13px]">
-        <Timer size={18} weight="bold" />
-        <span className="font-mono tabular-nums">04:32</span>
-        <span className="text-[11px] uppercase tracking-wider text-surface/60">Focus</span>
+      <div className="flex size-full items-center justify-between pl-3 pr-4">
+        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden>
+          <circle
+            cx="11"
+            cy="11"
+            r="8.5"
+            fill="none"
+            stroke="rgb(255 255 255 / 0.22)"
+            strokeWidth="2.5"
+          />
+          <circle
+            cx="11"
+            cy="11"
+            r="8.5"
+            fill="none"
+            stroke="#ffb454"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeDasharray="53.4"
+            strokeDashoffset="16"
+            transform="rotate(-90 11 11)"
+          />
+        </svg>
+        <span className="font-mono text-[13px] tabular-nums text-[#ffb454]">04:32</span>
       </div>
     ),
   },
   {
     id: "music",
     label: "Now playing: Paper Moons",
-    width: 340,
-    height: 78,
+    width: 330,
+    height: 74,
     content: (
       <div className="flex size-full items-center gap-3 px-3.5">
-        <span className="grid size-[50px] shrink-0 place-items-center rounded-lg bg-[linear-gradient(135deg,#6d5efc,#ff5d8f)] text-white">
+        <span className="grid size-[50px] shrink-0 place-items-center rounded-xl bg-[linear-gradient(135deg,#6d5efc,#ff5d8f)] text-white">
           <MusicNotes size={22} weight="fill" />
         </span>
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-[13px] font-medium">Paper Moons</span>
-          <span className="block truncate text-[12px] text-surface/60">Halden Ray</span>
+          <span className="block truncate text-[13px] font-medium text-white">Paper Moons</span>
+          <span className="block truncate text-[12px] text-white/55">Halden Ray</span>
         </span>
         <Bars />
       </div>
@@ -275,18 +326,18 @@ const islandViews: IslandView[] = [
   {
     id: "call",
     label: "Incoming call from Maya Chen",
-    width: 356,
-    height: 136,
+    width: 350,
+    height: 130,
     radius: 38,
     content: (
       <div className="flex size-full flex-col justify-between p-4">
         <div className="flex items-center gap-3">
-          <span className="grid size-11 place-items-center rounded-full bg-surface/15 text-sm font-medium">
+          <span className="grid size-11 place-items-center rounded-full bg-white/15 text-sm font-medium text-white">
             MC
           </span>
           <span>
-            <span className="block text-[14px] font-medium">Maya Chen</span>
-            <span className="block text-[12px] text-surface/60">Incoming call…</span>
+            <span className="block text-[14px] font-medium text-white">Maya Chen</span>
+            <span className="block text-[12px] text-white/55">Incoming call…</span>
           </span>
         </div>
         <div className="flex gap-2.5">
@@ -318,13 +369,66 @@ function useCycle(on: boolean, ms: number) {
   return [i, setI] as const;
 }
 
+/** The top of a phone, so the island reads as what it is. Always 390px wide; scale it to fit. */
+function PhoneTop({ value }: { value: IslandKey }) {
+  return (
+    <div className="relative h-[216px] w-[390px] overflow-hidden rounded-t-[46px] border-[7px] border-b-0 border-[#161618] bg-[linear-gradient(160deg,#1c1840,#3b2f9e_48%,#c2417a)] [mask-image:linear-gradient(#000_74%,transparent)]">
+      <div className="absolute inset-x-8 top-[18px] flex items-center justify-between text-[14px] font-semibold text-white">
+        <span>9:41</span>
+        <span className="flex items-center gap-1.5">
+          <span className="flex items-end gap-[2px]">
+            {[5, 7, 9, 11].map((h) => (
+              <span key={h} className="w-[3px] rounded-[1px] bg-white" style={{ height: h }} />
+            ))}
+          </span>
+          <span className="relative h-[11px] w-[22px] rounded-[3.5px] border border-white/70">
+            <span className="absolute inset-[1.5px] right-[5px] rounded-[2px] bg-white" />
+          </span>
+        </span>
+      </div>
+      <div className="absolute inset-x-0 top-[11px]">
+        <DynamicIsland views={islandViews} value={value} />
+      </div>
+      <div className="absolute inset-x-5 bottom-0 grid grid-cols-2 gap-3 [mask-image:linear-gradient(#000_30%,transparent)]">
+        <span className="h-20 rounded-3xl bg-white/15" />
+        <span className="h-20 rounded-3xl bg-white/15" />
+      </div>
+    </div>
+  );
+}
+
+/** Shrinks a fixed-size mock to fit a narrower container (a phone screen), never enlarging it. */
+function FitWidth({ w, h, children }: { w: number; h: number; children: React.ReactNode }) {
+  const box = React.useRef<HTMLDivElement>(null);
+  const [k, setK] = React.useState(1);
+  React.useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => setK(Math.min(1, entry.contentRect.width / w)));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [w]);
+  return (
+    <div ref={box} className="w-full" style={{ height: h * k }}>
+      <div
+        className="mx-auto origin-top-left"
+        style={{ width: w, height: h, transform: `scale(${k})` }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
 function IslandDemo() {
   const [auto, setAuto] = React.useState(true);
   const [i, setI] = useCycle(auto, 2800);
   const value = ORDER[i];
   return (
     <div className="flex w-full flex-col items-center gap-6">
-      <DynamicIsland views={islandViews} value={value} />
+      <FitWidth w={390} h={216}>
+        <PhoneTop value={value} />
+      </FitWidth>
       <Segmented
         options={ORDER.map((k) => ({ value: k, label: k[0].toUpperCase() + k.slice(1) }))}
         value={value}
@@ -340,12 +444,10 @@ function IslandDemo() {
 function IslandTile() {
   const [i] = useCycle(true, 2600);
   return (
-    <div className={TILE_W}>
-      <DynamicIsland
-        views={islandViews.slice(0, 3)}
-        value={ORDER[i % 3]}
-        className="scale-[0.74] origin-top"
-      />
+    <div className={cn(TILE_W, "h-[150px] overflow-hidden")}>
+      <div className="origin-top-left scale-[0.675]">
+        <PhoneTop value={ORDER[i]} />
+      </div>
     </div>
   );
 }
@@ -378,6 +480,7 @@ const orbTints = {
   rose: "#e5487a",
   teal: "#0f9d84",
 } as const;
+const orbStates: OrbState[] = ["idle", "listening", "thinking", "speaking"];
 
 function OrbDemo() {
   const [state, setState] = React.useState<OrbState>("speaking");
@@ -388,7 +491,7 @@ function OrbDemo() {
       className="flex flex-col items-center gap-7"
       style={{ "--accent": orbTints[tint] } as React.CSSProperties}
     >
-      <AiOrb state={state} level={level} size={190} />
+      <AiOrb state={state} level={level} size={220} />
       <div role="radiogroup" aria-label="Accent" className="flex gap-2.5">
         {(Object.keys(orbTints) as (keyof typeof orbTints)[]).map((k) => (
           <button
@@ -407,10 +510,7 @@ function OrbDemo() {
         ))}
       </div>
       <Segmented
-        options={(["idle", "listening", "thinking", "speaking"] as const).map((s) => ({
-          value: s,
-          label: s[0].toUpperCase() + s.slice(1),
-        }))}
+        options={orbStates.map((s) => ({ value: s, label: s[0].toUpperCase() + s.slice(1) }))}
         value={state}
         onChange={setState}
       />
@@ -418,14 +518,22 @@ function OrbDemo() {
   );
 }
 
+/** The tile walks through every state, so the gallery shows what the orb can do. */
 function OrbTile() {
-  const level = useFakeLevel(true);
+  const [i, setI] = React.useState(3);
+  React.useEffect(() => {
+    const id = setInterval(() => setI((n) => (n + 1) % orbStates.length), 2600);
+    return () => clearInterval(id);
+  }, []);
+  const state = orbStates[i];
+  const level = useFakeLevel(state === "speaking" || state === "listening");
   return (
     <div
-      className={cn(TILE_W, "flex justify-center")}
+      className={cn(TILE_W, "flex flex-col items-center gap-3")}
       style={{ "--accent": "#5b4bff" } as React.CSSProperties}
     >
-      <AiOrb state="speaking" level={level} size={128} />
+      <AiOrb state={state} level={level} size={140} />
+      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">{state}</span>
     </div>
   );
 }
@@ -635,50 +743,24 @@ function GlobeTile() {
 
 /* ─────────────────────────── ripple image ─────────────────────────── */
 
-/** A busy, colourful scene, so the ripples have something worth bending. */
-function rippleScene() {
-  const stripes = Array.from({ length: 26 }, (_, i) => {
-    const y = 330 + i * 17;
-    return `<rect x='0' y='${y}' width='1200' height='${3 + (i % 3)}' fill='white' fill-opacity='${0.05 + (i % 4) * 0.025}'/>`;
-  }).join("");
-  const rings = [60, 120, 190, 270, 360]
-    .map(
-      (r) =>
-        `<circle cx='820' cy='250' r='${r}' fill='none' stroke='white' stroke-opacity='0.22' stroke-width='3'/>`,
-    )
-    .join("");
-  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'>
-<defs>
-<linearGradient id='sky' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#1b1464'/><stop offset='0.45' stop-color='#6d3fd8'/><stop offset='0.7' stop-color='#ff5d8f'/><stop offset='1' stop-color='#ffb454'/></linearGradient>
-<linearGradient id='sea' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#ff9d6c'/><stop offset='1' stop-color='#241b5c'/></linearGradient>
-</defs>
-<rect width='1200' height='800' fill='url(#sky)'/>
-<circle cx='820' cy='250' r='96' fill='#fff3d6'/>${rings}
-<rect y='330' width='1200' height='470' fill='url(#sea)'/>${stripes}
-<path d='M0 330 L160 250 L300 320 L470 210 L640 330 Z' fill='#17104a' fill-opacity='0.9'/>
-<path d='M380 330 L560 260 L700 330 Z' fill='#241b5c'/>
-<text x='70' y='640' font-family='Georgia,serif' font-size='132' fill='white' fill-opacity='0.95'>Touch the water</text>
-<text x='76' y='700' font-family='monospace' font-size='28' letter-spacing='6' fill='white' fill-opacity='0.7'>MOVE YOUR CURSOR · CLICK TO DROP A STONE</text>
-</svg>`;
-  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
-}
-
-const rippleSrc = rippleScene();
+const rippleSrc = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/demo/earth.jpg`;
+const rippleAlt = "The Earth seen from Apollo 17 (NASA, public domain)";
 
 function RippleDemo() {
   return (
-    <RippleImage src={rippleSrc} alt="A sunset over a calm purple sea" className="rounded-xl" />
+    <div className="w-full">
+      <RippleImage src={rippleSrc} alt={rippleAlt} className="rounded-xl" />
+      <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+        Move across it. Click to drop a stone.
+      </p>
+    </div>
   );
 }
 
 function RippleTile() {
   return (
     <div className={TILE_W}>
-      <RippleImage
-        src={rippleSrc}
-        alt="A sunset over a calm purple sea"
-        className="aspect-auto h-[170px] rounded-xl"
-      />
+      <RippleImage src={rippleSrc} alt={rippleAlt} className="aspect-auto h-[170px] rounded-xl" />
     </div>
   );
 }
