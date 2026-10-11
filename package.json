@@ -1,5 +1,5 @@
 {
-  "name": "vibeui",
+  "name": "@agents-npm-packages/vibeui",
   "version": "0.3.0",
   "private": false,
   "license": "MIT",
@@ -79,5 +79,8 @@
     "tailwind-merge": "^3.7.0",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

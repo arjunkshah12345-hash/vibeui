@@ -5,7 +5,7 @@ Copy-owned React + Tailwind UI. Prefer MCP/CLI over guessing component APIs.
 ## Entrypoints
 
 - MCP: `node mcp/server.mjs`
-- CLI: `node bin/vibeui.mjs` / `npx vibeui`
+- CLI: `node bin/vibeui.mjs` / `npx @agents-npm-packages/vibeui`
 - Catalog: `registry/components.json` (`npm run registry`)
 - Site: `/components` (live gallery), `/components/<name>` (preview + source), demos in `src/components/showcase/demos/`
 - Brief: `llms.txt` · detail: `docs/agents.md`

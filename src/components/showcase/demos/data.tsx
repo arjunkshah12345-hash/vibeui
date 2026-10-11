@@ -598,7 +598,7 @@ function ResizableDemo() {
           </Pane>
           <Pane title="Terminal" className="bg-surface-muted/60">
             <p className="font-mono text-xs text-muted">
-              <span className="text-faint">$</span> npx vibeui add drawer
+              <span className="text-faint">$</span> npx @agents-npm-packages/vibeui add drawer
             </p>
             <p className="font-mono text-xs text-ink">✓ drawer → src/components/ui/drawer.tsx</p>
           </Pane>

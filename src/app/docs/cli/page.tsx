@@ -5,7 +5,8 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "CLI",
-  description: "Every VibeUI CLI command, flag and exit code, with examples for people, scripts and CI.",
+  description:
+    "Every VibeUI CLI command, flag and exit code, with examples for people, scripts and CI.",
 };
 
 export default function Cli() {
@@ -18,7 +19,7 @@ export default function Cli() {
 
       <H2 id="run">Running it</H2>
       <P>
-        VibeUI is not on npm yet, so run it straight from GitHub. Nothing is installed globally, and{" "}
+        The CLI is published on npm as <Code>@agents-npm-packages/vibeui</Code>. Nothing is installed globally, and{" "}
         <Code>npx</Code> caches the download.
       </P>
       <CodeBlock language="bash" code={`${site.cli} --help`} />
@@ -32,7 +33,10 @@ export default function Cli() {
         head={["Command", "What it does"]}
         rows={[
           ["list", "Lists every component with category, description and dependencies."],
-          ["search <query>", "Searches names, descriptions and tags. Multiple words must all match."],
+          [
+            "search <query>",
+            "Searches names, descriptions and tags. Multiple words must all match.",
+          ],
           ["get <name>", "Shows one component's metadata, including its API."],
           ["add <name…>", "Copies components, plus the siblings they import, into a directory."],
           ["init", "Writes the token file, utils.ts and a short integration guide."],
@@ -52,7 +56,11 @@ export default function Cli() {
         head={["Flag", "Default", "Effect"]}
         rows={[
           ["--dir <path>", "./src/components/ui", "Where to write the component files."],
-          ["--tokens", "off", "Also copy the token file to vibeui.tokens.css, three folders above --dir."],
+          [
+            "--tokens",
+            "off",
+            "Also copy the token file to vibeui.tokens.css, three folders above --dir.",
+          ],
           ["--no-utils", "off", "Skip creating src/lib/utils.ts (otherwise written if missing)."],
         ]}
       />
@@ -102,8 +110,8 @@ vibeui get calendar --source`}
       <H2 id="json">Structured output</H2>
       <P>
         Add <Code>--json</Code> to <Code>list</Code>, <Code>search</Code>, <Code>get</Code> and{" "}
-        <Code>categories</Code> for machine-readable output. Pipe it to <Code>jq</Code> or read it from
-        a script.
+        <Code>categories</Code> for machine-readable output. Pipe it to <Code>jq</Code> or read it
+        from a script.
       </P>
       <CodeBlock
         language="bash"
@@ -122,11 +130,11 @@ vibeui get dialog --json | jq '.api[0].props[] | {name, type}'`}
       <H3>In CI</H3>
       <P>
         Because <Code>add</Code> exits non-zero on failure, it is safe to run in a script or a
-        bootstrap step. Pin to a commit (or a tag, once releases are tagged) for reproducible installs:
+        bootstrap step. Pin the version for reproducible installs:
       </P>
       <CodeBlock
         language="bash"
-        code={`npx github:arjunkshah12345-hash/vibeui#<commit-sha> add button dialog --dir ./src/components/ui`}
+        code={`npx @agents-npm-packages/vibeui@0.3.0 add button dialog --dir ./src/components/ui`}
       />
     </>
   );

@@ -25,7 +25,7 @@ out("- Peers: " + reg.peerDependencies.filter((p) => !["react", "react-dom"].inc
 out("- Tailwind v4. Import the token file AFTER `@import \"tailwindcss\";` (templates/vibeui.css or vibeui.tokens.css).");
 out("- Path alias `@/*` -> `src/*`. Components import `cn` from `@/lib/utils`.");
 out("- Dark mode: `dark` class on <html>. `light` / `dark` on any element pins that subtree.");
-out("- Install: `npx github:arjunkshah12345-hash/vibeui add <name...> --dir ./src/components/ui` (siblings are copied automatically).");
+out("- Install: `npx @agents-npm-packages/vibeui add <name...> --dir ./src/components/ui` (siblings are copied automatically).");
 out("- Toasts need <ToastProvider> once near the root.");
 out();
 out("## Conventions");

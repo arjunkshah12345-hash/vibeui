@@ -69,7 +69,7 @@ function RollingDemo() {
 }
 
 function DecodeDemo() {
-  return <DecodeText text="npx vibeui add dock" className="text-xl" />;
+  return <DecodeText text="npx @agents-npm-packages/vibeui add dock" className="text-xl" />;
 }
 
 function FlipDemo() {

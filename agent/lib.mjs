@@ -289,7 +289,7 @@ export function buildRegistry() {
       "@phosphor-icons/react",
     ],
     agent: {
-      cli: "npx vibeui",
+      cli: "npx @agents-npm-packages/vibeui",
       mcp: "node mcp/server.mjs",
       docs: ["llms.txt", "AGENTS.md", "docs/agents.md"],
     },
@@ -379,8 +379,8 @@ Write \`src/lib/utils.ts\` with cn() from clsx + tailwind-merge. Path alias: \`@
 
 ## Add component (CLI)
 \`\`\`bash
-npx vibeui add button --dir ./src/components/ui
-npx vibeui add trading-card footer-mega --dir ./src/components/ui
+npx @agents-npm-packages/vibeui add button --dir ./src/components/ui
+npx @agents-npm-packages/vibeui add trading-card footer-mega --dir ./src/components/ui
 \`\`\`
 Components that import siblings (e.g. dialog → button) pull them in automatically.
 

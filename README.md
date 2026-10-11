@@ -39,7 +39,7 @@ Run the repo to browse all 120 components live (`/components`), read the docs (`
 - **Four peers.** `clsx`, `tailwind-merge`, `class-variance-authority`, `@phosphor-icons/react`. No animation library.
 - **Agent-ready.** A CLI, an MCP server, `llms.txt` and a JSON registry with generated API tables.
 
-> **Status.** Pre-1.0 and not on npm yet. The CLI runs from GitHub (see [CLI](#cli)). Live site: [tryjasmine.dev](https://tryjasmine.dev).
+> **Status.** Pre-1.0. Install the CLI with `npx @agents-npm-packages/vibeui` (see [CLI](#cli)). Live site: [tryjasmine.dev](https://tryjasmine.dev).
 
 ## Quick start
 
@@ -72,7 +72,7 @@ npm i clsx tailwind-merge class-variance-authority @phosphor-icons/react
 **2. Add the tokens and `cn()`**
 
 ```bash
-npx github:arjunkshah12345-hash/vibeui init --dir .
+npx @agents-npm-packages/vibeui init --dir .
 ```
 
 This writes `vibeui.tokens.css` and `src/lib/utils.ts`. Import the tokens **after** Tailwind:
@@ -85,7 +85,7 @@ This writes `vibeui.tokens.css` and `src/lib/utils.ts`. Import the tokens **afte
 **3. Add a component**
 
 ```bash
-npx github:arjunkshah12345-hash/vibeui add button dialog --dir ./src/components/ui
+npx @agents-npm-packages/vibeui add button dialog --dir ./src/components/ui
 ```
 
 Components that import siblings bring them along, so `add footer-cta` also copies `button` (and `button` copies `spinner`).
@@ -131,10 +131,10 @@ Both modes are monochrome by default: the accent is the ink, and one `--accent` 
 ## CLI
 
 ```bash
-npx github:arjunkshah12345-hash/vibeui list --category forms
-npx github:arjunkshah12345-hash/vibeui search "date picker" --json
-npx github:arjunkshah12345-hash/vibeui get calendar --source
-npx github:arjunkshah12345-hash/vibeui add calendar --dir ./src/components/ui
+npx @agents-npm-packages/vibeui list --category forms
+npx @agents-npm-packages/vibeui search "date picker" --json
+npx @agents-npm-packages/vibeui get calendar --source
+npx @agents-npm-packages/vibeui add calendar --dir ./src/components/ui
 ```
 
 | Command | Purpose |
