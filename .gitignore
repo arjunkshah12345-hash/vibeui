@@ -45,3 +45,7 @@ videos/*/renders/
 videos/*/snapshots/
 videos/*/node_modules/
 videos/*/.hyperframes/
+
+# Copied from the repo root by scripts/registry.mjs at build time
+/public/llms.txt
+/public/llms-full.txt
