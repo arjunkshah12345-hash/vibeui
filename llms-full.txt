@@ -1,7 +1,7 @@
 # VibeUI (full reference)
 
 > Copy-owned React + Tailwind components. MIT. https://github.com/arjunkshah12345-hash/vibeui
-> Version 0.3.1 · 120 components · generated from registry/components.json
+> Version 0.4.0 · 128 components · generated from registry/components.json
 
 ## Setup
 
@@ -131,6 +131,19 @@ Outlined button that floods with ink on hover while the arrow slides.
 - peers: @phosphor-icons/react
 - <ArrowFillButton> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
 
+#### aura-border
+A glowing, colour-shifting border that runs around its content: the look of an assistant that is thinking.
+- file: src/components/ui/aura-border.tsx
+- exports: AuraBorder
+- client component
+- <AuraBorder> (also accepts HTMLAttributes<HTMLDivElement>)
+  - active?: boolean = true — Show the glow. Fades in and out.
+  - radius?: number = 20 — Corner radius of the content, in px. The glow follows it.
+  - thickness?: number = 2 — Width of the crisp ring, in px.
+  - glow?: number = 22 — How far the soft halo spreads, in px.
+  - speed?: number = 0.12 — Laps per second around the edge.
+  - colors?: string[] = AURORA — CSS colours, swept around the edge in order.
+
 #### blur-reveal
 Content that resolves from blur and a slight drop as it enters the viewport.
 - file: src/components/ui/blur-reveal.tsx
@@ -173,6 +186,18 @@ Number that eases up from zero the first time it scrolls into view.
   - suffix?: string = "" — Text appended to the number.
   - prefix?: string = "" — Text prepended to the number.
   - className?: string — Extra classes, merged with the component's own.
+
+#### cover-flow
+The classic cover-flow browser: a row of covers in 3D, the middle one facing you and the rest angled away.
+- file: src/components/ui/cover-flow.tsx
+- exports: CoverFlow
+- client component
+- <CoverFlow> (also accepts HTMLAttributes<HTMLDivElement>)
+  - items: CoverItem[] — The items to render.
+  - index?: number — Controlled index of the cover in front.
+  - defaultIndex?: number = 0
+  - onIndexChange?: ((index: number) => void)
+  - size?: number = 168 — Size of each square cover in px.
 
 #### dock
 macOS-style dock: icons magnify smoothly with distance from the cursor.
@@ -252,6 +277,19 @@ A button whose actions bud off like liquid and stay fused to it.
   - label?: string = "Menu" — Accessible name of the main button.
   - className?: string — Extra classes, merged with the component's own.
 
+#### hold-button
+A button you press and hold to confirm: it fills as you hold, shakes if you let go too soon, and fires when full.
+- file: src/components/ui/hold-button.tsx
+- exports: HoldButton
+- client component
+- <HoldButton> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - children: ReactNode — What the button says before it is confirmed.
+  - holdMs?: number = 900 — How long to hold, in ms.
+  - onConfirm?: (() => void) — Called once the hold completes.
+  - confirmedLabel?: ReactNode = "Done" — Shown after confirming.
+  - resetMs?: number = 2200 — After this many ms the button returns to its start state. 0 keeps it confirmed.
+  - tone?: "danger" | "ink" = "ink" — `danger` fills with red for destructive actions.
+
 #### jelly-loader
 Four bars that squash and stretch in sequence.
 - file: src/components/ui/jelly-loader.tsx
@@ -259,6 +297,23 @@ Four bars that squash and stretch in sequence.
 - server-safe
 - <JellyLoader>
   - className?: string — Extra classes, merged with the component's own.
+
+#### knob
+A rotary dial with ticks: drag it up and down, scroll over it, use the arrow keys, double-click to reset.
+- file: src/components/ui/knob.tsx
+- exports: Knob
+- client component
+- <Knob> (also accepts HTMLAttributes<HTMLDivElement>)
+  - value?: number — Controlled value.
+  - defaultValue?: number = 50 — Initial value when uncontrolled. Double-click returns to it.
+  - onValueChange?: ((value: number) => void) — Called with the new value.
+  - min?: number = 0 — Lower bound.
+  - max?: number = 100 — Upper bound.
+  - step?: number = 1 — Smallest change. Values snap to it.
+  - size?: number = 132 — Diameter in px.
+  - ticks?: number = 28 — How many tick marks to draw around the dial.
+  - label?: string — Shown under the dial, and used as its accessible name.
+  - format?: ((value: number) => string) = (v) => String(Math.round(v)) — Turns the value into the text shown in the middle.
 
 #### liquid-glass
 Liquid glass: a surface that bends the light behind it, with a specular rim that follows the pointer.
@@ -272,6 +327,15 @@ Liquid glass: a surface that bends the light behind it, with a specular rim that
   - aberration?: number = 8 — Colour fringing at the rim, in px of channel offset.
   - saturation?: number = 1.5 — Backdrop saturation multiplier.
   - interactive?: boolean = true — Let the highlight and rim light follow the pointer.
+
+#### liquid-metal
+A blob of liquid chrome that drifts, merges and splits, and chases your cursor.
+- file: src/components/ui/liquid-metal.tsx
+- exports: LiquidMetal
+- client component
+- <LiquidMetal> (also accepts HTMLAttributes<HTMLDivElement>)
+  - tint?: string — Any CSS colour to stain the chrome, for gold, copper or ink. Silver by default.
+  - interactive?: boolean = true — Let the pointer pull one blob around.
 
 #### liquid-switch
 Toggle with a liquid-glass thumb that stretches under your finger and settles with a squish.
@@ -347,6 +411,27 @@ Labels circling a center point. Chips stay upright while the ring turns.
   - center?: ReactNode — Content for the center of the ring.
   - radius?: number = 104 — Ring radius in pixels.
   - className?: string — Extra classes, merged with the component's own.
+
+#### particle-text
+Text made of thousands of particles that scatter away from your cursor, spring back, and burst when you click.
+- file: src/components/ui/particle-text.tsx
+- exports: ParticleText
+- client component
+- <ParticleText> (also accepts HTMLAttributes<HTMLDivElement>)
+  - text: string — The words to draw.
+  - fontSize?: number — Font size in px. By default the text is sized to fill the width.
+  - gap?: number = 2.6 — Space between particles in px. Smaller is denser and heavier to draw.
+  - radius?: number = 90 — How far from the pointer particles are pushed away, in px.
+
+#### pointer-morph
+The iPadOS pointer for the web: a dot that morphs into the shape of whatever you hover, and gently pulls it toward you.
+- file: src/components/ui/pointer-morph.tsx
+- exports: PointerMorph
+- client component
+- <PointerMorph> (also accepts HTMLAttributes<HTMLDivElement>)
+  - pull?: number = 0.28 — How far a hovered element leans toward the pointer, as a fraction of the offset (0 turns it off).
+  - padding?: number = 6 — Space between the hovered element and the pointer's outline, in px.
+  - hideNative?: boolean = true — Hide the system cursor inside the region.
 
 #### ripple-image
 An image that ripples like liquid wherever the pointer moves: refraction, colour splitting and a glint on every crest.
@@ -445,6 +530,17 @@ A live audio waveform: rounded bars that dance to a loudness level or to any Web
   - analyser?: AnalyserNode — A Web Audio analyser, for example from a microphone. Its frequency data drives the bars.
   - bars?: number = 48 — How many bars to draw.
   - active?: boolean = true — Set false to settle the bars flat.
+
+#### wheel-picker
+The iOS wheel picker: columns that spin with real momentum, snap to a row, and curve away in 3D.
+- file: src/components/ui/wheel-picker.tsx
+- exports: WheelPicker
+- client component
+- <WheelPicker> (also accepts HTMLAttributes<HTMLDivElement>)
+  - columns: WheelColumn[] — One entry per wheel.
+  - value?: string[] — Controlled selection: one option per column, in order.
+  - defaultValue?: string[] — Initial selection when uncontrolled. Defaults to the first option of each column.
+  - onValueChange?: ((value: string[]) => void) — Called with the new value.
 
 ### feedback
 

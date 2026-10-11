@@ -1,9 +1,9 @@
 {
   "name": "vibeui",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "license": "MIT",
   "repository": "https://github.com/arjunkshah12345-hash/vibeui",
-  "count": 120,
+  "count": 128,
   "tokens": "templates/vibeui.css",
   "utils": "src/lib/utils.ts",
   "peerDependencies": [
@@ -36,10 +36,12 @@
     "craft": [
       "ai-orb",
       "arrow-fill-button",
+      "aura-border",
       "blur-reveal",
       "book-flip",
       "circle-menu",
       "count-up",
+      "cover-flow",
       "dock",
       "dot-globe",
       "dotted-grid",
@@ -47,8 +49,11 @@
       "flip-card",
       "folder-preview",
       "gooey-menu",
+      "hold-button",
       "jelly-loader",
+      "knob",
       "liquid-glass",
+      "liquid-metal",
       "liquid-switch",
       "magnet-tabs",
       "marquee",
@@ -56,6 +61,8 @@
       "mesh-gradient",
       "odometer",
       "orbit-ring",
+      "particle-text",
+      "pointer-morph",
       "ripple-image",
       "rotating-carousel",
       "scratch-reveal",
@@ -64,7 +71,8 @@
       "spotlight",
       "stacked-cards",
       "trading-card",
-      "waveform"
+      "waveform",
+      "wheel-picker"
     ],
     "feedback": [
       "alert",
@@ -465,6 +473,75 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "aura-border",
+      "title": "AuraBorder",
+      "category": "craft",
+      "description": "A glowing, colour-shifting border that runs around its content: the look of an assistant that is thinking.",
+      "file": "src/components/ui/aura-border.tsx",
+      "exports": [
+        "AuraBorder"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "AuraBorder",
+          "props": [
+            {
+              "name": "active",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Show the glow. Fades in and out."
+            },
+            {
+              "name": "radius",
+              "type": "number",
+              "required": false,
+              "default": "20",
+              "description": "Corner radius of the content, in px. The glow follows it."
+            },
+            {
+              "name": "thickness",
+              "type": "number",
+              "required": false,
+              "default": "2",
+              "description": "Width of the crisp ring, in px."
+            },
+            {
+              "name": "glow",
+              "type": "number",
+              "required": false,
+              "default": "22",
+              "description": "How far the soft halo spreads, in px."
+            },
+            {
+              "name": "speed",
+              "type": "number",
+              "required": false,
+              "default": "0.12",
+              "description": "Laps per second around the edge."
+            },
+            {
+              "name": "colors",
+              "type": "string[]",
+              "required": false,
+              "default": "AURORA",
+              "description": "CSS colours, swept around the edge in order."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },
@@ -1465,6 +1542,68 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "cover-flow",
+      "title": "CoverFlow",
+      "category": "craft",
+      "description": "The classic cover-flow browser: a row of covers in 3D, the middle one facing you and the rest angled away.",
+      "file": "src/components/ui/cover-flow.tsx",
+      "exports": [
+        "CoverFlow"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "CoverFlow",
+          "props": [
+            {
+              "name": "items",
+              "type": "CoverItem[]",
+              "required": true,
+              "default": null,
+              "description": "The items to render."
+            },
+            {
+              "name": "index",
+              "type": "number",
+              "required": false,
+              "default": null,
+              "description": "Controlled index of the cover in front."
+            },
+            {
+              "name": "defaultIndex",
+              "type": "number",
+              "required": false,
+              "default": "0",
+              "description": ""
+            },
+            {
+              "name": "onIndexChange",
+              "type": "((index: number) => void)",
+              "required": false,
+              "default": null,
+              "description": ""
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "required": false,
+              "default": "168",
+              "description": "Size of each square cover in px."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },
@@ -2714,6 +2853,75 @@
       ]
     },
     {
+      "name": "hold-button",
+      "title": "HoldButton",
+      "category": "craft",
+      "description": "A button you press and hold to confirm: it fills as you hold, shakes if you let go too soon, and fires when full.",
+      "file": "src/components/ui/hold-button.tsx",
+      "exports": [
+        "HoldButton"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "HoldButton",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "What the button says before it is confirmed."
+            },
+            {
+              "name": "holdMs",
+              "type": "number",
+              "required": false,
+              "default": "900",
+              "description": "How long to hold, in ms."
+            },
+            {
+              "name": "onConfirm",
+              "type": "(() => void)",
+              "required": false,
+              "default": null,
+              "description": "Called once the hold completes."
+            },
+            {
+              "name": "confirmedLabel",
+              "type": "ReactNode",
+              "required": false,
+              "default": "\"Done\"",
+              "description": "Shown after confirming."
+            },
+            {
+              "name": "resetMs",
+              "type": "number",
+              "required": false,
+              "default": "2200",
+              "description": "After this many ms the button returns to its start state. 0 keeps it confirmed."
+            },
+            {
+              "name": "tone",
+              "type": "\"danger\" | \"ink\"",
+              "required": false,
+              "default": "\"ink\"",
+              "description": "`danger` fills with red for destructive actions."
+            }
+          ],
+          "extends": [
+            "ButtonHTMLAttributes<HTMLButtonElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "hover-border",
       "title": "HoverBorder",
       "category": "hover",
@@ -3229,6 +3437,103 @@
       ]
     },
     {
+      "name": "knob",
+      "title": "Knob",
+      "category": "craft",
+      "description": "A rotary dial with ticks: drag it up and down, scroll over it, use the arrow keys, double-click to reset.",
+      "file": "src/components/ui/knob.tsx",
+      "exports": [
+        "Knob"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Knob",
+          "props": [
+            {
+              "name": "value",
+              "type": "number",
+              "required": false,
+              "default": null,
+              "description": "Controlled value."
+            },
+            {
+              "name": "defaultValue",
+              "type": "number",
+              "required": false,
+              "default": "50",
+              "description": "Initial value when uncontrolled. Double-click returns to it."
+            },
+            {
+              "name": "onValueChange",
+              "type": "((value: number) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the new value."
+            },
+            {
+              "name": "min",
+              "type": "number",
+              "required": false,
+              "default": "0",
+              "description": "Lower bound."
+            },
+            {
+              "name": "max",
+              "type": "number",
+              "required": false,
+              "default": "100",
+              "description": "Upper bound."
+            },
+            {
+              "name": "step",
+              "type": "number",
+              "required": false,
+              "default": "1",
+              "description": "Smallest change. Values snap to it."
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "required": false,
+              "default": "132",
+              "description": "Diameter in px."
+            },
+            {
+              "name": "ticks",
+              "type": "number",
+              "required": false,
+              "default": "28",
+              "description": "How many tick marks to draw around the dial."
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Shown under the dial, and used as its accessible name."
+            },
+            {
+              "name": "format",
+              "type": "((value: number) => string)",
+              "required": false,
+              "default": "(v) => String(Math.round(v))",
+              "description": "Turns the value into the text shown in the middle."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "letter-hover",
       "title": "LetterHover",
       "category": "text",
@@ -3328,6 +3633,47 @@
               "required": false,
               "default": "true",
               "description": "Let the highlight and rim light follow the pointer."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "liquid-metal",
+      "title": "LiquidMetal",
+      "category": "craft",
+      "description": "A blob of liquid chrome that drifts, merges and splits, and chases your cursor.",
+      "file": "src/components/ui/liquid-metal.tsx",
+      "exports": [
+        "LiquidMetal"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "LiquidMetal",
+          "props": [
+            {
+              "name": "tint",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Any CSS colour to stain the chrome, for gold, copper or ink. Silver by default."
+            },
+            {
+              "name": "interactive",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Let the pointer pull one blob around."
             }
           ],
           "extends": [
@@ -4181,6 +4527,61 @@
       ]
     },
     {
+      "name": "particle-text",
+      "title": "ParticleText",
+      "category": "craft",
+      "description": "Text made of thousands of particles that scatter away from your cursor, spring back, and burst when you click.",
+      "file": "src/components/ui/particle-text.tsx",
+      "exports": [
+        "ParticleText"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "ParticleText",
+          "props": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "The words to draw."
+            },
+            {
+              "name": "fontSize",
+              "type": "number",
+              "required": false,
+              "default": null,
+              "description": "Font size in px. By default the text is sized to fill the width."
+            },
+            {
+              "name": "gap",
+              "type": "number",
+              "required": false,
+              "default": "2.6",
+              "description": "Space between particles in px. Smaller is denser and heavier to draw."
+            },
+            {
+              "name": "radius",
+              "type": "number",
+              "required": false,
+              "default": "90",
+              "description": "How far from the pointer particles are pushed away, in px."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "password-field",
       "title": "PasswordField",
       "category": "forms",
@@ -4254,6 +4655,54 @@
           ],
           "extends": [
             "HTMLAttributes<HTMLSpanElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pointer-morph",
+      "title": "PointerMorph",
+      "category": "craft",
+      "description": "The iPadOS pointer for the web: a dot that morphs into the shape of whatever you hover, and gently pulls it toward you.",
+      "file": "src/components/ui/pointer-morph.tsx",
+      "exports": [
+        "PointerMorph"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "PointerMorph",
+          "props": [
+            {
+              "name": "pull",
+              "type": "number",
+              "required": false,
+              "default": "0.28",
+              "description": "How far a hovered element leans toward the pointer, as a fraction of the offset (0 turns it off)."
+            },
+            {
+              "name": "padding",
+              "type": "number",
+              "required": false,
+              "default": "6",
+              "description": "Space between the hovered element and the pointer's outline, in px."
+            },
+            {
+              "name": "hideNative",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Hide the system cursor inside the region."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
           ]
         }
       ]
@@ -6762,6 +7211,61 @@
               "required": false,
               "default": "true",
               "description": "Set false to settle the bars flat."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wheel-picker",
+      "title": "WheelPicker",
+      "category": "craft",
+      "description": "The iOS wheel picker: columns that spin with real momentum, snap to a row, and curve away in 3D.",
+      "file": "src/components/ui/wheel-picker.tsx",
+      "exports": [
+        "WheelPicker"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "WheelPicker",
+          "props": [
+            {
+              "name": "columns",
+              "type": "WheelColumn[]",
+              "required": true,
+              "default": null,
+              "description": "One entry per wheel."
+            },
+            {
+              "name": "value",
+              "type": "string[]",
+              "required": false,
+              "default": null,
+              "description": "Controlled selection: one option per column, in order."
+            },
+            {
+              "name": "defaultValue",
+              "type": "string[]",
+              "required": false,
+              "default": null,
+              "description": "Initial selection when uncontrolled. Defaults to the first option of each column."
+            },
+            {
+              "name": "onValueChange",
+              "type": "((value: string[]) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the new value."
             }
           ],
           "extends": [
