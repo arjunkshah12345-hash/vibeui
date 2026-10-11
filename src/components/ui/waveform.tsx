@@ -5,6 +5,24 @@ import { cn } from "@/lib/utils";
 
 const QUERY = "(prefers-reduced-motion: reduce)";
 
+// A rounded rectangle path that works in every browser (ctx.roundRect is newer than our support floor).
+function pill(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  r: number,
+) {
+  const k = Math.min(r, w / 2, h / 2);
+  ctx.moveTo(x + k, y);
+  ctx.arcTo(x + w, y, x + w, y + h, k);
+  ctx.arcTo(x + w, y + h, x, y + h, k);
+  ctx.arcTo(x, y + h, x, y, k);
+  ctx.arcTo(x, y, x + w, y, k);
+  ctx.closePath();
+}
+
 function useReducedMotion() {
   return React.useSyncExternalStore(
     (notify) => {
@@ -122,7 +140,7 @@ export function Waveform({
         const x = i * (bw + gap);
         ctx.globalAlpha = 0.35 + 0.65 * Math.min(1, shown[i] * 1.6);
         ctx.beginPath();
-        ctx.roundRect(x, mid - bh / 2, bw, bh, bw / 2);
+        pill(ctx, x, mid - bh / 2, bw, bh, bw / 2);
         ctx.fill();
       }
       ctx.globalAlpha = 1;

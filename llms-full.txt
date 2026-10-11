@@ -1,7 +1,7 @@
 # VibeUI (full reference)
 
 > Copy-owned React + Tailwind components. MIT. https://github.com/arjunkshah12345-hash/vibeui
-> Version 0.3.0 · 120 components · generated from registry/components.json
+> Version 0.3.1 · 120 components · generated from registry/components.json
 
 ## Setup
 
@@ -112,14 +112,14 @@ Vertical event timeline with a continuous rail.
 ### craft
 
 #### ai-orb
-A living orb for voice and AI moments that swirls faster as it moves from idle to speaking.
+A living orb for voice and AI moments: a glass sphere whose inside swirls faster as it moves from idle to speaking.
 - file: src/components/ui/ai-orb.tsx
 - exports: AiOrb
 - client component
 - <AiOrb>
   - state?: OrbState = "idle" — What the assistant is doing. Changes are eased, never snapped.
   - level?: number = 0 — Live loudness from 0 to 1 (microphone or voice output). It swells the orb.
-  - size?: number = 168 — Diameter in px.
+  - size?: number = 168 — Diameter of the sphere in px.
   - label?: string — Accessible description. Defaults to the state.
   - className?: string — Extra classes, merged with the component's own.
 

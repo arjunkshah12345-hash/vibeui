@@ -1,6 +1,6 @@
 {
   "name": "vibeui",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "repository": "https://github.com/arjunkshah12345-hash/vibeui",
   "count": 120,
@@ -225,7 +225,7 @@
       "name": "ai-orb",
       "title": "AI Orb",
       "category": "craft",
-      "description": "A living orb for voice and AI moments that swirls faster as it moves from idle to speaking.",
+      "description": "A living orb for voice and AI moments: a glass sphere whose inside swirls faster as it moves from idle to speaking.",
       "file": "src/components/ui/ai-orb.tsx",
       "exports": [
         "AiOrb"
@@ -260,7 +260,7 @@
               "type": "number",
               "required": false,
               "default": "168",
-              "description": "Diameter in px."
+              "description": "Diameter of the sphere in px."
             },
             {
               "name": "label",

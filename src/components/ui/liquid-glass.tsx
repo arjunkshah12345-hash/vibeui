@@ -5,13 +5,15 @@ import { cn } from "@/lib/utils";
 
 const noopSubscribe = () => () => {};
 
-// Chromium can run an SVG filter as a backdrop filter; Safari and Firefox cannot.
+// Only Blink runs an SVG filter as a backdrop filter. Safari can parse the syntax without applying it.
 function useRefraction() {
   return React.useSyncExternalStore(
     noopSubscribe,
     () => {
       try {
-        return typeof CSS !== "undefined" && CSS.supports("backdrop-filter", "url(#a)");
+        if (typeof CSS === "undefined" || !CSS.supports("backdrop-filter", "url(#a)")) return false;
+        const ua = navigator.userAgent;
+        return /Chrome\/|Chromium\//.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS/.test(ua);
       } catch {
         return false;
       }

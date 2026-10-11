@@ -37,7 +37,13 @@ export function LiquidSwitch({
   const on = controlled ?? inner;
   const [held, setHeld] = React.useState(false);
   const [drag, setDrag] = React.useState<number | null>(null);
-  const gesture = React.useRef<{ x: number; t: number; cur: number; moved: boolean } | null>(null);
+  const gesture = React.useRef<{
+    x: number;
+    t: number;
+    cur: number;
+    moved: boolean;
+    scale: number;
+  } | null>(null);
   const swallowClick = React.useRef(false);
 
   const commit = (next: boolean) => {
@@ -54,7 +60,14 @@ export function LiquidSwitch({
     props.onPointerDown?.(e);
     if (disabled || e.button !== 0) return;
     e.currentTarget.setPointerCapture(e.pointerId);
-    gesture.current = { x: e.clientX, t: on ? 1 : 0, cur: on ? 1 : 0, moved: false };
+    gesture.current = {
+      x: e.clientX,
+      t: on ? 1 : 0,
+      cur: on ? 1 : 0,
+      moved: false,
+      scale:
+        e.currentTarget.getBoundingClientRect().width / (e.currentTarget.offsetWidth || 1) || 1,
+    };
     setHeld(true);
   };
 
@@ -62,7 +75,7 @@ export function LiquidSwitch({
     props.onPointerMove?.(e);
     const g = gesture.current;
     if (!g) return;
-    const dx = e.clientX - g.x;
+    const dx = (e.clientX - g.x) / g.scale;
     if (Math.abs(dx) > 3) g.moved = true;
     if (!g.moved) return;
     g.cur = Math.min(1, Math.max(0, g.t + dx / travel));

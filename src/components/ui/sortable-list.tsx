@@ -42,6 +42,7 @@ export function SortableList({
   const items = controlled ?? inner;
   const rows = React.useRef(new Map<string, HTMLLIElement>());
   const startY = React.useRef(0);
+  const scaleY = React.useRef(1);
   const [drag, setDrag] = React.useState<{
     id: string;
     from: number;
@@ -71,6 +72,8 @@ export function SortableList({
     e.currentTarget.setPointerCapture(e.pointerId);
     const slots = measure();
     startY.current = e.clientY;
+    const list = rows.current.get(items[index].id)?.parentElement;
+    scaleY.current = list ? list.getBoundingClientRect().height / (list.offsetHeight || 1) || 1 : 1;
     const gap = slots.length > 1 ? slots[1].top - (slots[0].top + slots[0].height) : 0;
     setDrag({ id: items[index].id, from: index, to: index, dy: 0, phase: "drag", slots, gap });
   };
@@ -81,7 +84,7 @@ export function SortableList({
     const last = slots[slots.length - 1];
     const min = -slots[from].top;
     const max = last.top + last.height - (slots[from].top + slots[from].height);
-    const dy = Math.max(min, Math.min(max, e.clientY - startY.current));
+    const dy = Math.max(min, Math.min(max, (e.clientY - startY.current) / scaleY.current));
     const center = slots[from].top + slots[from].height / 2 + dy;
     let to = from;
     slots.forEach((slot, j) => {

@@ -7,6 +7,21 @@ versions may include breaking changes).
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-10-10
+
+### Fixed
+
+- `ScratchReveal`: scratches landed away from the cursor on high-density (2×) displays, and inside CSS-scaled parents. It now works in CSS pixels at any density.
+- `LiquidGlass`: refraction now only turns on where SVG backdrop filters really run (Chromium). Safari and Firefox get clean frosted glass.
+- `AreaChart`, `SortableList` and `LiquidSwitch`: pointer input is no longer skewed inside CSS-scaled containers.
+- `DotGlobe` and `Waveform` no longer depend on `CanvasRenderingContext2D.roundRect`, which older Safari and Firefox lack.
+
+### Changed
+
+- `AiOrb` is now a WebGL glass sphere with a flowing interior, a fresnel rim and a halo, falling back to CSS without WebGL.
+- `DynamicIsland` is always black, like the hardware it imitates.
+- Demos: the island sits in a phone and fits its tile, the glass lens follows the cursor, and the ripple uses a real photo (NASA, public domain).
+
 ## [0.3.0] - 2026-10-09
 
 ### Changed

@@ -37,12 +37,14 @@ export function ScratchReveal({
     const cv = canvas.current;
     if (!host || !cv) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const { width, height } = host.getBoundingClientRect();
+    // Layout size, not getBoundingClientRect: that would shrink under a CSS-scaled parent.
+    const width = host.offsetWidth;
+    const height = host.offsetHeight;
     cv.width = Math.max(Math.round(width * dpr), 1);
     cv.height = Math.max(Math.round(height * dpr), 1);
     const ctx = cv.getContext("2d");
     if (!ctx) return;
-    ctx.scale(dpr, dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     const g = ctx.createLinearGradient(0, 0, width, height);
     g.addColorStop(0, "#c8c4bb");
@@ -120,18 +122,26 @@ export function ScratchReveal({
   const last = React.useRef<{ x: number; y: number } | null>(null);
   const strokes = React.useRef(0);
 
+  // Pointer position in the canvas's own CSS pixels, whatever the page zoom, display density or parent scale.
+  const point = (cv: HTMLCanvasElement, e: React.PointerEvent) => {
+    const r = cv.getBoundingClientRect();
+    const fx = cv.offsetWidth / (r.width || 1);
+    const fy = cv.offsetHeight / (r.height || 1);
+    return { x: (e.clientX - r.left) * fx, y: (e.clientY - r.top) * fy };
+  };
+
   const scratch = (e: React.PointerEvent<HTMLCanvasElement>) => {
     const cv = canvas.current;
     const ctx = cv?.getContext("2d");
     if (!cv || !ctx || !last.current) return;
-    const r = cv.getBoundingClientRect();
-    const x = ((e.clientX - r.left) / r.width) * cv.width;
-    const y = ((e.clientY - r.top) / r.height) * cv.height;
-    const k = cv.width / r.width;
+    const { x, y } = point(cv, e);
+    // Draw in CSS pixels: map them to the bitmap (device pixels) here, every time.
+    const k = cv.width / (cv.offsetWidth || 1);
+    ctx.setTransform(k, 0, 0, k, 0, 0);
     ctx.globalCompositeOperation = "destination-out";
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
-    ctx.lineWidth = brush * k;
+    ctx.lineWidth = brush;
     ctx.beginPath();
     ctx.moveTo(last.current.x, last.current.y);
     ctx.lineTo(x, y);
@@ -150,11 +160,7 @@ export function ScratchReveal({
           const cv = e.currentTarget;
           cv.setPointerCapture(e.pointerId);
           touched.current = true;
-          const r = cv.getBoundingClientRect();
-          last.current = {
-            x: ((e.clientX - r.left) / r.width) * cv.width,
-            y: ((e.clientY - r.top) / r.height) * cv.height,
-          };
+          last.current = point(cv, e);
           scratch(e);
         }}
         onPointerMove={scratch}

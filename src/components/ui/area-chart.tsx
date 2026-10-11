@@ -125,7 +125,9 @@ export function AreaChart({
   const pick = (clientX: number) => {
     const el = box.current;
     if (!el || n === 0) return;
-    const x = clientX - el.getBoundingClientRect().left;
+    const rect = el.getBoundingClientRect();
+    // Layout px, so a CSS-scaled parent (a gallery tile) does not skew the hit position.
+    const x = (clientX - rect.left) * (el.offsetWidth / (rect.width || 1));
     setActive(Math.max(0, Math.min(n - 1, Math.round(((x - PAD.left) / pw) * (n - 1)))));
   };
 

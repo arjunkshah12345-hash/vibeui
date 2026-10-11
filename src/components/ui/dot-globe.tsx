@@ -32,6 +32,24 @@ const MASK =
 
 const RAD = Math.PI / 180;
 
+// A rounded rectangle path that works in every browser (ctx.roundRect is newer than our support floor).
+function pill(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  r: number,
+) {
+  const k = Math.min(r, w / 2, h / 2);
+  ctx.moveTo(x + k, y);
+  ctx.arcTo(x + w, y, x + w, y + h, k);
+  ctx.arcTo(x + w, y + h, x, y + h, k);
+  ctx.arcTo(x, y + h, x, y, k);
+  ctx.arcTo(x, y, x + w, y, k);
+  ctx.closePath();
+}
+
 // Build the dot lattice once: a Fibonacci sphere, split into land and sea by the mask.
 let lattice: { land: Float32Array; sea: Float32Array } | null = null;
 function getLattice() {
@@ -294,7 +312,7 @@ export function DotGlobe({
           ctx.globalAlpha = 1;
           ctx.fillStyle = ink.text;
           ctx.beginPath();
-          ctx.roundRect(bx, by, tw + 18, 24, 12);
+          pill(ctx, bx, by, tw + 18, 24, 12);
           ctx.fill();
           ctx.fillStyle = ink.bg;
           ctx.fillText(hm.label, bx + 9, by + 16);

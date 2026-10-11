@@ -43,7 +43,7 @@ export function DynamicIsland({
       style={{ height: reserve }}
     >
       <div
-        className="relative overflow-hidden bg-ink text-surface shadow-[0_10px_34px_-8px_rgb(0_0_0/0.45)] ring-1 ring-white/10"
+        className="relative overflow-hidden bg-black text-white shadow-[0_10px_34px_-8px_rgb(0_0_0/0.45)] ring-1 ring-white/10"
         style={{
           width: active.width,
           height: active.height,
