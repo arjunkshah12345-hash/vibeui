@@ -9,6 +9,7 @@ import { hover } from "./hover";
 import { navigation } from "./navigation";
 import { overlays } from "./overlays";
 import { signature } from "./signature";
+import { signatureThree } from "./signature-three";
 import { signatureTwo } from "./signature-two";
 import { text } from "./text";
 
@@ -23,6 +24,7 @@ export const demos: Record<string, Demo> = {
   ...craft,
   ...signature,
   ...signatureTwo,
+  ...signatureThree,
   ...text,
   ...hover,
   ...footers,

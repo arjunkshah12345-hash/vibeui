@@ -1,7 +1,7 @@
 # VibeUI (full reference)
 
 > Copy-owned React + Tailwind components. MIT. https://github.com/arjunkshah12345-hash/vibeui
-> Version 0.4.0 · 128 components · generated from registry/components.json
+> Version 0.5.0 · 136 components · generated from registry/components.json
 
 ## Setup
 
@@ -174,6 +174,28 @@ Radial menu: a button that fans its actions out in a circle.
   - className?: string — Extra classes, merged with the component's own.
   - radius?: number = 76 — Ring radius in pixels.
 
+#### color-picker
+A colour picker with a saturation field, hue and opacity strips, a hex field and an eyedropper.
+- file: src/components/ui/color-picker.tsx
+- exports: ColorPicker
+- client component
+- peers: @phosphor-icons/react
+- <ColorPicker> (also accepts HTMLAttributes<HTMLDivElement>)
+  - value?: string — Controlled colour as hex: `#rgb`, `#rrggbb` or `#rrggbbaa`.
+  - defaultValue?: string = "#6d5dfc" — Initial value when uncontrolled.
+  - onChange?: ((hex: string) => void) — Called when the value changes.
+  - alpha?: boolean = false — Show an opacity strip and write `#rrggbbaa`.
+  - swatches?: string[] = SWATCHES — Quick picks under the controls. Pass `[]` to hide them.
+
+#### confetti
+A burst of confetti that tumbles, flips and drifts down, drawn on a canvas that spans the screen.
+- file: src/components/ui/confetti.tsx
+- exports: Confetti
+- client component
+- <Confetti> (also accepts HTMLAttributes<HTMLDivElement>)
+  - onClickFire?: boolean = true — Fire from the pointer whenever the children are clicked.
+  - options?: ConfettiOptions — Defaults for every burst.
+
 #### count-up
 Number that eases up from zero the first time it scrolls into view.
 - file: src/components/ui/count-up.tsx
@@ -298,6 +320,20 @@ Four bars that squash and stretch in sequence.
 - <JellyLoader>
   - className?: string — Extra classes, merged with the component's own.
 
+#### keycap
+A keyboard key with real travel: it dips under your finger, springs back, and can click.
+- file: src/components/ui/keycap.tsx
+- exports: Keycap
+- client component
+- peers: class-variance-authority
+- <Keycap> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - children: ReactNode — The label on the cap.
+  - size?: "sm" | "md" | "lg" = "md" — Size preset.
+  - legend?: ReactNode — A small label in the corner, such as a modifier symbol.
+  - shortcut?: string — Press this key combination to press the cap, for example `k`, `mod+k` or `shift+enter`.
+  - sound?: boolean = false — Play a small click. Off unless you ask for it.
+  - onPress?: (() => void) — Called on every press, whether it came from a pointer, the keyboard or the shortcut.
+
 #### knob
 A rotary dial with ticks: drag it up and down, scroll over it, use the arrow keys, double-click to reset.
 - file: src/components/ui/knob.tsx
@@ -412,6 +448,20 @@ Labels circling a center point. Chips stay upright while the ring turns.
   - radius?: number = 104 — Ring radius in pixels.
   - className?: string — Extra classes, merged with the component's own.
 
+#### pan-zoom
+An infinite canvas: drag to pan, pinch or scroll to zoom toward the cursor, double-click to zoom in.
+- file: src/components/ui/pan-zoom.tsx
+- exports: PanZoom
+- client component
+- <PanZoom> (also accepts HTMLAttributes<HTMLDivElement>)
+  - children: ReactNode — What sits on the canvas. It is laid out from the centre.
+  - minScale?: number = 0.4
+  - maxScale?: number = 4
+  - initialScale?: number = 1
+  - grid?: boolean = true — Draw a dot grid that moves and scales with the canvas.
+  - controls?: boolean = true — Show the zoom buttons.
+  - onViewChange?: ((view: PanZoomView) => void)
+
 #### particle-text
 Text made of thousands of particles that scatter away from your cursor, spring back, and burst when you click.
 - file: src/components/ui/particle-text.tsx
@@ -423,6 +473,18 @@ Text made of thousands of particles that scatter away from your cursor, spring b
   - gap?: number = 2.6 — Space between particles in px. Smaller is denser and heavier to draw.
   - radius?: number = 90 — How far from the pointer particles are pushed away, in px.
 
+#### peel-card
+A card whose corner you can lift and peel back, like a sticker, to see what is underneath.
+- file: src/components/ui/peel-card.tsx
+- exports: PeelCard
+- client component
+- <PeelCard> (also accepts HTMLAttributes<HTMLDivElement>)
+  - children: ReactNode — The face of the card.
+  - under?: ReactNode — What is revealed underneath.
+  - corner?: Corner = "br" — Which corner lifts.
+  - threshold?: number = 0.5 — How far across the card (0 to 1 of its diagonal) a peel has to go to count.
+  - onPeel?: (() => void) — Called when you let go after peeling past the threshold.
+
 #### pointer-morph
 The iPadOS pointer for the web: a dot that morphs into the shape of whatever you hover, and gently pulls it toward you.
 - file: src/components/ui/pointer-morph.tsx
@@ -432,6 +494,18 @@ The iPadOS pointer for the web: a dot that morphs into the shape of whatever you
   - pull?: number = 0.28 — How far a hovered element leans toward the pointer, as a fraction of the offset (0 turns it off).
   - padding?: number = 6 — Space between the hovered element and the pointer's outline, in px.
   - hideNative?: boolean = true — Hide the system cursor inside the region.
+
+#### progressive-blur
+A blur that builds gradually toward an edge, with no visible line where it starts.
+- file: src/components/ui/progressive-blur.tsx
+- exports: ProgressiveBlur
+- server-safe
+- <ProgressiveBlur> (also accepts HTMLAttributes<HTMLDivElement>)
+  - side?: Side = "bottom" — Which edge of the parent it sits on.
+  - size?: number = 96 — How deep the band is, in px.
+  - blur?: number = 14 — Blur radius at the very edge, in px.
+  - layers?: number = 8 — More layers make a smoother ramp and cost a little more to draw.
+  - tint?: boolean = false — Fade into the page colour as well, so text on top stays readable.
 
 #### ripple-image
 An image that ripples like liquid wherever the pointer moves: refraction, colour splitting and a glint on every crest.
@@ -479,6 +553,19 @@ Cards that pile up as you scroll. Pure CSS (position: sticky).
   - height?: number — Height in pixels; makes the component its own scroll container.
   - className?: string — Extra classes, merged with the component's own.
 
+#### slide-to-confirm
+The slide-to-unlock control: drag the handle across to confirm, and it springs back if you stop short.
+- file: src/components/ui/slide-to-confirm.tsx
+- exports: SlideToConfirm
+- client component
+- <SlideToConfirm> (also accepts HTMLAttributes<HTMLDivElement>)
+  - children?: ReactNode = "Slide to confirm" — The invitation printed on the track.
+  - confirmedLabel?: ReactNode = "Confirmed" — Shown after confirming.
+  - onConfirm?: (() => void) — Called once the handle reaches the end.
+  - threshold?: number = 0.92 — How far across (0 to 1) counts as done.
+  - resetMs?: number = 2400 — After this many ms the control resets. 0 leaves it confirmed.
+  - disabled?: boolean — Prevents interaction and dims the control.
+
 #### split-showcase
 Before/after comparison with a draggable, keyboard-accessible divider.
 - file: src/components/ui/split-showcase.tsx
@@ -518,6 +605,19 @@ Collectible card that tilts in 3D and catches a glare under the cursor.
   - meta?: string — Small label in the top corner.
   - className?: string — Extra classes, merged with the component's own.
   - children?: ReactNode — Content rendered inside the component.
+
+#### velocity-marquee
+A ticker that responds to you: scroll the page and it speeds up, reverses and leans into the motion.
+- file: src/components/ui/velocity-marquee.tsx
+- exports: VelocityMarquee
+- client component
+- <VelocityMarquee> (also accepts HTMLAttributes<HTMLDivElement>)
+  - children: ReactNode — The items to run. They repeat to fill the width.
+  - speed?: number = 70 — Resting speed in px per second.
+  - direction?: 1 | -1 = 1 — `1` runs left, `-1` runs right.
+  - skew?: number = 10 — The most the text can lean, in degrees, when it is moving fast. 0 turns it off.
+  - gap?: number = 40 — Space between items, in px.
+  - pauseOnHover?: boolean = false — Stop while the pointer is over it.
 
 #### waveform
 A live audio waveform: rounded bars that dance to a loudness level or to any Web Audio analyser.

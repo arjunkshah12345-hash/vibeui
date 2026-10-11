@@ -110,7 +110,7 @@ function ListDemo() {
       <ListItem
         leading={<Cube size={16} weight="bold" />}
         title="Components"
-        description="128 pieces"
+        description="136 pieces"
         trailing={
           <Pill tone="sage" dot>
             Live
@@ -152,7 +152,7 @@ function AvatarDemo() {
 function StatDemo() {
   return (
     <div className="grid w-full gap-3 sm:grid-cols-3">
-      <Stat label="Components" value="128" delta="12 this release" trend="up" />
+      <Stat label="Components" value="136" delta="12 this release" trend="up" />
       <Stat label="Bundle" value="0 kb" delta="Copy-owned" trend="neutral" />
       <Stat label="Errors" value="0.4%" delta="0.2% vs last week" trend="down" />
     </div>
@@ -298,7 +298,7 @@ function ListTile() {
       <ListItem
         leading={<Cube size={16} weight="bold" />}
         title="Components"
-        description="128 pieces"
+        description="136 pieces"
         trailing={
           <Pill tone="sage" dot>
             Live
@@ -340,7 +340,7 @@ function AvatarTile() {
 function StatTile() {
   return (
     <div className={cn(TILE_W, "grid grid-cols-2 gap-3")}>
-      <Stat label="Components" value="128" delta="12 new" trend="up" />
+      <Stat label="Components" value="136" delta="12 new" trend="up" />
       <Stat label="Errors" value="0.4%" delta="0.2%" trend="down" />
     </div>
   );

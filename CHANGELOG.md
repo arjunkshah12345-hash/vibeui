@@ -7,6 +7,20 @@ versions may include breaking changes).
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-10-10
+
+### Added
+
+- Eight more Signature components, each dependency-free apart from the usual peers:
+  - `VelocityMarquee`: a ticker whose speed, direction and lean follow how fast you scroll. Grab it and fling it.
+  - `SlideToConfirm`: the slide-to-unlock control, with a shimmering label, a springing handle and keyboard support.
+  - `Confetti`: a screen-wide burst of tumbling, flipping paper. Fire it from a click or from a ref.
+  - `PanZoom`: an infinite canvas with drag-and-glide, pinch and wheel zoom toward the cursor, double-click and keys.
+  - `PeelCard`: a card whose corner peels back along a real fold, with a lit curl and a cast shadow.
+  - `Keycap`: a keyboard key with real travel that presses itself when its shortcut is typed, with an optional click.
+  - `ProgressiveBlur`: a blur that ramps up toward an edge with no visible seam.
+  - `ColorPicker`: saturation field, hue and opacity strips, hex field and an eyedropper, fully keyboard-driven.
+
 ## [0.4.0] - 2026-10-10
 
 ### Added

@@ -134,7 +134,7 @@ vibeui get dialog --json | jq '.api[0].props[] | {name, type}'`}
       </P>
       <CodeBlock
         language="bash"
-        code={`npx @agents-npm-packages/vibeui@0.4.0 add button dialog --dir ./src/components/ui`}
+        code={`npx @agents-npm-packages/vibeui@0.5.0 add button dialog --dir ./src/components/ui`}
       />
     </>
   );
