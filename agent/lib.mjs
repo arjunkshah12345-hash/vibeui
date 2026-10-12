@@ -43,6 +43,10 @@ const CATEGORY_RULES = [
         "typewriter",
         "text-link",
         "quote",
+        "neon-text",
+        "weight-text",
+        "glitch-text",
+        "curve-text",
       ].includes(n),
   },
   {
@@ -125,6 +129,9 @@ const CATEGORY_RULES = [
         "file-drop",
         "calendar",
         "rating",
+        "autosize-textarea",
+        "combobox",
+        "range-slider",
       ].includes(n) || n.includes("field"),
   },
   {
@@ -139,6 +146,9 @@ const CATEGORY_RULES = [
         "command",
         "toast",
         "tooltip",
+        "context-menu",
+        "lightbox",
+        "tour",
       ].includes(n),
   },
   {
@@ -152,6 +162,9 @@ const CATEGORY_RULES = [
         "pagination",
         "stepper",
         "timeline",
+        "floating-nav",
+        "sidebar",
+        "table-of-contents",
       ].includes(n),
   },
   {
@@ -167,6 +180,9 @@ const CATEGORY_RULES = [
         "skeleton",
         "empty",
         "notification",
+        "progress-ring",
+        "gauge",
+        "status-icon",
       ].includes(n),
   },
   {
@@ -187,11 +203,25 @@ const CATEGORY_RULES = [
         "heatmap",
         "sortable-list",
         "resizable",
+        "bar-chart",
+        "donut-chart",
+        "sparkline",
       ].includes(n),
   },
   {
     cat: "actions",
-    test: (n) => ["button", "pill", "chip", "toggle", "kbd", "separator"].includes(n),
+    test: (n) =>
+      [
+        "button",
+        "pill",
+        "chip",
+        "toggle",
+        "kbd",
+        "separator",
+        "status-button",
+        "copy-button",
+        "split-button",
+      ].includes(n),
   },
 ];
 

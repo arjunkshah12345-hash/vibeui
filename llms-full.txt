@@ -1,7 +1,7 @@
 # VibeUI (full reference)
 
 > Copy-owned React + Tailwind components. MIT. https://github.com/arjunkshah12345-hash/vibeui
-> Version 0.6.0 · 144 components · generated from registry/components.json
+> Version 0.7.0 · 170 components · generated from registry/components.json
 
 ## Setup
 
@@ -47,6 +47,18 @@ Path trail showing the current location in a hierarchy.
   - items: { label: string; href?: string | undefined; }[] — The items to render.
   - className?: string — Extra classes, merged with the component's own.
 
+#### floating-nav
+A pill-shaped navigation bar with a highlight that glides between items and settles on the current one.
+- file: src/components/ui/floating-nav.tsx
+- exports: FloatingNav
+- client component
+- <FloatingNav> (also accepts HTMLAttributes<HTMLElement>)
+  - items: FloatingNavItem[] — The items to render.
+  - value?: string — Controlled active item.
+  - defaultValue?: string — Initial value when uncontrolled.
+  - onChange?: ((value: string) => void) — Called when the value changes.
+  - hideOnScroll?: boolean = false — Slide out of view while scrolling down.
+
 #### pagination
 Page navigator with collapsing ellipses.
 - file: src/components/ui/pagination.tsx
@@ -70,6 +82,22 @@ Segmented control with a sliding selection thumb.
   - onChange: (value: T) => void — Called when the value changes.
   - className?: string — Extra classes, merged with the component's own.
 
+#### sidebar
+An app sidebar that collapses to an icon rail: grouped links, nested menus and a marker that glides to the active page.
+- file: src/components/ui/sidebar.tsx
+- exports: Sidebar
+- client component
+- <Sidebar> (also accepts HTMLAttributes<HTMLElement>)
+  - sections: SidebarSection[]
+  - value?: string — Controlled active page.
+  - defaultValue?: string — Initial value when uncontrolled.
+  - onChange?: ((value: string) => void) — Called when the value changes.
+  - collapsed?: boolean — Controlled collapsed state.
+  - defaultCollapsed?: boolean = false
+  - onCollapsedChange?: ((collapsed: boolean) => void)
+  - header?: ReactNode — Sits at the top, beside the collapse button.
+  - footer?: ReactNode — Sits at the bottom.
+
 #### stepper
 Progress through numbered steps. Circles pop and the connector fills as `current` advances.
 - file: src/components/ui/stepper.tsx
@@ -81,6 +109,17 @@ Progress through numbered steps. Circles pop and the connector fills as `current
   - current: number — Zero-based index of the active step.
   - orientation?: "horizontal" | "vertical" = "vertical" — Layout direction.
   - className?: string — Extra classes, merged with the component's own.
+
+#### table-of-contents
+A contents list that follows the page: the current section is marked, and a line beside it fills as you read.
+- file: src/components/ui/table-of-contents.tsx
+- exports: TableOfContents
+- client component
+- <TableOfContents> (also accepts HTMLAttributes<HTMLElement>)
+  - items: TocItem[] — Headings to list, by element id. `depth` indents them.
+  - title?: string = "On this page" — Small label above the list. Pass an empty string to hide it.
+  - offset?: number = 96 — How far from the top of the view a heading counts as current, in px.
+  - scrollRoot?: RefObject<HTMLElement | null> — A scrolling element to watch instead of the window.
 
 #### tabs
 Tabs with arrow-key navigation, in pill or underline style.
@@ -650,7 +689,7 @@ The slide-to-unlock control: drag the handle across to confirm, and it springs b
   - disabled?: boolean — Prevents interaction and dims the control.
 
 #### split-flap
-An airport departures board: every character is a flap that turns over until it shows the right one.
+A mechanical departures board: every character is a pair of flaps that turn over through the alphabet.
 - file: src/components/ui/split-flap.tsx
 - exports: SplitFlap
 - client component
@@ -659,8 +698,10 @@ An airport departures board: every character is a flap that turns over until it 
   - className?: string — Extra classes, merged with the component's own.
   - length?: number — Number of cells. The value is padded with blanks, or cut, to fit. Defaults to its length.
   - charset?: string = CHARS — The characters a flap can show, in the order it cycles through them. Keep the blank first.
-  - size?: "sm" | "md" | "lg" = "md" — Size preset.
-  - stagger?: number = 45 — Delay between one cell starting and the next, in ms.
+  - size?: number = 56 — Height of one cell, in px. Everything else scales from it.
+  - tone?: "ink" | "amber" | "paper" = "ink" — `ink` is charcoal and warm white, `amber` is the classic orange on black, `paper` is white.
+  - stagger?: number = 40 — Delay between one cell starting and the next, in ms.
+  - sound?: boolean = false — Click as the flaps land. Browsers wait for a first click or tap before they allow sound.
 
 #### split-showcase
 Before/after comparison with a draggable, keyboard-accessible divider.
@@ -784,6 +825,21 @@ Empty state with icon, copy and an optional call to action.
   - className?: string — Extra classes, merged with the component's own.
   - icon?: ReactNode — Icon shown in the leading position.
 
+#### gauge
+A dial gauge: coloured bands, a ticked scale and a needle that swings to the value and overshoots a little.
+- file: src/components/ui/gauge.tsx
+- exports: Gauge
+- client component
+- <Gauge> (also accepts HTMLAttributes<HTMLDivElement>)
+  - value: number — Controlled value.
+  - min?: number = 0 — Lower bound.
+  - max?: number = 100 — Upper bound.
+  - zones?: GaugeZone[] — Coloured bands from the left, each ending at `to`. Without them the dial is a single arc.
+  - unit?: string — Printed after the number.
+  - label?: string — Printed under the number.
+  - format?: ((n: number) => string) = (n: number) => String(Math.round(n))
+  - ticks?: number = 10 — Number of divisions on the scale.
+
 #### meter
 Segmented gauge for a value within a known range.
 - file: src/components/ui/meter.tsx
@@ -808,6 +864,21 @@ Notification row with an unread dot, title, body and timestamp.
   - time: string — Timestamp label, e.g. “2m”.
   - unread?: boolean — Shows an animated unread dot.
   - className?: string — Extra classes, merged with the component's own.
+
+#### progress-ring
+A circular progress indicator with room in the middle: a smooth ring, or a dial of ticks that light up.
+- file: src/components/ui/progress-ring.tsx
+- exports: ProgressRing
+- server-safe
+- <ProgressRing> (also accepts HTMLAttributes<HTMLDivElement>)
+  - value?: number — 0 to 100. Leave it out for an indeterminate spinner.
+  - size?: number = 112 — Diameter in px.
+  - thickness?: number = 9 — Stroke width of the ring in px.
+  - variant?: "ring" | "ticks" = "ring" — `ticks` draws a dial of 60 marks instead of a solid ring.
+  - from?: string = "var(--ink)" — Start colour of the progress.
+  - to?: string — End colour. When set, the ring becomes a gradient.
+  - children?: ReactNode — What sits in the centre.
+  - label?: string = "Progress" — Announced to screen readers.
 
 #### progress
 Determinate progress bar with an optional label and percentage.
@@ -834,6 +905,16 @@ Indeterminate loading ring. Inherits `currentColor`.
 - <Spinner>
   - className?: string — Extra classes, merged with the component's own.
   - size?: number = 18 — Size preset.
+
+#### status-icon
+A status mark that draws itself: a ring sweeps round, then a tick, cross or exclamation is written inside it.
+- file: src/components/ui/status-icon.tsx
+- exports: StatusIcon
+- client component
+- <StatusIcon> (also accepts HTMLAttributes<HTMLSpanElement>)
+  - status?: StatusKind = "success"
+  - size?: number = 64 — Diameter in px.
+  - filled?: boolean = false — Fill the circle with a soft tint instead of leaving it open.
 
 ### data
 
@@ -875,6 +956,19 @@ Round avatar with image, graceful initials fallback and a stackable group.
   - children: ReactNode — Content rendered inside the component.
   - max?: number — Upper bound.
   - className?: string — Extra classes, merged with the component's own.
+
+#### bar-chart
+A bar chart that grows into place when it scrolls into view, with grouped or stacked bars and a hover card.
+- file: src/components/ui/bar-chart.tsx
+- exports: BarChart
+- client component
+- <BarChart> (also accepts HTMLAttributes<HTMLDivElement>)
+  - data: BarDatum[] — One entry per category, with one value for each series.
+  - series?: string[] = ["Value"] — Names of the series, in the order of each entry's `values`.
+  - stacked?: boolean = false — Stack the series in one bar instead of placing them side by side.
+  - height?: number = 260 — Height in pixels; makes the component its own scroll container.
+  - colors?: string[] = PALETTE — One colour per series.
+  - format?: ((n: number) => string) = (n: number) => String(n) — How a value is written on the scale and in the card.
 
 #### card
 Surface container with header, content and footer slots.
@@ -925,6 +1019,20 @@ Two-sided proportion bar for comparing a pair of values.
   - leftValue: number — Magnitude of the left side.
   - rightValue: number — Magnitude of the right side.
   - className?: string — Extra classes, merged with the component's own.
+
+#### donut-chart
+A donut chart whose slices sweep in, lift when you point at them, and report their share in the middle.
+- file: src/components/ui/donut-chart.tsx
+- exports: DonutChart
+- client component
+- <DonutChart> (also accepts HTMLAttributes<HTMLDivElement>)
+  - data: DonutSlice[]
+  - size?: number = 220 — Diameter in px.
+  - thickness?: number = 26 — Ring width in px.
+  - gap?: number = 3 — Space between slices, in px along the ring.
+  - total?: string = "Total" — Label under the sum when nothing is active.
+  - format?: ((n: number) => string) = (n: number) => String(n)
+  - legend?: boolean = true — Show a list of slices beside the chart.
 
 #### heatmap
 An activity heatmap in the style of a contribution graph: one cell per day, shaded by how much happened.
@@ -988,6 +1096,17 @@ A list you reorder by dragging. The other rows glide out of the way and the drop
   - handle?: boolean = true — Drag only by the grip. Turn off to drag from anywhere on the row (not for rows with their own controls).
   - itemClassName?: string — Classes for every row.
 
+#### sparkline
+A tiny trend line for dropping into a table cell or a stat: smooth, gradient-filled, with a live end point.
+- file: src/components/ui/sparkline.tsx
+- exports: Sparkline
+- client component
+- <Sparkline> (also accepts HTMLAttributes<HTMLDivElement>)
+  - data: number[]
+  - color?: string — Line colour. By default it follows the trend: green up, red down, ink flat.
+  - format?: ((n: number) => string) = (n: number) => String(n) — How a value is written in the hover bubble.
+  - area?: boolean = true — Fill under the line.
+
 #### stat
 Metric tile with a value and an optional trend delta.
 - file: src/components/ui/stat.tsx
@@ -998,7 +1117,7 @@ Metric tile with a value and an optional trend delta.
   - label: string — Visible label.
   - value: string — Controlled value.
   - delta?: string — Change text shown under the value.
-  - trend?: "neutral" | "up" | "down" = "neutral" — Direction of the change: up, down or neutral.
+  - trend?: "neutral" | "down" | "up" = "neutral" — Direction of the change: up, down or neutral.
   - className?: string — Extra classes, merged with the component's own.
 
 #### table
@@ -1013,79 +1132,18 @@ Data table with a quiet header and row hover.
 - <TH> (also accepts ThHTMLAttributes<HTMLTableCellElement>)
 - <TD> (also accepts TdHTMLAttributes<HTMLTableCellElement>)
 
-### actions
-
-#### button
-Primary action button with variants (primary, accent, secondary, ghost, soft, danger) and a loading state.
-- file: src/components/ui/button.tsx
-- exports: Button
-- server-safe
-- peers: class-variance-authority
-- also imports: spinner
-- <Button> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
-  - loading?: boolean — Shows a spinner and disables the button while work is in flight.
-  - variant?: "primary" | "accent" | "secondary" | "ghost" | "soft" | "danger" — Visual style.
-  - size?: "sm" | "md" | "lg" | "icon" | "icon-sm" — Size preset.
-
-#### chip
-Selectable, removable filter chip.
-- file: src/components/ui/chip.tsx
-- exports: Chip
-- client component
-- peers: @phosphor-icons/react
-- <Chip>
-  - children: ReactNode — Content rendered inside the component.
-  - onRemove?: (() => void) — When provided, shows a remove button and calls this when pressed.
-  - selected?: boolean — Renders the selected state.
-  - onClick?: (() => void) — Called on click.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### kbd
-Keyboard key cap for shortcuts.
-- file: src/components/ui/kbd.tsx
-- exports: Kbd
-- server-safe
-- <Kbd>
-  - children: ReactNode — Content rendered inside the component.
-  - className?: string — Extra classes, merged with the component's own.
-
-#### pill
-Small status label with semantic pastel tones and an optional live dot.
-- file: src/components/ui/pill.tsx
-- exports: Pill
-- server-safe
-- peers: class-variance-authority
-- <Pill> (also accepts HTMLAttributes<HTMLSpanElement>)
-  - dot?: boolean — Shows a status dot before the label.
-  - pulse?: boolean — Adds a soft expanding ring to the dot, for live status.
-  - tone?: "neutral" | "sky" | "sage" | "sand" | "rose" | "accent" | "outline" — Semantic color: neutral, sky, sage, sand, rose.
-
-#### separator
-Hairline divider, horizontal or vertical.
-- file: src/components/ui/separator.tsx
-- exports: Separator
-- server-safe
-- <Separator>
-  - className?: string — Extra classes, merged with the component's own.
-  - orientation?: "horizontal" | "vertical" = "horizontal" — Layout direction.
-  - animated?: boolean — Draws the line in on mount.
-
-#### toggle
-Two-state pressed button, plus a connected multi-select ToggleGroup.
-- file: src/components/ui/toggle.tsx
-- exports: Toggle, ToggleGroup
-- client component
-- <Toggle> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
-  - pressed?: boolean — Controlled pressed state.
-  - defaultPressed?: boolean — Initial pressed state when uncontrolled.
-  - onPressedChange?: ((pressed: boolean) => void) — Called with the new pressed state.
-- <ToggleGroup> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
-  - options: { value: string; label: ReactNode; }[] — The selectable options.
-  - value: string[] — Controlled value.
-  - onChange: (value: string[]) => void — Called when the value changes.
-  - className?: string — Extra classes, merged with the component's own.
-
 ### forms
+
+#### autosize-textarea
+A textarea that grows with what you write and shows how much room is left as a ring.
+- file: src/components/ui/autosize-textarea.tsx
+- exports: AutosizeTextarea
+- client component
+- <AutosizeTextarea> (also accepts TextareaHTMLAttributes<HTMLTextAreaElement>)
+  - maxLength?: number — Character budget. Shows the ring; does not block typing, so people can paste and trim.
+  - minRows?: number = 2 — Fewest lines to show.
+  - maxRows?: number = 10 — Most lines to grow to before scrolling.
+  - onSubmit?: ((value: string) => void) — Called with the text when ⌘/Ctrl + Enter is pressed.
 
 #### calendar
 Month grid date picker. Months slide in the direction you navigate; days respond to press.
@@ -1114,6 +1172,23 @@ Native checkbox with an animated check and an optional label.
   - className?: string — Extra classes, merged with the component's own.
   - label?: string — Visible label.
   - description?: string — Supporting text under the title.
+
+#### combobox
+A select you can type into: the list narrows as you write, and the arrow keys and Enter pick a row.
+- file: src/components/ui/combobox.tsx
+- exports: Combobox
+- client component
+- <Combobox>
+  - options: ComboOption[] — The selectable options.
+  - value?: string — Controlled value.
+  - defaultValue?: string — Initial value when uncontrolled.
+  - onChange?: ((value: string | null) => void) — Called when the value changes.
+  - placeholder?: string = "Select an option" — Hint text shown while empty.
+  - emptyText?: string = "Nothing matches" — Shown when the search has no results.
+  - clearable?: boolean = false — Show a button that empties the selection.
+  - name?: string — Adds a hidden input so the value is submitted with a form.
+  - disabled?: boolean — Prevents interaction and dims the control.
+  - className?: string — Extra classes, merged with the component's own.
 
 #### file-drop
 Drag-and-drop file target that also opens the file picker on click.
@@ -1189,6 +1264,25 @@ Single-choice group built on native radio inputs.
   - value: string — Controlled value.
   - label: string — Visible label.
   - description?: string — Supporting text under the title.
+  - disabled?: boolean — Prevents interaction and dims the control.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### range-slider
+A slider with two handles for choosing a range, with an optional histogram of where the values sit.
+- file: src/components/ui/range-slider.tsx
+- exports: RangeSlider
+- client component
+- <RangeSlider>
+  - min?: number = 0 — Lower bound.
+  - max?: number = 100 — Upper bound.
+  - step?: number = 1 — Increment between values.
+  - value?: [number, number] — Controlled range as `[low, high]`.
+  - defaultValue?: [number, number] — Initial value when uncontrolled.
+  - onChange?: ((value: [number, number]) => void) — Called when the value changes.
+  - minGap?: number = 0 — Smallest distance to keep between the handles.
+  - format?: ((n: number) => string) = (n: number) => String(n) — How a number is written in the bubble and the readout, for example as a price.
+  - histogram?: number[] — Bar heights drawn behind the track, low to high. Bars inside the range are darker.
+  - label?: string — Text above the slider.
   - disabled?: boolean — Prevents interaction and dims the control.
   - className?: string — Extra classes, merged with the component's own.
 
@@ -1278,6 +1372,125 @@ Free-form tag entry. Enter or comma adds, Backspace removes the last.
   - placeholder?: string = "Add tag…" — Hint text shown while empty.
   - className?: string — Extra classes, merged with the component's own.
 
+### actions
+
+#### button
+Primary action button with variants (primary, accent, secondary, ghost, soft, danger) and a loading state.
+- file: src/components/ui/button.tsx
+- exports: Button
+- server-safe
+- peers: class-variance-authority
+- also imports: spinner
+- <Button> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - loading?: boolean — Shows a spinner and disables the button while work is in flight.
+  - variant?: "primary" | "accent" | "secondary" | "ghost" | "soft" | "danger" — Visual style.
+  - size?: "sm" | "md" | "lg" | "icon" | "icon-sm" — Size preset.
+
+#### chip
+Selectable, removable filter chip.
+- file: src/components/ui/chip.tsx
+- exports: Chip
+- client component
+- peers: @phosphor-icons/react
+- <Chip>
+  - children: ReactNode — Content rendered inside the component.
+  - onRemove?: (() => void) — When provided, shows a remove button and calls this when pressed.
+  - selected?: boolean — Renders the selected state.
+  - onClick?: (() => void) — Called on click.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### copy-button
+A copy button that confirms itself: the clipboard icon folds into a tick and a ring pulses outward.
+- file: src/components/ui/copy-button.tsx
+- exports: CopyButton
+- client component
+- <CopyButton> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - value: string — The text that goes on the clipboard.
+  - label?: ReactNode — Text beside the icon. Leave out for an icon-only button.
+  - copiedLabel?: ReactNode = "Copied" — Replaces the label for a moment after copying.
+  - timeout?: number = 1800 — How long the tick stays, in ms.
+  - onCopy?: ((value: string) => void)
+
+#### kbd
+Keyboard key cap for shortcuts.
+- file: src/components/ui/kbd.tsx
+- exports: Kbd
+- server-safe
+- <Kbd>
+  - children: ReactNode — Content rendered inside the component.
+  - className?: string — Extra classes, merged with the component's own.
+
+#### pill
+Small status label with semantic pastel tones and an optional live dot.
+- file: src/components/ui/pill.tsx
+- exports: Pill
+- server-safe
+- peers: class-variance-authority
+- <Pill> (also accepts HTMLAttributes<HTMLSpanElement>)
+  - dot?: boolean — Shows a status dot before the label.
+  - pulse?: boolean — Adds a soft expanding ring to the dot, for live status.
+  - tone?: "neutral" | "sky" | "sage" | "sand" | "rose" | "accent" | "outline" — Semantic color: neutral, sky, sage, sand, rose.
+
+#### separator
+Hairline divider, horizontal or vertical.
+- file: src/components/ui/separator.tsx
+- exports: Separator
+- server-safe
+- <Separator>
+  - className?: string — Extra classes, merged with the component's own.
+  - orientation?: "horizontal" | "vertical" = "horizontal" — Layout direction.
+  - animated?: boolean — Draws the line in on mount.
+
+#### split-button
+A button with a main action and a menu of related ones tucked behind a chevron.
+- file: src/components/ui/split-button.tsx
+- exports: SplitButton
+- client component
+- peers: class-variance-authority
+- also imports: button
+- <SplitButton>
+  - children: ReactNode — The main action's label.
+  - items: SplitItem[] — The alternatives in the menu.
+  - variant?: "primary" | "accent" | "secondary" | "ghost" | "soft" | "danger" = "primary" — Visual style.
+  - size?: "sm" | "md" | "lg" | "icon" | "icon-sm" = "md" — Size preset.
+  - onClick?: (() => void) — The main action.
+  - align?: "start" | "end" = "end" — Which edge of the button the menu lines up with.
+  - className?: string — Extra classes, merged with the component's own.
+  - disabled?: boolean — Prevents interaction and dims the control.
+
+#### status-button
+A button that carries a task from start to finish: it shrinks to a spinner, then lands on a tick or a cross.
+- file: src/components/ui/status-button.tsx
+- exports: StatusButton
+- client component
+- peers: class-variance-authority
+- also imports: button
+- <StatusButton> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - children?: ReactNode = "Save changes" — The label when idle.
+  - variant?: "primary" | "accent" | "secondary" | "ghost" | "soft" | "danger" — Visual style.
+  - size?: "sm" | "md" | "lg" | "icon" | "icon-sm" — Size preset.
+  - status?: ButtonStatus — Controlled state. Leave it out and the button runs itself from `onClick`.
+  - onClick?: (() => void | Promise<unknown>) — May return a promise: pending is loading, resolved is success, rejected is error.
+  - loadingLabel?: ReactNode = "Saving"
+  - successLabel?: ReactNode = "Saved"
+  - errorLabel?: ReactNode = "Try again"
+  - resetAfter?: number = 2000 — Milliseconds before success or error returns to idle. 0 keeps it.
+
+#### toggle
+Two-state pressed button, plus a connected multi-select ToggleGroup.
+- file: src/components/ui/toggle.tsx
+- exports: Toggle, ToggleGroup
+- client component
+- <Toggle> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - pressed?: boolean — Controlled pressed state.
+  - defaultPressed?: boolean — Initial pressed state when uncontrolled.
+  - onPressedChange?: ((pressed: boolean) => void) — Called with the new pressed state.
+- <ToggleGroup> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - options: { value: string; label: ReactNode; }[] — The selectable options.
+  - value: string[] — Controlled value.
+  - onChange: (value: string[]) => void — Called when the value changes.
+  - className?: string — Extra classes, merged with the component's own.
+
 ### overlays
 
 #### command
@@ -1292,6 +1505,15 @@ Command palette: type to filter, arrows to move, Enter to run.
   - className?: string — Extra classes, merged with the component's own.
   - onSelect?: ((id: string) => void) — Called with the id of the chosen item.
   - autoFocus?: boolean — Focuses the input on mount.
+
+#### context-menu
+A right-click menu for any area: it opens at the pointer, stays on screen, and works from the keyboard.
+- file: src/components/ui/context-menu.tsx
+- exports: ContextMenu
+- client component
+- <ContextMenu> (also accepts HTMLAttributes<HTMLDivElement>)
+  - items: ContextItem[] — The items to render.
+  - children: ReactNode — The area that listens for a right click.
 
 #### dialog
 Modal dialog: portaled, focus-trapping, animated in and out, Escape to close.
@@ -1339,6 +1561,16 @@ Action menu: arrow-key navigation, staggered items, animates in and out.
   - items: Item[] — The items to render.
   - className?: string — Extra classes, merged with the component's own.
   - align?: "start" | "end" = "start" — Alignment relative to the trigger.
+
+#### lightbox
+A photo grid whose pictures open full screen by growing out of their own place, and shrink back on close.
+- file: src/components/ui/lightbox.tsx
+- exports: Lightbox
+- client component
+- <Lightbox> (also accepts HTMLAttributes<HTMLDivElement>)
+  - images: LightboxImage[]
+  - columns?: number = 3 — Columns in the grid.
+  - gap?: number = 12 — Space between thumbnails, in px.
 
 #### popover
 Anchored panel: click to open, animates in and out, Escape or outside click closes.
@@ -1390,7 +1622,36 @@ Hover and focus tooltip: pure CSS, short open delay, scales and slides in.
   - side?: "left" | "right" | "top" | "bottom" = "top" — Which edge or side to anchor to.
   - className?: string — Extra classes, merged with the component's own.
 
+#### tour
+A guided product tour: the page dims, a spotlight glides to each element in turn, and a card explains it.
+- file: src/components/ui/tour.tsx
+- exports: Tour
+- client component
+- <Tour>
+  - steps: TourStep[] — Array of { label, description? }.
+  - open: boolean — Controlled open state.
+  - onClose: () => void — Called when the tour is skipped, closed or finished.
+  - step?: number — Controlled step index.
+  - defaultStep?: number = 0
+  - onStepChange?: ((step: number) => void)
+  - padding?: number = 8 — Space around the highlighted element, in px.
+  - radius?: number = 14 — Corner radius of the spotlight.
+  - doneLabel?: string = "Done" — Label of the last step's button.
+
 ### text
+
+#### curve-text
+Text set along a curve that runs and bends: an arc you can pull with the pointer, a travelling wave, or a ring.
+- file: src/components/ui/curve-text.tsx
+- exports: CurveText
+- client component
+- <CurveText> (also accepts HTMLAttributes<HTMLDivElement>)
+  - children: string — The words. They repeat to fill the path.
+  - shape?: "arc" | "wave" | "circle" = "arc"
+  - height?: number = 240 — Height of the drawing area, in px.
+  - fontSize?: number = 44 — Size of the letters, in px.
+  - speed?: number = 60 — How fast the text travels along the path, in px per second. 0 holds it still.
+  - interactive?: boolean = true — Let the pointer bend the arc and shape the wave.
 
 #### decode-text
 Monospace text that decodes from noise the first time it scrolls into view.
@@ -1413,6 +1674,18 @@ Letters roll up and swap on hover. Hover the text itself, or any `group/flip` pa
 - <FlipTextTrigger>
   - text: string — The text to render.
   - className?: string — Extra classes, merged with the component's own.
+
+#### glitch-text
+A text glitch: colour channels tear apart, horizontal slices jump sideways, then it snaps back.
+- file: src/components/ui/glitch-text.tsx
+- exports: GlitchText
+- client component
+- <GlitchText> (also accepts HTMLAttributes<HTMLSpanElement>)
+  - children: string — The text. Keep it a plain string.
+  - trigger?: "auto" | "hover" | "both" = "both" — `auto` glitches by itself, `hover` only under the pointer, `both` does both.
+  - intensity?: number = 6 — How far the slices jump, in px.
+  - red?: string = "#ff2d6f"
+  - cyan?: string = "#12d8ff"
 
 #### gradient-text
 Text filled with an ink-to-accent gradient.
@@ -1440,6 +1713,17 @@ Each letter lifts and tints as the cursor passes over it.
 - <LetterHover>
   - text: string — The text to render.
   - className?: string — Extra classes, merged with the component's own.
+
+#### neon-text
+Glowing neon lettering that switches on letter by letter with a stutter, then hums with the odd flicker.
+- file: src/components/ui/neon-text.tsx
+- exports: NeonText
+- client component
+- <NeonText> (also accepts HTMLAttributes<HTMLSpanElement>)
+  - children: string — The text. Keep it a plain string.
+  - color?: string = "#ff3d9a" — Colour of the gas. The core of the tube is a paler tint of it.
+  - flicker?: boolean = true — Let a random letter stutter now and then.
+  - halo?: boolean = true — Spill a soft glow behind the letters.
 
 #### quote
 Pull quote set in the display serif with an attribution line.
@@ -1530,6 +1814,17 @@ Link or span whose underline draws in from the left on hover.
   - href?: string — Link destination.
   - className?: string — Extra classes, merged with the component's own.
 
+#### weight-text
+Type whose weight swells under the pointer: letters near it turn heavy, the rest stay light.
+- file: src/components/ui/weight-text.tsx
+- exports: WeightText
+- client component
+- <WeightText> (also accepts HTMLAttributes<HTMLSpanElement>)
+  - children: string — The text. Keep it a plain string.
+  - min?: number = 200 — Weight of letters far from the pointer.
+  - max?: number = 900 — Weight of the letter right under it.
+  - radius?: number = 150 — How far the effect reaches, in px.
+
 ### footers
 
 #### footer-cta
@@ -1544,6 +1839,17 @@ Closing call-to-action band that sits above a footer.
   - description?: string — Supporting text under the title.
   - secondary?: { label: string; href: string; } — Optional secondary action: { label, href }.
   - className?: string — Extra classes, merged with the component's own.
+
+#### footer-giant
+A footer that ends on your name, set enormous: link columns above, and a wordmark that spans the full
+- file: src/components/ui/footer-giant.tsx
+- exports: FooterGiant
+- client component
+- <FooterGiant> (also accepts HTMLAttributes<HTMLElement>)
+  - brand: string — The word set across the bottom. Short names fill the width best.
+  - columns: { title: string; links: { label: string; href: string; }[]; }[] — Link groups: { title, links[] }.
+  - tagline?: ReactNode
+  - legal?: ReactNode — Small print under the wordmark.
 
 #### footer-legal
 Copyright line with legal links.
@@ -1591,6 +1897,20 @@ One-row footer: brand, links and a small note.
   - note?: string — Small text on the right.
   - className?: string — Extra classes, merged with the component's own.
 
+#### footer-status
+A compact footer with a live status pill: a pulsing dot, a short message, links, and a slot for switches.
+- file: src/components/ui/footer-status.tsx
+- exports: FooterStatus
+- server-safe
+- <FooterStatus> (also accepts HTMLAttributes<HTMLElement>)
+  - brand: ReactNode — Logo or wordmark node.
+  - links: { label: string; href: string; }[] — Array of { label, href } links.
+  - status?: "ok" | "degraded" | "down" = "ok" — Colour of the dot: `ok`, `degraded` or `down`.
+  - statusLabel?: string — Overrides the default message for the status.
+  - statusHref?: string = "#" — Where the pill goes when clicked, normally your status page.
+  - actions?: ReactNode — Controls on the right, such as a theme switch.
+  - note?: ReactNode — Small text on the right.
+
 #### social-links
 Row of social icon links.
 - file: src/components/ui/social-links.tsx
@@ -1631,6 +1951,18 @@ Row of panels; the hovered or focused one grows and reveals its body.
   - items: { id: string; label: string; body: string; }[] — The items to render.
   - className?: string — Extra classes, merged with the component's own.
 
+#### hover-glow-grid
+A grid of cards lit by one light: it follows the pointer across the whole group, catching each card's edge as it passes.
+- file: src/components/ui/hover-glow-grid.tsx
+- exports: HoverGlowGrid, GlowCard
+- client component
+- <HoverGlowGrid> (also accepts HTMLAttributes<HTMLDivElement>)
+  - color?: string = "var(--accent)" — Colour of the light.
+  - columns?: number = 3 — Columns on wide screens.
+  - gap?: number = 14 — Space between cards, in px.
+  - size?: number = 320 — Radius of the light, in px.
+- <GlowCard> (also accepts HTMLAttributes<HTMLDivElement>)
+
 #### hover-icon
 Square icon button that scales its glyph and reveals a label on hover.
 - file: src/components/ui/hover-icon.tsx
@@ -1640,6 +1972,14 @@ Square icon button that scales its glyph and reveals a label on hover.
   - icon: ReactNode — Icon shown in the leading position.
   - label: string — Visible label.
   - className?: string — Extra classes, merged with the component's own.
+
+#### hover-image-list
+An index of large titles where hovering a row floats its picture beside the cursor, tilting as you move.
+- file: src/components/ui/hover-image-list.tsx
+- exports: HoverImageList
+- client component
+- <HoverImageList> (also accepts HTMLAttributes<HTMLDivElement>)
+  - items: HoverImageItem[] — The items to render.
 
 #### hover-image
 Inline link that reveals a floating image preview following the cursor.
