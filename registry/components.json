@@ -1,9 +1,9 @@
 {
   "name": "vibeui",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "license": "MIT",
   "repository": "https://github.com/arjunkshah12345-hash/vibeui",
-  "count": 136,
+  "count": 144,
   "tokens": "templates/vibeui.css",
   "utils": "src/lib/utils.ts",
   "peerDependencies": [
@@ -44,10 +44,13 @@
       "confetti",
       "count-up",
       "cover-flow",
+      "dice",
+      "dither-image",
       "dock",
       "dot-globe",
       "dotted-grid",
       "dynamic-island",
+      "falling-sand",
       "flip-card",
       "folder-preview",
       "gooey-menu",
@@ -55,9 +58,11 @@
       "jelly-loader",
       "keycap",
       "knob",
+      "lanyard",
       "liquid-glass",
       "liquid-metal",
       "liquid-switch",
+      "loupe",
       "magnet-tabs",
       "marquee",
       "masonry",
@@ -67,13 +72,16 @@
       "pan-zoom",
       "particle-text",
       "peel-card",
+      "pluck-string",
       "pointer-morph",
       "progressive-blur",
       "ripple-image",
       "rotating-carousel",
       "scratch-reveal",
       "scroll-stack",
+      "signature-pad",
       "slide-to-confirm",
+      "split-flap",
       "split-showcase",
       "spotlight",
       "stacked-cards",
@@ -1873,6 +1881,137 @@
       ]
     },
     {
+      "name": "dice",
+      "title": "Dice",
+      "category": "craft",
+      "description": "A six-sided die in real 3D. Click it and it tumbles, bounces, and settles on a number.",
+      "file": "src/components/ui/dice.tsx",
+      "exports": [
+        "Dice"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Dice",
+          "props": [
+            {
+              "name": "defaultValue",
+              "type": "number | (readonly string[] & number)",
+              "required": false,
+              "default": "1",
+              "description": "The face showing before the first roll, 1 to 6."
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "required": false,
+              "default": "72",
+              "description": "Edge length of the cube, in px."
+            },
+            {
+              "name": "onRoll",
+              "type": "((value: number) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called with the number it landed on, once it has settled."
+            }
+          ],
+          "extends": [
+            "ButtonHTMLAttributes<HTMLButtonElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dither-image",
+      "title": "DitherImage",
+      "category": "craft",
+      "description": "A photograph reduced to two colours with ordered dithering, which a lens of full colour dissolves through.",
+      "file": "src/components/ui/dither-image.tsx",
+      "exports": [
+        "DitherImage"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "DitherImage",
+          "props": [
+            {
+              "name": "src",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Image address. A data URI or a same-origin or CORS-enabled URL."
+            },
+            {
+              "name": "alt",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "Describes the picture for assistive tech."
+            },
+            {
+              "name": "pixel",
+              "type": "number",
+              "required": false,
+              "default": "3",
+              "description": "Size of one dither cell, in CSS px. Bigger is chunkier."
+            },
+            {
+              "name": "radius",
+              "type": "number",
+              "required": false,
+              "default": "110",
+              "description": "Radius of the colour lens, in px."
+            },
+            {
+              "name": "contrast",
+              "type": "number",
+              "required": false,
+              "default": "1.15",
+              "description": "Stretch the tones before dithering. Above 1 is punchier."
+            },
+            {
+              "name": "fg",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Dark colour of the dither. Defaults to the ink token."
+            },
+            {
+              "name": "bg",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Light colour of the dither. Defaults to the canvas token."
+            },
+            {
+              "name": "idle",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Let the lens wander on its own while the pointer is away."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "dock",
       "title": "Dock",
       "category": "craft",
@@ -2258,6 +2397,61 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "falling-sand",
+      "title": "FallingSand",
+      "category": "craft",
+      "description": "Grains of sand that fall, slide down each other and pile up at the natural angle of repose.",
+      "file": "src/components/ui/falling-sand.tsx",
+      "exports": [
+        "FallingSand"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "FallingSand",
+          "props": [
+            {
+              "name": "cell",
+              "type": "number",
+              "required": false,
+              "default": "4",
+              "description": "Size of one grain, in CSS px."
+            },
+            {
+              "name": "palette",
+              "type": "string[]",
+              "required": false,
+              "default": "PALETTE",
+              "description": "Colours of the bands, as hex."
+            },
+            {
+              "name": "stream",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Pour a slow stream from the top while idle."
+            },
+            {
+              "name": "bandMs",
+              "type": "number",
+              "required": false,
+              "default": "1400",
+              "description": "How long each colour pours before the next, in ms."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },
@@ -3718,6 +3912,61 @@
       ]
     },
     {
+      "name": "lanyard",
+      "title": "Lanyard",
+      "category": "craft",
+      "description": "A badge hanging from a woven strap that you can grab, swing and fling, driven by a real rope simulation.",
+      "file": "src/components/ui/lanyard.tsx",
+      "exports": [
+        "Lanyard"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Lanyard",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "What is printed on the card. Leave the top 2rem free for the slot."
+            },
+            {
+              "name": "width",
+              "type": "number",
+              "required": false,
+              "default": "208",
+              "description": "Width of the card, in px."
+            },
+            {
+              "name": "strapText",
+              "type": "string",
+              "required": false,
+              "default": "\"VIBEUI\"",
+              "description": "Text woven into the strap."
+            },
+            {
+              "name": "strapColor",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "CSS colour of the strap. Defaults to the accent token."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "letter-hover",
       "title": "LetterHover",
       "category": "text",
@@ -4006,6 +4255,61 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "loupe",
+      "title": "Loupe",
+      "category": "craft",
+      "description": "A magnifying glass that follows the pointer and enlarges whatever is under it: images, type, whole interfaces.",
+      "file": "src/components/ui/loupe.tsx",
+      "exports": [
+        "Loupe"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Loupe",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true,
+              "default": null,
+              "description": "The content to magnify."
+            },
+            {
+              "name": "zoom",
+              "type": "number",
+              "required": false,
+              "default": "2.4",
+              "description": "Magnification."
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "required": false,
+              "default": "168",
+              "description": "Diameter of the lens, in px."
+            },
+            {
+              "name": "lensClassName",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes for the lens ring."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },
@@ -4977,6 +5281,68 @@
           ],
           "extends": [
             "HTMLAttributes<HTMLSpanElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pluck-string",
+      "title": "PluckString",
+      "category": "craft",
+      "description": "A string you can pluck: pull it and let go, or just sweep the pointer across it like a harp.",
+      "file": "src/components/ui/pluck-string.tsx",
+      "exports": [
+        "PluckString"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "PluckString",
+          "props": [
+            {
+              "name": "note",
+              "type": "string",
+              "required": false,
+              "default": "\"A3\"",
+              "description": "The note it sounds, for example `E2` or `F#4`."
+            },
+            {
+              "name": "frequency",
+              "type": "number",
+              "required": false,
+              "default": null,
+              "description": "Overrides `note` with a frequency in Hz."
+            },
+            {
+              "name": "sound",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Play a tone on every pluck. Browsers wait for your first click or tap before they allow sound."
+            },
+            {
+              "name": "thickness",
+              "type": "number",
+              "required": false,
+              "default": "2",
+              "description": "Line width in px."
+            },
+            {
+              "name": "onPluck",
+              "type": "((note: string) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called on every pluck."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
           ]
         }
       ]
@@ -6179,6 +6545,75 @@
       ]
     },
     {
+      "name": "signature-pad",
+      "title": "SignaturePad",
+      "category": "craft",
+      "description": "A signature field with real ink: the line thins as you move fast and swells as you slow down, with no corners.",
+      "file": "src/components/ui/signature-pad.tsx",
+      "exports": [
+        "SignaturePad"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "SignaturePad",
+          "props": [
+            {
+              "name": "onChange",
+              "type": "((dataUrl: string | null) => void)",
+              "required": false,
+              "default": null,
+              "description": "Called after each stroke, undo and clear, with a PNG data URL or null when empty."
+            },
+            {
+              "name": "maxWidth",
+              "type": "number",
+              "required": false,
+              "default": "3.4",
+              "description": "Widest the ink gets, in px."
+            },
+            {
+              "name": "minWidth",
+              "type": "number",
+              "required": false,
+              "default": "0.9",
+              "description": "Thinnest the ink gets, in px."
+            },
+            {
+              "name": "controls",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Show Undo and Clear."
+            },
+            {
+              "name": "guide",
+              "type": "boolean",
+              "required": false,
+              "default": "true",
+              "description": "Show the baseline and the cross."
+            },
+            {
+              "name": "placeholder",
+              "type": "string",
+              "required": false,
+              "default": "\"Sign here\"",
+              "description": "Faint prompt shown while empty."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "skeleton",
       "title": "Skeleton",
       "category": "feedback",
@@ -6502,6 +6937,75 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "split-flap",
+      "title": "SplitFlap",
+      "category": "craft",
+      "description": "An airport departures board: every character is a flap that turns over until it shows the right one.",
+      "file": "src/components/ui/split-flap.tsx",
+      "exports": [
+        "SplitFlap"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "SplitFlap",
+          "props": [
+            {
+              "name": "value",
+              "type": "string",
+              "required": true,
+              "default": null,
+              "description": "What to show. Letters are upper-cased; anything not in `charset` becomes a blank."
+            },
+            {
+              "name": "className",
+              "type": "string",
+              "required": false,
+              "default": null,
+              "description": "Extra classes, merged with the component's own."
+            },
+            {
+              "name": "length",
+              "type": "number",
+              "required": false,
+              "default": null,
+              "description": "Number of cells. The value is padded with blanks, or cut, to fit. Defaults to its length."
+            },
+            {
+              "name": "charset",
+              "type": "string",
+              "required": false,
+              "default": "CHARS",
+              "description": "The characters a flap can show, in the order it cycles through them. Keep the blank first."
+            },
+            {
+              "name": "size",
+              "type": "\"sm\" | \"md\" | \"lg\"",
+              "required": false,
+              "default": "\"md\"",
+              "description": "Size preset."
+            },
+            {
+              "name": "stagger",
+              "type": "number",
+              "required": false,
+              "default": "45",
+              "description": "Delay between one cell starting and the next, in ms."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },

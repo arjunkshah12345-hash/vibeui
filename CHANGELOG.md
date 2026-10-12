@@ -7,6 +7,20 @@ versions may include breaking changes).
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-10-12
+
+### Added
+
+- Eight more Signature components, each a single file with only the usual peers:
+  - `SplitFlap`: an airport departures board. Every cell is a flap that turns over through the alphabet until it shows the right character.
+  - `DitherImage`: a picture reduced to two colours with ordered dithering, which a lens of full colour dissolves through.
+  - `Loupe`: a magnifying glass that follows the pointer and enlarges any content, including type and whole interfaces.
+  - `PluckString`: a string you pull and release, or sweep across like a harp. It vibrates as standing waves and plays a plucked-string tone.
+  - `SignaturePad`: a signature field with real ink, variable width, smoothing, pen pressure, undo, clear and PNG export.
+  - `FallingSand`: a sand simulation. Pour with the pointer and watch layers pile at the natural angle of repose.
+  - `Dice`: a six-sided die in real 3D that tumbles, bounces and settles on a number, with a ref to roll it.
+  - `Lanyard`: a badge on a woven strap, driven by a rope simulation. Grab it, swing it, let go.
+
 ## [0.5.0] - 2026-10-10
 
 ### Added
