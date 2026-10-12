@@ -7,6 +7,25 @@ versions may include breaking changes).
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-10-12
+
+### Added
+
+- 25 new components across every section, not only Signature:
+  - Actions: `StatusButton` (idle, loading, success, error with a gliding width), `CopyButton`, `SplitButton`.
+  - Forms: `AutosizeTextarea` with a counter ring, `Combobox` (type-to-filter select), `RangeSlider` with an optional histogram.
+  - Feedback: `ProgressRing` (ring and tick-dial variants), `Gauge` (dial with an overshooting needle), `StatusIcon` (marks that draw themselves).
+  - Data: `BarChart` (grouped or stacked), `DonutChart`, `Sparkline`.
+  - Navigation: `FloatingNav`, `Sidebar` (collapses to an icon rail), `TableOfContents` (scroll-spy with a reading rail).
+  - Overlays: `ContextMenu` (with submenus), `Lightbox` (images grow out of their thumbnails), `Tour` (spotlight that glides between steps).
+  - Footers: `FooterGiant` (a full-width wordmark that rises in), `FooterStatus` (live status pill).
+  - Text: `NeonText`, `WeightText` (variable-font weight follows the pointer), `GlitchText`, `CurveText`.
+  - Hover: `HoverImageList` (a picture follows the cursor), `HoverGlowGrid` (one light across a group of cards).
+
+### Changed
+
+- `SplitFlap` is redesigned: proper flaps with a hinge, a shadow that moves across the fold, a settling bounce on the final letter, optional clacking sound, three tones (ink, amber, paper), and a single `size` prop in place of `sm | md | lg`.
+
 ## [0.6.0] - 2026-10-12
 
 ### Added

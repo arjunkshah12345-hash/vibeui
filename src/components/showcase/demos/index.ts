@@ -8,6 +8,8 @@ import { forms } from "./forms";
 import { hover } from "./hover";
 import { navigation } from "./navigation";
 import { overlays } from "./overlays";
+import { sectionsA } from "./sections-a";
+import { sectionsB } from "./sections-b";
 import { signature } from "./signature";
 import { signatureFour } from "./signature-four";
 import { signatureThree } from "./signature-three";
@@ -26,6 +28,8 @@ export const demos: Record<string, Demo> = {
   ...signature,
   ...signatureTwo,
   ...signatureThree,
+  ...sectionsA,
+  ...sectionsB,
   ...signatureFour,
   ...text,
   ...hover,

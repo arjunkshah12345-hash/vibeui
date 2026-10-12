@@ -5,25 +5,61 @@ import { cn } from "@/lib/utils";
 
 const CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-:.";
 
-const SIZES = {
-  sm: "h-10 w-7 text-xl rounded-[5px]",
-  md: "h-14 w-10 text-3xl rounded-[7px]",
-  lg: "h-20 w-14 text-5xl rounded-[9px]",
+// Flap colours: the face, the letter, and the light on the upper half.
+const TONES = {
+  ink: { face: "#1d1c1a", glyph: "#f2eee5", top: "#2b2a27", bottom: "#191816" },
+  amber: { face: "#141210", glyph: "#ffb627", top: "#221f1a", bottom: "#100e0c" },
+  paper: { face: "#efeae0", glyph: "#16140f", top: "#fbf8f1", bottom: "#e4ded1" },
 } as const;
+
+type Palette = (typeof TONES)[keyof typeof TONES];
 
 const sleep = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms));
 
+let audio: AudioContext | null = null;
+let lastClack = 0;
+// A flap landing is a very short, dry click. Many at once make the rattle of a real board.
+function clack() {
+  const now = performance.now();
+  if (now - lastClack < 14) return;
+  lastClack = now;
+  try {
+    audio ??= new AudioContext();
+    const a = audio;
+    if (a.state === "suspended") void a.resume();
+    const len = Math.floor(a.sampleRate * 0.022);
+    const buf = a.createBuffer(1, len, a.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 4);
+    const src = a.createBufferSource();
+    src.buffer = buf;
+    const band = a.createBiquadFilter();
+    band.type = "bandpass";
+    band.frequency.value = 1500 + Math.random() * 900;
+    band.Q.value = 1.1;
+    const g = a.createGain();
+    g.gain.value = 0.16;
+    src.connect(band).connect(g).connect(a.destination);
+    src.start();
+  } catch {
+    // no audio; the board still turns
+  }
+}
+
 /**
- * An airport departures board: every character is a flap that turns over until it shows the right one.
+ * A mechanical departures board: every character is a pair of flaps that turn over through the alphabet.
  *
- * Change `value` and the cells cascade through the alphabet in order, the way the real ones do.
+ * Change `value` and the cells cascade, each one flipping on to the next letter until it lands on the
+ * right one, with a settling bounce and shadows that move across the fold as it turns.
  */
 export function SplitFlap({
   value,
   length,
   charset = CHARS,
-  size = "md",
-  stagger = 45,
+  size = 56,
+  tone = "ink",
+  stagger = 40,
+  sound = false,
   className,
   ...props
 }: Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & {
@@ -33,9 +69,14 @@ export function SplitFlap({
   length?: number;
   /** The characters a flap can show, in the order it cycles through them. Keep the blank first. */
   charset?: string;
-  size?: keyof typeof SIZES;
+  /** Height of one cell, in px. Everything else scales from it. */
+  size?: number;
+  /** `ink` is charcoal and warm white, `amber` is the classic orange on black, `paper` is white. */
+  tone?: keyof typeof TONES;
   /** Delay between one cell starting and the next, in ms. */
   stagger?: number;
+  /** Click as the flaps land. Browsers wait for a first click or tap before they allow sound. */
+  sound?: boolean;
   className?: string;
 }) {
   const n = length ?? value.length;
@@ -45,10 +86,19 @@ export function SplitFlap({
       role="img"
       aria-label={value}
       {...props}
-      className={cn("inline-flex gap-[3px]", className)}
+      className={cn("inline-flex", className)}
+      style={{ gap: Math.max(2, size * 0.05), ...props.style }}
     >
       {Array.from(text, (ch, i) => (
-        <Cell key={i} ch={ch} charset={charset} delay={i * stagger} className={SIZES[size]} />
+        <Cell
+          key={i}
+          ch={ch}
+          charset={charset}
+          delay={i * stagger}
+          size={size}
+          tone={TONES[tone]}
+          sound={sound}
+        />
       ))}
     </div>
   );
@@ -58,36 +108,52 @@ function Half({
   k,
   top,
   initial,
-  className,
+  size,
+  tone,
+  z,
 }: {
   k: string;
   top: boolean;
   initial: string;
-  className?: string;
+  size: number;
+  tone: Palette;
+  z?: number;
 }) {
+  const r = size * 0.1;
   return (
     <div
       data-k={k}
       aria-hidden
       className={cn(
-        "absolute inset-x-0 h-1/2 overflow-hidden bg-[#2b2925] [backface-visibility:hidden]",
-        top ? "top-0 origin-bottom rounded-t-[inherit]" : "bottom-0 origin-top rounded-b-[inherit]",
-        className,
+        "absolute inset-x-0 h-[calc(50%-0.5px)] overflow-hidden [backface-visibility:hidden]",
+        top ? "top-0 origin-bottom" : "bottom-0 origin-top",
       )}
       style={{
-        backgroundImage: top
-          ? "linear-gradient(to bottom, rgb(255 255 255 / 0.11), rgb(255 255 255 / 0.03))"
-          : "linear-gradient(to bottom, rgb(0 0 0 / 0.22), rgb(0 0 0 / 0) 70%)",
+        zIndex: z,
+        background: `linear-gradient(to bottom, ${top ? tone.top : tone.bottom}, ${tone.face})`,
+        borderRadius: top ? `${r}px ${r}px 1px 1px` : `1px 1px ${r}px ${r}px`,
       }}
     >
       <span
-        className={cn(
-          "absolute inset-x-0 flex h-[200%] items-center justify-center font-mono font-semibold leading-none text-[#f4f2ee]",
-          top ? "top-0" : "bottom-0",
-        )}
+        className="absolute inset-x-0 flex h-[200%] items-center justify-center font-sans font-bold leading-none tracking-tight"
+        style={{
+          [top ? "top" : "bottom"]: 0,
+          color: tone.glyph,
+          fontSize: size * 0.66,
+        }}
       >
         {initial}
       </span>
+      {/* shade that deepens across the fold as the flap above it turns */}
+      <span
+        data-shade
+        className="pointer-events-none absolute inset-0 opacity-0"
+        style={{
+          background: top
+            ? "linear-gradient(to top, rgb(0 0 0 / 0.55), transparent 80%)"
+            : "linear-gradient(to bottom, rgb(0 0 0 / 0.6), transparent 80%)",
+        }}
+      />
     </div>
   );
 }
@@ -96,18 +162,27 @@ function Cell({
   ch,
   charset,
   delay,
-  className,
+  size,
+  tone,
+  sound,
 }: {
   ch: string;
   charset: string;
   delay: number;
-  className: string;
+  size: number;
+  tone: Palette;
+  sound: boolean;
 }) {
   const root = React.useRef<HTMLDivElement>(null);
   // The first character is rendered by React; after that the flaps are changed directly,
   // so React never rewrites a glyph in the middle of a turn.
   const [initial] = React.useState(ch);
   const at = React.useRef(Math.max(0, charset.indexOf(initial)));
+  const loud = React.useRef(sound);
+
+  React.useEffect(() => {
+    loud.current = sound;
+  }, [sound]);
 
   React.useEffect(() => {
     const el = root.current;
@@ -117,13 +192,15 @@ function Cell({
     const baseBottom = half("bb");
     const flapTop = half("ft");
     const flapBottom = half("fb");
-    const size = charset.length;
+    const shadeTop = baseTop.querySelector<HTMLElement>("[data-shade]")!;
+    const shadeBottom = baseBottom.querySelector<HTMLElement>("[data-shade]")!;
+    const count = charset.length;
     const target = Math.max(0, charset.indexOf(ch));
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let alive = true;
 
     const glyph = (e: HTMLElement, i: number) => {
-      e.firstElementChild!.textContent = charset[i] ?? " ";
+      e.querySelector("span")!.textContent = charset[i] ?? " ";
     };
     const settle = (i: number) => {
       for (const e of [baseTop, baseBottom, flapTop, flapBottom]) glyph(e, i);
@@ -141,10 +218,11 @@ function Cell({
     const run = async () => {
       if (delay) await sleep(delay);
       while (alive && at.current !== target) {
-        const left = (target - at.current + size) % size;
-        // Far to go: turn faster. Close: let each flap read.
-        const dur = Math.min(78, Math.max(34, 900 / left));
-        const next = (at.current + 1) % size;
+        const left = (target - at.current + count) % count;
+        // Far to go: turn faster. Close: let each flap read, and bounce on the last one.
+        const dur = Math.min(80, Math.max(32, 960 / left));
+        const last = left === 1;
+        const next = (at.current + 1) % count;
         glyph(baseTop, next);
         glyph(baseBottom, at.current);
         glyph(flapTop, at.current);
@@ -152,27 +230,49 @@ function Cell({
         flapTop.style.visibility = "visible";
         flapBottom.style.visibility = "hidden";
 
+        // The top flap falls forward; the lower half darkens as it is covered.
+        const shade = shadeBottom.animate([{ opacity: 0 }, { opacity: 1 }], {
+          duration: dur,
+          easing: "ease-in",
+          fill: "forwards",
+        });
         const down = flapTop.animate(
           [
             { transform: "rotateX(0deg)", filter: "brightness(1)" },
-            { transform: "rotateX(-90deg)", filter: "brightness(0.5)" },
+            { transform: "rotateX(-90deg)", filter: "brightness(0.45)" },
           ],
-          { duration: dur, easing: "cubic-bezier(0.5, 0, 0.9, 0.6)", fill: "forwards" },
+          { duration: dur, easing: "cubic-bezier(0.55, 0, 0.9, 0.55)", fill: "forwards" },
         );
         await down.finished.catch(() => {});
         if (!alive) break;
         flapTop.style.visibility = "hidden";
         flapBottom.style.visibility = "visible";
+        // The new letter swings down onto the lower half, and the upper half lights up behind it.
+        const lift = shadeTop.animate([{ opacity: 0.8 }, { opacity: 0 }], {
+          duration: dur,
+          fill: "forwards",
+        });
         const land = flapBottom.animate(
-          [
-            { transform: "rotateX(90deg)", filter: "brightness(0.6)" },
-            { transform: "rotateX(0deg)", filter: "brightness(1)" },
-          ],
-          { duration: dur, easing: "cubic-bezier(0.2, 0.5, 0.5, 1)", fill: "forwards" },
+          last
+            ? [
+                { transform: "rotateX(90deg)", filter: "brightness(0.55)", offset: 0 },
+                { transform: "rotateX(-4deg)", filter: "brightness(1)", offset: 0.8 },
+                { transform: "rotateX(0deg)", offset: 1 },
+              ]
+            : [
+                { transform: "rotateX(90deg)", filter: "brightness(0.55)" },
+                { transform: "rotateX(0deg)", filter: "brightness(1)" },
+              ],
+          {
+            duration: last ? dur * 1.5 : dur,
+            easing: "cubic-bezier(0.25, 0.6, 0.45, 1)",
+            fill: "forwards",
+          },
         );
+        await sleep(dur * 0.8);
+        if (loud.current) clack();
         await land.finished.catch(() => {});
-        down.cancel();
-        land.cancel();
+        for (const a of [down, land, shade, lift]) a.cancel();
         if (!alive) break;
         at.current = next;
         settle(next);
@@ -191,19 +291,28 @@ function Cell({
     <div
       ref={root}
       aria-hidden
-      className={cn(
-        "relative select-none shadow-[0_2px_4px_rgb(0_0_0/0.3),inset_0_0_0_1px_rgb(255_255_255/0.06)] [perspective:420px]",
-        className,
-      )}
+      className="relative select-none [perspective:520px]"
+      style={{
+        width: size * 0.7,
+        height: size,
+        borderRadius: size * 0.1,
+        background: "#050505",
+        boxShadow: `0 ${size * 0.04}px ${size * 0.1}px rgb(0 0 0 / 0.35), inset 0 0 0 1px rgb(255 255 255 / 0.05)`,
+      }}
     >
-      <Half k="bt" top initial={initial} />
-      <Half k="bb" top={false} initial={initial} />
-      <Half k="ft" top initial={initial} className="z-[2]" />
-      <Half k="fb" top={false} initial={initial} className="z-[3]" />
-      {/* the hinge */}
-      <span className="pointer-events-none absolute inset-x-0 top-1/2 z-10 h-[2px] -translate-y-1/2 bg-black/70" />
-      <span className="pointer-events-none absolute left-0 top-1/2 z-10 size-[3px] -translate-y-1/2 rounded-full bg-black/70" />
-      <span className="pointer-events-none absolute right-0 top-1/2 z-10 size-[3px] -translate-y-1/2 rounded-full bg-black/70" />
+      <Half k="bt" top initial={initial} size={size} tone={tone} />
+      <Half k="bb" top={false} initial={initial} size={size} tone={tone} />
+      <Half k="ft" top initial={initial} size={size} tone={tone} z={2} />
+      <Half k="fb" top={false} initial={initial} size={size} tone={tone} z={3} />
+      {/* the axle: two little pins at the sides of the fold, just as on the real thing */}
+      <span
+        className="pointer-events-none absolute left-[-1px] top-1/2 z-10 -translate-y-1/2 rounded-r-full bg-black"
+        style={{ width: size * 0.07, height: size * 0.12 }}
+      />
+      <span
+        className="pointer-events-none absolute right-[-1px] top-1/2 z-10 -translate-y-1/2 rounded-l-full bg-black"
+        style={{ width: size * 0.07, height: size * 0.12 }}
+      />
     </div>
   );
 }

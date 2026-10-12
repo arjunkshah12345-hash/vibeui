@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>Everything an interface is made of.</strong><br />
-  144 copy-owned React + Tailwind components with warm tokens, real dark mode and motion that earns its place.
+  170 copy-owned React + Tailwind components with warm tokens, real dark mode and motion that earns its place.
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 
 **VibeUI** is a component library you copy into your project instead of installing. Add a file and it is yours to read, change and keep: no runtime package, no theme provider, no black box. Every component reads one token file, so pieces from different corners of the library look like they were made together.
 
-Run the repo to browse all 144 components live (`/components`), read the docs (`/docs`), and open any component for its source, install command and generated API table.
+Run the repo to browse all 170 components live (`/components`), read the docs (`/docs`), and open any component for its source, install command and generated API table.
 
 ## Why
 
@@ -103,16 +103,16 @@ You need a `@/*` → `src/*` path alias and Tailwind CSS v4. Toasts need `ToastP
 <!-- catalog:start -->
 | Shelf | Count | Components |
 | --- | --- | --- |
-| Actions | 6 | `button` · `chip` · `kbd` · `pill` · `separator` · `toggle` |
-| Forms | 14 | `calendar` · `checkbox` · `file-drop` · `input` · `number-field` · `otp-field` · `password-field` · `radio` · `rating` · `search-field` · `select` · `slider` · `switch` · `tag-input` |
-| Feedback | 9 | `alert` · `banner` · `callout` · `empty` · `meter` · `notification` · `progress` · `skeleton` · `spinner` |
-| Data & surfaces | 14 | `area-chart` · `aspect-ratio` · `avatar` · `card` · `code-block` · `color-swatch` · `comparison` · `heatmap` · `list` · `resizable` · `scroll-area` · `sortable-list` · `stat` · `table` |
-| Overlays | 8 | `command` · `dialog` · `drawer` · `dropdown-menu` · `popover` · `sheet` · `toast` · `tooltip` |
-| Navigation | 7 | `accordion` · `breadcrumb` · `pagination` · `segmented` · `stepper` · `tabs` · `timeline` |
+| Actions | 9 | `button` · `chip` · `copy-button` · `kbd` · `pill` · `separator` · `split-button` · `status-button` · `toggle` |
+| Forms | 17 | `autosize-textarea` · `calendar` · `checkbox` · `combobox` · `file-drop` · `input` · `number-field` · `otp-field` · `password-field` · `radio` · `range-slider` · `rating` · `search-field` · `select` · `slider` · `switch` · `tag-input` |
+| Feedback | 12 | `alert` · `banner` · `callout` · `empty` · `gauge` · `meter` · `notification` · `progress-ring` · `progress` · `skeleton` · `spinner` · `status-icon` |
+| Data & surfaces | 17 | `area-chart` · `aspect-ratio` · `avatar` · `bar-chart` · `card` · `code-block` · `color-swatch` · `comparison` · `donut-chart` · `heatmap` · `list` · `resizable` · `scroll-area` · `sortable-list` · `sparkline` · `stat` · `table` |
+| Overlays | 11 | `command` · `context-menu` · `dialog` · `drawer` · `dropdown-menu` · `lightbox` · `popover` · `sheet` · `toast` · `tooltip` · `tour` |
+| Navigation | 10 | `accordion` · `breadcrumb` · `floating-nav` · `pagination` · `segmented` · `sidebar` · `stepper` · `table-of-contents` · `tabs` · `timeline` |
 | Signature | 55 | `ai-orb` · `arrow-fill-button` · `aura-border` · `blur-reveal` · `book-flip` · `circle-menu` · `color-picker` · `confetti` · `count-up` · `cover-flow` · `dice` · `dither-image` · `dock` · `dot-globe` · `dotted-grid` · `dynamic-island` · `falling-sand` · `flip-card` · `folder-preview` · `gooey-menu` · `hold-button` · `jelly-loader` · `keycap` · `knob` · `lanyard` · `liquid-glass` · `liquid-metal` · `liquid-switch` · `loupe` · `magnet-tabs` · `marquee` · `masonry` · `mesh-gradient` · `odometer` · `orbit-ring` · `pan-zoom` · `particle-text` · `peel-card` · `pluck-string` · `pointer-morph` · `progressive-blur` · `ripple-image` · `rotating-carousel` · `scratch-reveal` · `scroll-stack` · `signature-pad` · `slide-to-confirm` · `split-flap` · `split-showcase` · `spotlight` · `stacked-cards` · `trading-card` · `velocity-marquee` · `waveform` · `wheel-picker` |
-| Text effects | 14 | `decode-text` · `flip-text` · `gradient-text` · `highlight-text` · `letter-hover` · `quote` · `rolling-text` · `scramble-text` · `stagger-words` · `text-link` · `text-reveal` · `text-shimmer` · `typewriter` · `underline-reveal` |
-| Hover effects | 11 | `hover-border` · `hover-card` · `hover-expand` · `hover-icon` · `hover-image` · `hover-lift` · `hover-shine` · `hover-slide` · `hover-tilt` · `magnetic-button` · `magnetic-link` |
-| Footers | 6 | `footer-cta` · `footer-legal` · `footer-mega` · `footer-newsletter` · `footer-simple` · `social-links` |
+| Text effects | 18 | `curve-text` · `decode-text` · `flip-text` · `glitch-text` · `gradient-text` · `highlight-text` · `letter-hover` · `neon-text` · `quote` · `rolling-text` · `scramble-text` · `stagger-words` · `text-link` · `text-reveal` · `text-shimmer` · `typewriter` · `underline-reveal` · `weight-text` |
+| Hover effects | 13 | `hover-border` · `hover-card` · `hover-expand` · `hover-glow-grid` · `hover-icon` · `hover-image-list` · `hover-image` · `hover-lift` · `hover-shine` · `hover-slide` · `hover-tilt` · `magnetic-button` · `magnetic-link` |
+| Footers | 8 | `footer-cta` · `footer-giant` · `footer-legal` · `footer-mega` · `footer-newsletter` · `footer-simple` · `footer-status` · `social-links` |
 <!-- catalog:end -->
 
 Every component has hover, press and focus feedback, and anything that appears also animates out. Each page in `/components` lists the props (generated from the real TypeScript types), the peers it needs and the sibling components it imports.

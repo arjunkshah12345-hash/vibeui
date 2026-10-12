@@ -42,27 +42,75 @@ const FLIGHTS = [
     ["VALPARAISO", "12:00", "A19"],
     ["SINGAPORE", "12:25", "B08"],
   ],
+  [
+    ["BUENOS AIRES", "13:05", "C09"],
+    ["ISTANBUL", "13:30", "A22"],
+    ["VANCOUVER", "13:55", "B17"],
+    ["COPENHAGEN", "14:20", "C04"],
+  ],
 ] as const;
 
+const BOARDS = {
+  amber: "bg-[#0b0a09]",
+  ink: "bg-[#12110f]",
+  paper: "bg-[#cfc9bc]",
+} as const;
+
 function FlapDemo() {
-  const [set] = useRotation(FLIGHTS, 6500);
+  const [round, setRound] = React.useState(0);
+  const [tone, setTone] = React.useState<"amber" | "ink" | "paper">("amber");
+  const [loud, setLoud] = React.useState(false);
+  const set = FLIGHTS[round % FLIGHTS.length];
+  React.useEffect(() => {
+    const id = window.setInterval(() => setRound((n) => n + 1), 9000);
+    return () => window.clearInterval(id);
+  }, []);
   return (
     <div className="flex w-full flex-col items-center gap-5">
-      <div className="w-full overflow-x-auto rounded-3xl bg-[#14130f] p-5 shadow-lift">
-        <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.3em] text-[#f4f2ee]/50">
-          Departures
-        </p>
-        <div className="flex flex-col gap-2">
+      <div
+        className={cn(
+          "w-full overflow-x-auto rounded-3xl p-5 shadow-lift transition-colors",
+          BOARDS[tone],
+        )}
+      >
+        <div className="mb-3 flex w-max gap-4 font-mono text-[10px] uppercase tracking-[0.28em] text-[#f4f2ee]/45">
+          <span className="w-[358px]">Destination</span>
+          <span className="w-[148px]">Time</span>
+          <span>Gate</span>
+        </div>
+        <div className="flex flex-col gap-2.5">
           {set.map(([to, at, gate], i) => (
             <div key={i} className="flex w-max items-center gap-4">
-              <SplitFlap value={to} length={10} size="sm" stagger={32} />
-              <SplitFlap value={at} length={5} size="sm" stagger={32} />
-              <SplitFlap value={gate} length={3} size="sm" stagger={32} />
+              <SplitFlap value={to} length={12} size={40} tone={tone} stagger={26} sound={loud} />
+              <SplitFlap value={at} length={5} size={40} tone={tone} stagger={26} sound={loud} />
+              <SplitFlap value={gate} length={3} size={40} tone={tone} stagger={26} sound={loud} />
             </div>
           ))}
         </div>
       </div>
-      <p className={hint}>The board updates itself</p>
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        <Segmented
+          options={[
+            { value: "amber", label: "Amber" },
+            { value: "ink", label: "Ink" },
+            { value: "paper", label: "Paper" },
+          ]}
+          value={tone}
+          onChange={setTone}
+        />
+        <Segmented
+          options={[
+            { value: "off", label: "Silent" },
+            { value: "on", label: "Clacking" },
+          ]}
+          value={loud ? "on" : "off"}
+          onChange={(v) => setLoud(v === "on")}
+        />
+        <Button size="sm" variant="secondary" onClick={() => setRound((n) => n + 1)}>
+          Next flights
+        </Button>
+      </div>
+      <p className={hint}>Every cell flips through the alphabet</p>
     </div>
   );
 }
@@ -72,8 +120,8 @@ const CITIES = ["BERLIN", "TOKYO", "LAGOS", "QUITO", "OSLO", "DELHI"] as const;
 function FlapTile() {
   const [city] = useRotation(CITIES, 3600);
   return (
-    <div className={cn(TILE_W, "grid place-items-center rounded-xl bg-[#14130f] py-6")}>
-      <SplitFlap value={city} length={6} size="md" stagger={55} />
+    <div className={cn(TILE_W, "grid place-items-center rounded-xl bg-[#0b0a09] py-7")}>
+      <SplitFlap value={city} length={6} size={52} tone="amber" stagger={55} />
     </div>
   );
 }
