@@ -1,7 +1,7 @@
 # VibeUI (full reference)
 
 > Copy-owned React + Tailwind components. MIT. https://github.com/arjunkshah12345-hash/vibeui
-> Version 0.5.0 · 136 components · generated from registry/components.json
+> Version 0.6.0 · 144 components · generated from registry/components.json
 
 ## Setup
 
@@ -221,6 +221,31 @@ The classic cover-flow browser: a row of covers in 3D, the middle one facing you
   - onIndexChange?: ((index: number) => void)
   - size?: number = 168 — Size of each square cover in px.
 
+#### dice
+A six-sided die in real 3D. Click it and it tumbles, bounces, and settles on a number.
+- file: src/components/ui/dice.tsx
+- exports: Dice
+- client component
+- <Dice> (also accepts ButtonHTMLAttributes<HTMLButtonElement>)
+  - defaultValue?: number | (readonly string[] & number) = 1 — The face showing before the first roll, 1 to 6.
+  - size?: number = 72 — Edge length of the cube, in px.
+  - onRoll?: ((value: number) => void) — Called with the number it landed on, once it has settled.
+
+#### dither-image
+A photograph reduced to two colours with ordered dithering, which a lens of full colour dissolves through.
+- file: src/components/ui/dither-image.tsx
+- exports: DitherImage
+- client component
+- <DitherImage> (also accepts HTMLAttributes<HTMLDivElement>)
+  - src: string — Image address. A data URI or a same-origin or CORS-enabled URL.
+  - alt: string — Describes the picture for assistive tech.
+  - pixel?: number = 3 — Size of one dither cell, in CSS px. Bigger is chunkier.
+  - radius?: number = 110 — Radius of the colour lens, in px.
+  - contrast?: number = 1.15 — Stretch the tones before dithering. Above 1 is punchier.
+  - fg?: string — Dark colour of the dither. Defaults to the ink token.
+  - bg?: string — Light colour of the dither. Defaults to the canvas token.
+  - idle?: boolean = true — Let the lens wander on its own while the pointer is away.
+
 #### dock
 macOS-style dock: icons magnify smoothly with distance from the cursor.
 - file: src/components/ui/dock.tsx
@@ -260,6 +285,17 @@ A pill that flows between states, resizing and cross-fading its content with a s
   - views: IslandView[]
   - value: string — The id of the active view.
   - className?: string — Extra classes, merged with the component's own.
+
+#### falling-sand
+Grains of sand that fall, slide down each other and pile up at the natural angle of repose.
+- file: src/components/ui/falling-sand.tsx
+- exports: FallingSand
+- client component
+- <FallingSand> (also accepts HTMLAttributes<HTMLDivElement>)
+  - cell?: number = 4 — Size of one grain, in CSS px.
+  - palette?: string[] = PALETTE — Colours of the bands, as hex.
+  - stream?: boolean = true — Pour a slow stream from the top while idle.
+  - bandMs?: number = 1400 — How long each colour pours before the next, in ms.
 
 #### flip-card
 Two-sided card that turns over on click or Enter.
@@ -351,6 +387,17 @@ A rotary dial with ticks: drag it up and down, scroll over it, use the arrow key
   - label?: string — Shown under the dial, and used as its accessible name.
   - format?: ((value: number) => string) = (v) => String(Math.round(v)) — Turns the value into the text shown in the middle.
 
+#### lanyard
+A badge hanging from a woven strap that you can grab, swing and fling, driven by a real rope simulation.
+- file: src/components/ui/lanyard.tsx
+- exports: Lanyard
+- client component
+- <Lanyard> (also accepts HTMLAttributes<HTMLDivElement>)
+  - children: ReactNode — What is printed on the card. Leave the top 2rem free for the slot.
+  - width?: number = 208 — Width of the card, in px.
+  - strapText?: string = "VIBEUI" — Text woven into the strap.
+  - strapColor?: string — CSS colour of the strap. Defaults to the accent token.
+
 #### liquid-glass
 Liquid glass: a surface that bends the light behind it, with a specular rim that follows the pointer.
 - file: src/components/ui/liquid-glass.tsx
@@ -383,6 +430,17 @@ Toggle with a liquid-glass thumb that stretches under your finger and settles wi
   - name?: string — Submit the state with a form under this name.
   - checked?: boolean — Controlled state.
   - onCheckedChange?: ((checked: boolean) => void) — Called with the new state after a tap, drag or key press.
+
+#### loupe
+A magnifying glass that follows the pointer and enlarges whatever is under it: images, type, whole interfaces.
+- file: src/components/ui/loupe.tsx
+- exports: Loupe
+- client component
+- <Loupe> (also accepts HTMLAttributes<HTMLDivElement>)
+  - children: ReactNode — The content to magnify.
+  - zoom?: number = 2.4 — Magnification.
+  - size?: number = 168 — Diameter of the lens, in px.
+  - lensClassName?: string — Extra classes for the lens ring.
 
 #### magnet-tabs
 Tabs with a hover highlight that glides between items and a marker on the active tab.
@@ -485,6 +543,18 @@ A card whose corner you can lift and peel back, like a sticker, to see what is u
   - threshold?: number = 0.5 — How far across the card (0 to 1 of its diagonal) a peel has to go to count.
   - onPeel?: (() => void) — Called when you let go after peeling past the threshold.
 
+#### pluck-string
+A string you can pluck: pull it and let go, or just sweep the pointer across it like a harp.
+- file: src/components/ui/pluck-string.tsx
+- exports: PluckString
+- client component
+- <PluckString> (also accepts HTMLAttributes<HTMLDivElement>)
+  - note?: string = "A3" — The note it sounds, for example `E2` or `F#4`.
+  - frequency?: number — Overrides `note` with a frequency in Hz.
+  - sound?: boolean = true — Play a tone on every pluck. Browsers wait for your first click or tap before they allow sound.
+  - thickness?: number = 2 — Line width in px.
+  - onPluck?: ((note: string) => void) — Called on every pluck.
+
 #### pointer-morph
 The iPadOS pointer for the web: a dot that morphs into the shape of whatever you hover, and gently pulls it toward you.
 - file: src/components/ui/pointer-morph.tsx
@@ -553,6 +623,19 @@ Cards that pile up as you scroll. Pure CSS (position: sticky).
   - height?: number — Height in pixels; makes the component its own scroll container.
   - className?: string — Extra classes, merged with the component's own.
 
+#### signature-pad
+A signature field with real ink: the line thins as you move fast and swells as you slow down, with no corners.
+- file: src/components/ui/signature-pad.tsx
+- exports: SignaturePad
+- client component
+- <SignaturePad> (also accepts HTMLAttributes<HTMLDivElement>)
+  - onChange?: ((dataUrl: string | null) => void) — Called after each stroke, undo and clear, with a PNG data URL or null when empty.
+  - maxWidth?: number = 3.4 — Widest the ink gets, in px.
+  - minWidth?: number = 0.9 — Thinnest the ink gets, in px.
+  - controls?: boolean = true — Show Undo and Clear.
+  - guide?: boolean = true — Show the baseline and the cross.
+  - placeholder?: string = "Sign here" — Faint prompt shown while empty.
+
 #### slide-to-confirm
 The slide-to-unlock control: drag the handle across to confirm, and it springs back if you stop short.
 - file: src/components/ui/slide-to-confirm.tsx
@@ -565,6 +648,19 @@ The slide-to-unlock control: drag the handle across to confirm, and it springs b
   - threshold?: number = 0.92 — How far across (0 to 1) counts as done.
   - resetMs?: number = 2400 — After this many ms the control resets. 0 leaves it confirmed.
   - disabled?: boolean — Prevents interaction and dims the control.
+
+#### split-flap
+An airport departures board: every character is a flap that turns over until it shows the right one.
+- file: src/components/ui/split-flap.tsx
+- exports: SplitFlap
+- client component
+- <SplitFlap> (also accepts HTMLAttributes<HTMLDivElement>)
+  - value: string — What to show. Letters are upper-cased; anything not in `charset` becomes a blank.
+  - className?: string — Extra classes, merged with the component's own.
+  - length?: number — Number of cells. The value is padded with blanks, or cut, to fit. Defaults to its length.
+  - charset?: string = CHARS — The characters a flap can show, in the order it cycles through them. Keep the blank first.
+  - size?: "sm" | "md" | "lg" = "md" — Size preset.
+  - stagger?: number = 45 — Delay between one cell starting and the next, in ms.
 
 #### split-showcase
 Before/after comparison with a draggable, keyboard-accessible divider.

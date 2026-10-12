@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>Everything an interface is made of.</strong><br />
-  136 copy-owned React + Tailwind components with warm tokens, real dark mode and motion that earns its place.
+  144 copy-owned React + Tailwind components with warm tokens, real dark mode and motion that earns its place.
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 
 **VibeUI** is a component library you copy into your project instead of installing. Add a file and it is yours to read, change and keep: no runtime package, no theme provider, no black box. Every component reads one token file, so pieces from different corners of the library look like they were made together.
 
-Run the repo to browse all 136 components live (`/components`), read the docs (`/docs`), and open any component for its source, install command and generated API table.
+Run the repo to browse all 144 components live (`/components`), read the docs (`/docs`), and open any component for its source, install command and generated API table.
 
 ## Why
 
@@ -109,7 +109,7 @@ You need a `@/*` → `src/*` path alias and Tailwind CSS v4. Toasts need `ToastP
 | Data & surfaces | 14 | `area-chart` · `aspect-ratio` · `avatar` · `card` · `code-block` · `color-swatch` · `comparison` · `heatmap` · `list` · `resizable` · `scroll-area` · `sortable-list` · `stat` · `table` |
 | Overlays | 8 | `command` · `dialog` · `drawer` · `dropdown-menu` · `popover` · `sheet` · `toast` · `tooltip` |
 | Navigation | 7 | `accordion` · `breadcrumb` · `pagination` · `segmented` · `stepper` · `tabs` · `timeline` |
-| Signature | 47 | `ai-orb` · `arrow-fill-button` · `aura-border` · `blur-reveal` · `book-flip` · `circle-menu` · `color-picker` · `confetti` · `count-up` · `cover-flow` · `dock` · `dot-globe` · `dotted-grid` · `dynamic-island` · `flip-card` · `folder-preview` · `gooey-menu` · `hold-button` · `jelly-loader` · `keycap` · `knob` · `liquid-glass` · `liquid-metal` · `liquid-switch` · `magnet-tabs` · `marquee` · `masonry` · `mesh-gradient` · `odometer` · `orbit-ring` · `pan-zoom` · `particle-text` · `peel-card` · `pointer-morph` · `progressive-blur` · `ripple-image` · `rotating-carousel` · `scratch-reveal` · `scroll-stack` · `slide-to-confirm` · `split-showcase` · `spotlight` · `stacked-cards` · `trading-card` · `velocity-marquee` · `waveform` · `wheel-picker` |
+| Signature | 55 | `ai-orb` · `arrow-fill-button` · `aura-border` · `blur-reveal` · `book-flip` · `circle-menu` · `color-picker` · `confetti` · `count-up` · `cover-flow` · `dice` · `dither-image` · `dock` · `dot-globe` · `dotted-grid` · `dynamic-island` · `falling-sand` · `flip-card` · `folder-preview` · `gooey-menu` · `hold-button` · `jelly-loader` · `keycap` · `knob` · `lanyard` · `liquid-glass` · `liquid-metal` · `liquid-switch` · `loupe` · `magnet-tabs` · `marquee` · `masonry` · `mesh-gradient` · `odometer` · `orbit-ring` · `pan-zoom` · `particle-text` · `peel-card` · `pluck-string` · `pointer-morph` · `progressive-blur` · `ripple-image` · `rotating-carousel` · `scratch-reveal` · `scroll-stack` · `signature-pad` · `slide-to-confirm` · `split-flap` · `split-showcase` · `spotlight` · `stacked-cards` · `trading-card` · `velocity-marquee` · `waveform` · `wheel-picker` |
 | Text effects | 14 | `decode-text` · `flip-text` · `gradient-text` · `highlight-text` · `letter-hover` · `quote` · `rolling-text` · `scramble-text` · `stagger-words` · `text-link` · `text-reveal` · `text-shimmer` · `typewriter` · `underline-reveal` |
 | Hover effects | 11 | `hover-border` · `hover-card` · `hover-expand` · `hover-icon` · `hover-image` · `hover-lift` · `hover-shine` · `hover-slide` · `hover-tilt` · `magnetic-button` · `magnetic-link` |
 | Footers | 6 | `footer-cta` · `footer-legal` · `footer-mega` · `footer-newsletter` · `footer-simple` · `social-links` |
