@@ -7,6 +7,12 @@ versions may include breaking changes).
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-10-12
+
+### Added
+
+- Four Signature components: `PlasmaBall` (a plasma globe whose filaments reach for the pointer), `ImageSphere` (a draggable ball of pictures in plain CSS 3D), `InkTrail` (a gooey trail that dries away) and `WarpField` (a starfield that streaks to warp on press).
+
 ## [0.7.0] - 2026-10-12
 
 ### Added

@@ -41,7 +41,7 @@ function err(message) {
 
 const server = new McpServer({
   name: "vibeui",
-  version: "0.7.0",
+  version: "0.8.0",
 });
 
 server.registerTool(

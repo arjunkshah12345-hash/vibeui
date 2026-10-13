@@ -108,6 +108,10 @@ const CATEGORY_RULES = [
         "falling-sand",
         "dice",
         "lanyard",
+        "plasma-ball",
+        "image-sphere",
+        "ink-trail",
+        "warp-field",
       ].includes(n),
   },
   {

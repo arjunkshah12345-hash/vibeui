@@ -175,3 +175,7 @@ export { GlitchText } from "./glitch-text";
 export { CurveText } from "./curve-text";
 export { HoverImageList, type HoverImageItem } from "./hover-image-list";
 export { HoverGlowGrid, GlowCard } from "./hover-glow-grid";
+export { PlasmaBall } from "./plasma-ball";
+export { ImageSphere, type SphereImage } from "./image-sphere";
+export { InkTrail } from "./ink-trail";
+export { WarpField } from "./warp-field";

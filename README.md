@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>Everything an interface is made of.</strong><br />
-  170 copy-owned React + Tailwind components with warm tokens, real dark mode and motion that earns its place.
+  174 copy-owned React + Tailwind components with warm tokens, real dark mode and motion that earns its place.
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 
 **VibeUI** is a component library you copy into your project instead of installing. Add a file and it is yours to read, change and keep: no runtime package, no theme provider, no black box. Every component reads one token file, so pieces from different corners of the library look like they were made together.
 
-Run the repo to browse all 170 components live (`/components`), read the docs (`/docs`), and open any component for its source, install command and generated API table.
+Run the repo to browse all 174 components live (`/components`), read the docs (`/docs`), and open any component for its source, install command and generated API table.
 
 ## Why
 
@@ -109,7 +109,7 @@ You need a `@/*` → `src/*` path alias and Tailwind CSS v4. Toasts need `ToastP
 | Data & surfaces | 17 | `area-chart` · `aspect-ratio` · `avatar` · `bar-chart` · `card` · `code-block` · `color-swatch` · `comparison` · `donut-chart` · `heatmap` · `list` · `resizable` · `scroll-area` · `sortable-list` · `sparkline` · `stat` · `table` |
 | Overlays | 11 | `command` · `context-menu` · `dialog` · `drawer` · `dropdown-menu` · `lightbox` · `popover` · `sheet` · `toast` · `tooltip` · `tour` |
 | Navigation | 10 | `accordion` · `breadcrumb` · `floating-nav` · `pagination` · `segmented` · `sidebar` · `stepper` · `table-of-contents` · `tabs` · `timeline` |
-| Signature | 55 | `ai-orb` · `arrow-fill-button` · `aura-border` · `blur-reveal` · `book-flip` · `circle-menu` · `color-picker` · `confetti` · `count-up` · `cover-flow` · `dice` · `dither-image` · `dock` · `dot-globe` · `dotted-grid` · `dynamic-island` · `falling-sand` · `flip-card` · `folder-preview` · `gooey-menu` · `hold-button` · `jelly-loader` · `keycap` · `knob` · `lanyard` · `liquid-glass` · `liquid-metal` · `liquid-switch` · `loupe` · `magnet-tabs` · `marquee` · `masonry` · `mesh-gradient` · `odometer` · `orbit-ring` · `pan-zoom` · `particle-text` · `peel-card` · `pluck-string` · `pointer-morph` · `progressive-blur` · `ripple-image` · `rotating-carousel` · `scratch-reveal` · `scroll-stack` · `signature-pad` · `slide-to-confirm` · `split-flap` · `split-showcase` · `spotlight` · `stacked-cards` · `trading-card` · `velocity-marquee` · `waveform` · `wheel-picker` |
+| Signature | 59 | `ai-orb` · `arrow-fill-button` · `aura-border` · `blur-reveal` · `book-flip` · `circle-menu` · `color-picker` · `confetti` · `count-up` · `cover-flow` · `dice` · `dither-image` · `dock` · `dot-globe` · `dotted-grid` · `dynamic-island` · `falling-sand` · `flip-card` · `folder-preview` · `gooey-menu` · `hold-button` · `image-sphere` · `ink-trail` · `jelly-loader` · `keycap` · `knob` · `lanyard` · `liquid-glass` · `liquid-metal` · `liquid-switch` · `loupe` · `magnet-tabs` · `marquee` · `masonry` · `mesh-gradient` · `odometer` · `orbit-ring` · `pan-zoom` · `particle-text` · `peel-card` · `plasma-ball` · `pluck-string` · `pointer-morph` · `progressive-blur` · `ripple-image` · `rotating-carousel` · `scratch-reveal` · `scroll-stack` · `signature-pad` · `slide-to-confirm` · `split-flap` · `split-showcase` · `spotlight` · `stacked-cards` · `trading-card` · `velocity-marquee` · `warp-field` · `waveform` · `wheel-picker` |
 | Text effects | 18 | `curve-text` · `decode-text` · `flip-text` · `glitch-text` · `gradient-text` · `highlight-text` · `letter-hover` · `neon-text` · `quote` · `rolling-text` · `scramble-text` · `stagger-words` · `text-link` · `text-reveal` · `text-shimmer` · `typewriter` · `underline-reveal` · `weight-text` |
 | Hover effects | 13 | `hover-border` · `hover-card` · `hover-expand` · `hover-glow-grid` · `hover-icon` · `hover-image-list` · `hover-image` · `hover-lift` · `hover-shine` · `hover-slide` · `hover-tilt` · `magnetic-button` · `magnetic-link` |
 | Footers | 8 | `footer-cta` · `footer-giant` · `footer-legal` · `footer-mega` · `footer-newsletter` · `footer-simple` · `footer-status` · `social-links` |
