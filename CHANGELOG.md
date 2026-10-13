@@ -12,6 +12,7 @@ versions may include breaking changes).
 ### Added
 
 - Four Signature components: `PlasmaBall` (a plasma globe whose filaments reach for the pointer), `ImageSphere` (a draggable ball of pictures in plain CSS 3D), `InkTrail` (a gooey trail that dries away) and `WarpField` (a starfield that streaks to warp on press).
+- Four more: `FlowField` (particles riding a wind you can stir), `Kaleidoscope` (draw and it mirrors into a mandala), `PendulumWave` (pendulums drifting in and out of step) and `RadarSweep` (a sweeping beam that lights each contact).
 
 ## [0.7.0] - 2026-10-12
 

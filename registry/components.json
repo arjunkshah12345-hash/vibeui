@@ -3,7 +3,7 @@
   "version": "0.8.0",
   "license": "MIT",
   "repository": "https://github.com/arjunkshah12345-hash/vibeui",
-  "count": 174,
+  "count": 178,
   "tokens": "templates/vibeui.css",
   "utils": "src/lib/utils.ts",
   "peerDependencies": [
@@ -55,12 +55,14 @@
       "dynamic-island",
       "falling-sand",
       "flip-card",
+      "flow-field",
       "folder-preview",
       "gooey-menu",
       "hold-button",
       "image-sphere",
       "ink-trail",
       "jelly-loader",
+      "kaleidoscope",
       "keycap",
       "knob",
       "lanyard",
@@ -77,10 +79,12 @@
       "pan-zoom",
       "particle-text",
       "peel-card",
+      "pendulum-wave",
       "plasma-ball",
       "pluck-string",
       "pointer-morph",
       "progressive-blur",
+      "radar-sweep",
       "ripple-image",
       "rotating-carousel",
       "scratch-reveal",
@@ -3178,6 +3182,54 @@
       ]
     },
     {
+      "name": "flow-field",
+      "title": "FlowField",
+      "category": "craft",
+      "description": "Thousands of tiny particles riding an invisible wind, leaving long soft trails that curl into ribbons.",
+      "file": "src/components/ui/flow-field.tsx",
+      "exports": [
+        "FlowField"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "FlowField",
+          "props": [
+            {
+              "name": "count",
+              "type": "number",
+              "required": false,
+              "default": "1400",
+              "description": "Particles in flight."
+            },
+            {
+              "name": "palette",
+              "type": "string[]",
+              "required": false,
+              "default": "PALETTE",
+              "description": "Colours the particles are drawn in."
+            },
+            {
+              "name": "trail",
+              "type": "number",
+              "required": false,
+              "default": "0.05",
+              "description": "How quickly trails fade, 0 to 1. Smaller leaves longer ribbons."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "folder-preview",
       "title": "FolderPreview",
       "category": "craft",
@@ -4736,6 +4788,47 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "kaleidoscope",
+      "title": "Kaleidoscope",
+      "category": "craft",
+      "description": "A drawing surface with mirrors: whatever you draw is repeated around the centre in several slices,",
+      "file": "src/components/ui/kaleidoscope.tsx",
+      "exports": [
+        "Kaleidoscope"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Kaleidoscope",
+          "props": [
+            {
+              "name": "slices",
+              "type": "number",
+              "required": false,
+              "default": "8",
+              "description": "Number of mirrored slices. Even numbers read best."
+            },
+            {
+              "name": "fade",
+              "type": "number",
+              "required": false,
+              "default": "0.012",
+              "description": "How quickly strokes fade, 0 to 1 per frame. 0 keeps them forever."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },
@@ -6374,6 +6467,54 @@
       ]
     },
     {
+      "name": "pendulum-wave",
+      "title": "PendulumWave",
+      "category": "craft",
+      "description": "A row of pendulums, each a hair faster than the last, that drift in and out of step to trace waves,",
+      "file": "src/components/ui/pendulum-wave.tsx",
+      "exports": [
+        "PendulumWave"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "PendulumWave",
+          "props": [
+            {
+              "name": "count",
+              "type": "number",
+              "required": false,
+              "default": "15",
+              "description": "Number of pendulums."
+            },
+            {
+              "name": "period",
+              "type": "number",
+              "required": false,
+              "default": "40",
+              "description": "Seconds for the whole pattern to repeat."
+            },
+            {
+              "name": "swings",
+              "type": "number",
+              "required": false,
+              "default": "28",
+              "description": "Swings the slowest pendulum makes in one period. Each one after makes one more."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "pill",
       "title": "Pill",
       "category": "actions",
@@ -6448,7 +6589,7 @@
               "type": "string",
               "required": false,
               "default": "\"#b06bff\"",
-              "description": "Colour of the glow. The core of each bolt is white."
+              "description": "Colour of the glow, as a 6-digit hex such as `#b06bff`. The core of each bolt is white."
             },
             {
               "name": "bolts",
@@ -6868,6 +7009,54 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "radar-sweep",
+      "title": "RadarSweep",
+      "category": "craft",
+      "description": "Bearing in degrees, 0 at the top, clockwise.",
+      "file": "src/components/ui/radar-sweep.tsx",
+      "exports": [
+        "RadarSweep"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "RadarSweep",
+          "props": [
+            {
+              "name": "blips",
+              "type": "RadarBlip[]",
+              "required": true,
+              "default": null,
+              "description": ""
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "required": false,
+              "default": "\"#4dff9d\"",
+              "description": "Colour of the screen, as a 6-digit hex such as `#4dff9d`."
+            },
+            {
+              "name": "speed",
+              "type": "number",
+              "required": false,
+              "default": "0.22",
+              "description": "Turns per second."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },

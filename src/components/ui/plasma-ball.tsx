@@ -34,7 +34,7 @@ export function PlasmaBall({
   className,
   ...props
 }: Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & {
-  /** Colour of the glow. The core of each bolt is white. */
+  /** Colour of the glow, as a 6-digit hex such as `#b06bff`. The core of each bolt is white. */
   color?: string;
   /** How many filaments are alive at once. */
   bolts?: number;

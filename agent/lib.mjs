@@ -112,6 +112,10 @@ const CATEGORY_RULES = [
         "image-sphere",
         "ink-trail",
         "warp-field",
+        "flow-field",
+        "kaleidoscope",
+        "pendulum-wave",
+        "radar-sweep",
       ].includes(n),
   },
   {

@@ -179,3 +179,7 @@ export { PlasmaBall } from "./plasma-ball";
 export { ImageSphere, type SphereImage } from "./image-sphere";
 export { InkTrail } from "./ink-trail";
 export { WarpField } from "./warp-field";
+export { FlowField } from "./flow-field";
+export { Kaleidoscope } from "./kaleidoscope";
+export { PendulumWave } from "./pendulum-wave";
+export { RadarSweep, type RadarBlip } from "./radar-sweep";

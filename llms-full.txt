@@ -1,7 +1,7 @@
 # VibeUI (full reference)
 
 > Copy-owned React + Tailwind components. MIT. https://github.com/arjunkshah12345-hash/vibeui
-> Version 0.8.0 · 174 components · generated from registry/components.json
+> Version 0.8.0 · 178 components · generated from registry/components.json
 
 ## Setup
 
@@ -347,6 +347,16 @@ Two-sided card that turns over on click or Enter.
   - back: ReactNode — Content of the back face.
   - className?: string — Extra classes, merged with the component's own.
 
+#### flow-field
+Thousands of tiny particles riding an invisible wind, leaving long soft trails that curl into ribbons.
+- file: src/components/ui/flow-field.tsx
+- exports: FlowField
+- client component
+- <FlowField> (also accepts HTMLAttributes<HTMLDivElement>)
+  - count?: number = 1400 — Particles in flight.
+  - palette?: string[] = PALETTE — Colours the particles are drawn in.
+  - trail?: number = 0.05 — How quickly trails fade, 0 to 1. Smaller leaves longer ribbons.
+
 #### folder-preview
 Folder that opens to let its files rise out for a peek.
 - file: src/components/ui/folder-preview.tsx
@@ -415,6 +425,15 @@ Four bars that squash and stretch in sequence.
 - server-safe
 - <JellyLoader>
   - className?: string — Extra classes, merged with the component's own.
+
+#### kaleidoscope
+A drawing surface with mirrors: whatever you draw is repeated around the centre in several slices,
+- file: src/components/ui/kaleidoscope.tsx
+- exports: Kaleidoscope
+- client component
+- <Kaleidoscope> (also accepts HTMLAttributes<HTMLDivElement>)
+  - slices?: number = 8 — Number of mirrored slices. Even numbers read best.
+  - fade?: number = 0.012 — How quickly strokes fade, 0 to 1 per frame. 0 keeps them forever.
 
 #### keycap
 A keyboard key with real travel: it dips under your finger, springs back, and can click.
@@ -603,13 +622,23 @@ A card whose corner you can lift and peel back, like a sticker, to see what is u
   - threshold?: number = 0.5 — How far across the card (0 to 1 of its diagonal) a peel has to go to count.
   - onPeel?: (() => void) — Called when you let go after peeling past the threshold.
 
+#### pendulum-wave
+A row of pendulums, each a hair faster than the last, that drift in and out of step to trace waves,
+- file: src/components/ui/pendulum-wave.tsx
+- exports: PendulumWave
+- client component
+- <PendulumWave> (also accepts HTMLAttributes<HTMLDivElement>)
+  - count?: number = 15 — Number of pendulums.
+  - period?: number = 40 — Seconds for the whole pattern to repeat.
+  - swings?: number = 28 — Swings the slowest pendulum makes in one period. Each one after makes one more.
+
 #### plasma-ball
 A plasma globe: filaments crackle from a bright core out to the glass, and bend toward your finger.
 - file: src/components/ui/plasma-ball.tsx
 - exports: PlasmaBall
 - client component
 - <PlasmaBall> (also accepts HTMLAttributes<HTMLDivElement>)
-  - color?: string = "#b06bff" — Colour of the glow. The core of each bolt is white.
+  - color?: string = "#b06bff" — Colour of the glow, as a 6-digit hex such as `#b06bff`. The core of each bolt is white.
   - bolts?: number = 6 — How many filaments are alive at once.
 
 #### pluck-string
@@ -645,6 +674,16 @@ A blur that builds gradually toward an edge, with no visible line where it start
   - blur?: number = 14 — Blur radius at the very edge, in px.
   - layers?: number = 8 — More layers make a smoother ramp and cost a little more to draw.
   - tint?: boolean = false — Fade into the page colour as well, so text on top stays readable.
+
+#### radar-sweep
+Bearing in degrees, 0 at the top, clockwise.
+- file: src/components/ui/radar-sweep.tsx
+- exports: RadarSweep
+- client component
+- <RadarSweep> (also accepts HTMLAttributes<HTMLDivElement>)
+  - blips: RadarBlip[]
+  - color?: string = "#4dff9d" — Colour of the screen, as a 6-digit hex such as `#4dff9d`.
+  - speed?: number = 0.22 — Turns per second.
 
 #### ripple-image
 An image that ripples like liquid wherever the pointer moves: refraction, colour splitting and a glint on every crest.
