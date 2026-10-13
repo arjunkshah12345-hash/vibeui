@@ -11,7 +11,9 @@ import { overlays } from "./overlays";
 import { sectionsA } from "./sections-a";
 import { sectionsB } from "./sections-b";
 import { signature } from "./signature";
+import { signatureFive } from "./signature-five";
 import { signatureFour } from "./signature-four";
+import { signatureSix } from "./signature-six";
 import { signatureThree } from "./signature-three";
 import { signatureTwo } from "./signature-two";
 import { text } from "./text";
@@ -31,6 +33,8 @@ export const demos: Record<string, Demo> = {
   ...sectionsA,
   ...sectionsB,
   ...signatureFour,
+  ...signatureFive,
+  ...signatureSix,
   ...text,
   ...hover,
   ...footers,

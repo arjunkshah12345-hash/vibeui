@@ -1,9 +1,9 @@
 {
   "name": "vibeui",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "license": "MIT",
   "repository": "https://github.com/arjunkshah12345-hash/vibeui",
-  "count": 170,
+  "count": 178,
   "tokens": "templates/vibeui.css",
   "utils": "src/lib/utils.ts",
   "peerDependencies": [
@@ -55,10 +55,14 @@
       "dynamic-island",
       "falling-sand",
       "flip-card",
+      "flow-field",
       "folder-preview",
       "gooey-menu",
       "hold-button",
+      "image-sphere",
+      "ink-trail",
       "jelly-loader",
+      "kaleidoscope",
       "keycap",
       "knob",
       "lanyard",
@@ -75,9 +79,12 @@
       "pan-zoom",
       "particle-text",
       "peel-card",
+      "pendulum-wave",
+      "plasma-ball",
       "pluck-string",
       "pointer-morph",
       "progressive-blur",
+      "radar-sweep",
       "ripple-image",
       "rotating-carousel",
       "scratch-reveal",
@@ -90,6 +97,7 @@
       "stacked-cards",
       "trading-card",
       "velocity-marquee",
+      "warp-field",
       "waveform",
       "wheel-picker"
     ],
@@ -3174,6 +3182,54 @@
       ]
     },
     {
+      "name": "flow-field",
+      "title": "FlowField",
+      "category": "craft",
+      "description": "Thousands of tiny particles riding an invisible wind, leaving long soft trails that curl into ribbons.",
+      "file": "src/components/ui/flow-field.tsx",
+      "exports": [
+        "FlowField"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "FlowField",
+          "props": [
+            {
+              "name": "count",
+              "type": "number",
+              "required": false,
+              "default": "1400",
+              "description": "Particles in flight."
+            },
+            {
+              "name": "palette",
+              "type": "string[]",
+              "required": false,
+              "default": "PALETTE",
+              "description": "Colours the particles are drawn in."
+            },
+            {
+              "name": "trail",
+              "type": "number",
+              "required": false,
+              "default": "0.05",
+              "description": "How quickly trails fade, 0 to 1. Smaller leaves longer ribbons."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "folder-preview",
       "title": "FolderPreview",
       "category": "craft",
@@ -4538,6 +4594,109 @@
       ]
     },
     {
+      "name": "image-sphere",
+      "title": "ImageSphere",
+      "category": "craft",
+      "description": "A ball of pictures you can spin: tiles sit on the surface of a sphere, drift round on their own, and",
+      "file": "src/components/ui/image-sphere.tsx",
+      "exports": [
+        "ImageSphere"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "ImageSphere",
+          "props": [
+            {
+              "name": "images",
+              "type": "SphereImage[]",
+              "required": true,
+              "default": null,
+              "description": ""
+            },
+            {
+              "name": "radius",
+              "type": "number",
+              "required": false,
+              "default": "220",
+              "description": "Radius of the ball, in px."
+            },
+            {
+              "name": "tile",
+              "type": "number",
+              "required": false,
+              "default": "64",
+              "description": "Width of one tile, in px."
+            },
+            {
+              "name": "speed",
+              "type": "number",
+              "required": false,
+              "default": "0.12",
+              "description": "Idle spin, in degrees per frame. 0 holds it still."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ink-trail",
+      "title": "InkTrail",
+      "category": "craft",
+      "description": "A surface that holds ink: move across it and the pointer leaves a blobby trail that merges, wobbles and",
+      "file": "src/components/ui/ink-trail.tsx",
+      "exports": [
+        "InkTrail"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "InkTrail",
+          "props": [
+            {
+              "name": "color",
+              "type": "string",
+              "required": false,
+              "default": "\"var(--ink)\"",
+              "description": "Colour of the ink. Any CSS colour, including a variable."
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "required": false,
+              "default": "26",
+              "description": "Radius of a fresh drop, in px."
+            },
+            {
+              "name": "fade",
+              "type": "number",
+              "required": false,
+              "default": "1800",
+              "description": "How long a drop takes to dry away, in ms."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "input",
       "title": "Input",
       "category": "forms",
@@ -4629,6 +4788,47 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "kaleidoscope",
+      "title": "Kaleidoscope",
+      "category": "craft",
+      "description": "A drawing surface with mirrors: whatever you draw is repeated around the centre in several slices,",
+      "file": "src/components/ui/kaleidoscope.tsx",
+      "exports": [
+        "Kaleidoscope"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "Kaleidoscope",
+          "props": [
+            {
+              "name": "slices",
+              "type": "number",
+              "required": false,
+              "default": "8",
+              "description": "Number of mirrored slices. Even numbers read best."
+            },
+            {
+              "name": "fade",
+              "type": "number",
+              "required": false,
+              "default": "0.012",
+              "description": "How quickly strokes fade, 0 to 1 per frame. 0 keeps them forever."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },
@@ -6267,6 +6467,54 @@
       ]
     },
     {
+      "name": "pendulum-wave",
+      "title": "PendulumWave",
+      "category": "craft",
+      "description": "A row of pendulums, each a hair faster than the last, that drift in and out of step to trace waves,",
+      "file": "src/components/ui/pendulum-wave.tsx",
+      "exports": [
+        "PendulumWave"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "PendulumWave",
+          "props": [
+            {
+              "name": "count",
+              "type": "number",
+              "required": false,
+              "default": "15",
+              "description": "Number of pendulums."
+            },
+            {
+              "name": "period",
+              "type": "number",
+              "required": false,
+              "default": "40",
+              "description": "Seconds for the whole pattern to repeat."
+            },
+            {
+              "name": "swings",
+              "type": "number",
+              "required": false,
+              "default": "28",
+              "description": "Swings the slowest pendulum makes in one period. Each one after makes one more."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
       "name": "pill",
       "title": "Pill",
       "category": "actions",
@@ -6312,6 +6560,47 @@
           ],
           "extends": [
             "HTMLAttributes<HTMLSpanElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "plasma-ball",
+      "title": "PlasmaBall",
+      "category": "craft",
+      "description": "A plasma globe: filaments crackle from a bright core out to the glass, and bend toward your finger.",
+      "file": "src/components/ui/plasma-ball.tsx",
+      "exports": [
+        "PlasmaBall"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "PlasmaBall",
+          "props": [
+            {
+              "name": "color",
+              "type": "string",
+              "required": false,
+              "default": "\"#b06bff\"",
+              "description": "Colour of the glow, as a 6-digit hex such as `#b06bff`. The core of each bolt is white."
+            },
+            {
+              "name": "bolts",
+              "type": "number",
+              "required": false,
+              "default": "6",
+              "description": "How many filaments are alive at once."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
           ]
         }
       ]
@@ -6720,6 +7009,54 @@
             }
           ],
           "extends": []
+        }
+      ]
+    },
+    {
+      "name": "radar-sweep",
+      "title": "RadarSweep",
+      "category": "craft",
+      "description": "Bearing in degrees, 0 at the top, clockwise.",
+      "file": "src/components/ui/radar-sweep.tsx",
+      "exports": [
+        "RadarSweep"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "RadarSweep",
+          "props": [
+            {
+              "name": "blips",
+              "type": "RadarBlip[]",
+              "required": true,
+              "default": null,
+              "description": ""
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "required": false,
+              "default": "\"#4dff9d\"",
+              "description": "Colour of the screen, as a 6-digit hex such as `#4dff9d`."
+            },
+            {
+              "name": "speed",
+              "type": "number",
+              "required": false,
+              "default": "0.22",
+              "description": "Turns per second."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
         }
       ]
     },
@@ -9927,6 +10264,54 @@
               "required": false,
               "default": "false",
               "description": "Stop while the pointer is over it."
+            }
+          ],
+          "extends": [
+            "HTMLAttributes<HTMLDivElement>"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "warp-field",
+      "title": "WarpField",
+      "category": "craft",
+      "description": "A starfield you fly through: stars stream out of a vanishing point that follows your pointer, and",
+      "file": "src/components/ui/warp-field.tsx",
+      "exports": [
+        "WarpField"
+      ],
+      "client": true,
+      "dependencies": [],
+      "registryDependencies": [],
+      "tags": [
+        "craft",
+        "client"
+      ],
+      "api": [
+        {
+          "name": "WarpField",
+          "props": [
+            {
+              "name": "color",
+              "type": "string",
+              "required": false,
+              "default": "\"#ffffff\"",
+              "description": "Colour of the stars."
+            },
+            {
+              "name": "stars",
+              "type": "number",
+              "required": false,
+              "default": "420",
+              "description": "How many stars are in flight."
+            },
+            {
+              "name": "speed",
+              "type": "number",
+              "required": false,
+              "default": "0.35",
+              "description": "Cruising speed. Warp is several times this."
             }
           ],
           "extends": [
