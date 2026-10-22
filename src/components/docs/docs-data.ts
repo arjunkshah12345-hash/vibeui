@@ -32,6 +32,7 @@ export const docsNav: { title: string; items: DocLinkItem[] }[] = [
       { href: "/docs/cli", label: "CLI" },
       { href: "/docs/registry", label: "Registry" },
       { href: "/docs/agents", label: "Agents and MCP" },
+      { href: "/docs/token-costs", label: "Token costs" },
     ],
   },
   {
